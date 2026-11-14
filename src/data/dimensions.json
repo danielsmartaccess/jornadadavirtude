@@ -1,0 +1,466 @@
+[
+  {
+    "id": "DIM01",
+    "order": 1,
+    "name": "Etéreo-físico",
+    "shortName": "Físico",
+    "traditionalName": "Sthula Sharira",
+    "group": "personalidade",
+    "field": "Corpo e manifestação material",
+    "guidingQuestion": "Como manifesto minhas escolhas?",
+    "contribution": "Ação concreta",
+    "diagnosticQuestion": "Como cuido do meu corpo?",
+    "concept": [
+      "É a dimensão relacionada ao corpo material e à sua manifestação concreta. Representa o organismo como veículo de expressão do indivíduo no mundo físico.",
+      "É por meio dele que nos movimentamos, percebemos estímulos, realizamos atividades, estabelecemos contato com o ambiente e executamos nossas escolhas.",
+      "Na concepção septenária, o etéreo-físico corresponde ao princípio mais concreto da personalidade."
+    ],
+    "characteristics": [
+      "Materialidade",
+      "Estrutura corporal",
+      "Sensações físicas",
+      "Movimento",
+      "Coordenação",
+      "Limites corporais",
+      "Necessidades fisiológicas",
+      "Relação com o ambiente",
+      "Ação e manifestação concreta"
+    ],
+    "potentials": [
+      "Saúde e cuidado corporal",
+      "Capacidade de realizar atividades",
+      "Disciplina física",
+      "Coordenação e habilidade",
+      "Resistência",
+      "Consciência dos limites",
+      "Autonomia nas atividades cotidianas"
+    ],
+    "challenges": [
+      "Negligência com o próprio corpo",
+      "Sedentarismo",
+      "Excesso de estímulos",
+      "Impulsividade nas necessidades físicas",
+      "Desrespeito aos próprios limites",
+      "Falta de disciplina",
+      "Descuido com o ambiente"
+    ],
+    "applications": [
+      "Desenvolver regularidade nos cuidados pessoais",
+      "Organizar horários de descanso",
+      "Praticar atividades físicas com constância",
+      "Reconhecer os próprios limites",
+      "Evitar comportamentos impulsivos",
+      "Desenvolver consciência sobre hábitos cotidianos"
+    ],
+    "questions": [
+      "Como tenho cuidado do meu corpo?",
+      "Meus hábitos físicos favorecem ou dificultam meus objetivos?",
+      "Consigo respeitar meus limites?",
+      "Tenho disciplina para manter hábitos saudáveis?",
+      "Costumo agir por impulso diante de necessidades e desejos físicos?"
+    ],
+    "caution": "As sete dimensões são uma representação filosófica, não sete órgãos ou estruturas físicas.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "DIM02",
+    "order": 2,
+    "name": "Vital ou energético",
+    "shortName": "Vital",
+    "traditionalName": "Prana Sharira",
+    "group": "personalidade",
+    "field": "Vitalidade, ritmo e sustentação",
+    "guidingQuestion": "Como sustento minhas atividades?",
+    "contribution": "Regularidade",
+    "diagnosticQuestion": "Como organizo minha rotina?",
+    "concept": [
+      "É a dimensão relacionada à vitalidade que anima e sustenta a manifestação do organismo vivo.",
+      "Na concepção filosófica adotada, representa o princípio vital que diferencia o organismo vivo de sua estrutura material considerada isoladamente. Está associado ao alento, à energia vital e à capacidade de sustentação da vida.",
+      "É importante não confundir essa noção filosófica com energia física mensurável, metabolismo ou conceitos específicos da fisiologia."
+    ],
+    "characteristics": [
+      "Vitalidade",
+      "Disposição",
+      "Ritmo",
+      "Recuperação",
+      "Atividade",
+      "Sustentação da vida",
+      "Relação entre esforço e repouso",
+      "Continuidade das atividades"
+    ],
+    "potentials": [
+      "Desenvolver hábitos que favoreçam a disposição",
+      "Administrar melhor o esforço",
+      "Reconhecer momentos de recuperação",
+      "Construir regularidade",
+      "Evitar desperdício de tempo e energia",
+      "Desenvolver equilíbrio entre atividade e repouso"
+    ],
+    "challenges": [
+      "Excesso de atividades",
+      "Falta de repouso",
+      "Desorganização da rotina",
+      "Dispersão",
+      "Falta de regularidade",
+      "Desperdício de tempo",
+      "Dificuldade de sustentar compromissos"
+    ],
+    "applications": [
+      "Organizar uma rotina sustentável",
+      "Identificar atividades que consomem tempo sem produzir resultados relevantes",
+      "Alternar períodos de concentração e descanso",
+      "Evitar assumir compromissos incompatíveis com a capacidade disponível",
+      "Desenvolver regularidade nas atividades importantes"
+    ],
+    "questions": [
+      "Como distribuo meu tempo e minha disposição?",
+      "Tenho uma rotina equilibrada?",
+      "Consigo manter compromissos ao longo do tempo?",
+      "Identifico quando preciso descansar?",
+      "Estou dispersando meus esforços em atividades pouco importantes?"
+    ],
+    "caution": "A dimensão vital não deve ser confundida com grandezas energéticas mensuráveis.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "DIM03",
+    "order": 3,
+    "name": "Emocional ou psicológico",
+    "shortName": "Emocional",
+    "traditionalName": "Linga Sharira",
+    "group": "personalidade",
+    "field": "Sentimentos, emoções e afetividade",
+    "guidingQuestion": "Como sinto e reajo?",
+    "contribution": "Consciência afetiva",
+    "diagnosticQuestion": "Como reajo emocionalmente?",
+    "concept": [
+      "É a dimensão relacionada à experiência emocional e afetiva. Abrange emoções, sentimentos, desejos, paixões e reações afetivas.",
+      "É fundamental para compreender como as experiências são vividas e como influenciam pensamentos, decisões e relacionamentos.",
+      "Na Jornada, é um dos principais campos de autoconhecimento, pois muitas dificuldades na prática das virtudes aparecem inicialmente como reações emocionais."
+    ],
+    "characteristics": [
+      "Emoções",
+      "Sentimentos",
+      "Desejos",
+      "Afetividade",
+      "Sensibilidade",
+      "Reações emocionais",
+      "Vínculos",
+      "Empatia",
+      "Simpatias e antipatias",
+      "Relações interpessoais"
+    ],
+    "potentials": [
+      "Desenvolver empatia",
+      "Reconhecer sentimentos",
+      "Compreender as próprias reações",
+      "Construir relacionamentos saudáveis",
+      "Desenvolver compaixão",
+      "Aprender a expressar sentimentos adequadamente",
+      "Cultivar sentimentos construtivos"
+    ],
+    "challenges": [
+      "Raiva descontrolada",
+      "Inveja",
+      "Ressentimento",
+      "Ciúme",
+      "Medo excessivo",
+      "Orgulho",
+      "Intolerância",
+      "Dependência de reconhecimento",
+      "Reações impulsivas",
+      "Dificuldade de perdoar"
+    ],
+    "applications": [
+      "Reconhecer emoções antes de reagir",
+      "Aprender a ouvir sem interromper",
+      "Desenvolver empatia diante de opiniões diferentes",
+      "Evitar respostas impulsivas",
+      "Expressar discordâncias com respeito",
+      "Reconhecer ressentimentos",
+      "Desenvolver gratidão",
+      "Praticar o perdão sem confundi-lo com aceitar abusos ou abrir mão de limites"
+    ],
+    "questions": [
+      "Quais emoções aparecem com maior frequência nas minhas dificuldades?",
+      "Como reajo quando sou contrariado?",
+      "Consigo reconhecer o sentimento do outro?",
+      "Tenho facilidade para ouvir opiniões diferentes?",
+      "Guardo ressentimentos?",
+      "Minhas emoções influenciam excessivamente minhas decisões?"
+    ],
+    "caution": "A dimensão emocional não deve ser confundida com uma teoria psicológica completa.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "DIM04",
+    "order": 4,
+    "name": "Mental concreto",
+    "shortName": "Mental concreto",
+    "traditionalName": "Kama-Manas",
+    "group": "personalidade",
+    "field": "Pensamento, análise e decisão",
+    "guidingQuestion": "Como penso e decido?",
+    "contribution": "Análise e discernimento",
+    "diagnosticQuestion": "Como tomo decisões?",
+    "concept": [
+      "É a dimensão relacionada ao pensamento prático, racional e analítico. Permite organizar informações, comparar alternativas, elaborar raciocínios, construir planos, recordar experiências e tomar decisões.",
+      "Na classificação septenária, está associado à mente concreta e ao pensamento ligado aos desejos e interesses da personalidade.",
+      "Seu desenvolvimento envolve aprender a pensar com clareza, reconhecer pressupostos e evitar que os pensamentos sejam conduzidos exclusivamente por impulsos e interesses imediatos."
+    ],
+    "characteristics": [
+      "Raciocínio",
+      "Memória",
+      "Análise",
+      "Comparação",
+      "Planejamento",
+      "Imaginação",
+      "Organização de informações",
+      "Interpretação",
+      "Julgamento",
+      "Tomada de decisão"
+    ],
+    "potentials": [
+      "Pensamento crítico",
+      "Capacidade de análise",
+      "Organização",
+      "Planejamento",
+      "Resolução de problemas",
+      "Aprendizagem",
+      "Discernimento prático",
+      "Capacidade de argumentação"
+    ],
+    "challenges": [
+      "Preconceitos",
+      "Julgamentos precipitados",
+      "Pensamento confuso",
+      "Racionalizações",
+      "Autoengano",
+      "Rigidez mental",
+      "Dispersão",
+      "Excesso de preocupações",
+      "Manipulação de informações para justificar desejos"
+    ],
+    "applications": [
+      "Examinar os próprios pressupostos",
+      "Distinguir fatos de interpretações",
+      "Considerar consequências antes de decidir",
+      "Investigar informações antes de formar opiniões",
+      "Reconhecer erros de raciocínio",
+      "Evitar julgamentos precipitados",
+      "Desenvolver capacidade de argumentação",
+      "Aprender a mudar de opinião diante de evidências"
+    ],
+    "questions": [
+      "Costumo investigar antes de formar uma opinião?",
+      "Reconheço quando não sei alguma coisa?",
+      "Consigo distinguir fatos de interpretações?",
+      "Considero alternativas antes de decidir?",
+      "Tenho facilidade para reconhecer que estou errado?",
+      "Uso argumentos para compreender ou apenas para justificar minhas escolhas?"
+    ],
+    "caution": "As dimensões organizam o estudo, mas o ser humano deve ser considerado como uma unidade.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "DIM05",
+    "order": 5,
+    "name": "Mente pura",
+    "shortName": "Mente pura",
+    "traditionalName": "Manas",
+    "group": "individualidade",
+    "field": "Princípios e pensamento orientado por valores",
+    "guidingQuestion": "Por quais princípios me oriento?",
+    "contribution": "Consciência ética",
+    "diagnosticQuestion": "Quais princípios orientam minhas escolhas?",
+    "concept": [
+      "A mente pura representa, na concepção filosófica adotada, uma dimensão superior do pensamento, relacionada à capacidade de compreender ideias e princípios para além dos interesses particulares.",
+      "Enquanto a mente concreta trabalha com informações, comparações e necessidades práticas, a mente pura está associada ao pensamento orientado por valores universais e princípios.",
+      "É a capacidade de refletir sobre o que é verdadeiro, justo, bom e digno, mesmo quando essas escolhas não oferecem vantagens imediatas. Na linguagem da Jornada, representa o desenvolvimento de uma inteligência orientada por valores."
+    ],
+    "characteristics": [
+      "Pensamento abstrato",
+      "Busca da verdade",
+      "Compreensão de princípios",
+      "Reflexão ética",
+      "Universalidade",
+      "Altruísmo",
+      "Capacidade de síntese",
+      "Visão de conjunto",
+      "Pensamento orientado por valores"
+    ],
+    "potentials": [
+      "Pensar para além dos interesses individuais",
+      "Reconhecer princípios éticos",
+      "Desenvolver pensamento filosófico",
+      "Buscar coerência entre valores e ações",
+      "Compreender o bem comum",
+      "Desenvolver responsabilidade coletiva",
+      "Identificar relações entre princípios e situações concretas"
+    ],
+    "challenges": [
+      "Egoísmo",
+      "Vaidade intelectual",
+      "Preconceitos",
+      "Dogmatismo",
+      "Justificação de interesses pessoais",
+      "Incapacidade de considerar o bem comum",
+      "Incoerência entre discurso e prática",
+      "Dificuldade de reconhecer princípios superiores aos desejos imediatos"
+    ],
+    "applications": [
+      "Considerar o impacto das próprias escolhas sobre outras pessoas",
+      "Agir corretamente mesmo sem reconhecimento",
+      "Examinar conflitos entre interesse pessoal e bem comum",
+      "Buscar coerência entre valores e comportamentos",
+      "Reconhecer a dignidade das outras pessoas",
+      "Desenvolver compromisso com princípios éticos"
+    ],
+    "questions": [
+      "Minhas decisões consideram apenas meus interesses?",
+      "Consigo defender um princípio mesmo quando ele me desfavorece?",
+      "Existe coerência entre o que digo e o que faço?",
+      "Reconheço a dignidade de pessoas com ideias diferentes?",
+      "Minhas escolhas contribuem para algo além dos meus interesses imediatos?"
+    ],
+    "caution": "A mente pura não deve ser apresentada como uma capacidade cientificamente mensurada.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "DIM06",
+    "order": 6,
+    "name": "Intuição",
+    "shortName": "Intuição",
+    "traditionalName": "Buddhi",
+    "group": "individualidade",
+    "field": "Compreensão de conjunto e percepção de sentido",
+    "guidingQuestion": "Como compreendo o sentido e as relações?",
+    "contribution": "Visão de conjunto",
+    "diagnosticQuestion": "Como compreendo as situações?",
+    "concept": [
+      "A intuição representa, nessa concepção filosófica, uma forma superior de compreensão, relacionada à apreensão direta de princípios e verdades.",
+      "Não deve ser confundida com qualquer impressão espontânea, palpite ou reação emocional. A proposta filosófica distingue a intuição superior dos mecanismos habituais de associação, desejo e julgamento.",
+      "Na Jornada, essa dimensão pode ser explorada por meio da reflexão sobre unidade, empatia profunda, percepção de sentido e compreensão de princípios que ultrapassam interesses particulares."
+    ],
+    "characteristics": [
+      "Compreensão direta",
+      "Percepção de unidade",
+      "Sensibilidade a princípios",
+      "Visão de conjunto",
+      "Capacidade de síntese",
+      "Compreensão de sentido",
+      "Percepção de relações",
+      "Orientação por valores"
+    ],
+    "potentials": [
+      "Desenvolver percepção de conjunto",
+      "Reconhecer relações entre acontecimentos",
+      "Compreender diferentes perspectivas",
+      "Desenvolver sensibilidade ética",
+      "Refletir sobre o sentido das próprias ações",
+      "Cultivar empatia e compreensão",
+      "Integrar razão, sentimento e experiência"
+    ],
+    "challenges": [
+      "Confundir intuição com impulso",
+      "Confundir convicção com verdade",
+      "Projetar desejos pessoais sobre a realidade",
+      "Tomar decisões sem reflexão",
+      "Interpretar coincidências como certezas",
+      "Ignorar evidências contrárias",
+      "Transformar crenças pessoais em verdades universais"
+    ],
+    "applications": [
+      "Exercitar a observação silenciosa",
+      "Refletir sobre situações sob diferentes perspectivas",
+      "Investigar a diferença entre impressão, emoção e compreensão",
+      "Reconhecer conexões entre escolhas e consequências",
+      "Desenvolver abertura para compreender o outro",
+      "Refletir sobre o significado de princípios e valores"
+    ],
+    "questions": [
+      "Consigo observar uma situação sem reagir imediatamente?",
+      "Considero perspectivas diferentes da minha?",
+      "Confundo aquilo que desejo com aquilo que é verdadeiro?",
+      "Consigo perceber relações entre acontecimentos?",
+      "Minhas decisões estão alinhadas com princípios que considero fundamentais?"
+    ],
+    "caution": "A intuição não deve ser confundida com palpites ou certezas subjetivas.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "DIM07",
+    "order": 7,
+    "name": "Vontade",
+    "shortName": "Vontade",
+    "traditionalName": "Atma",
+    "group": "individualidade",
+    "field": "Direção, determinação e realização",
+    "guidingQuestion": "Como transformo princípios em ação?",
+    "contribution": "Direção e realização",
+    "diagnosticQuestion": "Consigo sustentar minhas decisões?",
+    "concept": [
+      "A vontade representa o princípio superior de orientação, determinação e direção do ser humano. Na concepção septenária, constitui o princípio mais elevado da tríade superior.",
+      "Está relacionada à capacidade de orientar a existência em direção a um propósito e sustentar escolhas coerentes com princípios e valores.",
+      "Na aplicação da Jornada, a vontade representa a passagem da compreensão para a realização. Não basta conhecer uma virtude ou reconhecer sua importância: é necessário desenvolver a capacidade de agir de acordo com ela."
+    ],
+    "characteristics": [
+      "Determinação",
+      "Propósito",
+      "Direção",
+      "Autodomínio",
+      "Compromisso",
+      "Perseverança",
+      "Capacidade de escolha",
+      "Coerência",
+      "Ação consciente"
+    ],
+    "potentials": [
+      "Sustentar decisões",
+      "Superar dificuldades",
+      "Agir de acordo com princípios",
+      "Desenvolver disciplina",
+      "Assumir responsabilidades",
+      "Manter compromissos",
+      "Transformar intenções em ações",
+      "Perseverar diante de obstáculos"
+    ],
+    "challenges": [
+      "Procrastinação",
+      "Inconstância",
+      "Falta de propósito",
+      "Desistência diante das dificuldades",
+      "Submissão a impulsos",
+      "Dependência de motivação externa",
+      "Incapacidade de sustentar compromissos",
+      "Incoerência entre intenção e ação"
+    ],
+    "applications": [
+      "Definir compromissos claros",
+      "Transformar valores em ações",
+      "Sustentar escolhas difíceis",
+      "Desenvolver disciplina",
+      "Cumprir promessas",
+      "Assumir responsabilidades",
+      "Perseverar diante de obstáculos",
+      "Agir de acordo com princípios mesmo sem recompensa imediata"
+    ],
+    "questions": [
+      "Consigo sustentar compromissos assumidos?",
+      "Minhas ações correspondem aos meus valores?",
+      "Desisto facilmente diante das dificuldades?",
+      "Dependo de motivação para realizar o que considero importante?",
+      "Tenho clareza sobre o propósito que orienta minhas escolhas?",
+      "Sou capaz de agir corretamente mesmo quando ninguém está observando?"
+    ],
+    "caution": "A vontade não deve ser confundida com simples força de vontade psicológica ou motivação momentânea.",
+    "source": "DOC02-3",
+    "status": "proposta"
+  }
+]

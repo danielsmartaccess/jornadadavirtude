@@ -1,0 +1,10 @@
+[
+  { "id": "F01", "name": "Sabedoria e discernimento", "field": "Pensar, compreender e decidir", "description": "Virtudes relacionadas à compreensão, à reflexão, à avaliação das circunstâncias e à qualidade das decisões." },
+  { "id": "F02", "name": "Autodomínio e equilíbrio", "field": "Regular impulsos, desejos e emoções", "description": "Virtudes relacionadas à capacidade de regular impulsos, desejos, emoções e comportamentos." },
+  { "id": "F03", "name": "Coragem e fortaleza", "field": "Enfrentar dificuldades e sustentar escolhas", "description": "Virtudes relacionadas à capacidade de enfrentar dificuldades, defender princípios e sustentar ações importantes." },
+  { "id": "F04", "name": "Justiça e integridade", "field": "Agir corretamente nas relações", "description": "Virtudes relacionadas à correção moral, à responsabilidade, à honestidade e ao respeito pelos direitos e pela dignidade das pessoas." },
+  { "id": "F05", "name": "Relações humanas e fraternidade", "field": "Conviver, compreender e cuidar", "description": "Virtudes relacionadas à convivência, à compreensão do outro, ao cuidado e à construção de relações humanas construtivas." },
+  { "id": "F06", "name": "Conhecimento e verdade", "field": "Aprender, investigar e reconhecer limites", "description": "Virtudes relacionadas à aprendizagem, à investigação, à honestidade intelectual e à busca do conhecimento." },
+  { "id": "F07", "name": "Propósito e realização", "field": "Agir, perseverar e cumprir compromissos", "description": "Virtudes relacionadas à execução, à responsabilidade prática, ao compromisso e à realização de objetivos legítimos." },
+  { "id": "F08", "name": "Consciência superior e sentido", "field": "Desenvolver princípios, contemplação e orientação ética", "description": "Virtudes e disposições relacionadas à orientação por princípios, à contemplação, à transcendência dos interesses imediatos e à construção de sentido. A família não pressupõe adesão religiosa." }
+]

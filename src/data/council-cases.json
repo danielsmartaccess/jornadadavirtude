@@ -1,0 +1,330 @@
+[
+  {
+    "id": "CASE01",
+    "title": "Dificuldade em controlar a raiva",
+    "situation": "A pessoa reage impulsivamente em discussões.",
+    "dimensionIds": [
+      "DIM03",
+      "DIM04",
+      "DIM07"
+    ],
+    "virtueIds": [
+      "V08",
+      "V07",
+      "V10",
+      "V06"
+    ],
+    "contributions": [
+      {
+        "thinkerId": "aristoteles",
+        "perspective": "Equilíbrio emocional e formação do hábito"
+      },
+      {
+        "thinkerId": "epicteto",
+        "perspective": "Distinção entre acontecimento e resposta"
+      },
+      {
+        "thinkerId": "marco-aurelio",
+        "perspective": "Autocontrole e julgamento"
+      },
+      {
+        "thinkerId": "daniel-kahneman",
+        "perspective": "Processos automáticos e vieses"
+      },
+      {
+        "thinkerId": "confucio",
+        "perspective": "Respeito e adequação da conduta nas relações"
+      }
+    ],
+    "centralQuestion": "O que acontece entre aquilo que provoca sua irritação e a maneira como você escolhe responder?",
+    "keywords": [
+      "raiva",
+      "irrit",
+      "explod",
+      "explos",
+      "estour",
+      "grit",
+      "brig",
+      "impuls",
+      "nervos",
+      "agress",
+      "impacien",
+      "pavio"
+    ],
+    "source": "DOC04-7",
+    "status": "proposta"
+  },
+  {
+    "id": "CASE02",
+    "title": "Dificuldade em admitir erros",
+    "situation": "Tenho dificuldade em admitir quando estou errado. Frequentemente tento justificar minhas atitudes, mesmo quando percebo que poderia ter agido melhor.",
+    "dimensionIds": [
+      "DIM04",
+      "DIM05",
+      "DIM07"
+    ],
+    "virtueIds": [
+      "V44",
+      "V19",
+      "V20",
+      "V36"
+    ],
+    "contributions": [
+      {
+        "thinkerId": "socrates",
+        "perspective": "Reconhecimento dos limites do conhecimento"
+      },
+      {
+        "thinkerId": "aristoteles",
+        "perspective": "Formação do caráter por meio dos hábitos"
+      },
+      {
+        "thinkerId": "confucio",
+        "perspective": "Reconhecimento e correção dos erros"
+      },
+      {
+        "thinkerId": "kant",
+        "perspective": "Responsabilidade e coerência moral"
+      },
+      {
+        "thinkerId": "daniel-kahneman",
+        "perspective": "Vieses e autojustificação"
+      }
+    ],
+    "centralQuestion": "Você deseja compreender o que realmente aconteceu ou preservar a imagem que construiu de si mesmo?",
+    "keywords": [
+      "erro",
+      "errad",
+      "errei",
+      "admit",
+      "justific",
+      "desculp",
+      "orgulh",
+      "teimos",
+      "culpa",
+      "razao"
+    ],
+    "source": "DOC04-7 e DOC04-12",
+    "status": "proposta",
+    "synthesis": "O reconhecimento do erro pode ser dificultado por emoções, interesses pessoais e interpretações que preservam a imagem que temos de nós mesmos. O desenvolvimento da humildade exige reconhecer limites. A honestidade exige admitir os fatos. A integridade exige corrigir a conduta.",
+    "reviewQuestions": [
+      "Reconheci erros com mais facilidade?",
+      "Consegui evitar justificativas automáticas?",
+      "Corrigi alguma atitude?",
+      "O que ainda representa uma dificuldade?"
+    ],
+    "exerciseId": "EX-CASE02"
+  },
+  {
+    "id": "CASE03",
+    "title": "Dificuldade em manter compromissos",
+    "situation": "A pessoa não consegue transformar em prática constante aquilo que considera importante.",
+    "dimensionIds": [
+      "DIM02",
+      "DIM04",
+      "DIM07"
+    ],
+    "virtueIds": [
+      "V38",
+      "V17",
+      "V14",
+      "V21"
+    ],
+    "contributions": [
+      {
+        "thinkerId": "aristoteles",
+        "perspective": "Formação do hábito"
+      },
+      {
+        "thinkerId": "musashi",
+        "perspective": "Disciplina e treinamento"
+      },
+      {
+        "thinkerId": "confucio",
+        "perspective": "Compromisso e retidão"
+      },
+      {
+        "thinkerId": "benjamin-franklin",
+        "perspective": "Organização de práticas e hábitos"
+      },
+      {
+        "thinkerId": "viktor-frankl",
+        "perspective": "Responsabilidade e sentido"
+      }
+    ],
+    "centralQuestion": "O que impede que aquilo que você considera importante se transforme em uma prática constante?",
+    "keywords": [
+      "compromiss",
+      "procrastin",
+      "adio",
+      "adiar",
+      "adiand",
+      "prazo",
+      "constan",
+      "disciplin",
+      "rotina",
+      "desist",
+      "habito",
+      "promess",
+      "cumpr",
+      "pregui"
+    ],
+    "source": "DOC04-7",
+    "status": "proposta"
+  },
+  {
+    "id": "CASE04",
+    "title": "Dificuldade em perdoar",
+    "situation": "A pessoa guarda ressentimento por uma ofensa ou injustiça sofrida.",
+    "dimensionIds": [
+      "DIM03",
+      "DIM05",
+      "DIM06",
+      "DIM07"
+    ],
+    "virtueIds": [
+      "V29",
+      "V26",
+      "V27",
+      "V11"
+    ],
+    "contributions": [
+      {
+        "thinkerId": "marco-aurelio",
+        "perspective": "Compreensão da condição humana"
+      },
+      {
+        "thinkerId": "seneca",
+        "perspective": "Relação com ofensas e ressentimentos"
+      },
+      {
+        "thinkerId": "tradicoes-budistas",
+        "perspective": "Compaixão e redução da aversão"
+      },
+      {
+        "thinkerId": "erich-fromm",
+        "perspective": "Amor e responsabilidade"
+      },
+      {
+        "thinkerId": "simone-weil",
+        "perspective": "Atenção ao sofrimento humano"
+      }
+    ],
+    "centralQuestion": "O que significa libertar-se do ressentimento sem negar a injustiça ou abandonar seus limites?",
+    "keywords": [
+      "perdo",
+      "magoa",
+      "ressent",
+      "rancor",
+      "vinganc",
+      "traic",
+      "traid",
+      "ofens",
+      "injustic"
+    ],
+    "source": "DOC04-7",
+    "status": "proposta"
+  },
+  {
+    "id": "CASE05",
+    "title": "Dificuldade em tomar decisões",
+    "situation": "A pessoa adia uma decisão importante.",
+    "dimensionIds": [
+      "DIM04",
+      "DIM05",
+      "DIM07"
+    ],
+    "virtueIds": [
+      "V01",
+      "V03",
+      "V12",
+      "V15"
+    ],
+    "contributions": [
+      {
+        "thinkerId": "aristoteles",
+        "perspective": "Prudência e deliberação"
+      },
+      {
+        "thinkerId": "socrates",
+        "perspective": "Investigação dos pressupostos"
+      },
+      {
+        "thinkerId": "epicteto",
+        "perspective": "Reconhecimento do que depende de nós"
+      },
+      {
+        "thinkerId": "daniel-kahneman",
+        "perspective": "Vieses e decisões intuitivas"
+      },
+      {
+        "thinkerId": "nassim-taleb",
+        "perspective": "Risco e consequências assimétricas"
+      }
+    ],
+    "centralQuestion": "Você está adiando a decisão por falta de informação, por medo das consequências ou por dificuldade de assumir uma escolha?",
+    "keywords": [
+      "decis",
+      "decid",
+      "escolh",
+      "duvida",
+      "indecis",
+      "insegur",
+      "dilema",
+      "hesit"
+    ],
+    "source": "DOC04-7",
+    "status": "proposta"
+  },
+  {
+    "id": "CASE06",
+    "title": "Dificuldade em ouvir outras pessoas",
+    "situation": "A pessoa interrompe ou não considera o que o outro diz.",
+    "dimensionIds": [
+      "DIM03",
+      "DIM04",
+      "DIM06"
+    ],
+    "virtueIds": [
+      "V25",
+      "V32",
+      "V04",
+      "V33"
+    ],
+    "contributions": [
+      {
+        "thinkerId": "confucio",
+        "perspective": "Respeito e relações humanas"
+      },
+      {
+        "thinkerId": "socrates",
+        "perspective": "Escuta e investigação"
+      },
+      {
+        "thinkerId": "simone-weil",
+        "perspective": "Atenção como forma de consideração"
+      },
+      {
+        "thinkerId": "edith-stein",
+        "perspective": "Compreensão da experiência alheia"
+      },
+      {
+        "thinkerId": "john-stuart-mill",
+        "perspective": "Diversidade de opiniões"
+      }
+    ],
+    "centralQuestion": "Você está realmente tentando compreender a outra pessoa ou apenas esperando sua vez de responder?",
+    "keywords": [
+      "ouvir",
+      "ouco",
+      "escut",
+      "interromp",
+      "opini",
+      "discord",
+      "dialog",
+      "atencao"
+    ],
+    "source": "DOC04-7",
+    "status": "proposta"
+  }
+]

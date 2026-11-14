@@ -1,0 +1,784 @@
+[
+  {
+    "id": "V01",
+    "name": "Prudência",
+    "familyId": "F01",
+    "definition": "Capacidade de avaliar circunstâncias, consequências e alternativas para escolher os meios adequados à realização do bem.",
+    "notConfuse": "Cautela excessiva ou medo de assumir riscos. Prudência não é evitar decisões, mas decidir adequadamente.",
+    "deficiency": "Imprudência, precipitação.",
+    "excess": "Cautela paralisante, hesitação permanente.",
+    "excessApparent": true,
+    "behaviors": [
+      "Considera consequências antes de decidir.",
+      "Avalia riscos relevantes.",
+      "Busca informações necessárias.",
+      "Reconhece quando precisa de aconselhamento.",
+      "Escolhe o momento adequado para agir."
+    ]
+  },
+  {
+    "id": "V02",
+    "name": "Sabedoria",
+    "familyId": "F01",
+    "definition": "Capacidade de compreender princípios fundamentais, relacionar conhecimentos e orientar a vida por uma visão mais ampla do bem.",
+    "notConfuse": "Inteligência, erudição ou quantidade de informações. Uma pessoa pode conhecer muito e ainda não agir sabiamente.",
+    "deficiency": "Ignorância, superficialidade.",
+    "excess": "Presunção de sabedoria, dogmatismo intelectual.",
+    "excessApparent": true,
+    "behaviors": [
+      "Considera diferentes perspectivas.",
+      "Relaciona experiências a princípios.",
+      "Reconhece a complexidade das situações.",
+      "Aprende com os erros.",
+      "Evita conclusões precipitadas."
+    ]
+  },
+  {
+    "id": "V03",
+    "name": "Discernimento",
+    "familyId": "F01",
+    "definition": "Capacidade de distinguir elementos relevantes, avaliar diferenças e reconhecer o que é apropriado em determinada situação.",
+    "notConfuse": "Prudência. O discernimento identifica e distingue; a prudência utiliza essa compreensão para orientar a decisão.",
+    "deficiency": "Confusão, ingenuidade, julgamento superficial.",
+    "excess": "Análise interminável, desconfiança excessiva.",
+    "excessApparent": true,
+    "behaviors": [
+      "Distingue fatos de interpretações.",
+      "Reconhece interesses envolvidos.",
+      "Identifica informações relevantes.",
+      "Considera o contexto antes de julgar."
+    ]
+  },
+  {
+    "id": "V04",
+    "name": "Atenção",
+    "familyId": "F01",
+    "definition": "Disposição para dirigir e sustentar a consciência sobre aquilo que se faz, observa ou escuta.",
+    "notConfuse": "Concentração. A atenção permite perceber e selecionar estímulos; a concentração sustenta o foco em uma atividade.",
+    "deficiency": "Distração, desatenção.",
+    "excess": "Vigilância rígida ou fixação excessiva.",
+    "excessApparent": true,
+    "behaviors": [
+      "Escuta sem interromper.",
+      "Percebe detalhes relevantes.",
+      "Evita consultar o celular durante conversas importantes.",
+      "Identifica quando está disperso."
+    ]
+  },
+  {
+    "id": "V05",
+    "name": "Abertura intelectual",
+    "familyId": "F01",
+    "definition": "Disposição para considerar ideias diferentes, examinar argumentos e rever posições diante de razões consistentes.",
+    "notConfuse": "Aceitar qualquer opinião ou abandonar critérios de avaliação.",
+    "deficiency": "Rigidez mental, dogmatismo.",
+    "excess": "Relativismo indiscriminado, credulidade.",
+    "excessApparent": true,
+    "behaviors": [
+      "Escuta argumentos divergentes.",
+      "Reconhece incertezas.",
+      "Revisa opiniões diante de evidências.",
+      "Evita desqualificar pessoas por discordarem."
+    ]
+  },
+  {
+    "id": "V06",
+    "name": "Temperança",
+    "familyId": "F02",
+    "definition": "Disposição para moderar desejos e prazeres, utilizando-os de maneira equilibrada e adequada.",
+    "notConfuse": "Repressão emocional ou privação indiscriminada.",
+    "deficiency": "Intemperança, indulgência.",
+    "excess": "Insensibilidade aos prazeres legítimos, austeridade desproporcional.",
+    "excessApparent": true,
+    "behaviors": [
+      "Evita excessos recorrentes.",
+      "Reconhece limites.",
+      "Não cede automaticamente a desejos imediatos.",
+      "Mantém equilíbrio diante de prazeres e estímulos."
+    ]
+  },
+  {
+    "id": "V07",
+    "name": "Paciência",
+    "familyId": "F02",
+    "definition": "Capacidade de suportar esperas, dificuldades e processos demorados sem perder o equilíbrio ou abandonar injustificadamente o propósito.",
+    "notConfuse": "Passividade, conformismo ou tolerância a situações abusivas.",
+    "deficiency": "Impaciência, irritabilidade.",
+    "excess": "Acomodação, tolerância indevida ao que exige mudança.",
+    "excessApparent": true,
+    "behaviors": [
+      "Evita reagir imediatamente.",
+      "Respeita o tempo de aprendizagem.",
+      "Mantém o equilíbrio diante de atrasos.",
+      "Persevera sem exigir resultados instantâneos."
+    ]
+  },
+  {
+    "id": "V08",
+    "name": "Serenidade",
+    "familyId": "F02",
+    "definition": "Disposição para preservar clareza e equilíbrio diante de situações emocionalmente exigentes.",
+    "notConfuse": "Ausência de sentimentos ou indiferença.",
+    "deficiency": "Agitação, reatividade.",
+    "excess": "Distanciamento emocional, apatia.",
+    "excessApparent": true,
+    "behaviors": [
+      "Evita respostas precipitadas.",
+      "Mantém clareza em situações difíceis.",
+      "Reconhece emoções sem ser dominado por elas.",
+      "Comunica-se sem agressividade."
+    ]
+  },
+  {
+    "id": "V09",
+    "name": "Moderação",
+    "familyId": "F02",
+    "definition": "Capacidade de ajustar a intensidade e a quantidade de comportamentos, desejos e recursos às circunstâncias.",
+    "notConfuse": "Temperança. A moderação é uma aplicação de medida adequada; a temperança é uma disposição mais ampla de autodomínio.",
+    "deficiency": "Exagero, descontrole.",
+    "excess": "Contenção excessiva, falta de iniciativa.",
+    "excessApparent": true,
+    "behaviors": [
+      "Evita exageros.",
+      "Utiliza recursos de maneira equilibrada.",
+      "Reconhece quando precisa interromper uma atividade.",
+      "Ajusta a intensidade de suas reações."
+    ]
+  },
+  {
+    "id": "V10",
+    "name": "Autodomínio",
+    "familyId": "F02",
+    "definition": "Capacidade de orientar as próprias ações, desejos e reações de acordo com escolhas conscientes e princípios.",
+    "notConfuse": "Controle absoluto das emoções ou supressão dos sentimentos.",
+    "deficiency": "Impulsividade, descontrole.",
+    "excess": "Rigidez, repressão, controle obsessivo.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece impulsos antes de agir.",
+      "Evita respostas agressivas.",
+      "Mantém compromissos mesmo diante de tentações.",
+      "Assume responsabilidade por suas reações."
+    ]
+  },
+  {
+    "id": "V11",
+    "name": "Equanimidade",
+    "familyId": "F02",
+    "definition": "Disposição para manter equilíbrio interior diante de experiências agradáveis e desagradáveis, sem se deixar dominar por apego ou aversão.",
+    "notConfuse": "Indiferença, frieza ou ausência de empatia.",
+    "deficiency": "Instabilidade, apego excessivo, aversão.",
+    "excess": "Desapego mal compreendido, insensibilidade.",
+    "excessApparent": true,
+    "behaviors": [
+      "Não depende exclusivamente de elogios.",
+      "Recebe críticas sem reação desproporcional.",
+      "Reconhece mudanças sem perder o equilíbrio.",
+      "Mantém consideração pelos outros mesmo em situações difíceis."
+    ]
+  },
+  {
+    "id": "V12",
+    "name": "Coragem",
+    "familyId": "F03",
+    "definition": "Disposição para enfrentar riscos, medos e dificuldades quando a situação exige uma ação orientada pelo bem.",
+    "notConfuse": "Temeridade, agressividade ou ausência de medo.",
+    "deficiency": "Covardia, fuga.",
+    "excess": "Temeridade, imprudência.",
+    "excessApparent": false,
+    "behaviors": [
+      "Enfrenta conversas necessárias.",
+      "Defende posições fundamentadas.",
+      "Assume responsabilidades difíceis.",
+      "Reconhece o medo sem permitir que ele determine automaticamente sua escolha."
+    ]
+  },
+  {
+    "id": "V13",
+    "name": "Fortaleza",
+    "familyId": "F03",
+    "definition": "Disposição para sustentar o bem diante de dificuldades, pressões, sofrimentos e adversidades.",
+    "notConfuse": "Dureza emocional ou resistência indiscriminada.",
+    "deficiency": "Fraqueza diante das dificuldades.",
+    "excess": "Endurecimento, resistência cega, incapacidade de reconhecer limites.",
+    "excessApparent": true,
+    "behaviors": [
+      "Mantém compromissos difíceis.",
+      "Suporta contratempos sem abandonar princípios.",
+      "Reconhece quando precisa de ajuda.",
+      "Continua agindo diante de obstáculos proporcionais."
+    ]
+  },
+  {
+    "id": "V14",
+    "name": "Perseverança",
+    "familyId": "F03",
+    "definition": "Capacidade de manter esforços ao longo do tempo em direção a um objetivo legítimo, mesmo diante de dificuldades.",
+    "notConfuse": "Insistência cega. Perseverar não significa manter uma estratégia que se tornou inadequada.",
+    "deficiency": "Desistência prematura, inconstância.",
+    "excess": "Obstinação, persistência irracional.",
+    "excessApparent": false,
+    "behaviors": [
+      "Retoma atividades interrompidas.",
+      "Mantém esforços regulares.",
+      "Aprende com obstáculos.",
+      "Ajusta estratégias sem abandonar necessariamente o propósito."
+    ]
+  },
+  {
+    "id": "V15",
+    "name": "Determinação",
+    "familyId": "F03",
+    "definition": "Disposição para estabelecer uma direção e sustentar decisões necessárias à realização de um objetivo.",
+    "notConfuse": "Teimosia. Determinação mantém o propósito; teimosia pode preservar uma decisão mesmo diante de razões para revê-la.",
+    "deficiency": "Indecisão, vacilação.",
+    "excess": "Inflexibilidade, obstinação.",
+    "excessApparent": false,
+    "behaviors": [
+      "Define objetivos.",
+      "Estabelece prioridades.",
+      "Assume decisões.",
+      "Executa ações compatíveis com o propósito."
+    ]
+  },
+  {
+    "id": "V16",
+    "name": "Resiliência",
+    "familyId": "F03",
+    "definition": "Capacidade de enfrentar adversidades, reorganizar recursos e recuperar a capacidade de agir após experiências difíceis.",
+    "notConfuse": "Obrigação de suportar qualquer situação ou ausência de sofrimento.",
+    "deficiency": "Dificuldade de recuperação e adaptação.",
+    "excess": "Resistência compulsiva, negação da necessidade de ajuda.",
+    "excessApparent": true,
+    "behaviors": [
+      "Procura alternativas diante de obstáculos.",
+      "Aprende com experiências difíceis.",
+      "Reconhece limites.",
+      "Busca apoio quando necessário.",
+      "Retoma atividades de maneira gradual."
+    ]
+  },
+  {
+    "id": "V17",
+    "name": "Constância",
+    "familyId": "F03",
+    "definition": "Disposição para manter regularidade e coerência na realização de compromissos e práticas.",
+    "notConfuse": "Perseverança. A constância enfatiza regularidade; a perseverança enfatiza continuidade diante das dificuldades.",
+    "deficiency": "Inconstância, abandono frequente.",
+    "excess": "Rotina rígida, incapacidade de adaptação.",
+    "excessApparent": true,
+    "behaviors": [
+      "Mantém hábitos importantes.",
+      "Cumpre pequenas tarefas regularmente.",
+      "Evita depender exclusivamente da motivação.",
+      "Retoma a prática após interrupções."
+    ]
+  },
+  {
+    "id": "V18",
+    "name": "Justiça",
+    "familyId": "F04",
+    "definition": "Disposição firme para reconhecer e respeitar o que é devido a cada pessoa, considerando direitos, deveres e bem comum.",
+    "notConfuse": "Igualdade mecânica. Justiça pode exigir tratamento proporcional às circunstâncias e necessidades.",
+    "deficiency": "Injustiça, parcialidade.",
+    "excess": "Aplicação rígida de regras sem considerar circunstâncias relevantes.",
+    "excessApparent": true,
+    "behaviors": [
+      "Trata pessoas com respeito.",
+      "Evita favorecimentos indevidos.",
+      "Cumpre acordos.",
+      "Reconhece direitos e responsabilidades.",
+      "Considera os impactos de suas decisões."
+    ]
+  },
+  {
+    "id": "V19",
+    "name": "Honestidade",
+    "familyId": "F04",
+    "definition": "Disposição para agir e comunicar-se de maneira verdadeira, evitando engano, fraude e ocultação intencional de fatos relevantes.",
+    "notConfuse": "Sinceridade impulsiva. Ser honesto não exige dizer tudo sem consideração pelo contexto e pelo respeito.",
+    "deficiency": "Mentira, fraude, dissimulação.",
+    "excess": "Franqueza agressiva ou exposição desnecessária.",
+    "excessApparent": true,
+    "behaviors": [
+      "Não manipula informações.",
+      "Reconhece erros.",
+      "Cumpre acordos.",
+      "Não atribui a si resultados alheios.",
+      "Comunica informações relevantes com clareza."
+    ]
+  },
+  {
+    "id": "V20",
+    "name": "Integridade",
+    "familyId": "F04",
+    "definition": "Coerência entre princípios, valores, palavras e ações.",
+    "notConfuse": "Reputação. Integridade diz respeito à conduta efetiva, inclusive quando não existe observação externa.",
+    "deficiency": "Hipocrisia, incoerência, oportunismo.",
+    "excess": "Inflexibilidade moral, incapacidade de rever interpretações.",
+    "excessApparent": true,
+    "behaviors": [
+      "Mantém compromissos.",
+      "Age de acordo com valores declarados.",
+      "Reconhece contradições.",
+      "Não muda princípios apenas por conveniência.",
+      "Assume responsabilidade pelas próprias escolhas."
+    ]
+  },
+  {
+    "id": "V21",
+    "name": "Responsabilidade",
+    "familyId": "F04",
+    "definition": "Disposição para assumir compromissos, reconhecer consequências e responder pelas próprias escolhas.",
+    "notConfuse": "Assumir toda a responsabilidade por acontecimentos que estão fora do próprio controle.",
+    "deficiency": "Negligência, irresponsabilidade.",
+    "excess": "Hiperresponsabilidade, assumir indevidamente obrigações alheias.",
+    "excessApparent": true,
+    "behaviors": [
+      "Cumpre compromissos.",
+      "Reconhece consequências.",
+      "Corrige erros.",
+      "Comunica dificuldades antecipadamente.",
+      "Evita transferir injustamente responsabilidades."
+    ]
+  },
+  {
+    "id": "V22",
+    "name": "Equidade",
+    "familyId": "F04",
+    "definition": "Capacidade de aplicar critérios de justiça considerando as particularidades e circunstâncias relevantes de cada situação.",
+    "notConfuse": "Favoritismo ou concessão arbitrária de privilégios.",
+    "deficiency": "Rigidez injusta, discriminação.",
+    "excess": "Concessões sem critérios consistentes.",
+    "excessApparent": true,
+    "behaviors": [
+      "Considera contextos diferentes.",
+      "Evita privilégios injustificados.",
+      "Escuta as partes envolvidas.",
+      "Aplica critérios transparentes."
+    ]
+  },
+  {
+    "id": "V23",
+    "name": "Fidelidade",
+    "familyId": "F04",
+    "definition": "Disposição para preservar compromissos legítimos, vínculos e princípios ao longo do tempo.",
+    "notConfuse": "Obediência cega. A fidelidade a uma pessoa ou instituição não justifica a prática de injustiças.",
+    "deficiency": "Deslealdade, traição, abandono injustificado.",
+    "excess": "Submissão, lealdade incondicional a interesses indevidos.",
+    "excessApparent": false,
+    "behaviors": [
+      "Respeita compromissos assumidos.",
+      "Não explora a confiança recebida.",
+      "Preserva confidências legítimas.",
+      "Mantém coerência nos relacionamentos."
+    ]
+  },
+  {
+    "id": "V24",
+    "name": "Generosidade",
+    "familyId": "F05",
+    "definition": "Disposição para compartilhar tempo, recursos, conhecimento e atenção de maneira livre e adequada às necessidades dos outros.",
+    "notConfuse": "Agradar a todos, dar indiscriminadamente ou buscar reconhecimento.",
+    "deficiency": "Avareza, egoísmo.",
+    "excess": "Doação imprudente, ausência de limites.",
+    "excessApparent": false,
+    "behaviors": [
+      "Compartilha conhecimentos.",
+      "Oferece ajuda quando apropriado.",
+      "Reconhece necessidades alheias.",
+      "Divide recursos de maneira responsável."
+    ]
+  },
+  {
+    "id": "V25",
+    "name": "Empatia",
+    "familyId": "F05",
+    "definition": "Capacidade de compreender perspectivas, sentimentos e experiências de outras pessoas.",
+    "notConfuse": "Concordar com tudo ou assumir emocionalmente os problemas alheios.",
+    "deficiency": "Insensibilidade, indiferença.",
+    "excess": "Identificação emocional excessiva, perda de limites.",
+    "excessApparent": true,
+    "behaviors": [
+      "Escuta perspectivas diferentes.",
+      "Procura compreender antes de julgar.",
+      "Reconhece sentimentos alheios.",
+      "Evita reduzir o outro a estereótipos."
+    ]
+  },
+  {
+    "id": "V26",
+    "name": "Compaixão",
+    "familyId": "F05",
+    "definition": "Disposição para reconhecer o sofrimento alheio e desejar contribuir para sua redução de maneira adequada.",
+    "notConfuse": "Pena ou simples identificação emocional. A compaixão inclui uma orientação para o cuidado e a ação.",
+    "deficiency": "Crueldade, indiferença.",
+    "excess": "Cuidado sem limites, paternalismo.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece situações de sofrimento.",
+      "Oferece ajuda respeitosa.",
+      "Evita humilhar quem precisa de apoio.",
+      "Considera as necessidades reais da pessoa."
+    ]
+  },
+  {
+    "id": "V27",
+    "name": "Benevolência",
+    "familyId": "F05",
+    "definition": "Disposição para desejar e promover o bem de outras pessoas.",
+    "notConfuse": "Complacência. Desejar o bem não significa concordar com comportamentos prejudiciais.",
+    "deficiency": "Hostilidade, maldade.",
+    "excess": "Tolerância indevida, proteção de comportamentos inadequados.",
+    "excessApparent": true,
+    "behaviors": [
+      "Deseja o bem sem rivalidade.",
+      "Evita prejudicar por ressentimento.",
+      "Oferece orientação respeitosa.",
+      "Reconhece qualidades alheias."
+    ]
+  },
+  {
+    "id": "V28",
+    "name": "Gratidão",
+    "familyId": "F05",
+    "definition": "Disposição para reconhecer benefícios recebidos e valorizar contribuições, oportunidades e experiências.",
+    "notConfuse": "Obrigação de sentir-se devedor ou aceitar situações injustas.",
+    "deficiency": "Ingratidão, desvalorização.",
+    "excess": "Dívida moral permanente, submissão por gratidão.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece contribuições.",
+      "Agradece de maneira sincera.",
+      "Valoriza pequenos gestos.",
+      "Evita tratar ajuda como obrigação alheia."
+    ]
+  },
+  {
+    "id": "V29",
+    "name": "Perdão",
+    "familyId": "F05",
+    "definition": "Disposição para trabalhar a superação do ressentimento e abandonar o desejo de vingança, sem negar a injustiça sofrida.",
+    "notConfuse": "Reconciliação automática, esquecimento ou ausência de responsabilização.",
+    "deficiency": "Ressentimento permanente, desejo de vingança.",
+    "excess": "Perdão precipitado que ignora riscos ou perpetua abusos.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece a mágoa.",
+      "Evita alimentar vingança.",
+      "Estabelece limites.",
+      "Avalia se a reconciliação é possível e segura."
+    ]
+  },
+  {
+    "id": "V30",
+    "name": "Tolerância",
+    "familyId": "F05",
+    "definition": "Disposição para respeitar diferenças legítimas de pensamento, crença, cultura e comportamento.",
+    "notConfuse": "Aceitar injustiça, violência ou violação de direitos.",
+    "deficiency": "Intolerância, preconceito.",
+    "excess": "Permissividade diante de práticas prejudiciais.",
+    "excessApparent": true,
+    "behaviors": [
+      "Convive respeitosamente com divergências.",
+      "Evita discriminação.",
+      "Escuta opiniões diferentes.",
+      "Defende limites sem desumanizar o outro."
+    ]
+  },
+  {
+    "id": "V31",
+    "name": "Fraternidade",
+    "familyId": "F05",
+    "definition": "Disposição para reconhecer a humanidade compartilhada e agir com solidariedade, respeito e compromisso com a convivência.",
+    "notConfuse": "Amizade ou identificação exclusiva com pessoas semelhantes.",
+    "deficiency": "Hostilidade, segregação, indiferença social.",
+    "excess": "Solidariedade restrita ao próprio grupo, favorecimento de semelhantes.",
+    "excessApparent": true,
+    "behaviors": [
+      "Coopera com pessoas diferentes.",
+      "Evita humilhação e exclusão.",
+      "Contribui para objetivos coletivos.",
+      "Reconhece a dignidade humana."
+    ]
+  },
+  {
+    "id": "V32",
+    "name": "Respeito",
+    "familyId": "F05",
+    "definition": "Disposição para reconhecer a dignidade, os direitos, os limites e a autonomia de outras pessoas.",
+    "notConfuse": "Submissão, medo ou concordância.",
+    "deficiency": "Desrespeito, desprezo.",
+    "excess": "Deferência excessiva, submissão injustificada.",
+    "excessApparent": true,
+    "behaviors": [
+      "Escuta sem humilhar.",
+      "Respeita limites.",
+      "Cumpre acordos.",
+      "Diverge sem agressão.",
+      "Reconhece a autonomia alheia."
+    ]
+  },
+  {
+    "id": "V33",
+    "name": "Humildade intelectual",
+    "familyId": "F06",
+    "definition": "Disposição para reconhecer os limites do próprio conhecimento e permanecer aberto à aprendizagem.",
+    "notConfuse": "Baixa autoestima ou desvalorização das próprias capacidades.",
+    "deficiency": "Arrogância intelectual, presunção.",
+    "excess": "Insegurança intelectual, desvalorização injustificada do próprio conhecimento.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece quando não sabe.",
+      "Corrige informações equivocadas.",
+      "Escuta especialistas.",
+      "Distingue opinião de conhecimento fundamentado."
+    ]
+  },
+  {
+    "id": "V34",
+    "name": "Curiosidade",
+    "familyId": "F06",
+    "definition": "Disposição para investigar, perguntar e ampliar o conhecimento sobre o mundo.",
+    "notConfuse": "Indiscrição ou busca indiscriminada de novidades.",
+    "deficiency": "Apatia intelectual, desinteresse.",
+    "excess": "Dispersão, superficialidade, curiosidade invasiva.",
+    "excessApparent": true,
+    "behaviors": [
+      "Formula perguntas.",
+      "Pesquisa assuntos novos.",
+      "Procura fontes confiáveis.",
+      "Investiga causas e consequências."
+    ]
+  },
+  {
+    "id": "V35",
+    "name": "Sinceridade",
+    "familyId": "F06",
+    "definition": "Disposição para expressar pensamentos e sentimentos de maneira autêntica, sem intenção de enganar.",
+    "notConfuse": "Honestidade. A honestidade abrange a conduta verdadeira; a sinceridade enfatiza a correspondência entre o que se expressa e aquilo que se pensa ou sente.",
+    "deficiency": "Falsidade, dissimulação.",
+    "excess": "Exposição indiscriminada, franqueza sem consideração.",
+    "excessApparent": true,
+    "behaviors": [
+      "Expressa opiniões sem fingimento.",
+      "Evita criar falsas impressões.",
+      "Comunica limites.",
+      "Não utiliza elogios manipulativos."
+    ]
+  },
+  {
+    "id": "V36",
+    "name": "Amor à verdade",
+    "familyId": "F06",
+    "definition": "Disposição para buscar, reconhecer e respeitar a verdade, mesmo quando ela contraria crenças ou interesses pessoais.",
+    "notConfuse": "Necessidade de vencer debates ou impor convicções.",
+    "deficiency": "Autoengano, falsidade, manipulação.",
+    "excess": "Rigidez interpretativa, pretensão de possuir a verdade absoluta.",
+    "excessApparent": true,
+    "behaviors": [
+      "Verifica informações.",
+      "Reconhece erros.",
+      "Evita distorcer evidências.",
+      "Atualiza opiniões.",
+      "Diferencia certeza e hipótese."
+    ]
+  },
+  {
+    "id": "V37",
+    "name": "Objetividade",
+    "familyId": "F06",
+    "definition": "Disposição para considerar fatos e evidências sem permitir que preferências pessoais distorçam indevidamente a avaliação.",
+    "notConfuse": "Ausência completa de subjetividade. A objetividade é um esforço de controle de vieses, não uma condição de neutralidade absoluta.",
+    "deficiency": "Parcialidade, interpretação tendenciosa.",
+    "excess": "Desconsideração do contexto humano e subjetivo.",
+    "excessApparent": true,
+    "behaviors": [
+      "Verifica fontes.",
+      "Distingue fatos de opiniões.",
+      "Reconhece vieses.",
+      "Considera dados contrários à própria posição."
+    ]
+  },
+  {
+    "id": "V38",
+    "name": "Disciplina",
+    "familyId": "F07",
+    "definition": "Disposição para organizar e orientar ações de maneira consistente em direção a compromissos e objetivos.",
+    "notConfuse": "Rigidez ou obediência cega a regras.",
+    "deficiency": "Desorganização, indisciplina.",
+    "excess": "Rigidez, perfeccionismo comportamental.",
+    "excessApparent": false,
+    "behaviors": [
+      "Organiza tarefas.",
+      "Cumpre horários.",
+      "Mantém práticas importantes.",
+      "Evita distrações recorrentes.",
+      "Respeita compromissos."
+    ]
+  },
+  {
+    "id": "V39",
+    "name": "Diligência",
+    "familyId": "F07",
+    "definition": "Disposição para executar tarefas com cuidado, atenção, empenho e responsabilidade.",
+    "notConfuse": "Trabalhar excessivamente ou confundir ocupação com produtividade.",
+    "deficiency": "Negligência, desleixo.",
+    "excess": "Atividade compulsiva, incapacidade de descansar.",
+    "excessApparent": true,
+    "behaviors": [
+      "Conclui tarefas.",
+      "Cuida da qualidade.",
+      "Evita negligência.",
+      "Comunica problemas.",
+      "Organiza prioridades."
+    ]
+  },
+  {
+    "id": "V40",
+    "name": "Compromisso",
+    "familyId": "F07",
+    "definition": "Disposição para assumir uma responsabilidade e orientar ações para seu cumprimento.",
+    "notConfuse": "Intenção ou desejo. Compromisso implica uma obrigação assumida.",
+    "deficiency": "Falta de comprometimento.",
+    "excess": "Comprometer-se além da própria capacidade.",
+    "excessApparent": true,
+    "behaviors": [
+      "Assume prazos realistas.",
+      "Cumpre acordos.",
+      "Comunica dificuldades.",
+      "Não abandona responsabilidades sem justificativa."
+    ]
+  },
+  {
+    "id": "V41",
+    "name": "Iniciativa",
+    "familyId": "F07",
+    "definition": "Disposição para reconhecer oportunidades ou necessidades e começar ações adequadas sem depender continuamente de estímulos externos.",
+    "notConfuse": "Impulsividade ou agir sem planejamento.",
+    "deficiency": "Passividade, dependência.",
+    "excess": "Precipitação, intervenção indevida.",
+    "excessApparent": false,
+    "behaviors": [
+      "Propõe soluções.",
+      "Começa atividades necessárias.",
+      "Identifica problemas.",
+      "Age dentro de sua responsabilidade."
+    ]
+  },
+  {
+    "id": "V42",
+    "name": "Autonomia",
+    "familyId": "F07",
+    "definition": "Capacidade de orientar escolhas e ações com discernimento e responsabilidade, sem dependência indevida de aprovação ou comando externo.",
+    "notConfuse": "Individualismo ou rejeição de toda orientação.",
+    "deficiency": "Dependência, submissão.",
+    "excess": "Isolamento, autossuficiência arrogante.",
+    "excessApparent": true,
+    "behaviors": [
+      "Toma decisões fundamentadas.",
+      "Assume consequências.",
+      "Procura ajuda sem transferir toda a responsabilidade.",
+      "Reconhece limites próprios."
+    ]
+  },
+  {
+    "id": "V43",
+    "name": "Serviço",
+    "familyId": "F07",
+    "definition": "Disposição para colocar capacidades e recursos a serviço de necessidades legítimas de outras pessoas e da coletividade.",
+    "notConfuse": "Submissão, exploração ou anulação das próprias necessidades.",
+    "deficiency": "Egoísmo, indiferença.",
+    "excess": "Autossacrifício sem limites, dependência de ser necessário.",
+    "excessApparent": true,
+    "behaviors": [
+      "Contribui com o coletivo.",
+      "Compartilha conhecimentos.",
+      "Oferece ajuda adequada.",
+      "Realiza tarefas que beneficiam outras pessoas."
+    ]
+  },
+  {
+    "id": "V44",
+    "name": "Humildade",
+    "familyId": "F08",
+    "definition": "Disposição para reconhecer os próprios limites, capacidades e responsabilidades sem se colocar acima dos outros.",
+    "notConfuse": "Submissão, autodepreciação ou falta de confiança.",
+    "deficiency": "Arrogância, soberba.",
+    "excess": "Humilhação de si mesmo, falsa modéstia.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece erros.",
+      "Escuta críticas.",
+      "Não exige superioridade.",
+      "Reconhece contribuições alheias.",
+      "Assume capacidades sem arrogância."
+    ]
+  },
+  {
+    "id": "V45",
+    "name": "Esperança",
+    "familyId": "F08",
+    "definition": "Disposição para orientar-se por possibilidades futuras de bem, mantendo abertura e confiança diante de dificuldades.",
+    "notConfuse": "Otimismo ingênuo ou expectativa de que tudo se resolverá sem ação.",
+    "deficiency": "Desesperança, desânimo.",
+    "excess": "Expectativa irrealista, ilusão.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reconhece possibilidades.",
+      "Mantém projetos legítimos.",
+      "Age apesar de incertezas.",
+      "Não confunde dificuldade com impossibilidade."
+    ]
+  },
+  {
+    "id": "V46",
+    "name": "Fé",
+    "familyId": "F08",
+    "definition": "Confiança profunda em princípios, valores ou realidades transcendentes, conforme a tradição filosófica ou religiosa adotada.",
+    "notConfuse": "Credulidade ou aceitação indiscriminada de afirmações sem reflexão.",
+    "deficiency": "Descrença ou perda de confiança em referências fundamentais, quando essa confiança é necessária à tradição adotada.",
+    "excess": "Fanatismo, credulidade e fundamentalismo.",
+    "excessApparent": true,
+    "behaviors": [
+      "Procura coerência entre convicções e conduta.",
+      "Reflete sobre suas crenças.",
+      "Respeita convicções diferentes.",
+      "Evita usar crenças para justificar injustiças."
+    ],
+    "note": "Virtude teologal na tradição de Tomás de Aquino: possui fundamento religioso específico e não equivale às virtudes morais adquiridas pelo exercício humano."
+  },
+  {
+    "id": "V47",
+    "name": "Amor",
+    "familyId": "F08",
+    "definition": "Disposição para reconhecer o valor do outro e orientar-se para seu bem, por meio de cuidado, respeito e compromisso.",
+    "notConfuse": "Posse, dependência, desejo ou necessidade de aprovação.",
+    "deficiency": "Indiferença, egoísmo.",
+    "excess": "Apego possessivo, dependência, anulação pessoal.",
+    "excessApparent": true,
+    "behaviors": [
+      "Demonstra cuidado.",
+      "Respeita a autonomia.",
+      "Reconhece necessidades.",
+      "Age com consideração.",
+      "Evita manipulação afetiva."
+    ]
+  },
+  {
+    "id": "V48",
+    "name": "Contemplação",
+    "familyId": "F08",
+    "definition": "Disposição para observar e refletir profundamente sobre a realidade, sem reduzir a experiência à utilidade imediata.",
+    "notConfuse": "Passividade ou fuga das responsabilidades.",
+    "deficiency": "Superficialidade, agitação permanente.",
+    "excess": "Afastamento excessivo da ação e da realidade concreta.",
+    "excessApparent": true,
+    "behaviors": [
+      "Reserva momentos para reflexão.",
+      "Observa antes de julgar.",
+      "Examina experiências.",
+      "Desenvolve compreensão de conjunto."
+    ]
+  }
+]

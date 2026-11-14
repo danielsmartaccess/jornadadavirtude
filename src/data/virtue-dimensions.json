@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "VD-V01-DIM03",
+    "virtueId": "V01",
+    "dimensionId": "DIM03",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V01-DIM04",
+    "virtueId": "V01",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V01-DIM05",
+    "virtueId": "V01",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V01-DIM06",
+    "virtueId": "V01",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V01-DIM07",
+    "virtueId": "V01",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V02-DIM04",
+    "virtueId": "V02",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V02-DIM05",
+    "virtueId": "V02",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V02-DIM06",
+    "virtueId": "V02",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V02-DIM07",
+    "virtueId": "V02",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V03-DIM03",
+    "virtueId": "V03",
+    "dimensionId": "DIM03",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V03-DIM04",
+    "virtueId": "V03",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V03-DIM05",
+    "virtueId": "V03",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V03-DIM06",
+    "virtueId": "V03",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V04-DIM02",
+    "virtueId": "V04",
+    "dimensionId": "DIM02",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V04-DIM03",
+    "virtueId": "V04",
+    "dimensionId": "DIM03",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V04-DIM04",
+    "virtueId": "V04",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V04-DIM05",
+    "virtueId": "V04",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V05-DIM04",
+    "virtueId": "V05",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V05-DIM05",
+    "virtueId": "V05",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V05-DIM06",
+    "virtueId": "V05",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V06-DIM01",
+    "virtueId": "V06",
+    "dimensionId": "DIM01",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V06-DIM02",
+    "virtueId": "V06",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V06-DIM03",
+    "virtueId": "V06",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V06-DIM04",
+    "virtueId": "V06",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V06-DIM07",
+    "virtueId": "V06",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V07-DIM02",
+    "virtueId": "V07",
+    "dimensionId": "DIM02",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V07-DIM03",
+    "virtueId": "V07",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V07-DIM04",
+    "virtueId": "V07",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V07-DIM07",
+    "virtueId": "V07",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V08-DIM02",
+    "virtueId": "V08",
+    "dimensionId": "DIM02",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V08-DIM03",
+    "virtueId": "V08",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V08-DIM04",
+    "virtueId": "V08",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V08-DIM06",
+    "virtueId": "V08",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V09-DIM01",
+    "virtueId": "V09",
+    "dimensionId": "DIM01",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V09-DIM02",
+    "virtueId": "V09",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V09-DIM03",
+    "virtueId": "V09",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V09-DIM04",
+    "virtueId": "V09",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V09-DIM07",
+    "virtueId": "V09",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V10-DIM03",
+    "virtueId": "V10",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V10-DIM04",
+    "virtueId": "V10",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V10-DIM07",
+    "virtueId": "V10",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V11-DIM03",
+    "virtueId": "V11",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V11-DIM04",
+    "virtueId": "V11",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V11-DIM05",
+    "virtueId": "V11",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V11-DIM06",
+    "virtueId": "V11",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V12-DIM03",
+    "virtueId": "V12",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V12-DIM04",
+    "virtueId": "V12",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V12-DIM05",
+    "virtueId": "V12",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V12-DIM07",
+    "virtueId": "V12",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V13-DIM01",
+    "virtueId": "V13",
+    "dimensionId": "DIM01",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V13-DIM02",
+    "virtueId": "V13",
+    "dimensionId": "DIM02",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V13-DIM03",
+    "virtueId": "V13",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V13-DIM07",
+    "virtueId": "V13",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V14-DIM02",
+    "virtueId": "V14",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V14-DIM03",
+    "virtueId": "V14",
+    "dimensionId": "DIM03",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V14-DIM04",
+    "virtueId": "V14",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V14-DIM07",
+    "virtueId": "V14",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V15-DIM04",
+    "virtueId": "V15",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V15-DIM05",
+    "virtueId": "V15",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V15-DIM07",
+    "virtueId": "V15",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V16-DIM01",
+    "virtueId": "V16",
+    "dimensionId": "DIM01",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V16-DIM02",
+    "virtueId": "V16",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V16-DIM03",
+    "virtueId": "V16",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V16-DIM04",
+    "virtueId": "V16",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V16-DIM07",
+    "virtueId": "V16",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V17-DIM02",
+    "virtueId": "V17",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V17-DIM04",
+    "virtueId": "V17",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V17-DIM07",
+    "virtueId": "V17",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V18-DIM03",
+    "virtueId": "V18",
+    "dimensionId": "DIM03",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V18-DIM04",
+    "virtueId": "V18",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V18-DIM05",
+    "virtueId": "V18",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V18-DIM06",
+    "virtueId": "V18",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V18-DIM07",
+    "virtueId": "V18",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V19-DIM04",
+    "virtueId": "V19",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V19-DIM05",
+    "virtueId": "V19",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V19-DIM07",
+    "virtueId": "V19",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V20-DIM04",
+    "virtueId": "V20",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V20-DIM05",
+    "virtueId": "V20",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V20-DIM07",
+    "virtueId": "V20",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V21-DIM01",
+    "virtueId": "V21",
+    "dimensionId": "DIM01",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V21-DIM04",
+    "virtueId": "V21",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V21-DIM05",
+    "virtueId": "V21",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V21-DIM07",
+    "virtueId": "V21",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V22-DIM03",
+    "virtueId": "V22",
+    "dimensionId": "DIM03",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V22-DIM04",
+    "virtueId": "V22",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V22-DIM05",
+    "virtueId": "V22",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V22-DIM06",
+    "virtueId": "V22",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V23-DIM03",
+    "virtueId": "V23",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V23-DIM05",
+    "virtueId": "V23",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V23-DIM07",
+    "virtueId": "V23",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V24-DIM03",
+    "virtueId": "V24",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V24-DIM05",
+    "virtueId": "V24",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V24-DIM06",
+    "virtueId": "V24",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V24-DIM07",
+    "virtueId": "V24",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V25-DIM03",
+    "virtueId": "V25",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V25-DIM04",
+    "virtueId": "V25",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V25-DIM06",
+    "virtueId": "V25",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V26-DIM03",
+    "virtueId": "V26",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V26-DIM05",
+    "virtueId": "V26",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V26-DIM06",
+    "virtueId": "V26",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V26-DIM07",
+    "virtueId": "V26",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V27-DIM03",
+    "virtueId": "V27",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V27-DIM05",
+    "virtueId": "V27",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V27-DIM07",
+    "virtueId": "V27",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V28-DIM03",
+    "virtueId": "V28",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V28-DIM05",
+    "virtueId": "V28",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V28-DIM06",
+    "virtueId": "V28",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V29-DIM03",
+    "virtueId": "V29",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V29-DIM04",
+    "virtueId": "V29",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V29-DIM05",
+    "virtueId": "V29",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V29-DIM06",
+    "virtueId": "V29",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V29-DIM07",
+    "virtueId": "V29",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V30-DIM03",
+    "virtueId": "V30",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V30-DIM04",
+    "virtueId": "V30",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V30-DIM05",
+    "virtueId": "V30",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V31-DIM03",
+    "virtueId": "V31",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V31-DIM05",
+    "virtueId": "V31",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V31-DIM06",
+    "virtueId": "V31",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V31-DIM07",
+    "virtueId": "V31",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V32-DIM03",
+    "virtueId": "V32",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V32-DIM04",
+    "virtueId": "V32",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V32-DIM05",
+    "virtueId": "V32",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V32-DIM07",
+    "virtueId": "V32",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V33-DIM04",
+    "virtueId": "V33",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V33-DIM05",
+    "virtueId": "V33",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V33-DIM06",
+    "virtueId": "V33",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V34-DIM04",
+    "virtueId": "V34",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V34-DIM05",
+    "virtueId": "V34",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V34-DIM06",
+    "virtueId": "V34",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V35-DIM03",
+    "virtueId": "V35",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V35-DIM04",
+    "virtueId": "V35",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V35-DIM07",
+    "virtueId": "V35",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V36-DIM04",
+    "virtueId": "V36",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V36-DIM05",
+    "virtueId": "V36",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V36-DIM06",
+    "virtueId": "V36",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V36-DIM07",
+    "virtueId": "V36",
+    "dimensionId": "DIM07",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V37-DIM04",
+    "virtueId": "V37",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V37-DIM05",
+    "virtueId": "V37",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V38-DIM01",
+    "virtueId": "V38",
+    "dimensionId": "DIM01",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V38-DIM02",
+    "virtueId": "V38",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V38-DIM04",
+    "virtueId": "V38",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V38-DIM07",
+    "virtueId": "V38",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V39-DIM01",
+    "virtueId": "V39",
+    "dimensionId": "DIM01",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V39-DIM02",
+    "virtueId": "V39",
+    "dimensionId": "DIM02",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V39-DIM04",
+    "virtueId": "V39",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V39-DIM07",
+    "virtueId": "V39",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V40-DIM04",
+    "virtueId": "V40",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V40-DIM05",
+    "virtueId": "V40",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V40-DIM07",
+    "virtueId": "V40",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V41-DIM04",
+    "virtueId": "V41",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V41-DIM05",
+    "virtueId": "V41",
+    "dimensionId": "DIM05",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V41-DIM07",
+    "virtueId": "V41",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V42-DIM04",
+    "virtueId": "V42",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V42-DIM05",
+    "virtueId": "V42",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V42-DIM07",
+    "virtueId": "V42",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V43-DIM03",
+    "virtueId": "V43",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V43-DIM05",
+    "virtueId": "V43",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V43-DIM06",
+    "virtueId": "V43",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V43-DIM07",
+    "virtueId": "V43",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V44-DIM03",
+    "virtueId": "V44",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V44-DIM04",
+    "virtueId": "V44",
+    "dimensionId": "DIM04",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V44-DIM05",
+    "virtueId": "V44",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V44-DIM06",
+    "virtueId": "V44",
+    "dimensionId": "DIM06",
+    "relationType": "D2",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V45-DIM03",
+    "virtueId": "V45",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V45-DIM05",
+    "virtueId": "V45",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V45-DIM07",
+    "virtueId": "V45",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V46-DIM05",
+    "virtueId": "V46",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V46-DIM06",
+    "virtueId": "V46",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V46-DIM07",
+    "virtueId": "V46",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V47-DIM03",
+    "virtueId": "V47",
+    "dimensionId": "DIM03",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V47-DIM05",
+    "virtueId": "V47",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V47-DIM06",
+    "virtueId": "V47",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V47-DIM07",
+    "virtueId": "V47",
+    "dimensionId": "DIM07",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V48-DIM04",
+    "virtueId": "V48",
+    "dimensionId": "DIM04",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V48-DIM05",
+    "virtueId": "V48",
+    "dimensionId": "DIM05",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  },
+  {
+    "id": "VD-V48-DIM06",
+    "virtueId": "V48",
+    "dimensionId": "DIM06",
+    "relationType": "D1",
+    "justification": null,
+    "source": "DOC03-6.1",
+    "status": "proposta"
+  }
+]

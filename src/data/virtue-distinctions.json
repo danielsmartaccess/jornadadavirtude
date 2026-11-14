@@ -1,0 +1,164 @@
+[
+  {
+    "id": "DX01",
+    "a": "V01",
+    "aName": "Prudência",
+    "b": "V03",
+    "bName": "Discernimento",
+    "distinction": "Discernir é distinguir; prudência é decidir adequadamente.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX02",
+    "a": "V02",
+    "aName": "Sabedoria",
+    "b": null,
+    "bName": "Conhecimento",
+    "distinction": "Conhecimento reúne informações; sabedoria integra compreensão e orientação.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX03",
+    "a": "V06",
+    "aName": "Temperança",
+    "b": "V09",
+    "bName": "Moderação",
+    "distinction": "Temperança é disposição de autodomínio; moderação é medida adequada.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX04",
+    "a": "V07",
+    "aName": "Paciência",
+    "b": "V14",
+    "bName": "Perseverança",
+    "distinction": "Paciência suporta o tempo; perseverança sustenta o esforço.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX05",
+    "a": "V13",
+    "aName": "Fortaleza",
+    "b": "V12",
+    "bName": "Coragem",
+    "distinction": "Fortaleza sustenta diante da dificuldade; coragem enfrenta riscos e medos.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX06",
+    "a": "V15",
+    "aName": "Determinação",
+    "b": null,
+    "bName": "Teimosia",
+    "distinction": "Determinação sustenta propósitos; teimosia ignora razões para mudar.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX07",
+    "a": "V17",
+    "aName": "Constância",
+    "b": "V14",
+    "bName": "Perseverança",
+    "distinction": "Constância mantém regularidade; perseverança mantém continuidade diante de obstáculos.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX08",
+    "a": "V19",
+    "aName": "Honestidade",
+    "b": "V35",
+    "bName": "Sinceridade",
+    "distinction": "Honestidade orienta a conduta verdadeira; sinceridade orienta a expressão autêntica.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX09",
+    "a": "V18",
+    "aName": "Justiça",
+    "b": "V22",
+    "bName": "Equidade",
+    "distinction": "Justiça reconhece o devido; equidade considera particularidades relevantes.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX10",
+    "a": "V25",
+    "aName": "Empatia",
+    "b": "V26",
+    "bName": "Compaixão",
+    "distinction": "Empatia compreende a experiência alheia; compaixão inclui orientação para aliviar sofrimento.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX11",
+    "a": "V24",
+    "aName": "Generosidade",
+    "b": "V43",
+    "bName": "Serviço",
+    "distinction": "Generosidade compartilha recursos; serviço coloca capacidades à disposição de necessidades legítimas.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX12",
+    "a": "V44",
+    "aName": "Humildade",
+    "b": "V33",
+    "bName": "Humildade intelectual",
+    "distinction": "Humildade reconhece limites gerais; humildade intelectual reconhece limites do próprio conhecimento.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX13",
+    "a": "V08",
+    "aName": "Serenidade",
+    "b": "V11",
+    "bName": "Equanimidade",
+    "distinction": "Serenidade preserva clareza; equanimidade mantém equilíbrio diante de experiências opostas.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX14",
+    "a": "V20",
+    "aName": "Integridade",
+    "b": "V23",
+    "bName": "Fidelidade",
+    "distinction": "Integridade mantém coerência com princípios; fidelidade preserva compromissos legítimos.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX15",
+    "a": "V32",
+    "aName": "Respeito",
+    "b": "V30",
+    "bName": "Tolerância",
+    "distinction": "Respeito reconhece dignidade e limites; tolerância permite conviver com diferenças.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX16",
+    "a": "V45",
+    "aName": "Esperança",
+    "b": null,
+    "bName": "Otimismo",
+    "distinction": "Esperança orienta-se para possibilidades de bem; otimismo é uma expectativa positiva.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX17",
+    "a": "V47",
+    "aName": "Amor",
+    "b": "V24",
+    "bName": "Generosidade",
+    "distinction": "Amor orienta-se para o bem do outro; generosidade manifesta-se no compartilhamento.",
+    "source": "DOC03-5"
+  },
+  {
+    "id": "DX18",
+    "a": "V38",
+    "aName": "Disciplina",
+    "b": "V39",
+    "bName": "Diligência",
+    "distinction": "Disciplina organiza a conduta; diligência executa com cuidado e empenho.",
+    "source": "DOC03-5"
+  }
+]

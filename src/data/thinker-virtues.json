@@ -1,0 +1,2932 @@
+[
+  {
+    "id": "TV-V01-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V01",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V01-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V01",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V01-platao",
+    "thinkerId": "platao",
+    "virtueId": "V01",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V01-daniel-kahneman",
+    "thinkerId": "daniel-kahneman",
+    "virtueId": "V01",
+    "relationType": "P3",
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "O Documento 04 (seção 3.2) registra esta relação como perspectiva complementar (P3): seus estudos ajudam a compreender mecanismos de julgamento e decisão, sem constituir uma teoria filosófica da virtude.",
+    "workIds": [
+      "W19"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V01-nassim-taleb",
+    "thinkerId": "nassim-taleb",
+    "virtueId": "V01",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: risco, fragilidade e adaptação.",
+    "workIds": [
+      "W21"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V02-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V02",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V02-platao",
+    "thinkerId": "platao",
+    "virtueId": "V02",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V02-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V02",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V02-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V02",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V03-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V03",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V03-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V03",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V03-epicteto",
+    "thinkerId": "epicteto",
+    "virtueId": "V03",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade interior e domínio das respostas.",
+    "workIds": [
+      "W04"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V03-daniel-kahneman",
+    "thinkerId": "daniel-kahneman",
+    "virtueId": "V03",
+    "relationType": "P3",
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "O Documento 04 (seção 3.2) registra esta relação como perspectiva complementar (P3): seus estudos ajudam a compreender mecanismos de julgamento e decisão, sem constituir uma teoria filosófica da virtude.",
+    "workIds": [
+      "W19"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V03-donella-meadows",
+    "thinkerId": "donella-meadows",
+    "virtueId": "V03",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: pensamento sistêmico e interdependência.",
+    "workIds": [
+      "W20"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V03-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V03",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V04-simone-weil",
+    "thinkerId": "simone-weil",
+    "virtueId": "V04",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: atenção, sofrimento e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V04-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V04",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V04-william-james",
+    "thinkerId": "william-james",
+    "virtueId": "V04",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V04-musashi",
+    "thinkerId": "musashi",
+    "virtueId": "V04",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: estratégia, disciplina e ação.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V05-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V05",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V05-john-stuart-mill",
+    "thinkerId": "john-stuart-mill",
+    "virtueId": "V05",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade e tolerância.",
+    "workIds": [
+      "W15"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V05-karl-popper",
+    "thinkerId": "karl-popper",
+    "virtueId": "V05",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: crítica, conhecimento e revisão de hipóteses.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V06-platao",
+    "thinkerId": "platao",
+    "virtueId": "V06",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V06-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V06",
+    "relationType": "P1",
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "O Documento 04 (seção 3.2) registra esta relação como fundamentação direta (P1).",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V06-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V06",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V06-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V06",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V07-seneca",
+    "thinkerId": "seneca",
+    "virtueId": "V07",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: tempo, adversidade e equilíbrio.",
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V07-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V07",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V07-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V07",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V07-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V07",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V08-epicteto",
+    "thinkerId": "epicteto",
+    "virtueId": "V08",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade interior e domínio das respostas.",
+    "workIds": [
+      "W04"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V08-seneca",
+    "thinkerId": "seneca",
+    "virtueId": "V08",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: tempo, adversidade e equilíbrio.",
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V08-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V08",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V08-lao-tse",
+    "thinkerId": "lao-tse",
+    "virtueId": "V08",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: simplicidade, equilíbrio e não imposição.",
+    "workIds": [
+      "W10"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V08-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V08",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V08-estoicismo",
+    "thinkerId": "estoicismo",
+    "virtueId": "V08",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V09-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V09",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V09-platao",
+    "thinkerId": "platao",
+    "virtueId": "V09",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V09-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V09",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V09-lao-tse",
+    "thinkerId": "lao-tse",
+    "virtueId": "V09",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: simplicidade, equilíbrio e não imposição.",
+    "workIds": [
+      "W10"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V10-platao",
+    "thinkerId": "platao",
+    "virtueId": "V10",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V10-epicteto",
+    "thinkerId": "epicteto",
+    "virtueId": "V10",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade interior e domínio das respostas.",
+    "workIds": [
+      "W04"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V10-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V10",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V10-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V10",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V11-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V11",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V11-bhagavad-gita",
+    "thinkerId": "bhagavad-gita",
+    "virtueId": "V11",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [
+      "W11"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V11-estoicismo",
+    "thinkerId": "estoicismo",
+    "virtueId": "V11",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V11-dalai-lama",
+    "thinkerId": "dalai-lama",
+    "virtueId": "V11",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: compaixão e treinamento da mente.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V12-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V12",
+    "relationType": "P1",
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "O Documento 04 (seção 3.2) registra esta relação como fundamentação direta (P1).",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V12-platao",
+    "thinkerId": "platao",
+    "virtueId": "V12",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V12-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V12",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V12-musashi",
+    "thinkerId": "musashi",
+    "virtueId": "V12",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: estratégia, disciplina e ação.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V13-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V13",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V13-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V13",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V13-seneca",
+    "thinkerId": "seneca",
+    "virtueId": "V13",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: tempo, adversidade e equilíbrio.",
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V13-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V13",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V13-estoicismo",
+    "thinkerId": "estoicismo",
+    "virtueId": "V13",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V14-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V14",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V14-seneca",
+    "thinkerId": "seneca",
+    "virtueId": "V14",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: tempo, adversidade e equilíbrio.",
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V14-musashi",
+    "thinkerId": "musashi",
+    "virtueId": "V14",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: estratégia, disciplina e ação.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V14-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V14",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V15-musashi",
+    "thinkerId": "musashi",
+    "virtueId": "V15",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: estratégia, disciplina e ação.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V15-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V15",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V15-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V15",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V16-viktor-frankl",
+    "thinkerId": "viktor-frankl",
+    "virtueId": "V16",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: sentido e responsabilidade.",
+    "workIds": [
+      "W18"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V16-estoicismo",
+    "thinkerId": "estoicismo",
+    "virtueId": "V16",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V16-nassim-taleb",
+    "thinkerId": "nassim-taleb",
+    "virtueId": "V16",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: risco, fragilidade e adaptação.",
+    "workIds": [
+      "W21"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V16-donella-meadows",
+    "thinkerId": "donella-meadows",
+    "virtueId": "V16",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: pensamento sistêmico e interdependência.",
+    "workIds": [
+      "W20"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V17-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V17",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V17-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V17",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V17-musashi",
+    "thinkerId": "musashi",
+    "virtueId": "V17",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: estratégia, disciplina e ação.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V17-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V17",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V18-platao",
+    "thinkerId": "platao",
+    "virtueId": "V18",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V18-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V18",
+    "relationType": "P1",
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "O Documento 04 (seção 3.2) registra esta relação como fundamentação direta (P1).",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V18-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V18",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V18-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V18",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V18-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V18",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V18-john-rawls",
+    "thinkerId": "john-rawls",
+    "virtueId": "V18",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: justiça e equidade.",
+    "workIds": [
+      "W16"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V19-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V19",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V19-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V19",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V19-kant",
+    "thinkerId": "kant",
+    "virtueId": "V19",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V19-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V19",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V20-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V20",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V20-kant",
+    "thinkerId": "kant",
+    "virtueId": "V20",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V20-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V20",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V20-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V20",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V21-kant",
+    "thinkerId": "kant",
+    "virtueId": "V21",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V21-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V21",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V21-viktor-frankl",
+    "thinkerId": "viktor-frankl",
+    "virtueId": "V21",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: sentido e responsabilidade.",
+    "workIds": [
+      "W18"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V21-erich-fromm",
+    "thinkerId": "erich-fromm",
+    "virtueId": "V21",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: amor como capacidade e prática.",
+    "workIds": [
+      "W17"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V21-donella-meadows",
+    "thinkerId": "donella-meadows",
+    "virtueId": "V21",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: pensamento sistêmico e interdependência.",
+    "workIds": [
+      "W20"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V22-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V22",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V22-john-rawls",
+    "thinkerId": "john-rawls",
+    "virtueId": "V22",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: justiça e equidade.",
+    "workIds": [
+      "W16"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V22-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V22",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V23-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V23",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V23-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V23",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V23-cicero",
+    "thinkerId": "cicero",
+    "virtueId": "V23",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V24-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V24",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V24-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V24",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V24-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V24",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V25-edith-stein",
+    "thinkerId": "edith-stein",
+    "virtueId": "V25",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: empatia e compreensão da experiência alheia.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V25-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V25",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V25-adam-smith",
+    "thinkerId": "adam-smith",
+    "virtueId": "V25",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V26-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V26",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V26-dalai-lama",
+    "thinkerId": "dalai-lama",
+    "virtueId": "V26",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: compaixão e treinamento da mente.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V26-simone-weil",
+    "thinkerId": "simone-weil",
+    "virtueId": "V26",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: atenção, sofrimento e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V26-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V26",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V27-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V27",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V27-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V27",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V27-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V27",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V27-dalai-lama",
+    "thinkerId": "dalai-lama",
+    "virtueId": "V27",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: compaixão e treinamento da mente.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V28-seneca",
+    "thinkerId": "seneca",
+    "virtueId": "V28",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: tempo, adversidade e equilíbrio.",
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V28-cicero",
+    "thinkerId": "cicero",
+    "virtueId": "V28",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V28-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V28",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V29-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V29",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V29-tradicoes-cristas",
+    "thinkerId": "tradicoes-cristas",
+    "virtueId": "V29",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V29-tradicoes-budistas",
+    "thinkerId": "tradicoes-budistas",
+    "virtueId": "V29",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade.",
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V29-seneca",
+    "thinkerId": "seneca",
+    "virtueId": "V29",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: tempo, adversidade e equilíbrio.",
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V30-john-locke",
+    "thinkerId": "john-locke",
+    "virtueId": "V30",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade de consciência e tolerância.",
+    "workIds": [
+      "W14"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V30-voltaire",
+    "thinkerId": "voltaire",
+    "virtueId": "V30",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V30-john-stuart-mill",
+    "thinkerId": "john-stuart-mill",
+    "virtueId": "V30",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade e tolerância.",
+    "workIds": [
+      "W15"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V31-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V31",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V31-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V31",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V31-tradicoes-humanistas",
+    "thinkerId": "tradicoes-humanistas",
+    "virtueId": "V31",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V32-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V32",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V32-kant",
+    "thinkerId": "kant",
+    "virtueId": "V32",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V32-cicero",
+    "thinkerId": "cicero",
+    "virtueId": "V32",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V32-john-locke",
+    "thinkerId": "john-locke",
+    "virtueId": "V32",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade de consciência e tolerância.",
+    "workIds": [
+      "W14"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V33-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V33",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V33-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V33",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V33-bertrand-russell",
+    "thinkerId": "bertrand-russell",
+    "virtueId": "V33",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V33-richard-feynman",
+    "thinkerId": "richard-feynman",
+    "virtueId": "V33",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação e honestidade intelectual.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V34-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V34",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V34-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V34",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V34-leonardo-da-vinci",
+    "thinkerId": "leonardo-da-vinci",
+    "virtueId": "V34",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V34-richard-feynman",
+    "thinkerId": "richard-feynman",
+    "virtueId": "V34",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação e honestidade intelectual.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V35-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V35",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V35-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V35",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V35-kant",
+    "thinkerId": "kant",
+    "virtueId": "V35",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V36-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V36",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V36-platao",
+    "thinkerId": "platao",
+    "virtueId": "V36",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V36-karl-popper",
+    "thinkerId": "karl-popper",
+    "virtueId": "V36",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: crítica, conhecimento e revisão de hipóteses.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V36-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V36",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V36-richard-feynman",
+    "thinkerId": "richard-feynman",
+    "virtueId": "V36",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação e honestidade intelectual.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V37-francis-bacon",
+    "thinkerId": "francis-bacon",
+    "virtueId": "V37",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V37-karl-popper",
+    "thinkerId": "karl-popper",
+    "virtueId": "V37",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: crítica, conhecimento e revisão de hipóteses.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V37-daniel-kahneman",
+    "thinkerId": "daniel-kahneman",
+    "virtueId": "V37",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: julgamento, decisão e vieses.",
+    "workIds": [
+      "W19"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V38-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V38",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V38-musashi",
+    "thinkerId": "musashi",
+    "virtueId": "V38",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: estratégia, disciplina e ação.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V38-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V38",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V38-benjamin-franklin",
+    "thinkerId": "benjamin-franklin",
+    "virtueId": "V38",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação de hábitos e autodesenvolvimento.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V39-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V39",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V39-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V39",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V39-benjamin-franklin",
+    "thinkerId": "benjamin-franklin",
+    "virtueId": "V39",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação de hábitos e autodesenvolvimento.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V39-peter-drucker",
+    "thinkerId": "peter-drucker",
+    "virtueId": "V39",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: gestão, eficácia e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V40-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V40",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V40-kant",
+    "thinkerId": "kant",
+    "virtueId": "V40",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V40-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V40",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V40-peter-drucker",
+    "thinkerId": "peter-drucker",
+    "virtueId": "V40",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: gestão, eficácia e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V41-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V41",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V41-benjamin-franklin",
+    "thinkerId": "benjamin-franklin",
+    "virtueId": "V41",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação de hábitos e autodesenvolvimento.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V41-peter-drucker",
+    "thinkerId": "peter-drucker",
+    "virtueId": "V41",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: gestão, eficácia e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V42-kant",
+    "thinkerId": "kant",
+    "virtueId": "V42",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, dignidade e autonomia.",
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V42-epicteto",
+    "thinkerId": "epicteto",
+    "virtueId": "V42",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade interior e domínio das respostas.",
+    "workIds": [
+      "W04"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V42-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V42",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V42-john-stuart-mill",
+    "thinkerId": "john-stuart-mill",
+    "virtueId": "V42",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: liberdade e tolerância.",
+    "workIds": [
+      "W15"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V43-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V43",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V43-simone-weil",
+    "thinkerId": "simone-weil",
+    "virtueId": "V43",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: atenção, sofrimento e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V43-tradicoes-humanistas",
+    "thinkerId": "tradicoes-humanistas",
+    "virtueId": "V43",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V44-socrates",
+    "thinkerId": "socrates",
+    "virtueId": "V44",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: investigação, autoconhecimento e exame das crenças.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V44-confucio",
+    "thinkerId": "confucio",
+    "virtueId": "V44",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: formação moral e relações humanas.",
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V44-marco-aurelio",
+    "thinkerId": "marco-aurelio",
+    "virtueId": "V44",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: dever, justiça e autocontrole.",
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V44-lao-tse",
+    "thinkerId": "lao-tse",
+    "virtueId": "V44",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: simplicidade, equilíbrio e não imposição.",
+    "workIds": [
+      "W10"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V44-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V44",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V45-viktor-frankl",
+    "thinkerId": "viktor-frankl",
+    "virtueId": "V45",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: sentido e responsabilidade.",
+    "workIds": [
+      "W18"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V45-tradicoes-cristas",
+    "thinkerId": "tradicoes-cristas",
+    "virtueId": "V45",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V45-ernst-bloch",
+    "thinkerId": "ernst-bloch",
+    "virtueId": "V45",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V45-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V45",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V46-tomas-de-aquino",
+    "thinkerId": "tomas-de-aquino",
+    "virtueId": "V46",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: virtudes cardeais e teologais.",
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V46-kierkegaard",
+    "thinkerId": "kierkegaard",
+    "virtueId": "V46",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V46-tradicoes-religiosas",
+    "thinkerId": "tradicoes-religiosas",
+    "virtueId": "V46",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V47-platao",
+    "thinkerId": "platao",
+    "virtueId": "V47",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V47-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V47",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V47-erich-fromm",
+    "thinkerId": "erich-fromm",
+    "virtueId": "V47",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5",
+      "DOC04-6"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: amor como capacidade e prática.",
+    "workIds": [
+      "W17"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V47-tradicoes-cristas",
+    "thinkerId": "tradicoes-cristas",
+    "virtueId": "V47",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V48-platao",
+    "thinkerId": "platao",
+    "virtueId": "V48",
+    "relationType": null,
+    "priority": 1,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: organização da alma e virtudes fundamentais.",
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V48-aristoteles",
+    "thinkerId": "aristoteles",
+    "virtueId": "V48",
+    "relationType": null,
+    "priority": 2,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: ética das virtudes, hábito e prudência.",
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V48-simone-weil",
+    "thinkerId": "simone-weil",
+    "virtueId": "V48",
+    "relationType": null,
+    "priority": 3,
+    "sources": [
+      "DOC03-4",
+      "DOC04-5"
+    ],
+    "justification": "Campo de contribuição registrado no Documento 04: atenção, sofrimento e responsabilidade.",
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "TV-V48-tradicoes-contemplativas",
+    "thinkerId": "tradicoes-contemplativas",
+    "virtueId": "V48",
+    "relationType": null,
+    "priority": null,
+    "sources": [
+      "DOC03-4"
+    ],
+    "justification": "Referência indicada nos documentos do projeto para esta virtude; justificativa detalhada pendente de curadoria.",
+    "workIds": [],
+    "status": "proposta"
+  }
+]

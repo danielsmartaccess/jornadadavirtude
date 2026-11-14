@@ -1,0 +1,862 @@
+[
+  {
+    "id": "EX-V01",
+    "title": "A decisão consciente",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V01"
+    ],
+    "dimensionIds": [],
+    "description": "Antes de uma decisão importante, registrar:",
+    "steps": [
+      "Qual é o objetivo?",
+      "Quais informações possuo?",
+      "Quais alternativas existem?",
+      "Quais consequências são previsíveis?",
+      "Qual alternativa é mais coerente com meus princípios?"
+    ],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V02",
+    "title": "A lição da experiência",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V02"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma experiência difícil e identificar:",
+    "steps": [
+      "O que aconteceu?",
+      "O que aprendi?",
+      "Qual princípio posso extrair?",
+      "Como aplicarei esse aprendizado em outra situação?"
+    ],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V03",
+    "title": "Fato, interpretação e julgamento",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V03"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma situação e escrever três colunas:",
+    "steps": [
+      "O que efetivamente aconteceu.",
+      "Como interpretei o acontecimento.",
+      "Que julgamento formulei."
+    ],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V04",
+    "title": "A escuta integral",
+    "category": "relacao",
+    "duration": "Alguns minutos",
+    "virtueIds": [
+      "V04"
+    ],
+    "dimensionIds": [],
+    "description": "Durante uma conversa, dedicar alguns minutos exclusivamente à escuta, sem preparar respostas enquanto a outra pessoa fala.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V05",
+    "title": "O melhor argumento contrário",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V05"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma opinião própria e formular o argumento mais consistente contra ela.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V06",
+    "title": "A pausa antes do desejo",
+    "category": "consciencia",
+    "duration": "Alguns minutos",
+    "virtueIds": [
+      "V06"
+    ],
+    "dimensionIds": [],
+    "description": "Diante de um desejo impulsivo, aguardar alguns minutos e refletir:",
+    "steps": [
+      "O que estou buscando?",
+      "Preciso realmente disso?",
+      "Quais consequências podem surgir?"
+    ],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V07",
+    "title": "A espera consciente",
+    "category": "consciencia",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V07"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma situação cotidiana que provoque impaciência e praticar uma resposta deliberada, sem reação automática.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V08",
+    "title": "O intervalo da serenidade",
+    "category": "consciencia",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V08"
+    ],
+    "dimensionIds": [],
+    "description": "Em uma situação de tensão, interromper a reação automática, observar o que está acontecendo e só então escolher como responder.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V09",
+    "title": "A medida adequada",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V09"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma área da vida em que exista excesso ou insuficiência e estabelecer um ajuste concreto.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V10",
+    "title": "O impulso observado",
+    "category": "consciencia",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V10"
+    ],
+    "dimensionIds": [],
+    "description": "Registrar uma reação impulsiva e identificar o momento em que seria possível interromper a sequência entre estímulo e ação.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V11",
+    "title": "O equilíbrio diante dos resultados",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V11"
+    ],
+    "dimensionIds": [],
+    "description": "Refletir sobre uma situação de sucesso ou fracasso e identificar o que pode ser aprendido sem reduzir o próprio valor ao resultado.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V12",
+    "title": "O ato corajoso",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V12"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma ação necessária que vem sendo evitada e realizar um primeiro passo concreto.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V13",
+    "title": "A dificuldade sustentada",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V13"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher um compromisso importante e identificar como mantê-lo diante de um obstáculo previsível.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V14",
+    "title": "O compromisso de continuidade",
+    "category": "acao",
+    "duration": "7 dias",
+    "virtueIds": [
+      "V14"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma atividade importante e praticá-la regularmente durante sete dias, registrando obstáculos e ajustes.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V15",
+    "title": "Da intenção ao compromisso",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V15"
+    ],
+    "dimensionIds": [],
+    "description": "Transformar uma intenção vaga em uma decisão com ação, prazo e critério de realização.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V16",
+    "title": "O aprendizado da adversidade",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V16"
+    ],
+    "dimensionIds": [],
+    "description": "Registrar uma dificuldade, os recursos utilizados para enfrentá-la e o que poderá ser feito de maneira diferente no futuro.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V17",
+    "title": "A pequena repetição",
+    "category": "acao",
+    "duration": "7 dias",
+    "virtueIds": [
+      "V17"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma prática diária de baixa complexidade e mantê-la durante sete dias.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V18",
+    "title": "O olhar da justiça",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V18"
+    ],
+    "dimensionIds": [],
+    "description": "Analisar um conflito considerando os direitos, os deveres e os interesses legítimos de todas as pessoas envolvidas.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V19",
+    "title": "A verdade necessária",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V19"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma situação em que exista tentação de omitir, distorcer ou exagerar informações e escolher uma forma responsável de comunicar a verdade.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V20",
+    "title": "Coerência entre discurso e ação",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V20"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher um valor importante e comparar o que se declara com três comportamentos concretos da última semana.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V21",
+    "title": "A responsabilidade assumida",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V21"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar um compromisso pendente e estabelecer a ação necessária para cumpri-lo ou renegociá-lo honestamente.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V22",
+    "title": "A decisão proporcional",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V22"
+    ],
+    "dimensionIds": [],
+    "description": "Analisar uma situação em que a aplicação de uma regra igual para todos possa produzir consequências injustas.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V23",
+    "title": "A palavra mantida",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V23"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma promessa importante e avaliar o que é necessário para cumpri-la com responsabilidade.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V24",
+    "title": "O gesto generoso",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V24"
+    ],
+    "dimensionIds": [],
+    "description": "Realizar uma ação concreta de ajuda sem buscar reconhecimento público.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V25",
+    "title": "A perspectiva do outro",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V25"
+    ],
+    "dimensionIds": [],
+    "description": "Descrever um conflito a partir do ponto de vista da outra pessoa, sem abandonar a própria percepção dos fatos.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V26",
+    "title": "A ajuda adequada",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V26"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar alguém que esteja enfrentando uma dificuldade e oferecer ajuda concreta, respeitando sua autonomia.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V27",
+    "title": "O bem do outro",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V27"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma pessoa com quem exista dificuldade de relacionamento e identificar uma atitude construtiva que possa ser praticada.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V28",
+    "title": "Reconhecer o recebido",
+    "category": "contemplacao",
+    "duration": "Prática diária",
+    "virtueIds": [
+      "V28"
+    ],
+    "dimensionIds": [],
+    "description": "Registrar diariamente três contribuições ou experiências positivas e identificar por que foram importantes.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V29",
+    "title": "O caminho do perdão",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V29"
+    ],
+    "dimensionIds": [],
+    "description": "Escrever sobre uma situação de mágoa, identificando o dano, os sentimentos, os limites necessários e o que seria possível liberar sem negar os fatos.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V30",
+    "title": "A divergência respeitosa",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V30"
+    ],
+    "dimensionIds": [],
+    "description": "Conversar com alguém que sustente uma posição diferente e procurar compreender seus argumentos antes de responder.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V31",
+    "title": "A ação coletiva",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V31"
+    ],
+    "dimensionIds": [],
+    "description": "Participar de uma atividade que produza benefício compartilhado sem exigir reconhecimento individual.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V32",
+    "title": "O respeito em uma divergência",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V32"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma situação de discordância e praticar uma resposta firme, mas respeitosa.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V33",
+    "title": "O reconhecimento do não saber",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V33"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher um assunto sobre o qual se tenha opinião forte e identificar três aspectos que ainda precisam ser estudados.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V34",
+    "title": "Uma pergunta por dia",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V34"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher um fenômeno cotidiano e investigar sua causa, origem ou funcionamento.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V35",
+    "title": "A expressão autêntica",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V35"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma situação em que se tenha dito algo diferente do que realmente se pensava e refletir sobre uma comunicação mais autêntica e respeitosa.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V36",
+    "title": "A revisão de uma crença",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V36"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma crença e procurar evidências que a confirmem e evidências que a contrariem.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V37",
+    "title": "A análise sem preferência",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V37"
+    ],
+    "dimensionIds": [],
+    "description": "Examinar uma decisão identificando quais informações poderiam contrariar a conclusão desejada.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V38",
+    "title": "A rotina mínima",
+    "category": "acao",
+    "duration": "7 dias",
+    "virtueIds": [
+      "V38"
+    ],
+    "dimensionIds": [],
+    "description": "Definir uma prática diária simples, com horário e duração, e mantê-la durante sete dias.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V39",
+    "title": "A tarefa bem realizada",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V39"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher uma tarefa cotidiana e executá-la com atenção à qualidade, sem interrupções desnecessárias.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V40",
+    "title": "O compromisso verificável",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V40"
+    ],
+    "dimensionIds": [],
+    "description": "Escolher um compromisso e definir uma ação observável que demonstre seu cumprimento.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V41",
+    "title": "O primeiro passo",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V41"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma necessidade que vem sendo adiada e executar uma primeira ação concreta.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V42",
+    "title": "A decisão própria",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V42"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma decisão que esteja sendo adiada por dependência de aprovação e elaborar critérios para decidir responsavelmente.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V43",
+    "title": "O serviço consciente",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V43"
+    ],
+    "dimensionIds": [],
+    "description": "Realizar uma atividade em benefício de outra pessoa ou comunidade, respeitando os limites e as necessidades envolvidos.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V44",
+    "title": "Reconhecer os próprios limites",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V44"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma situação em que tenha sido difícil admitir um erro e registrar o que poderia ser aprendido.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V45",
+    "title": "A possibilidade concreta",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V45"
+    ],
+    "dimensionIds": [],
+    "description": "Diante de uma dificuldade, identificar uma possibilidade realista de melhoria e a primeira ação necessária.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V46",
+    "title": "Convicção e responsabilidade",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V46"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma convicção fundamental e refletir sobre como ela se manifesta em escolhas cotidianas.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V47",
+    "title": "O amor em ação",
+    "category": "relacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [
+      "V47"
+    ],
+    "dimensionIds": [],
+    "description": "Identificar uma relação importante e escolher uma ação concreta de cuidado, respeito ou presença.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-V48",
+    "title": "O tempo de observar",
+    "category": "contemplacao",
+    "duration": "Alguns minutos",
+    "virtueIds": [
+      "V48"
+    ],
+    "dimensionIds": [],
+    "description": "Dedicar alguns minutos à observação de um acontecimento, sem buscar imediatamente explicações ou soluções.",
+    "steps": [],
+    "source": "DOC03-4",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM01",
+    "title": "O compromisso com o corpo",
+    "category": "acao",
+    "duration": "7 dias",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM01"
+    ],
+    "description": "Escolher um hábito físico simples e mantê-lo durante sete dias. Registrar:",
+    "steps": [
+      "O compromisso assumido",
+      "As situações que facilitaram sua realização",
+      "As dificuldades encontradas",
+      "As justificativas utilizadas para não cumprir",
+      "O que foi aprendido"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM02",
+    "title": "A administração da disposição",
+    "category": "consciencia",
+    "duration": "7 dias",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM02"
+    ],
+    "description": "Durante sete dias, registrar os itens abaixo. O objetivo é reconhecer padrões de rotina e desenvolver constância, sem transformar a experiência em avaliação médica ou energética.",
+    "steps": [
+      "Atividades realizadas",
+      "Momentos de maior disposição",
+      "Momentos de cansaço",
+      "Interrupções e dispersões",
+      "Qualidade do descanso",
+      "Compromissos efetivamente cumpridos"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM03",
+    "title": "Entre o sentimento e a reação",
+    "category": "consciencia",
+    "duration": "No seu ritmo",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM03"
+    ],
+    "description": "Diante de uma situação emocionalmente difícil, registrar os itens abaixo. O exercício não busca eliminar emoções, mas desenvolver consciência e liberdade diante das próprias reações.",
+    "steps": [
+      "O que aconteceu?",
+      "O que senti?",
+      "O que pensei?",
+      "Como reagi?",
+      "Que consequências minha reação produziu?",
+      "Como poderia agir de maneira mais consciente?"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM04",
+    "title": "O exame de uma decisão",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM04"
+    ],
+    "description": "Escolher uma decisão recente e registrar:",
+    "steps": [
+      "Qual era o problema?",
+      "Quais informações estavam disponíveis?",
+      "Quais pressupostos foram utilizados?",
+      "Quais alternativas foram consideradas?",
+      "Quais consequências eram previsíveis?",
+      "O que poderia ter sido analisado melhor?"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM05",
+    "title": "O princípio acima do interesse",
+    "category": "reflexao",
+    "duration": "No seu ritmo",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM05"
+    ],
+    "description": "Identificar uma situação em que o interesse pessoal entrou em conflito com um princípio ético. Registrar:",
+    "steps": [
+      "Qual era meu interesse?",
+      "Qual princípio estava em jogo?",
+      "Quem poderia ser afetado?",
+      "Qual decisão seria mais coerente com esse princípio?",
+      "O que efetivamente fiz?",
+      "O que aprendi?"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM06",
+    "title": "A contemplação de uma situação",
+    "category": "contemplacao",
+    "duration": "No seu ritmo",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM06"
+    ],
+    "description": "Escolher um acontecimento significativo e observá-lo pelas perspectivas abaixo. Depois, registrar o que mudou na compreensão inicial.",
+    "steps": [
+      "A perspectiva pessoal",
+      "A perspectiva das outras pessoas envolvidas",
+      "A perspectiva do bem comum",
+      "A perspectiva dos princípios éticos envolvidos"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-DIM07",
+    "title": "Da intenção à ação",
+    "category": "acao",
+    "duration": "No seu ritmo",
+    "virtueIds": [],
+    "dimensionIds": [
+      "DIM07"
+    ],
+    "description": "Escolher uma virtude e estabelecer uma ação concreta que a represente. Registrar:",
+    "steps": [
+      "Qual virtude desejo desenvolver?",
+      "Qual comportamento expressará essa virtude?",
+      "Em qual situação vou praticá-la?",
+      "Qual obstáculo poderá aparecer?",
+      "Como pretendo lidar com ele?",
+      "O que fiz efetivamente?",
+      "Como avalio minha experiência?"
+    ],
+    "source": "DOC02-3",
+    "status": "proposta"
+  },
+  {
+    "id": "EX-CASE02",
+    "title": "O registro do erro",
+    "category": "consciencia",
+    "duration": "7 dias",
+    "virtueIds": [
+      "V44",
+      "V19",
+      "V20",
+      "V36"
+    ],
+    "dimensionIds": [],
+    "description": "Durante sete dias, registrar uma situação em que tenha sido difícil reconhecer um erro. Para cada registro:",
+    "steps": [
+      "O que aconteceu?",
+      "O que fiz?",
+      "O que tentei justificar?",
+      "Qual parte da situação estava sob minha responsabilidade?",
+      "O que poderia ter feito diferente?",
+      "Qual ação concreta posso realizar para corrigir ou melhorar a situação?"
+    ],
+    "source": "DOC04-12",
+    "status": "proposta"
+  }
+]

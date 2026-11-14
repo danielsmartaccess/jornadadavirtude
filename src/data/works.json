@@ -1,0 +1,128 @@
+[
+  {
+    "id": "W01",
+    "thinkerId": "aristoteles",
+    "title": "Ética a Nicômaco",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W02",
+    "thinkerId": "platao",
+    "title": "A República",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W03",
+    "thinkerId": "platao",
+    "title": "Protágoras",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W04",
+    "thinkerId": "epicteto",
+    "title": "Manual",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W05",
+    "thinkerId": "seneca",
+    "title": "Cartas a Lucílio",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W06",
+    "thinkerId": "marco-aurelio",
+    "title": "Meditações",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W07",
+    "thinkerId": "tomas-de-aquino",
+    "title": "Suma Teológica",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W08",
+    "thinkerId": "tomas-de-aquino",
+    "title": "Tratado das Virtudes",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W09",
+    "thinkerId": "confucio",
+    "title": "Analectos",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W10",
+    "thinkerId": "lao-tse",
+    "title": "Tao Te Ching",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W11",
+    "thinkerId": "bhagavad-gita",
+    "title": "Bhagavad Gita",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W12",
+    "thinkerId": "tradicoes-budistas",
+    "title": "Textos budistas sobre as Paramitas",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W13",
+    "thinkerId": "kant",
+    "title": "Fundamentação da Metafísica dos Costumes",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W14",
+    "thinkerId": "john-locke",
+    "title": "Carta sobre a Tolerância",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W15",
+    "thinkerId": "john-stuart-mill",
+    "title": "Sobre a Liberdade",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W16",
+    "thinkerId": "john-rawls",
+    "title": "Uma Teoria da Justiça",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W17",
+    "thinkerId": "erich-fromm",
+    "title": "A Arte de Amar",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W18",
+    "thinkerId": "viktor-frankl",
+    "title": "Em Busca de Sentido",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W19",
+    "thinkerId": "daniel-kahneman",
+    "title": "Rápido e Devagar",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W20",
+    "thinkerId": "donella-meadows",
+    "title": "Pensando em Sistemas",
+    "source": "Referências dos Documentos 03 e 04"
+  },
+  {
+    "id": "W21",
+    "thinkerId": "nassim-taleb",
+    "title": "Antifrágil",
+    "source": "Referências dos Documentos 03 e 04"
+  }
+]

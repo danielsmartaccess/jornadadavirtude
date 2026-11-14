@@ -1,0 +1,926 @@
+[
+  {
+    "id": "socrates",
+    "name": "Sócrates",
+    "kind": "pensador",
+    "council": true,
+    "period": "Atenas, c. 470–399 a.C.",
+    "tradition": "Filosofia grega clássica",
+    "field": "Investigação, autoconhecimento e exame das crenças",
+    "concepts": [
+      "Sabedoria",
+      "humildade intelectual",
+      "verdade"
+    ],
+    "question": "Quais pressupostos precisam ser examinados?",
+    "questionSource": "documento",
+    "limits": "Não deixou escritos: suas ideias chegam por Platão e Xenofonte, o que pede cautela ao atribuir-lhe posições.",
+    "priorityVirtueIds": [
+      "V02",
+      "V33"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "platao",
+    "name": "Platão",
+    "kind": "pensador",
+    "council": true,
+    "period": "Atenas, c. 428–348 a.C.",
+    "tradition": "Filosofia grega clássica",
+    "field": "Organização da alma e virtudes fundamentais",
+    "concepts": [
+      "Justiça",
+      "coragem",
+      "temperança",
+      "sabedoria"
+    ],
+    "question": "Que parte de você está conduzindo esta situação: a razão, o ímpeto ou o desejo?",
+    "questionSource": "aplicacao",
+    "limits": "A relação entre virtudes e partes da alma, em A República, é um modelo filosófico ligado ao seu contexto, não uma descrição empírica.",
+    "priorityVirtueIds": [
+      "V18",
+      "V12",
+      "V06",
+      "V02"
+    ],
+    "workIds": [
+      "W02",
+      "W03"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "aristoteles",
+    "name": "Aristóteles",
+    "kind": "pensador",
+    "council": true,
+    "period": "Grécia, 384–322 a.C.",
+    "tradition": "Filosofia grega clássica",
+    "field": "Ética das virtudes, hábito e prudência",
+    "concepts": [
+      "Prudência",
+      "coragem",
+      "justiça",
+      "temperança",
+      "amizade"
+    ],
+    "question": "Qual seria a medida adequada?",
+    "questionSource": "documento",
+    "limits": "Sua ética foi pensada para o cidadão da pólis grega e carrega pressupostos de seu tempo. O meio-termo não é uma média matemática nem uma fórmula mecânica.",
+    "priorityVirtueIds": [
+      "V01",
+      "V12",
+      "V18",
+      "V06"
+    ],
+    "workIds": [
+      "W01"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "confucio",
+    "name": "Confúcio",
+    "kind": "pensador",
+    "council": true,
+    "period": "China, 551–479 a.C. (datas tradicionais)",
+    "tradition": "Tradição confuciana",
+    "field": "Formação moral e relações humanas",
+    "concepts": [
+      "Benevolência",
+      "respeito",
+      "retidão",
+      "fidelidade"
+    ],
+    "question": "Como a conduta afeta as relações?",
+    "questionSource": "documento",
+    "limits": "Conceitos como ren, yi, li, zhi e xin não são equivalentes perfeitos de virtudes ocidentais; a ênfase em papéis e ritos pertence ao seu contexto cultural.",
+    "priorityVirtueIds": [
+      "V27",
+      "V32",
+      "V23"
+    ],
+    "workIds": [
+      "W09"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "lao-tse",
+    "name": "Lao-Tsé",
+    "kind": "pensador",
+    "council": true,
+    "period": "China, tradicionalmente séc. VI a.C. (datação incerta)",
+    "tradition": "Taoismo",
+    "field": "Simplicidade, equilíbrio e não imposição",
+    "concepts": [
+      "Moderação",
+      "serenidade",
+      "humildade"
+    ],
+    "question": "O que aconteceria se você deixasse de forçar a situação?",
+    "questionSource": "aplicacao",
+    "limits": "Autoria e datação são incertas, e a linguagem poética do Tao Te Ching admite leituras divergentes.",
+    "priorityVirtueIds": [
+      "V09",
+      "V08",
+      "V44"
+    ],
+    "workIds": [
+      "W10"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "epicteto",
+    "name": "Epicteto",
+    "kind": "pensador",
+    "council": true,
+    "period": "c. 50–135 d.C.",
+    "tradition": "Estoicismo",
+    "field": "Liberdade interior e domínio das respostas",
+    "concepts": [
+      "Autodomínio",
+      "serenidade",
+      "autonomia"
+    ],
+    "question": "O que é o acontecimento e o que é a sua resposta a ele?",
+    "questionSource": "aplicacao",
+    "limits": "A distinção entre o que depende e o que não depende de nós pode ser mal aplicada como indiferença a injustiças ou a condições externas reais.",
+    "priorityVirtueIds": [
+      "V10",
+      "V08",
+      "V42"
+    ],
+    "workIds": [
+      "W04"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "seneca",
+    "name": "Sêneca",
+    "kind": "pensador",
+    "council": true,
+    "period": "Roma, c. 4 a.C.–65 d.C.",
+    "tradition": "Estoicismo",
+    "field": "Tempo, adversidade e equilíbrio",
+    "concepts": [
+      "Paciência",
+      "gratidão",
+      "serenidade",
+      "fortaleza"
+    ],
+    "question": "Como você está usando o seu tempo, e o que esta adversidade pode ensinar?",
+    "questionSource": "aplicacao",
+    "limits": "Escreveu como conselheiro, em cartas e ensaios; há uma tensão conhecida entre seus ensinamentos e sua vida pública.",
+    "priorityVirtueIds": [
+      "V07",
+      "V28",
+      "V08",
+      "V13"
+    ],
+    "workIds": [
+      "W05"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "marco-aurelio",
+    "name": "Marco Aurélio",
+    "kind": "pensador",
+    "council": true,
+    "period": "Roma, 121–180 d.C.",
+    "tradition": "Estoicismo",
+    "field": "Dever, justiça e autocontrole",
+    "concepts": [
+      "Justiça",
+      "fortaleza",
+      "temperança",
+      "humildade"
+    ],
+    "question": "O que depende da sua escolha?",
+    "questionSource": "documento",
+    "limits": "As Meditações são anotações pessoais, não um sistema filosófico, e refletem a posição singular de um imperador.",
+    "priorityVirtueIds": [
+      "V18",
+      "V13",
+      "V06",
+      "V44"
+    ],
+    "workIds": [
+      "W06"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "tomas-de-aquino",
+    "name": "Tomás de Aquino",
+    "kind": "pensador",
+    "council": true,
+    "period": "1225–1274",
+    "tradition": "Filosofia medieval cristã",
+    "field": "Virtudes cardeais e teologais",
+    "concepts": [
+      "Prudência",
+      "justiça",
+      "fortaleza",
+      "temperança",
+      "fé",
+      "esperança",
+      "caridade"
+    ],
+    "question": "Qual é o meio adequado para realizar o bem nesta situação?",
+    "questionSource": "aplicacao",
+    "limits": "Integra filosofia e teologia cristã. As virtudes teologais têm fundamento religioso específico e não equivalem às virtudes morais adquiridas pelo exercício humano.",
+    "priorityVirtueIds": [
+      "V01",
+      "V18",
+      "V13",
+      "V06",
+      "V46",
+      "V45"
+    ],
+    "workIds": [
+      "W07",
+      "W08"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "kant",
+    "name": "Immanuel Kant",
+    "kind": "pensador",
+    "council": true,
+    "period": "1724–1804",
+    "tradition": "Filosofia moderna",
+    "field": "Dever, dignidade e autonomia",
+    "concepts": [
+      "Integridade",
+      "honestidade",
+      "respeito",
+      "responsabilidade"
+    ],
+    "question": "Você poderia querer que todos agissem como pretende agir?",
+    "questionSource": "aplicacao",
+    "limits": "A ética do dever enfatiza princípios universais e é criticada pelo rigor e pelo pouco espaço dado às emoções e às circunstâncias. Diverge da ética das virtudes.",
+    "priorityVirtueIds": [
+      "V20",
+      "V19",
+      "V32",
+      "V21"
+    ],
+    "workIds": [
+      "W13"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "musashi",
+    "name": "Miyamoto Musashi",
+    "kind": "pensador",
+    "council": true,
+    "period": "Japão, c. 1584–1645",
+    "tradition": "Tradição marcial japonesa",
+    "field": "Estratégia, disciplina e ação",
+    "concepts": [
+      "Disciplina",
+      "determinação",
+      "atenção"
+    ],
+    "question": "Que treino diário prepararia você para esta situação?",
+    "questionSource": "aplicacao",
+    "limits": "Escreveu sobre estratégia e combate; a transposição para a vida cotidiana é uma interpretação contemporânea.",
+    "priorityVirtueIds": [
+      "V38",
+      "V15",
+      "V04"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "simone-weil",
+    "name": "Simone Weil",
+    "kind": "pensador",
+    "council": true,
+    "period": "1909–1943",
+    "tradition": "Filosofia contemporânea",
+    "field": "Atenção, sofrimento e responsabilidade",
+    "concepts": [
+      "Atenção",
+      "compaixão",
+      "serviço"
+    ],
+    "question": "A que, ou a quem, você está realmente prestando atenção?",
+    "questionSource": "aplicacao",
+    "limits": "Pensamento marcado por experiência mística e ascese pessoais; nem todas as suas posições são generalizáveis.",
+    "priorityVirtueIds": [
+      "V04",
+      "V26",
+      "V43"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "viktor-frankl",
+    "name": "Viktor Frankl",
+    "kind": "pensador",
+    "council": true,
+    "period": "1905–1997",
+    "tradition": "Psiquiatria e logoterapia",
+    "field": "Sentido e responsabilidade",
+    "concepts": [
+      "Esperança",
+      "responsabilidade",
+      "resiliência"
+    ],
+    "question": "Que sentido ou responsabilidade esta situação pede de você?",
+    "questionSource": "aplicacao",
+    "limits": "Sua abordagem nasce da psiquiatria e de uma experiência extrema; a leitura filosófica não substitui acompanhamento profissional.",
+    "priorityVirtueIds": [
+      "V45",
+      "V21",
+      "V16"
+    ],
+    "workIds": [
+      "W18"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "daniel-kahneman",
+    "name": "Daniel Kahneman",
+    "kind": "pensador",
+    "council": true,
+    "period": "1934–2024",
+    "tradition": "Psicologia do julgamento e da decisão",
+    "field": "Julgamento, decisão e vieses",
+    "concepts": [
+      "Prudência",
+      "discernimento",
+      "objetividade"
+    ],
+    "question": "Quais vieses podem estar influenciando sua interpretação?",
+    "questionSource": "documento",
+    "limits": "É psicólogo: descreve mecanismos de julgamento e não desenvolveu uma teoria filosófica da virtude. A relação com a prudência é uma perspectiva complementar.",
+    "priorityVirtueIds": [
+      "V01",
+      "V03",
+      "V37"
+    ],
+    "workIds": [
+      "W19"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "richard-feynman",
+    "name": "Richard Feynman",
+    "kind": "pensador",
+    "council": true,
+    "period": "1918–1988",
+    "tradition": "Ciência (física)",
+    "field": "Investigação e honestidade intelectual",
+    "concepts": [
+      "Curiosidade",
+      "amor à verdade",
+      "humildade intelectual"
+    ],
+    "question": "Como você saberia se estivesse enganando a si mesmo?",
+    "questionSource": "aplicacao",
+    "limits": "Era físico; suas reflexões sobre honestidade intelectual vêm da prática científica, não de uma teoria ética.",
+    "priorityVirtueIds": [
+      "V34",
+      "V36",
+      "V33"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "karl-popper",
+    "name": "Karl Popper",
+    "kind": "pensador",
+    "council": true,
+    "period": "1902–1994",
+    "tradition": "Filosofia da ciência",
+    "field": "Crítica, conhecimento e revisão de hipóteses",
+    "concepts": [
+      "Abertura intelectual",
+      "objetividade",
+      "verdade"
+    ],
+    "question": "Que evidência faria você mudar de ideia?",
+    "questionSource": "aplicacao",
+    "limits": "Sua obra trata do conhecimento científico e da sociedade aberta; a aplicação à vida pessoal é interpretação pedagógica.",
+    "priorityVirtueIds": [
+      "V05",
+      "V37"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "john-stuart-mill",
+    "name": "John Stuart Mill",
+    "kind": "pensador",
+    "council": true,
+    "period": "1806–1873",
+    "tradition": "Liberalismo e utilitarismo",
+    "field": "Liberdade e tolerância",
+    "concepts": [
+      "Tolerância",
+      "autonomia",
+      "abertura intelectual"
+    ],
+    "question": "O que você pode aprender com a opinião contrária à sua?",
+    "questionSource": "aplicacao",
+    "limits": "Pertence à tradição utilitarista e liberal, que diverge tanto da ética das virtudes quanto da ética kantiana do dever.",
+    "priorityVirtueIds": [
+      "V30",
+      "V42",
+      "V05"
+    ],
+    "workIds": [
+      "W15"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "john-locke",
+    "name": "John Locke",
+    "kind": "pensador",
+    "council": true,
+    "period": "1632–1704",
+    "tradition": "Filosofia moderna",
+    "field": "Liberdade de consciência e tolerância",
+    "concepts": [
+      "Respeito",
+      "tolerância"
+    ],
+    "question": "Você reconhece ao outro a mesma liberdade de consciência que reclama para si?",
+    "questionSource": "aplicacao",
+    "limits": "Sua defesa da tolerância tinha limites próprios de seu tempo e não se estendia a todos os grupos.",
+    "priorityVirtueIds": [
+      "V32",
+      "V30"
+    ],
+    "workIds": [
+      "W14"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "john-rawls",
+    "name": "John Rawls",
+    "kind": "pensador",
+    "council": true,
+    "period": "1921–2002",
+    "tradition": "Filosofia política contemporânea",
+    "field": "Justiça e equidade",
+    "concepts": [
+      "Justiça",
+      "equidade"
+    ],
+    "question": "Que regra você escolheria se não soubesse qual lado ocuparia nesta situação?",
+    "questionSource": "aplicacao",
+    "limits": "Sua teoria trata da justiça das instituições, não das virtudes pessoais; o uso em dilemas individuais é analógico.",
+    "priorityVirtueIds": [
+      "V18",
+      "V22"
+    ],
+    "workIds": [
+      "W16"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "edith-stein",
+    "name": "Edith Stein",
+    "kind": "pensador",
+    "council": true,
+    "period": "1891–1942",
+    "tradition": "Fenomenologia",
+    "field": "Empatia e compreensão da experiência alheia",
+    "concepts": [
+      "Empatia"
+    ],
+    "question": "Como esta situação é vivida do ponto de vista da outra pessoa?",
+    "questionSource": "aplicacao",
+    "limits": "Faz uma análise fenomenológica da empatia, com vocabulário técnico diferente do uso cotidiano da palavra.",
+    "priorityVirtueIds": [
+      "V25"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "erich-fromm",
+    "name": "Erich Fromm",
+    "kind": "pensador",
+    "council": true,
+    "period": "1900–1980",
+    "tradition": "Psicanálise humanista",
+    "field": "Amor como capacidade e prática",
+    "concepts": [
+      "Amor",
+      "responsabilidade",
+      "cuidado"
+    ],
+    "question": "Seu cuidado pelo outro inclui respeito, responsabilidade e conhecimento?",
+    "questionSource": "aplicacao",
+    "limits": "Suas teses são interpretativas e não consensuais; não constituem orientação clínica.",
+    "priorityVirtueIds": [
+      "V47",
+      "V21"
+    ],
+    "workIds": [
+      "W17"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "nassim-taleb",
+    "name": "Nassim Taleb",
+    "kind": "pensador",
+    "council": true,
+    "period": "1960–",
+    "tradition": "Ensaios sobre risco e incerteza",
+    "field": "Risco, fragilidade e adaptação",
+    "concepts": [
+      "Resiliência",
+      "prudência"
+    ],
+    "question": "O que acontece se você estiver errado, e quão grave seria?",
+    "questionSource": "aplicacao",
+    "limits": "Seus conceitos foram pensados para sistemas e decisões sob incerteza; a transposição para a vida pessoal é feita por analogia.",
+    "priorityVirtueIds": [
+      "V16",
+      "V01"
+    ],
+    "workIds": [
+      "W21"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "donella-meadows",
+    "name": "Donella Meadows",
+    "kind": "pensador",
+    "council": true,
+    "period": "1941–2001",
+    "tradition": "Pensamento sistêmico",
+    "field": "Pensamento sistêmico e interdependência",
+    "concepts": [
+      "Responsabilidade",
+      "discernimento"
+    ],
+    "question": "Que relações e consequências mais amplas esta escolha movimenta?",
+    "questionSource": "aplicacao",
+    "limits": "Estudou sistemas sociais e ambientais; o uso para a vida pessoal é analógico.",
+    "priorityVirtueIds": [
+      "V21",
+      "V03"
+    ],
+    "workIds": [
+      "W20"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "benjamin-franklin",
+    "name": "Benjamin Franklin",
+    "kind": "pensador",
+    "council": true,
+    "period": "1706–1790",
+    "tradition": "Iluminismo norte-americano",
+    "field": "Formação de hábitos e autodesenvolvimento",
+    "concepts": [
+      "Disciplina",
+      "diligência",
+      "iniciativa"
+    ],
+    "question": "Que pequeno hábito diário sustentaria esta mudança?",
+    "questionSource": "aplicacao",
+    "limits": "Seu método de hábitos é prático e pessoal; a lista de virtudes que adotou reflete valores de seu contexto.",
+    "priorityVirtueIds": [
+      "V38",
+      "V39",
+      "V41"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "peter-drucker",
+    "name": "Peter Drucker",
+    "kind": "pensador",
+    "council": true,
+    "period": "1909–2005",
+    "tradition": "Teoria da gestão",
+    "field": "Gestão, eficácia e responsabilidade",
+    "concepts": [
+      "Diligência",
+      "iniciativa",
+      "compromisso"
+    ],
+    "question": "Qual contribuição se espera de você aqui, e qual é o primeiro passo?",
+    "questionSource": "aplicacao",
+    "limits": "Trata de eficácia e responsabilidade nas organizações, não de ética filosófica.",
+    "priorityVirtueIds": [
+      "V39",
+      "V41",
+      "V40"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "dalai-lama",
+    "name": "Dalai Lama (Tenzin Gyatso)",
+    "kind": "pensador",
+    "council": true,
+    "period": "1935–",
+    "tradition": "Budismo tibetano",
+    "field": "Compaixão e treinamento da mente",
+    "concepts": [
+      "Compaixão",
+      "benevolência",
+      "equanimidade"
+    ],
+    "question": "Como responder de modo que reduza o sofrimento, o seu e o do outro?",
+    "questionSource": "aplicacao",
+    "limits": "Fala a partir do budismo tibetano; os termos budistas têm sentidos técnicos próprios, que não coincidem com o uso cotidiano.",
+    "priorityVirtueIds": [
+      "V26",
+      "V27",
+      "V11"
+    ],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "william-james",
+    "name": "William James",
+    "kind": "pensador",
+    "council": false,
+    "period": "1842–1910",
+    "tradition": "Psicologia e pragmatismo",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "bertrand-russell",
+    "name": "Bertrand Russell",
+    "kind": "pensador",
+    "council": false,
+    "period": "1872–1970",
+    "tradition": "Filosofia analítica",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "leonardo-da-vinci",
+    "name": "Leonardo da Vinci",
+    "kind": "pensador",
+    "council": false,
+    "period": "1452–1519",
+    "tradition": "Renascimento",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "francis-bacon",
+    "name": "Francis Bacon",
+    "kind": "pensador",
+    "council": false,
+    "period": "1561–1626",
+    "tradition": "Filosofia moderna",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "voltaire",
+    "name": "Voltaire",
+    "kind": "pensador",
+    "council": false,
+    "period": "1694–1778",
+    "tradition": "Iluminismo",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "cicero",
+    "name": "Cícero",
+    "kind": "pensador",
+    "council": false,
+    "period": "Roma, 106–43 a.C.",
+    "tradition": "Filosofia romana",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "adam-smith",
+    "name": "Adam Smith",
+    "kind": "pensador",
+    "council": false,
+    "period": "1723–1790",
+    "tradition": "Iluminismo escocês",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "kierkegaard",
+    "name": "Søren Kierkegaard",
+    "kind": "pensador",
+    "council": false,
+    "period": "1813–1855",
+    "tradition": "Filosofia da existência",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "ernst-bloch",
+    "name": "Ernst Bloch",
+    "kind": "pensador",
+    "council": false,
+    "period": "1885–1977",
+    "tradition": "Filosofia contemporânea",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "tradicoes-budistas",
+    "name": "Tradições budistas",
+    "kind": "tradicao",
+    "council": true,
+    "period": "",
+    "tradition": "Budismo",
+    "field": "Aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade",
+    "concepts": [],
+    "question": "O que nesta reação nasce de apego ou de aversão?",
+    "questionSource": "aplicacao",
+    "limits": "Reúnem escolas e listas diferentes de qualidades e perfeições; não formam uma doutrina única.",
+    "priorityVirtueIds": [],
+    "workIds": [
+      "W12"
+    ],
+    "status": "proposta"
+  },
+  {
+    "id": "estoicismo",
+    "name": "Estoicismo",
+    "kind": "tradicao",
+    "council": false,
+    "period": "",
+    "tradition": "Filosofia helenística e romana",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "tradicoes-cristas",
+    "name": "Tradições cristãs",
+    "kind": "tradicao",
+    "council": false,
+    "period": "",
+    "tradition": "Cristianismo",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "tradicoes-humanistas",
+    "name": "Tradições humanistas",
+    "kind": "tradicao",
+    "council": false,
+    "period": "",
+    "tradition": "Humanismo",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "tradicoes-religiosas",
+    "name": "Tradições religiosas",
+    "kind": "tradicao",
+    "council": false,
+    "period": "",
+    "tradition": "Diversas",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "tradicoes-contemplativas",
+    "name": "Tradições contemplativas",
+    "kind": "tradicao",
+    "council": false,
+    "period": "",
+    "tradition": "Diversas",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [],
+    "status": "proposta"
+  },
+  {
+    "id": "bhagavad-gita",
+    "name": "Bhagavad Gita",
+    "kind": "tradicao",
+    "council": false,
+    "period": "",
+    "tradition": "Tradição da Índia",
+    "field": "",
+    "concepts": [],
+    "question": "",
+    "questionSource": "",
+    "limits": "",
+    "priorityVirtueIds": [],
+    "workIds": [
+      "W11"
+    ],
+    "status": "proposta"
+  }
+]
