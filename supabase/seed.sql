@@ -16,7 +16,7 @@ insert into public.capitulos (numero, titulo) values
   (7,  'Jnana Vijnana Yoga — Conhecimento e discernimento'),
   (8,  'Akshara Brahma Yoga — O Absoluto imperecível'),
   (9,  'Raja Vidya Raja Guhya Yoga — O conhecimento real e o segredo real'),
-  (10, 'Vibhuti Yoga — As manifestações divinas'),
+  (10, 'Vibhuti Yoga — O Yoga das Manifestações Divinas'),
   (11, 'Vishvarupa Darshana Yoga — O Yoga da Visão da Forma Universal'),
   (12, 'Bhakti Yoga — O Yoga da Devoção'),
   (13, 'Kshetra Kshetrajna Vibhaga Yoga — O Campo e o Conhecedor do Campo'),
