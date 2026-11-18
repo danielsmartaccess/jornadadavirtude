@@ -33,9 +33,9 @@ from public.capitulos c
 cross join (values
   (1, 'Contexto histórico e filosófico'),
   (2, 'Conceitos fundamentais'),
-  (3, 'Interpretação dos ensinamentos de Krishna'),
-  (4, 'Relações com Spinoza, estoicismo e filosofia ocidental'),
-  (5, 'Aplicação prática à vida contemporânea'),
-  (6, 'Reflexão para aprofundar')
+  (3, 'Interpretação filosófica'),
+  (4, 'Aplicação prática contemporânea'),
+  (5, 'Reflexão pessoal interativa'),
+  (6, 'Síntese e versos para revisitar')
 ) as e(ordem, nome)
 on conflict (capitulo_id, ordem) do update set nome = excluded.nome;

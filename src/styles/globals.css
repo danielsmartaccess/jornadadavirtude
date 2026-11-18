@@ -239,6 +239,73 @@
     border-top: 2px solid var(--fg);
     padding-top: 22px;
   }
+  /* Texto em Markdown das etapas da Gita (features/gita/Markdown.tsx). */
+  .gita-md {
+    margin-top: 0.75rem;
+  }
+  .gita-md h4 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 1.25rem 0 0.5rem;
+  }
+  .gita-md h5 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 1.5rem 0 0.4rem;
+  }
+  .gita-md p,
+  .gita-md ul,
+  .gita-md ol {
+    margin: 0.65rem 0;
+  }
+  .gita-md ul {
+    list-style: disc;
+    padding-left: 1.3rem;
+  }
+  .gita-md ol {
+    list-style: decimal;
+    padding-left: 1.5rem;
+  }
+  .gita-md li {
+    margin-bottom: 0.3rem;
+  }
+  .gita-md blockquote {
+    margin: 1rem 0;
+    padding: 2px 0 2px 14px;
+    border-left: 3px solid var(--accent);
+  }
+  .gita-md blockquote p {
+    margin: 0.3rem 0;
+  }
+  .gita-md-table {
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+  .gita-md table {
+    width: 100%;
+    min-width: 28rem;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+  .gita-md th,
+  .gita-md td {
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .gita-md th {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom-color: var(--fg);
+  }
   .prose-list {
     list-style: disc;
     padding-left: 1.2rem;

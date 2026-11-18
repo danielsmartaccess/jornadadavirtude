@@ -60,9 +60,9 @@ Decisões registradas: persistência local em `localStorage` (volume de kilobyte
 
 Sem esses passos o aplicativo funciona normalmente, só sem sincronização.
 
-## Módulo de leitura da Bhagavad Gita (em construção)
+## Módulo de leitura da Bhagavad Gita
 
-Uma jornada de leitura em 18 capítulos, cada um com seis etapas de estudo. Rotas: `/gita` e `/gita/:numero`, com menu lateral dos capítulos e as seis etapas na área principal. Por ora só a estrutura existe; o texto de cada etapa vem em uma fase posterior. O acesso é pelo atalho "Leitura da Bhagavad Gita" no Catálogo de virtudes, ao lado de "As sete dimensões" e "Pensadores e referências"; o menu principal segue as seis áreas do Doc. 06. Já aplicado em produção (migração, ajuste de privilégios de `registros` e seed).
+Uma jornada de leitura em 18 capítulos, cada um com seis etapas de estudo. Rotas: `/gita` e `/gita/:numero`, com menu lateral dos capítulos e as seis etapas na área principal. O texto das etapas é carregado capítulo a capítulo; os ainda sem texto mostram "Conteúdo em preparação." (hoje só o capítulo 14 tem conteúdo). O acesso é pelo atalho "Leitura da Bhagavad Gita" no Catálogo de virtudes, ao lado de "As sete dimensões" e "Pensadores e referências"; o menu principal segue as seis áreas do Doc. 06. Já aplicado em produção (migração, ajuste de privilégios de `registros` e seed).
 
 Banco (`supabase/migrations/20261118120000_leitura_bhagavad_gita.sql`, independente da migração de dados do usuário):
 
@@ -71,6 +71,10 @@ Banco (`supabase/migrations/20261118120000_leitura_bhagavad_gita.sql`, independe
 - `supabase/seed.sql` carrega os 18 capítulos e as 108 etapas; pode ser rodado de novo sem duplicar. Os títulos e nomes devem ficar iguais a `src/data/gita-capitulos.json` e `src/domain/gita.ts` (`tests/unit/gita.test.ts` confere).
 
 Aplique no SQL Editor do Supabase, nesta ordem: a migração e depois o `seed.sql`.
+
+**Conteúdo por capítulo.** A migração `20261118180000_gita_conteudo_e_quiz.sql` acrescenta `etapas.conteudo_md` (texto da etapa em Markdown GFM, sem HTML) e as tabelas `perguntas`, `opcoes` e `leituras` (quiz da etapa de reflexão como dados, leitura pública). Cada capítulo tem um seed próprio em `supabase/seeds/capitulo-NN.sql`, com upsert por capítulo, etapa, pergunta, opção e leitura: rodar de novo não duplica. A pasta `supabase/seeds/` pode ficar fora do Git (o texto do estudo é conteúdo, não código); `tests/unit/gita.test.ts` valida os seeds que existirem nela. O resultado do quiz é calculado no app por `resultadoDoQuiz` (`src/domain/gita.ts`): a opção mais escolhida define a leitura e, em empate, mostram-se as opções empatadas. As seis etapas de cada capítulo são: Contexto histórico e filosófico, Conceitos fundamentais, Interpretação filosófica, Aplicação prática contemporânea, Reflexão pessoal interativa e Síntese e versos para revisitar.
+
+**Tela de leitura.** `/gita/:numero` lê o capítulo da API do Supabase com a chave publishable (leitura pública, uma requisição com etapas, perguntas, opções e leituras aninhadas; `src/infrastructure/gitaContent.ts`) e mostra as seis etapas. O Markdown é renderizado com `react-markdown` e `remark-gfm` (tabelas), carregados sob demanda e sem interpretar HTML. O quiz fica entre a introdução e a reflexão aberta da etapa 5 e não guarda nada. Sem conexão, a tela avisa, mantém as seis etapas e oferece "Tentar de novo". Etapas sem texto no banco mostram "Conteúdo em preparação.". A resposta à reflexão aberta ainda não é gravada (virá em `registros`).
 
 ## Publicação (Vercel)
 

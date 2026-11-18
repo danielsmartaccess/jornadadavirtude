@@ -14,11 +14,12 @@ export function GitaIntro() {
 
 export function GitaLayout() {
   return (
-    <div className="grid gap-6 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-8">
-      <aside className="md:sticky md:top-4 md:max-h-[calc(100dvh-2rem)] md:self-start md:overflow-y-auto">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-[13rem_minmax(0,1fr)] md:gap-8">
+      <aside className="min-w-0 md:sticky md:top-4 md:max-h-[calc(100dvh-2rem)] md:self-start md:overflow-y-auto">
         <ChapterSidebar />
       </aside>
-      <div>
+      {/* min-w-0: sem isso, tabelas largas esticam a coluna em vez de rolar dentro do próprio contêiner. */}
+      <div className="min-w-0">
         <Outlet />
       </div>
     </div>
