@@ -60,6 +60,8 @@ Decisões registradas: persistência local em `localStorage` (volume de kilobyte
 
 Sem esses passos o aplicativo funciona normalmente, só sem sincronização.
 
+A migração `20261118235900_restringir_privilegios_tabelas_de_usuario.sql` retira de `authenticated` os privilégios que o Supabase concede por padrão e que a primeira migração não revogou (`TRUNCATE`, `REFERENCES` e `TRIGGER`), deixando só `select`, `insert`, `update` e `delete` nas seis tabelas de dados do usuário. Em tabelas novas de `public`, sempre faça `revoke all ... from anon, authenticated` antes do `grant` mínimo.
+
 ## Módulo de leitura da Bhagavad Gita
 
 Uma jornada de leitura em 18 capítulos, cada um com seis etapas de estudo. Rotas: `/gita` e `/gita/:numero`, com menu lateral dos capítulos e as seis etapas na área principal. O texto das etapas é carregado capítulo a capítulo; os ainda sem texto mostram "Conteúdo em preparação." (os capítulos com texto são os que têm seed em `supabase/seeds/` aplicado no banco). O acesso é pelo atalho "Leitura da Bhagavad Gita" no Catálogo de virtudes, ao lado de "As sete dimensões" e "Pensadores e referências"; o menu principal segue as seis áreas do Doc. 06. Já aplicado em produção (migração, ajuste de privilégios de `registros` e seed).
