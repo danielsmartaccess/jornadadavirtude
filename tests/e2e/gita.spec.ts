@@ -270,3 +270,72 @@ test('quiz por faixas: a leitura vem da quantidade de respostas C, sem regra de 
   await expect(resultado).toContainText('Leitura alta.');
   await expect(resultado).toContainText('5 de 5');
 });
+
+/* ------------------------------ Menu de capítulos ------------------------------ */
+
+const menuCapitulos = (page: Page) => page.getByRole('navigation', { name: 'Capítulos da Bhagavad Gita' });
+const larguraDaEtapa = async (page: Page) => (await page.locator('#etapa-1').boundingBox())!.width;
+
+test('menu de capítulos no computador: recolhe, amplia a leitura, lembra a escolha e expande de volta', async ({ page }) => {
+  await simularApi(page);
+  await page.goto('/gita/14');
+  await expect(page.locator('#etapa-1')).toBeVisible();
+
+  // Aberto por padrão, com os 18 capítulos.
+  await expect(menuCapitulos(page)).toBeVisible();
+  await expect(menuCapitulos(page).getByRole('link')).toHaveCount(18);
+  const larguraAberto = await larguraDaEtapa(page);
+
+  // Recolher: a lista some, o botão vira "Mostrar capítulos" e o texto ganha largura.
+  await page.getByRole('button', { name: 'Ocultar capítulos' }).click();
+  await expect(menuCapitulos(page)).toBeHidden();
+  const mostrar = page.getByRole('button', { name: 'Mostrar capítulos' });
+  await expect(mostrar).toBeVisible();
+  await expect(mostrar).toHaveAttribute('aria-expanded', 'false');
+  expect(await larguraDaEtapa(page)).toBeGreaterThan(larguraAberto + 100);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+
+  // A escolha é lembrada ao recarregar.
+  await page.reload();
+  await expect(page.locator('#etapa-1')).toBeVisible();
+  await expect(menuCapitulos(page)).toBeHidden();
+
+  // Expandir de volta restaura o menu e a largura anterior; navegar continua funcionando.
+  await page.getByRole('button', { name: 'Mostrar capítulos' }).click();
+  await expect(menuCapitulos(page)).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Ocultar capítulos' })).toHaveAttribute('aria-expanded', 'true');
+  expect(Math.abs((await larguraDaEtapa(page)) - larguraAberto)).toBeLessThan(2);
+  await page.reload();
+  await expect(menuCapitulos(page)).toBeVisible();
+  await menuCapitulos(page).getByRole('link', { name: /O Yoga do Ser Supremo/ }).click();
+  await expect(page).toHaveURL(/\/gita\/15$/);
+});
+
+test('menu de capítulos recolhido: dá para voltar a navegar e abrir outro capítulo', async ({ page }) => {
+  await simularApi(page);
+  await page.addInitScript(() => localStorage.setItem('jv-gita-menu', 'recolhido'));
+  await page.goto('/gita/14');
+  await expect(menuCapitulos(page)).toBeHidden();
+  await expect(page.getByRole('link', { name: /Capítulo 15/ })).toBeVisible(); // navegação anterior/seguinte segue no rodapé
+  await page.getByRole('button', { name: 'Mostrar capítulos' }).click();
+  await menuCapitulos(page).getByRole('link', { name: /Os três tipos de fé/ }).click();
+  await expect(page).toHaveURL(/\/gita\/17$/);
+});
+
+test('menu de capítulos no celular: lista expansível, fecha ao escolher e ignora a preferência do computador', async ({ page }) => {
+  await simularApi(page);
+  await page.addInitScript(() => localStorage.setItem('jv-gita-menu', 'recolhido'));
+  await page.setViewportSize({ width: 390, height: 800 });
+  await page.goto('/gita/14');
+  await expect(page.locator('#etapa-1')).toBeVisible();
+  await expect(menuCapitulos(page)).toBeHidden();
+
+  const abrir = page.getByRole('button', { name: 'Capítulos (18)' });
+  await expect(abrir).toHaveAttribute('aria-expanded', 'false');
+  await abrir.click();
+  await expect(menuCapitulos(page)).toBeVisible();
+  await menuCapitulos(page).getByRole('link', { name: /Os três tipos de fé/ }).click();
+  await expect(page).toHaveURL(/\/gita\/17$/);
+  await expect(menuCapitulos(page)).toBeHidden();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});

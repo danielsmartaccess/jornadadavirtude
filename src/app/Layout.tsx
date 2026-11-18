@@ -60,12 +60,14 @@ function SyncBadge() {
 
 export function Layout() {
   const { pathname } = useLocation();
+  // A leitura da Gita usa mais largura: menu lateral, texto e tabelas precisam de espaço.
+  const larga = pathname === '/gita' || pathname.startsWith('/gita/');
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
   return (
-    <div className="mx-auto min-h-dvh max-w-[820px] px-4 pb-28 md:pb-12" style={{ paddingLeft: 'max(16px, env(safe-area-inset-left))', paddingRight: 'max(16px, env(safe-area-inset-right))' }}>
+    <div className={`mx-auto min-h-dvh ${larga ? 'max-w-[1180px]' : 'max-w-[820px]'} px-4 pb-28 md:pb-12`} style={{ paddingLeft: 'max(16px, env(safe-area-inset-left))', paddingRight: 'max(16px, env(safe-area-inset-right))' }}>
       <a href="#conteudo" className="btn btn-sm sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50">
         Pular para o conteúdo
       </a>

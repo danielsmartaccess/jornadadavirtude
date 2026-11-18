@@ -1,24 +1,41 @@
-/* Menu lateral do módulo Gita: os 18 capítulos. Em telas estreitas vira lista recolhível. */
-import { useId, useState } from 'react';
+/* Menu lateral do módulo Gita: os 18 capítulos.
+ * Computador: pode ser recolhido para uma faixa fina e expandido de novo (amplia a área de leitura).
+ * Celular: lista expansível acima do conteúdo. */
+import { useId } from 'react';
 import { NavLink } from 'react-router-dom';
 import { capitulos, splitTitulo } from '../../domain/gita';
+import type { MenuCapitulos } from './useMenuCapitulos';
 
-export function ChapterSidebar() {
-  const [open, setOpen] = useState(false);
+export function ChapterSidebar({ menu }: { menu: MenuCapitulos }) {
   const listId = useId();
 
   return (
     <div className="no-print">
-      <button type="button" className="btn btn-ghost btn-sm mb-2 md:hidden" aria-expanded={open} aria-controls={listId} onClick={() => setOpen((v) => !v)}>
-        {open ? 'Ocultar capítulos' : 'Capítulos (18)'}
+      {/* Celular */}
+      <button type="button" className="btn btn-ghost btn-sm mb-2 md:hidden" aria-expanded={menu.aberto} aria-controls={listId} onClick={menu.alternarAberto}>
+        {menu.aberto ? 'Ocultar capítulos' : 'Capítulos (18)'}
       </button>
-      <nav id={listId} aria-label="Capítulos da Bhagavad Gita" className={`${open ? 'block' : 'hidden'} md:block`}>
+
+      {/* Computador */}
+      <button
+        type="button"
+        className={`btn btn-ghost btn-sm mb-2 hidden md:inline-flex ${menu.recolhido ? '!w-11 !px-0' : ''}`}
+        aria-expanded={!menu.recolhido}
+        aria-controls={listId}
+        aria-label={menu.recolhido ? 'Mostrar capítulos' : 'Ocultar capítulos'}
+        title={menu.recolhido ? 'Mostrar a lista de capítulos' : 'Ocultar a lista de capítulos e ampliar a leitura'}
+        onClick={menu.alternarRecolhido}
+      >
+        {menu.recolhido ? '☰' : '‹ Ocultar capítulos'}
+      </button>
+
+      <nav id={listId} aria-label="Capítulos da Bhagavad Gita" className={`${menu.aberto ? 'block' : 'hidden'} ${menu.recolhido ? 'md:hidden' : 'md:block'}`}>
         <ol className="m-0 list-none p-0">
           {capitulos.map((c) => (
             <li key={c.numero}>
               <NavLink
                 to={`/gita/${c.numero}`}
-                onClick={() => setOpen(false)}
+                onClick={menu.fecharAberto}
                 className={({ isActive }) =>
                   `flex items-baseline gap-3 border-l-2 px-3 py-2 text-[0.95rem] leading-snug no-underline ${isActive ? 'border-accent bg-panel text-ink' : 'border-transparent text-muted hover:text-ink'}`
                 }
