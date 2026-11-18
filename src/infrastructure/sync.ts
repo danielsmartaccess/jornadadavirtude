@@ -44,6 +44,10 @@ function set(patch: Partial<SyncState>) {
 }
 
 export const getSyncState = () => state;
+
+/** Cliente já autenticado como a pessoa conectada (para tabelas fora do retrato sincronizado,
+ * como registros da Gita). Nulo enquanto o cliente não foi iniciado ou sem a nuvem configurada. */
+export const getCloudClient = (): SupabaseClient | null => client;
 export function subscribeSync(listener: () => void) {
   listeners.add(listener);
   return () => {
@@ -236,6 +240,11 @@ export async function resolveConflict(keep: 'local' | 'nuvem'): Promise<void> {
 /** Direito de exclusão (LGPD): apaga os dados da nuvem e sai da conta. */
 export const deleteCloudData = () =>
   attempt(async () => {
+    // As reflexões da Gita (registros) ficam fora do retrato que jv_delete_my_data apaga.
+    if (state.user) {
+      const { error: registrosError } = await client!.from('registros').delete().eq('user_id', state.user.id);
+      if (registrosError) throw registrosError;
+    }
     const { error } = await client!.rpc('jv_delete_my_data');
     if (error) throw error;
     store.setMeta({ userId: null, revision: 0, dirty: false });

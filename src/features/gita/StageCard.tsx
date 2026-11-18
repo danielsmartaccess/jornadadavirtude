@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 import { Tag } from '../../components/ui';
 import { dividirNoPrimeiroSubtitulo, type ConteudoEtapa, type Etapa } from '../../domain/gita';
 import { Quiz } from './Quiz';
+import { ReflexaoAberta } from './ReflexaoAberta';
 
 const Markdown = lazy(() => import('./Markdown'));
 
@@ -24,6 +25,7 @@ function Conteudo({ conteudo }: { conteudo: ConteudoEtapa & { conteudoMd: string
       {introducao && <Texto markdown={introducao} />}
       <Quiz perguntas={conteudo.perguntas} leituras={conteudo.leituras} />
       {resto && <Texto markdown={resto} />}
+      {conteudo.id !== null && <ReflexaoAberta etapaId={conteudo.id} />}
     </>
   );
 }

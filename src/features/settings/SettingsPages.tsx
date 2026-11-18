@@ -64,7 +64,7 @@ function Account() {
           </button>
           <ConfirmButton label="Apagar meus dados da nuvem" confirmLabel="Confirmar exclusão na nuvem" onConfirm={() => void act(deleteCloudData)} />
         </div>
-        <p className="hint mt-2 text-[0.95rem]">Ao sair, os dados continuam neste aparelho. Apagar da nuvem remove jornadas, diário, revisões e sessões do servidor e encerra a sessão; a cópia local é mantida.</p>
+        <p className="hint mt-2 text-[0.95rem]">Ao sair, os dados continuam neste aparelho. Apagar da nuvem remove jornadas, diário, revisões, sessões e as reflexões da leitura da Gita do servidor e encerra a sessão; a cópia local é mantida.</p>
       </>
     );
   }

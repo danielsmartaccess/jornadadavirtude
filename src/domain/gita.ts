@@ -39,6 +39,8 @@ export interface PerguntaQuiz {
 }
 
 export interface ConteudoEtapa {
+  /** Identificador da etapa no banco; liga os registros da pessoa a esta etapa. */
+  id: number | null;
   ordem: number;
   nome: string;
   /** Markdown (GFM); null enquanto o texto da etapa não foi carregado no banco. */
@@ -54,6 +56,17 @@ export function dividirNoPrimeiroSubtitulo(markdown: string): { introducao: stri
   const i = markdown.search(/^### /m);
   if (i < 0) return { introducao: markdown, resto: '' };
   return { introducao: markdown.slice(0, i).trimEnd(), resto: markdown.slice(i) };
+}
+
+/** Tamanho máximo de uma reflexão, em caracteres (cerca de cinco páginas). */
+export const LIMITE_REFLEXAO = 10000;
+
+/** Valida o texto de uma reflexão antes de guardar: sem espaços nas pontas, não vazio, dentro do limite. */
+export function validarReflexao(entrada: string): { ok: true; texto: string } | { ok: false; erro: string } {
+  const texto = entrada.trim();
+  if (!texto) return { ok: false, erro: 'Escreva algo antes de guardar.' };
+  if (texto.length > LIMITE_REFLEXAO) return { ok: false, erro: `A reflexão passou do limite de ${LIMITE_REFLEXAO} caracteres (${texto.length}).` };
+  return { ok: true, texto };
 }
 
 export interface ResultadoQuiz {

@@ -1,7 +1,8 @@
 /* Módulo de leitura da Bhagavad Gita: estrutura fixa e sincronia com o seed do banco. */
 import { describe, expect, it } from 'vitest';
-import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, parseNumeroCapitulo, resultadoDoQuiz, splitTitulo } from '../../src/domain/gita';
+import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, splitTitulo, validarReflexao } from '../../src/domain/gita';
 import { parseConteudoCapitulo } from '../../src/infrastructure/gitaContent';
+import { paraRegistro } from '../../src/infrastructure/registrosGita';
 import seed from '../../supabase/seed.sql?raw';
 
 /** Seeds de conteúdo por capítulo (supabase/seeds/capitulo-NN.sql). Cada um que existir é validado;
@@ -118,7 +119,7 @@ describe('parseConteudoCapitulo (resposta da API)', () => {
     {
       numero: 14,
       etapas: [
-        { ordem: 5, nome: 'Reflexão', conteudo_md: '## x', perguntas: [{ ordem: 2, enunciado: 'P2', opcoes: [{ chave: 'B', texto: 'b' }, { chave: 'A', texto: 'a' }] }, { ordem: 1, enunciado: 'P1', opcoes: [] }], leituras: [{ chave: 'C', texto: 'c' }, { chave: 'A', texto: 'a' }] },
+        { id: 505, ordem: 5, nome: 'Reflexão', conteudo_md: '## x', perguntas: [{ ordem: 2, enunciado: 'P2', opcoes: [{ chave: 'B', texto: 'b' }, { chave: 'A', texto: 'a' }] }, { ordem: 1, enunciado: 'P1', opcoes: [] }], leituras: [{ chave: 'C', texto: 'c' }, { chave: 'A', texto: 'a' }] },
         { ordem: 1, nome: 'Contexto', conteudo_md: null, perguntas: [], leituras: [] },
         { ordem: 2, nome: 'Vazio', conteudo_md: '   ', perguntas: [], leituras: [] },
       ],
@@ -143,6 +144,38 @@ describe('parseConteudoCapitulo (resposta da API)', () => {
 
   it('tolera respostas malformadas sem lançar erro', () => {
     for (const ruim of [null, undefined, [], {}, 'x', 42, [{ etapas: 'x' }], [{ etapas: [{ ordem: 'a', nome: 1 }, null, 7] }]]) expect(parseConteudoCapitulo(ruim)).toEqual([]);
-    expect(parseConteudoCapitulo([{ etapas: [{ ordem: 1, nome: 'ok', perguntas: [{ ordem: 'x' }, { enunciado: 1 }], leituras: [{ chave: 1 }] }] }])).toEqual([{ ordem: 1, nome: 'ok', conteudoMd: null, perguntas: [], leituras: [] }]);
+    expect(parseConteudoCapitulo([{ etapas: [{ ordem: 1, nome: 'ok', perguntas: [{ ordem: 'x' }, { enunciado: 1 }], leituras: [{ chave: 1 }] }] }])).toEqual([{ id: null, ordem: 1, nome: 'ok', conteudoMd: null, perguntas: [], leituras: [] }]);
+  });
+});
+
+describe('id da etapa na resposta da API', () => {
+  it('lê o id numérico e usa null quando ausente ou inválido', () => {
+    const r = parseConteudoCapitulo([{ etapas: [{ id: 7, ordem: 1, nome: 'a' }, { id: '8', ordem: 2, nome: 'b' }, { ordem: 3, nome: 'c' }] }]);
+    expect(r.map((e) => e.id)).toEqual([7, null, null]);
+  });
+});
+
+describe('validarReflexao', () => {
+  it('recusa texto vazio ou só com espaços', () => {
+    const quebra = String.fromCharCode(10);
+    const tab = String.fromCharCode(9);
+    for (const vazio of ['', '   ', `${quebra}${tab} `]) expect(validarReflexao(vazio)).toEqual({ ok: false, erro: 'Escreva algo antes de guardar.' });
+  });
+  it('aceita e remove espaços nas pontas', () => {
+    expect(validarReflexao(`  minha reflexão ${String.fromCharCode(10)}`)).toEqual({ ok: true, texto: 'minha reflexão' });
+  });
+  it('respeita o limite de caracteres', () => {
+    expect(validarReflexao('a'.repeat(LIMITE_REFLEXAO)).ok).toBe(true);
+    const longo = validarReflexao('a'.repeat(LIMITE_REFLEXAO + 1));
+    expect(longo.ok).toBe(false);
+  });
+});
+
+describe('paraRegistro (linha de registros)', () => {
+  it('converte uma linha válida', () => {
+    expect(paraRegistro({ id: 'u1', etapa_id: 5, texto: 't', criado_em: '2026-11-18T10:00:00Z' })).toEqual({ id: 'u1', etapaId: 5, texto: 't', criadoEm: '2026-11-18T10:00:00Z' });
+  });
+  it('descarta linhas malformadas', () => {
+    for (const ruim of [null, undefined, 'x', 1, {}, { id: 'u', etapa_id: '5', texto: 't', criado_em: 'd' }, { id: 'u', etapa_id: 5, texto: 1, criado_em: 'd' }]) expect(paraRegistro(ruim)).toBeNull();
   });
 });
