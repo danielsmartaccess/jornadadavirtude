@@ -1,10 +1,14 @@
-/* Quiz de reflexão de uma etapa. Perguntas, alternativas e leituras vêm do banco; a regra do
- * resultado é resultadoDoQuiz (domain/gita.ts): a opção mais escolhida define a leitura e,
- * em empate, mostram-se as opções empatadas. Nada é pontuado nem guardado. */
+/* Quiz de reflexão de uma etapa. Perguntas, alternativas e leituras vêm do banco. Há dois modos de
+ * transformar as respostas em leitura (domain/gita.ts):
+ *  - mais_escolhida: a opção mais escolhida define a leitura e, em empate, mostram-se as empatadas;
+ *  - faixas: conta as escolhas de uma chave-alvo e mostra a leitura da faixa atingida.
+ * Nada é pontuado como nota nem guardado. */
 import { useId, useState } from 'react';
-import { resultadoDoQuiz, type Alternativa, type PerguntaQuiz } from '../../domain/gita';
+import { resultadoDoQuiz, resultadoPorFaixas, type Alternativa, type FaixaLeitura, type PerguntaQuiz } from '../../domain/gita';
 
-export function Quiz({ perguntas, leituras }: { perguntas: PerguntaQuiz[]; leituras: Alternativa[] }) {
+export type RegraQuiz = { modo: 'mais_escolhida'; leituras: Alternativa[] } | { modo: 'faixas'; chaveAlvo: string; faixas: FaixaLeitura[] };
+
+export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: RegraQuiz }) {
   const grupo = useId();
   const [respostas, setRespostas] = useState<Record<number, string>>({});
   const [calculado, setCalculado] = useState(false);
@@ -12,8 +16,10 @@ export function Quiz({ perguntas, leituras }: { perguntas: PerguntaQuiz[]; leitu
   // Só as perguntas que contam entram no resultado e são obrigatórias; as demais são reflexão.
   const contam = perguntas.filter((p) => p.contaNoResultado);
   const completo = contam.every((p) => respostas[p.ordem]);
-  const resultado = calculado ? resultadoDoQuiz(contam.map((p) => respostas[p.ordem]).filter(Boolean)) : null;
-  const leitura = (chave: string) => leituras.find((l) => l.chave === chave)?.texto;
+  const escolhidas = contam.map((p) => respostas[p.ordem]).filter(Boolean);
+  const porOpcao = calculado && regra.modo === 'mais_escolhida' ? resultadoDoQuiz(escolhidas) : null;
+  const porFaixa = calculado && regra.modo === 'faixas' ? resultadoPorFaixas(escolhidas, regra.chaveAlvo, regra.faixas) : null;
+  const leitura = (chave: string) => (regra.modo === 'mais_escolhida' ? regra.leituras.find((l) => l.chave === chave)?.texto : undefined);
 
   function escolher(ordem: number, chave: string) {
     setRespostas((atual) => ({ ...atual, [ordem]: chave }));
@@ -53,31 +59,41 @@ export function Quiz({ perguntas, leituras }: { perguntas: PerguntaQuiz[]; leitu
       )}
 
       <div role="status" aria-live="polite">
-        {resultado && (
+        {porOpcao && (
           <div className="entry my-5">
             <p className="label mb-1">Leitura reflexiva, não diagnóstica</p>
-            {resultado.empate ? (
+            {porOpcao.empate ? (
               <>
                 <p>
-                  Suas respostas se dividiram entre {resultado.vencedoras.length} opções, empatadas com {resultado.contagem[resultado.vencedoras[0]]} {resultado.contagem[resultado.vencedoras[0]] === 1 ? 'escolha' : 'escolhas'} cada. Observe o que as duas leituras abaixo dizem sobre situações diferentes da sua vida.
+                  Suas respostas se dividiram entre {porOpcao.vencedoras.length} opções, empatadas com {porOpcao.contagem[porOpcao.vencedoras[0]]} {porOpcao.contagem[porOpcao.vencedoras[0]] === 1 ? 'escolha' : 'escolhas'} cada. Observe o que as duas leituras abaixo dizem sobre situações diferentes da sua vida.
                 </p>
-                {resultado.vencedoras.map((chave) => (
+                {porOpcao.vencedoras.map((chave) => (
                   <p key={chave}>
                     <strong>Opção {chave}:</strong> {leitura(chave) ?? 'Sem leitura cadastrada para esta opção.'}
                   </p>
                 ))}
               </>
             ) : (
-              <p>{leitura(resultado.vencedoras[0]) ?? `A opção mais escolhida foi a ${resultado.vencedoras[0]}.`}</p>
+              <p>{leitura(porOpcao.vencedoras[0]) ?? `A opção mais escolhida foi a ${porOpcao.vencedoras[0]}.`}</p>
             )}
             <p className="meta mt-2">
               Distribuição das respostas:{' '}
-              {Object.entries(resultado.contagem)
+              {Object.entries(porOpcao.contagem)
                 .sort(([a], [b]) => a.localeCompare(b))
                 .map(([chave, n]) => `${chave}: ${n}`)
                 .join(' · ')}
             </p>
             <p className="hint mt-2 text-[0.95rem]">Não é uma avaliação de quem você é: mostra o que predominou nas suas respostas desta vez.</p>
+          </div>
+        )}
+        {porFaixa && (
+          <div className="entry my-5">
+            <p className="label mb-1">Leitura reflexiva, não diagnóstica</p>
+            <p>{porFaixa.leitura ?? 'Não há leitura cadastrada para este resultado.'}</p>
+            <p className="meta mt-2">
+              Respostas alinhadas ao ensinamento: {porFaixa.alinhadas} de {porFaixa.total}
+            </p>
+            <p className="hint mt-2 text-[0.95rem]">Não é uma avaliação de quem você é nem uma medida de evolução espiritual: é um recurso de auto-observação.</p>
           </div>
         )}
       </div>

@@ -40,6 +40,12 @@ export interface PerguntaQuiz {
   contaNoResultado: boolean;
 }
 
+/** No modo "faixas", a leitura vale a partir de tantas escolhas da chave-alvo. */
+export interface FaixaLeitura {
+  minimo: number;
+  texto: string;
+}
+
 export interface ConteudoEtapa {
   /** Identificador da etapa no banco; liga os registros da pessoa a esta etapa. */
   id: number | null;
@@ -48,8 +54,14 @@ export interface ConteudoEtapa {
   /** Markdown (GFM); null enquanto o texto da etapa não foi carregado no banco. */
   conteudoMd: string | null;
   perguntas: PerguntaQuiz[];
-  /** Leitura de cada chave do quiz; usada no resultado. */
+  /** Como o quiz vira leitura: pela opção mais escolhida ou por faixas de uma chave-alvo. */
+  quizModo: 'mais_escolhida' | 'faixas';
+  /** Modo "faixas": a chave cujas escolhas são contadas (por exemplo, "C"). */
+  quizChaveAlvo: string | null;
+  /** Modo "mais_escolhida": leitura de cada chave do quiz. */
   leituras: Alternativa[];
+  /** Modo "faixas": leituras por número mínimo de escolhas da chave-alvo. */
+  faixas: FaixaLeitura[];
 }
 
 /** Separa o texto antes do primeiro subtítulo (###) do restante. Na etapa de reflexão, o quiz
@@ -77,6 +89,24 @@ export interface ResultadoQuiz {
   /** Chave mais escolhida; mais de uma em caso de empate, em ordem alfabética. */
   vencedoras: string[];
   empate: boolean;
+}
+
+export interface ResultadoFaixas {
+  /** Quantas respostas foram a chave-alvo. */
+  alinhadas: number;
+  /** Quantas perguntas foram respondidas. */
+  total: number;
+  /** Texto da faixa de maior mínimo atingido; null se nenhuma faixa for atingida. */
+  leitura: string | null;
+}
+
+/** Resultado do quiz por faixas: conta as escolhas da chave-alvo e devolve a leitura da faixa de
+ * maior mínimo atingido (o mínimo 0 cobre o restante). Sem respostas, não há resultado. */
+export function resultadoPorFaixas(respostas: readonly string[], chaveAlvo: string, faixas: readonly FaixaLeitura[]): ResultadoFaixas | null {
+  if (respostas.length === 0) return null;
+  const alinhadas = respostas.filter((r) => r === chaveAlvo).length;
+  const atingidas = faixas.filter((f) => f.minimo <= alinhadas).sort((a, b) => b.minimo - a.minimo);
+  return { alinhadas, total: respostas.length, leitura: atingidas[0]?.texto ?? null };
 }
 
 /** Resultado do quiz de reflexão: a opção mais escolhida define a leitura; se houver

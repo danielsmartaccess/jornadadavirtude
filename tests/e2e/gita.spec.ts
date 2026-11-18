@@ -216,3 +216,57 @@ test('apagar os dados da nuvem remove também as reflexões da Gita, antes do ap
   await expect(page.getByText('Seus dados foram apagados da nuvem')).toBeVisible();
   expect(chamadas).toEqual(['DELETE registros eq.usuario-1', 'RPC jv_delete_my_data']);
 });
+
+/* ------------------------- Quiz por faixas (caps. 11 a 13) ------------------------- */
+
+const CAPITULO_FAIXAS = [
+  {
+    numero: 11,
+    etapas: [
+      {
+        id: 905,
+        ordem: 5,
+        nome: 'Reflexão pessoal interativa',
+        conteudo_md: '## Exercício\n\nIntrodução.\n\n### Reflexão aberta\n\nPergunta aberta?',
+        quiz_modo: 'faixas',
+        quiz_chave_alvo: 'C',
+        perguntas: [1, 2, 3, 4, 5].map((ordem) => ({ ordem, enunciado: `Pergunta ${ordem}`, conta_no_resultado: true, opcoes: alternativas(['Opção a', 'Opção b', 'Opção c']) })),
+        leituras: [
+          { chave: null, minimo: 4, texto: 'Leitura alta.' },
+          { chave: null, minimo: 2, texto: 'Leitura média.' },
+          { chave: null, minimo: 0, texto: 'Leitura baixa.' },
+        ],
+      },
+    ],
+  },
+];
+
+test('quiz por faixas: a leitura vem da quantidade de respostas C, sem regra de empate', async ({ page }) => {
+  await page.route('**/rest/v1/capitulos*', (route) => route.fulfill({ json: CAPITULO_FAIXAS }));
+  await page.goto('/gita/11');
+  const etapa = page.locator('#etapa-5');
+  const ver = etapa.getByRole('button', { name: 'Ver minha leitura' });
+  const resultado = etapa.getByRole('status').first();
+  const responder = async (letras: string[]) => {
+    for (let i = 0; i < 5; i++) await etapa.locator('fieldset').nth(i).getByLabel(`Opção ${letras[i]}`).check();
+    await ver.click();
+  };
+
+  await expect(ver).toBeDisabled();
+  await responder(['c', 'c', 'c', 'c', 'a']); // 4 C
+  await expect(resultado).toContainText('Leitura alta.');
+  await expect(resultado).toContainText('Respostas alinhadas ao ensinamento: 4 de 5');
+  await expect(resultado).not.toContainText('empatadas');
+
+  await responder(['c', 'c', 'a', 'b', 'a']); // 2 C (A e B somam 3 e não "empatam" nada)
+  await expect(resultado).toContainText('Leitura média.');
+  await expect(resultado).toContainText('2 de 5');
+
+  await responder(['a', 'b', 'a', 'b', 'c']); // 1 C
+  await expect(resultado).toContainText('Leitura baixa.');
+  await expect(resultado).not.toContainText('Opção');
+
+  await responder(['c', 'c', 'c', 'c', 'c']); // 5 C
+  await expect(resultado).toContainText('Leitura alta.');
+  await expect(resultado).toContainText('5 de 5');
+});

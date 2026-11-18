@@ -3,7 +3,7 @@
 import { lazy, Suspense } from 'react';
 import { Tag } from '../../components/ui';
 import { dividirNoPrimeiroSubtitulo, type ConteudoEtapa, type Etapa } from '../../domain/gita';
-import { Quiz } from './Quiz';
+import { Quiz, type RegraQuiz } from './Quiz';
 import { ReflexaoAberta } from './ReflexaoAberta';
 
 const Markdown = lazy(() => import('./Markdown'));
@@ -16,6 +16,10 @@ function Texto({ markdown }: { markdown: string }) {
   );
 }
 
+function regraDoQuiz(c: ConteudoEtapa): RegraQuiz {
+  return c.quizModo === 'faixas' && c.quizChaveAlvo ? { modo: 'faixas', chaveAlvo: c.quizChaveAlvo, faixas: c.faixas } : { modo: 'mais_escolhida', leituras: c.leituras };
+}
+
 function Conteudo({ conteudo }: { conteudo: ConteudoEtapa & { conteudoMd: string } }) {
   if (conteudo.perguntas.length === 0) return <Texto markdown={conteudo.conteudoMd} />;
   // O quiz fica entre a introdução e a reflexão aberta, como no material de origem.
@@ -23,7 +27,7 @@ function Conteudo({ conteudo }: { conteudo: ConteudoEtapa & { conteudoMd: string
   return (
     <>
       {introducao && <Texto markdown={introducao} />}
-      <Quiz perguntas={conteudo.perguntas} leituras={conteudo.leituras} />
+      <Quiz perguntas={conteudo.perguntas} regra={regraDoQuiz(conteudo)} />
       {resto && <Texto markdown={resto} />}
       {conteudo.id !== null && <ReflexaoAberta etapaId={conteudo.id} />}
     </>

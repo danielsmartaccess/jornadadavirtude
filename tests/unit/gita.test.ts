@@ -1,6 +1,6 @@
 /* Módulo de leitura da Bhagavad Gita: estrutura fixa e sincronia com o seed do banco. */
 import { describe, expect, it } from 'vitest';
-import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, splitTitulo, validarReflexao } from '../../src/domain/gita';
+import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, resultadoPorFaixas, splitTitulo, validarReflexao } from '../../src/domain/gita';
 import { parseConteudoCapitulo } from '../../src/infrastructure/gitaContent';
 import { paraRegistro } from '../../src/infrastructure/registrosGita';
 import seed from '../../supabase/seed.sql?raw';
@@ -144,7 +144,7 @@ describe('parseConteudoCapitulo (resposta da API)', () => {
 
   it('tolera respostas malformadas sem lançar erro', () => {
     for (const ruim of [null, undefined, [], {}, 'x', 42, [{ etapas: 'x' }], [{ etapas: [{ ordem: 'a', nome: 1 }, null, 7] }]]) expect(parseConteudoCapitulo(ruim)).toEqual([]);
-    expect(parseConteudoCapitulo([{ etapas: [{ ordem: 1, nome: 'ok', perguntas: [{ ordem: 'x' }, { enunciado: 1 }], leituras: [{ chave: 1 }] }] }])).toEqual([{ id: null, ordem: 1, nome: 'ok', conteudoMd: null, perguntas: [], leituras: [] }]);
+    expect(parseConteudoCapitulo([{ etapas: [{ ordem: 1, nome: 'ok', perguntas: [{ ordem: 'x' }, { enunciado: 1 }], leituras: [{ chave: 1 }] }] }])).toEqual([{ id: null, ordem: 1, nome: 'ok', conteudoMd: null, perguntas: [], quizModo: 'mais_escolhida', quizChaveAlvo: null, leituras: [], faixas: [] }]);
   });
 });
 
@@ -192,5 +192,59 @@ describe('pergunta que não conta no resultado', () => {
 
   it('só deixa de contar com false explícito', () => {
     expect(pergunta({ conta_no_resultado: false }).contaNoResultado).toBe(false);
+  });
+});
+
+describe('resultadoPorFaixas (quiz por faixas)', () => {
+  const faixas = [
+    { minimo: 4, texto: 'alta' },
+    { minimo: 2, texto: 'média' },
+    { minimo: 0, texto: 'baixa' },
+  ];
+  const com = (nC: number) => [...Array(nC).fill('C'), ...Array(5 - nC).fill('A')] as string[];
+
+  it('sem respostas não há resultado', () => {
+    expect(resultadoPorFaixas([], 'C', faixas)).toBeNull();
+  });
+
+  it('escolhe a faixa de maior mínimo atingido, nos limites 0 a 5', () => {
+    const leitura = (n: number) => resultadoPorFaixas(com(n), 'C', faixas)?.leitura;
+    expect([0, 1, 2, 3, 4, 5].map(leitura)).toEqual(['baixa', 'baixa', 'média', 'média', 'alta', 'alta']);
+  });
+
+  it('conta só a chave-alvo e informa alinhadas e total', () => {
+    expect(resultadoPorFaixas(['C', 'B', 'C', 'A', 'B'], 'C', faixas)).toEqual({ alinhadas: 2, total: 5, leitura: 'média' });
+  });
+
+  it('não depende da ordem das faixas e devolve null se nenhuma for atingida', () => {
+    expect(resultadoPorFaixas(com(4), 'C', [...faixas].reverse())?.leitura).toBe('alta');
+    expect(resultadoPorFaixas(com(1), 'C', [{ minimo: 3, texto: 'x' }])?.leitura).toBeNull();
+  });
+});
+
+describe('parser: modo do quiz', () => {
+  const etapa = (extra: Record<string, unknown>) => parseConteudoCapitulo([{ etapas: [{ ordem: 5, nome: 'x', ...extra }] }])[0];
+  const faixas = [{ chave: null, minimo: 4, texto: 'alta' }, { chave: null, minimo: 0, texto: 'baixa' }, { chave: null, minimo: 2, texto: 'média' }];
+
+  it('lê o modo faixas, a chave-alvo e as faixas em ordem crescente', () => {
+    const e = etapa({ quiz_modo: 'faixas', quiz_chave_alvo: 'C', leituras: faixas });
+    expect(e.quizModo).toBe('faixas');
+    expect(e.quizChaveAlvo).toBe('C');
+    expect(e.faixas.map((f) => f.minimo)).toEqual([0, 2, 4]);
+    expect(e.leituras).toEqual([]);
+  });
+
+  it('separa leituras por chave e por faixa na mesma etapa sem misturá-las', () => {
+    const e = etapa({ quiz_modo: 'faixas', quiz_chave_alvo: 'C', leituras: [...faixas, { chave: 'A', minimo: null, texto: 'a' }] });
+    expect(e.leituras).toEqual([{ chave: 'A', texto: 'a' }]);
+    expect(e.faixas).toHaveLength(3);
+  });
+
+  it('volta ao modo padrão se faltar a chave-alvo, as faixas ou o valor for estranho', () => {
+    expect(etapa({ quiz_modo: 'faixas', leituras: faixas }).quizModo).toBe('mais_escolhida');
+    expect(etapa({ quiz_modo: 'faixas', quiz_chave_alvo: 'C', leituras: [] }).quizModo).toBe('mais_escolhida');
+    expect(etapa({ quiz_modo: 'faixas', quiz_chave_alvo: 'cc', leituras: faixas }).quizModo).toBe('mais_escolhida');
+    expect(etapa({ quiz_modo: 'qualquer', quiz_chave_alvo: 'C', leituras: faixas }).quizModo).toBe('mais_escolhida');
+    expect(etapa({}).quizModo).toBe('mais_escolhida');
   });
 });
