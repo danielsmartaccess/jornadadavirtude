@@ -20,11 +20,11 @@ insert into public.capitulos (numero, titulo) values
   (11, 'Vishvarupa Darshana Yoga — A visão da forma universal'),
   (12, 'Bhakti Yoga — O yoga da devoção'),
   (13, 'Kshetra Kshetrajna Vibhaga Yoga — O campo e o conhecedor do campo'),
-  (14, 'Gunatraya Vibhaga Yoga — As três qualidades da natureza'),
-  (15, 'Purushottama Yoga — O Espírito supremo'),
-  (16, 'Daivasura Sampad Vibhaga Yoga — Disposições divinas e demoníacas'),
-  (17, 'Shraddhatraya Vibhaga Yoga — As três formas de fé'),
-  (18, 'Moksha Sannyasa Yoga — A libertação pela renúncia')
+  (14, 'Gunatraya Vibhaga Yoga — Os três modos da natureza'),
+  (15, 'Purushottama Yoga — O Yoga do Ser Supremo'),
+  (16, 'Daivasura Sampad Vibhaga Yoga — A distinção entre as naturezas divina e demoníaca'),
+  (17, 'Shraddhatraya Vibhaga Yoga — Os três tipos de fé'),
+  (18, 'Moksha Sannyasa Yoga — O Yoga da Libertação pela Renúncia')
 on conflict (numero) do update set titulo = excluded.titulo;
 
 insert into public.etapas (capitulo_id, ordem, nome)

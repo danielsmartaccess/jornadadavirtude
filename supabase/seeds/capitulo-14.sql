@@ -10,7 +10,7 @@
 -- O Markdown usa GFM (tabelas) e não contém HTML, CSS nem JavaScript.
 
 insert into public.capitulos (numero, titulo)
-values (14, 'Gunatraya Vibhaga Yoga — As três qualidades da natureza')
+values (14, 'Gunatraya Vibhaga Yoga — Os três modos da natureza')
 on conflict (numero) do update set titulo = excluded.titulo;
 
 -- ---------------------------------------------------------------------------

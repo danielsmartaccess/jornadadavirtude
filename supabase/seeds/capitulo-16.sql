@@ -10,7 +10,7 @@
 -- O Markdown usa GFM (tabelas) e não contém HTML, CSS nem JavaScript.
 
 insert into public.capitulos (numero, titulo)
-values (16, 'Daivasura Sampad Vibhaga Yoga — Disposições divinas e demoníacas')
+values (16, 'Daivasura Sampad Vibhaga Yoga — A distinção entre as naturezas divina e demoníaca')
 on conflict (numero) do update set titulo = excluded.titulo;
 
 -- ---------------------------------------------------------------------------

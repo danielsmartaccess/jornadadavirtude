@@ -30,7 +30,7 @@ async function simularApi(page: Page) {
 test('renderiza o Markdown das etapas e deixa em preparação as que não têm texto', async ({ page }) => {
   await simularApi(page);
   await page.goto('/gita/14');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('As três qualidades da natureza');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Os três modos da natureza');
   await expect(page.locator('#etapa-1 h4')).toHaveText('Título do contexto');
   await expect(page.locator('#etapa-1 strong')).toHaveText('negrito');
   await expect(page.locator('#etapa-2 table tbody tr')).toHaveCount(2);

@@ -10,7 +10,7 @@
 -- O Markdown usa GFM (tabelas) e não contém HTML, CSS nem JavaScript.
 
 insert into public.capitulos (numero, titulo)
-values (15, 'Purushottama Yoga — O Espírito supremo')
+values (15, 'Purushottama Yoga — O Yoga do Ser Supremo')
 on conflict (numero) do update set titulo = excluded.titulo;
 
 -- ---------------------------------------------------------------------------
