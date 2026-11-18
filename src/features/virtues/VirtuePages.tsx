@@ -65,6 +65,9 @@ export function VirtuesPage() {
           <Link to="/conselho/pensadores" className="btn btn-ghost btn-sm">
             Pensadores e referências
           </Link>
+          <Link to="/gita" className="btn btn-ghost btn-sm">
+            Leitura da Bhagavad Gita
+          </Link>
         </div>
       </PageHeader>
 

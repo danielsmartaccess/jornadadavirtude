@@ -39,7 +39,7 @@ src/
   domain/          regras e tipos puros (sem React, navegador ou banco)
   application/     casos de uso (funções puras), store e contratos de persistência
   infrastructure/  localStorage, saneamento/migração, Supabase, exportação
-  features/        telas por módulo (home, journey, virtues, council, diary, history, settings)
+  features/        telas por módulo (home, journey, virtues, council, diary, history, settings, gita)
   components/      componentes reutilizáveis (ui.tsx)
   app/             layout, rotas, hooks de ligação
   data/            base de conhecimento em JSON (catálogo separado dos dados pessoais, ADR-015)
@@ -47,6 +47,7 @@ src/
 tests/unit         regras de negócio, catálogo, Conselho, migração
 tests/e2e          fluxo completo do MVP
 supabase/migrations  esquema com RLS para a conta opcional
+supabase/seed.sql    conteúdo fixo da leitura da Gita (18 capítulos x 6 etapas), idempotente
 ```
 
 Decisões registradas: persistência local em `localStorage` (volume de kilobytes, gravação atômica; a troca por IndexedDB é feita só em `infrastructure/localRepository.ts`, atrás do contrato `UserDataRepository`); identificadores UUID; dados com `schemaVersion` e envelope de exportação.
@@ -58,6 +59,18 @@ Decisões registradas: persistência local em `localStorage` (volume de kilobyte
 3. O projeto e a chave **publishable** estão em `src/config.ts`. A chave é pública por definição; o acesso aos dados é protegido por RLS. Nunca coloque a chave `secret`/`service_role` no front-end. Para outro projeto, copie `.env.example` para `.env`.
 
 Sem esses passos o aplicativo funciona normalmente, só sem sincronização.
+
+## Módulo de leitura da Bhagavad Gita (em construção)
+
+Uma jornada de leitura em 18 capítulos, cada um com seis etapas de estudo. Rotas: `/gita` e `/gita/:numero`, com menu lateral dos capítulos e as seis etapas na área principal. Por ora só a estrutura existe; o texto de cada etapa vem em uma fase posterior. O acesso é pelo atalho "Leitura da Bhagavad Gita" no Catálogo de virtudes, ao lado de "As sete dimensões" e "Pensadores e referências"; o menu principal segue as seis áreas do Doc. 06. Já aplicado em produção (migração, ajuste de privilégios de `registros` e seed).
+
+Banco (`supabase/migrations/20261118120000_leitura_bhagavad_gita.sql`, independente da migração de dados do usuário):
+
+- `capitulos` e `etapas`: conteúdo fixo. Leitura pública (RLS ligada só com política `select using (true)`); escrita só pelo dono do banco, com `insert/update/delete` revogados de `anon` e `authenticated`.
+- `registros`: anotações da pessoa por etapa, com RLS e quatro políticas (select, insert, update, delete) que exigem `user_id = auth.uid()`.
+- `supabase/seed.sql` carrega os 18 capítulos e as 108 etapas; pode ser rodado de novo sem duplicar. Os títulos e nomes devem ficar iguais a `src/data/gita-capitulos.json` e `src/domain/gita.ts` (`tests/unit/gita.test.ts` confere).
+
+Aplique no SQL Editor do Supabase, nesta ordem: a migração e depois o `seed.sql`.
 
 ## Publicação (Vercel)
 

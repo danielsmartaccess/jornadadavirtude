@@ -5,6 +5,8 @@ import '../styles/globals.css';
 import { CouncilPage, SessionPage, ThinkerPage, ThinkersPage } from '../features/council/CouncilPages';
 import { DiaryPage } from '../features/diary/DiaryPage';
 import { HistoryPage, JourneyDetailPage } from '../features/history/HistoryPages';
+import { ChapterPage } from '../features/gita/ChapterPage';
+import { GitaIntro, GitaLayout } from '../features/gita/GitaLayout';
 import { HomePage } from '../features/home/HomePage';
 import { JourneyPage } from '../features/journey/JourneyPage';
 import { StartJourneyPage } from '../features/journey/StartJourneyPage';
@@ -41,6 +43,10 @@ createRoot(document.getElementById('root')!).render(
             <Route path="diario" element={<DiaryPage />} />
             <Route path="historico" element={<HistoryPage />} />
             <Route path="historico/:id" element={<JourneyDetailPage />} />
+            <Route path="gita" element={<GitaLayout />}>
+              <Route index element={<GitaIntro />} />
+              <Route path=":numero" element={<ChapterPage />} />
+            </Route>
             <Route path="configuracoes" element={<SettingsPage />} />
             <Route path="sobre" element={<AboutPage />} />
             <Route path="*" element={<NotFound />} />
