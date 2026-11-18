@@ -36,6 +36,8 @@ export interface PerguntaQuiz {
   ordem: number;
   enunciado: string;
   opcoes: Alternativa[];
+  /** false: pergunta só de reflexão (alternativas em outra escala); a escolha não soma no resultado. */
+  contaNoResultado: boolean;
 }
 
 export interface ConteudoEtapa {

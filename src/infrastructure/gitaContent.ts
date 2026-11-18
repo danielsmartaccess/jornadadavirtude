@@ -6,7 +6,7 @@
 import { cloudConfigured, SUPABASE_KEY, SUPABASE_URL } from '../config';
 import type { Alternativa, ConteudoEtapa, PerguntaQuiz } from '../domain/gita';
 
-const SELECT = 'numero,etapas(id,ordem,nome,conteudo_md,perguntas(ordem,enunciado,opcoes(chave,texto)),leituras(chave,texto))';
+const SELECT = 'numero,etapas(id,ordem,nome,conteudo_md,perguntas(ordem,enunciado,conta_no_resultado,opcoes(chave,texto)),leituras(chave,texto))';
 
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 const list = (v: unknown): Record<string, unknown>[] => (Array.isArray(v) ? v.filter(isRecord) : []);
@@ -27,7 +27,7 @@ export function parseConteudoCapitulo(raw: unknown): ConteudoEtapa[] {
     .map((e): ConteudoEtapa => {
       const perguntas = list(e.perguntas)
         .filter((p) => typeof p.ordem === 'number' && typeof p.enunciado === 'string')
-        .map((p): PerguntaQuiz => ({ ordem: p.ordem as number, enunciado: p.enunciado as string, opcoes: alternativas(p.opcoes) }))
+        .map((p): PerguntaQuiz => ({ ordem: p.ordem as number, enunciado: p.enunciado as string, opcoes: alternativas(p.opcoes), contaNoResultado: p.conta_no_resultado !== false }))
         .sort((a, b) => a.ordem - b.ordem);
       return {
         id: typeof e.id === 'number' ? e.id : null,

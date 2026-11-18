@@ -16,7 +16,7 @@ const CAPITULO = [
         ordem: 5,
         nome: 'Reflexão pessoal interativa',
         conteudo_md: '## Reconhecer\n\nIntrodução.\n\n### Reflexão aberta\n\nPergunta aberta?',
-        perguntas: [1, 2, 3].map((ordem) => ({ ordem, enunciado: `Pergunta ${ordem}`, opcoes: alternativas(['Opção clara', 'Opção ativa', 'Opção inerte']) })),
+        perguntas: [1, 2, 3, 4].map((ordem) => ({ ordem, enunciado: `Pergunta ${ordem}`, conta_no_resultado: ordem !== 4, opcoes: alternativas(['Opção clara', 'Opção ativa', 'Opção inerte']) })),
         leituras: alternativas(['Leitura da clareza.', 'Leitura da ação.', 'Leitura da inércia.']),
       },
     ],
@@ -65,6 +65,13 @@ test('quiz: a opção mais escolhida define a leitura; em empate mostra as empat
   await ver.click();
   await expect(resultado).toContainText('empatadas com 1 escolha cada');
   for (const leitura of ['Leitura da clareza.', 'Leitura da ação.', 'Leitura da inércia.']) await expect(resultado).toContainText(leitura);
+  await expect(resultado).toContainText('A: 1 · B: 1 · C: 1');
+
+  // A pergunta 4 é só de reflexão: escolher C nela não entra no cálculo e o empate se mantém.
+  await expect(etapa.getByText('não entra no cálculo da leitura')).toBeVisible();
+  await etapa.locator('fieldset').nth(3).getByLabel('Opção inerte').check();
+  await ver.click();
+  await expect(resultado).toContainText('empatadas com 1 escolha cada');
   await expect(resultado).toContainText('A: 1 · B: 1 · C: 1');
 });
 

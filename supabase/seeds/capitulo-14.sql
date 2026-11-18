@@ -44,23 +44,9 @@ $md$),
 
 Krishna descreve três forças que se combinam e disputam predominância. Nenhuma delas deve ser reduzida a um rótulo moral simples: cada uma tem uma função, uma potência e uma forma própria de aprisionamento.
 
-### 1. Sattva
-
-**Clareza, harmonia e lucidez.**
-
-Favorece conhecimento, equilíbrio, discernimento e bem-estar. Seu risco é o apego à felicidade, à pureza ou ao próprio conhecimento. Até a serenidade pode virar uma identidade à qual nos agarramos.
-
-### 2. Rajas
-
-**Atividade, desejo e movimento.**
-
-Mobiliza, produz, conquista e transforma. Seu risco é a inquietação: a pessoa passa a depender de resultados, reconhecimento e estímulos, confundindo movimento com realização.
-
-### 3. Tamas
-
-**Inércia, obscuridade e negligência.**
-
-Está associado à confusão, ao adiamento, à apatia e à falta de discernimento. Seu risco é a acomodação que obscurece consequências e reduz a capacidade de agir.
+1. **Sattva:** clareza, harmonia e lucidez. Favorece conhecimento, equilíbrio, discernimento e bem-estar. Seu risco é o apego à felicidade, à pureza ou ao próprio conhecimento. Até a serenidade pode virar uma identidade à qual nos agarramos.
+2. **Rajas:** atividade, desejo e movimento. Mobiliza, produz, conquista e transforma. Seu risco é a inquietação: a pessoa passa a depender de resultados, reconhecimento e estímulos, confundindo movimento com realização.
+3. **Tamas:** inércia, obscuridade e negligência. Está associado à confusão, ao adiamento, à apatia e à falta de discernimento. Seu risco é a acomodação que obscurece consequências e reduz a capacidade de agir.
 
 ### Como os gunas se alternam
 

@@ -179,3 +179,18 @@ describe('paraRegistro (linha de registros)', () => {
     for (const ruim of [null, undefined, 'x', 1, {}, { id: 'u', etapa_id: '5', texto: 't', criado_em: 'd' }, { id: 'u', etapa_id: 5, texto: 1, criado_em: 'd' }]) expect(paraRegistro(ruim)).toBeNull();
   });
 });
+
+describe('pergunta que não conta no resultado', () => {
+  const pergunta = (extra: Record<string, unknown>) => parseConteudoCapitulo([{ etapas: [{ ordem: 5, nome: 'x', perguntas: [{ ordem: 1, enunciado: 'p', opcoes: [], ...extra }] }] }])[0].perguntas[0];
+
+  it('assume que conta quando a coluna vem ausente ou com valor estranho', () => {
+    expect(pergunta({}).contaNoResultado).toBe(true);
+    expect(pergunta({ conta_no_resultado: true }).contaNoResultado).toBe(true);
+    expect(pergunta({ conta_no_resultado: null }).contaNoResultado).toBe(true);
+    expect(pergunta({ conta_no_resultado: 'false' }).contaNoResultado).toBe(true);
+  });
+
+  it('só deixa de contar com false explícito', () => {
+    expect(pergunta({ conta_no_resultado: false }).contaNoResultado).toBe(false);
+  });
+});

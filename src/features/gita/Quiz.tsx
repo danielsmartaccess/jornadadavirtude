@@ -9,8 +9,10 @@ export function Quiz({ perguntas, leituras }: { perguntas: PerguntaQuiz[]; leitu
   const [respostas, setRespostas] = useState<Record<number, string>>({});
   const [calculado, setCalculado] = useState(false);
 
-  const completo = perguntas.every((p) => respostas[p.ordem]);
-  const resultado = calculado ? resultadoDoQuiz(perguntas.map((p) => respostas[p.ordem]).filter(Boolean)) : null;
+  // Só as perguntas que contam entram no resultado e são obrigatórias; as demais são reflexão.
+  const contam = perguntas.filter((p) => p.contaNoResultado);
+  const completo = contam.every((p) => respostas[p.ordem]);
+  const resultado = calculado ? resultadoDoQuiz(contam.map((p) => respostas[p.ordem]).filter(Boolean)) : null;
   const leitura = (chave: string) => leituras.find((l) => l.chave === chave)?.texto;
 
   function escolher(ordem: number, chave: string) {
@@ -37,13 +39,18 @@ export function Quiz({ perguntas, leituras }: { perguntas: PerguntaQuiz[]; leitu
               <span>{o.texto}</span>
             </label>
           ))}
+          {!p.contaNoResultado && <p className="hint mt-1.5 text-[0.95rem]">Esta pergunta é só para a sua reflexão: não entra no cálculo da leitura.</p>}
         </fieldset>
       ))}
 
       <button type="submit" className="btn" disabled={!completo}>
         Ver minha leitura
       </button>
-      {!completo && <p className="hint mt-2 text-[0.95rem]">Responda às {perguntas.length} perguntas para ver a leitura.</p>}
+      {!completo && (
+        <p className="hint mt-2 text-[0.95rem]">
+          Responda às {contam.length} perguntas{contam.length < perguntas.length ? ' que entram no cálculo' : ''} para ver a leitura.
+        </p>
+      )}
 
       <div role="status" aria-live="polite">
         {resultado && (
