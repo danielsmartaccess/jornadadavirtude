@@ -1,12 +1,16 @@
 /* Quiz de reflexão de uma etapa. Perguntas, alternativas e leituras vêm do banco. Há dois modos de
  * transformar as respostas em leitura (domain/gita.ts):
  *  - mais_escolhida: a opção mais escolhida define a leitura e, em empate, mostram-se as empatadas;
- *  - faixas: conta as escolhas de uma chave-alvo e mostra a leitura da faixa atingida.
+ *  - faixas: conta as escolhas de uma chave-alvo e mostra a leitura da faixa atingida;
+ *  - acertos: quiz de compreensão; conta as respostas corretas e mostra a leitura da faixa atingida.
  * Nada é pontuado como nota nem guardado. */
 import { useId, useState } from 'react';
-import { resultadoDoQuiz, resultadoPorFaixas, type Alternativa, type FaixaLeitura, type PerguntaQuiz } from '../../domain/gita';
+import { resultadoDoQuiz, resultadoPorAcertos, resultadoPorFaixas, type Alternativa, type FaixaLeitura, type PerguntaQuiz } from '../../domain/gita';
 
-export type RegraQuiz = { modo: 'mais_escolhida'; leituras: Alternativa[] } | { modo: 'faixas'; chaveAlvo: string; faixas: FaixaLeitura[] };
+export type RegraQuiz =
+  | { modo: 'mais_escolhida'; leituras: Alternativa[] }
+  | { modo: 'faixas'; chaveAlvo: string; faixas: FaixaLeitura[] }
+  | { modo: 'acertos'; faixas: FaixaLeitura[] };
 
 export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: RegraQuiz }) {
   const grupo = useId();
@@ -19,6 +23,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
   const escolhidas = contam.map((p) => respostas[p.ordem]).filter(Boolean);
   const porOpcao = calculado && regra.modo === 'mais_escolhida' ? resultadoDoQuiz(escolhidas) : null;
   const porFaixa = calculado && regra.modo === 'faixas' ? resultadoPorFaixas(escolhidas, regra.chaveAlvo, regra.faixas) : null;
+  const porAcertos = calculado && regra.modo === 'acertos' ? resultadoPorAcertos(respostas, contam, regra.faixas) : null;
   const leitura = (chave: string) => (regra.modo === 'mais_escolhida' ? regra.leituras.find((l) => l.chave === chave)?.texto : undefined);
 
   function escolher(ordem: number, chave: string) {
@@ -94,6 +99,18 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
               Respostas alinhadas ao ensinamento: {porFaixa.alinhadas} de {porFaixa.total}
             </p>
             <p className="hint mt-2 text-[0.95rem]">Não é uma avaliação de quem você é nem uma medida de evolução espiritual: é um recurso de auto-observação.</p>
+          </div>
+        )}
+        {porAcertos && (
+          <div className="entry my-5">
+            <p className="label mb-1">Devolutiva de compreensão</p>
+            <p>
+              <strong>
+                {porAcertos.acertos} de {porAcertos.total} {porAcertos.acertos === 1 ? 'resposta correta' : 'respostas corretas'}.
+              </strong>
+            </p>
+            <p>{porAcertos.leitura ?? 'Não há leitura cadastrada para este resultado.'}</p>
+            <p className="hint mt-2 text-[0.95rem]">Esta devolutiva verifica a compreensão do capítulo. Não é teste psicológico nem avaliação de quem você é.</p>
           </div>
         )}
       </div>

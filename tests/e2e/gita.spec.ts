@@ -339,3 +339,59 @@ test('menu de capítulos no celular: lista expansível, fecha ao escolher e igno
   await expect(menuCapitulos(page)).toBeHidden();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
+
+/* ------------------------- Quiz de compreensão por acertos (cap. 1) ------------------------- */
+
+const CORRETAS = ['B', 'A', 'C', 'B', 'C'];
+const CAPITULO_ACERTOS = [
+  {
+    numero: 1,
+    etapas: [
+      {
+        id: 701,
+        ordem: 5,
+        nome: 'Reflexão pessoal interativa',
+        conteudo_md: '## Questionário\n\nIntrodução.\n\n### Reflexão aberta\n\nPergunta aberta?',
+        quiz_modo: 'acertos',
+        quiz_chave_alvo: null,
+        perguntas: CORRETAS.map((chave, i) => ({ ordem: i + 1, enunciado: `Pergunta ${i + 1}`, conta_no_resultado: true, chave_correta: chave, opcoes: alternativas([`${i + 1}-a`, `${i + 1}-b`, `${i + 1}-c`]) })),
+        leituras: [
+          { chave: null, minimo: 5, texto: 'Leitura de todas as corretas.' },
+          { chave: null, minimo: 3, texto: 'Leitura de boa parte.' },
+          { chave: null, minimo: 0, texto: 'Leitura para reler.' },
+        ],
+      },
+    ],
+  },
+];
+
+test('quiz por acertos: mostra quantas respostas estão corretas e a leitura da faixa', async ({ page }) => {
+  await page.route('**/rest/v1/capitulos*', (route) => route.fulfill({ json: CAPITULO_ACERTOS }));
+  await page.goto('/gita/1');
+  const etapa = page.locator('#etapa-5');
+  const ver = etapa.getByRole('button', { name: 'Ver minha leitura' });
+  const resultado = etapa.getByRole('status').first();
+  // Marca, em cada pergunta, a alternativa na posição indicada ('a', 'b' ou 'c').
+  const responder = async (letras: string[]) => {
+    for (let i = 0; i < 5; i++) await etapa.locator('fieldset').nth(i).getByLabel(`${i + 1}-${letras[i]}`).check();
+    await ver.click();
+  };
+
+  await expect(ver).toBeDisabled();
+  await responder(['b', 'a', 'c', 'b', 'c']); // 5 certas
+  await expect(resultado).toContainText('5 de 5 respostas corretas');
+  await expect(resultado).toContainText('Leitura de todas as corretas.');
+  await expect(resultado).not.toContainText('empatadas');
+
+  await responder(['b', 'a', 'c', 'a', 'a']); // 3 certas
+  await expect(resultado).toContainText('3 de 5 respostas corretas');
+  await expect(resultado).toContainText('Leitura de boa parte.');
+
+  await responder(['b', 'b', 'b', 'a', 'a']); // 1 certa (cada pergunta tem a sua própria chave correta)
+  await expect(resultado).toContainText('1 de 5 resposta correta');
+  await expect(resultado).toContainText('Leitura para reler.');
+
+  await responder(['a', 'b', 'a', 'a', 'a']); // 0 certas
+  await expect(resultado).toContainText('0 de 5 respostas corretas');
+  await expect(resultado).toContainText('Leitura para reler.');
+});

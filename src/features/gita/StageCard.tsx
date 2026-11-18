@@ -17,7 +17,9 @@ function Texto({ markdown }: { markdown: string }) {
 }
 
 function regraDoQuiz(c: ConteudoEtapa): RegraQuiz {
-  return c.quizModo === 'faixas' && c.quizChaveAlvo ? { modo: 'faixas', chaveAlvo: c.quizChaveAlvo, faixas: c.faixas } : { modo: 'mais_escolhida', leituras: c.leituras };
+  if (c.quizModo === 'faixas' && c.quizChaveAlvo) return { modo: 'faixas', chaveAlvo: c.quizChaveAlvo, faixas: c.faixas };
+  if (c.quizModo === 'acertos') return { modo: 'acertos', faixas: c.faixas };
+  return { modo: 'mais_escolhida', leituras: c.leituras };
 }
 
 function Conteudo({ conteudo }: { conteudo: ConteudoEtapa & { conteudoMd: string } }) {

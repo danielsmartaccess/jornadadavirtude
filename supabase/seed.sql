@@ -7,7 +7,7 @@
 -- (tests/unit/gita.test.ts confere).
 
 insert into public.capitulos (numero, titulo) values
-  (1,  'Arjuna Vishada Yoga — O desalento de Arjuna'),
+  (1,  'Arjuna Vishada Yoga — O Yoga do Desalento de Arjuna'),
   (2,  'Sankhya Yoga — O yoga do conhecimento'),
   (3,  'Karma Yoga — O yoga da ação'),
   (4,  'Jnana Karma Sannyasa Yoga — Conhecimento e renúncia da ação'),

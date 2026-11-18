@@ -1,6 +1,6 @@
 /* Módulo de leitura da Bhagavad Gita: estrutura fixa e sincronia com o seed do banco. */
 import { describe, expect, it } from 'vitest';
-import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, resultadoPorFaixas, splitTitulo, validarReflexao } from '../../src/domain/gita';
+import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, resultadoPorAcertos, resultadoPorFaixas, splitTitulo, validarReflexao } from '../../src/domain/gita';
 import { parseConteudoCapitulo } from '../../src/infrastructure/gitaContent';
 import { paraRegistro } from '../../src/infrastructure/registrosGita';
 import seed from '../../supabase/seed.sql?raw';
@@ -246,5 +246,65 @@ describe('parser: modo do quiz', () => {
     expect(etapa({ quiz_modo: 'faixas', quiz_chave_alvo: 'cc', leituras: faixas }).quizModo).toBe('mais_escolhida');
     expect(etapa({ quiz_modo: 'qualquer', quiz_chave_alvo: 'C', leituras: faixas }).quizModo).toBe('mais_escolhida');
     expect(etapa({}).quizModo).toBe('mais_escolhida');
+  });
+});
+
+describe('resultadoPorAcertos (quiz de compreensão)', () => {
+  const faixas = [
+    { minimo: 5, texto: 'todas' },
+    { minimo: 3, texto: 'boa parte' },
+    { minimo: 0, texto: 'reler' },
+  ];
+  const perguntas = [1, 2, 3, 4, 5].map((ordem) => ({ ordem, chaveCorreta: 'A' as string | null }));
+  /** Respostas com os n primeiros acertos e o resto errado. */
+  const comAcertos = (n: number): Record<number, string> => Object.fromEntries(perguntas.map((p, i) => [p.ordem, i < n ? 'A' : 'B']));
+
+  it('sem respostas não há resultado', () => {
+    expect(resultadoPorAcertos({}, perguntas, faixas)).toBeNull();
+  });
+
+  it('conta os acertos e escolhe a faixa de maior mínimo atingido, de 0 a 5', () => {
+    const leitura = (n: number) => resultadoPorAcertos(comAcertos(n), perguntas, faixas)?.leitura;
+    expect([0, 1, 2, 3, 4, 5].map(leitura)).toEqual(['reler', 'reler', 'reler', 'boa parte', 'boa parte', 'todas']);
+  });
+
+  it('informa acertos e total', () => {
+    expect(resultadoPorAcertos(comAcertos(2), perguntas, faixas)).toEqual({ acertos: 2, total: 5, leitura: 'reler' });
+  });
+
+  it('cada pergunta tem a sua chave correta (não é a mesma letra em todas)', () => {
+    const variadas = [{ ordem: 1, chaveCorreta: 'B' }, { ordem: 2, chaveCorreta: 'A' }, { ordem: 3, chaveCorreta: 'C' }];
+    expect(resultadoPorAcertos({ 1: 'B', 2: 'A', 3: 'C' }, variadas, faixas)?.acertos).toBe(3);
+    expect(resultadoPorAcertos({ 1: 'A', 2: 'A', 3: 'A' }, variadas, faixas)?.acertos).toBe(1);
+  });
+
+  it('ignora perguntas sem chave correta e respostas a perguntas que não existem', () => {
+    const mistas = [{ ordem: 1, chaveCorreta: 'A' }, { ordem: 2, chaveCorreta: null }];
+    expect(resultadoPorAcertos({ 1: 'A', 2: 'B', 9: 'A' }, mistas, faixas)).toEqual({ acertos: 1, total: 1, leitura: 'reler' });
+  });
+});
+
+describe('parser: modo acertos', () => {
+  const leituras = [{ chave: null, minimo: 5, texto: 'todas' }, { chave: null, minimo: 0, texto: 'reler' }];
+  const pergunta = (ordem: number, extra: Record<string, unknown> = {}) => ({ ordem, enunciado: `p${ordem}`, opcoes: [], chave_correta: 'B', ...extra });
+  const etapa = (extra: Record<string, unknown>) => parseConteudoCapitulo([{ etapas: [{ ordem: 5, nome: 'x', ...extra }] }])[0];
+
+  it('lê o modo acertos e a chave correta de cada pergunta', () => {
+    const e = etapa({ quiz_modo: 'acertos', perguntas: [pergunta(1), pergunta(2, { chave_correta: 'C' })], leituras });
+    expect(e.quizModo).toBe('acertos');
+    expect(e.perguntas.map((p) => p.chaveCorreta)).toEqual(['B', 'C']);
+    expect(e.faixas.map((f) => f.minimo)).toEqual([0, 5]);
+  });
+
+  it('volta ao modo padrão se alguma pergunta não tiver chave correta, se não houver faixas ou perguntas', () => {
+    expect(etapa({ quiz_modo: 'acertos', perguntas: [pergunta(1), pergunta(2, { chave_correta: null })], leituras }).quizModo).toBe('mais_escolhida');
+    expect(etapa({ quiz_modo: 'acertos', perguntas: [pergunta(1), pergunta(2, { chave_correta: 'b' })], leituras }).quizModo).toBe('mais_escolhida');
+    expect(etapa({ quiz_modo: 'acertos', perguntas: [pergunta(1)], leituras: [] }).quizModo).toBe('mais_escolhida');
+    expect(etapa({ quiz_modo: 'acertos', perguntas: [], leituras }).quizModo).toBe('mais_escolhida');
+  });
+
+  it('chave correta ausente ou inválida vira null nos outros modos', () => {
+    expect(etapa({ perguntas: [pergunta(1, { chave_correta: undefined })] }).perguntas[0].chaveCorreta).toBeNull();
+    expect(etapa({ perguntas: [pergunta(1, { chave_correta: 7 })] }).perguntas[0].chaveCorreta).toBeNull();
   });
 });

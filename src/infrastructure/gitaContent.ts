@@ -6,7 +6,7 @@
 import { cloudConfigured, SUPABASE_KEY, SUPABASE_URL } from '../config';
 import type { Alternativa, ConteudoEtapa, FaixaLeitura, PerguntaQuiz } from '../domain/gita';
 
-const SELECT = 'numero,etapas(id,ordem,nome,conteudo_md,quiz_modo,quiz_chave_alvo,perguntas(ordem,enunciado,conta_no_resultado,opcoes(chave,texto)),leituras(chave,minimo,texto))';
+const SELECT = 'numero,etapas(id,ordem,nome,conteudo_md,quiz_modo,quiz_chave_alvo,perguntas(ordem,enunciado,conta_no_resultado,chave_correta,opcoes(chave,texto)),leituras(chave,minimo,texto))';
 
 const isRecord = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
 const list = (v: unknown): Record<string, unknown>[] => (Array.isArray(v) ? v.filter(isRecord) : []);
@@ -27,7 +27,7 @@ export function parseConteudoCapitulo(raw: unknown): ConteudoEtapa[] {
     .map((e): ConteudoEtapa => {
       const perguntas = list(e.perguntas)
         .filter((p) => typeof p.ordem === 'number' && typeof p.enunciado === 'string')
-        .map((p): PerguntaQuiz => ({ ordem: p.ordem as number, enunciado: p.enunciado as string, opcoes: alternativas(p.opcoes), contaNoResultado: p.conta_no_resultado !== false }))
+        .map((p): PerguntaQuiz => ({ ordem: p.ordem as number, enunciado: p.enunciado as string, opcoes: alternativas(p.opcoes), contaNoResultado: p.conta_no_resultado !== false, chaveCorreta: typeof p.chave_correta === 'string' && /^[A-Z]$/.test(p.chave_correta) ? p.chave_correta : null }))
         .sort((a, b) => a.ordem - b.ordem);
       const leituras = list(e.leituras);
       const faixas = leituras
@@ -41,8 +41,14 @@ export function parseConteudoCapitulo(raw: unknown): ConteudoEtapa[] {
         nome: e.nome as string,
         conteudoMd: typeof e.conteudo_md === 'string' && e.conteudo_md.trim() ? e.conteudo_md : null,
         perguntas,
-        // O modo "faixas" só vale com a chave-alvo e ao menos uma faixa; do contrário, volta ao padrão.
-        quizModo: e.quiz_modo === 'faixas' && chaveAlvo !== null && faixas.length > 0 ? 'faixas' : 'mais_escolhida',
+        // Cada modo só vale com o que precisa: "faixas" com a chave-alvo e ao menos uma faixa; "acertos" com a
+        // chave correta em todas as perguntas e ao menos uma faixa. Do contrário, volta ao padrão.
+        quizModo:
+          e.quiz_modo === 'faixas' && chaveAlvo !== null && faixas.length > 0
+            ? 'faixas'
+            : e.quiz_modo === 'acertos' && perguntas.length > 0 && perguntas.every((p) => p.chaveCorreta !== null) && faixas.length > 0
+              ? 'acertos'
+              : 'mais_escolhida',
         quizChaveAlvo: chaveAlvo,
         leituras: alternativas(leituras.filter((l) => typeof l.chave === 'string')),
         faixas,

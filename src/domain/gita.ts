@@ -38,6 +38,8 @@ export interface PerguntaQuiz {
   opcoes: Alternativa[];
   /** false: pergunta só de reflexão (alternativas em outra escala); a escolha não soma no resultado. */
   contaNoResultado: boolean;
+  /** Modo "acertos": chave da alternativa correta; nulo nos demais modos. */
+  chaveCorreta: string | null;
 }
 
 /** No modo "faixas", a leitura vale a partir de tantas escolhas da chave-alvo. */
@@ -54,13 +56,13 @@ export interface ConteudoEtapa {
   /** Markdown (GFM); null enquanto o texto da etapa não foi carregado no banco. */
   conteudoMd: string | null;
   perguntas: PerguntaQuiz[];
-  /** Como o quiz vira leitura: pela opção mais escolhida ou por faixas de uma chave-alvo. */
-  quizModo: 'mais_escolhida' | 'faixas';
+  /** Como o quiz vira leitura: pela opção mais escolhida, por faixas de uma chave-alvo ou pelo número de acertos. */
+  quizModo: 'mais_escolhida' | 'faixas' | 'acertos';
   /** Modo "faixas": a chave cujas escolhas são contadas (por exemplo, "C"). */
   quizChaveAlvo: string | null;
   /** Modo "mais_escolhida": leitura de cada chave do quiz. */
   leituras: Alternativa[];
-  /** Modo "faixas": leituras por número mínimo de escolhas da chave-alvo. */
+  /** Modos "faixas" e "acertos": leituras por número mínimo (de escolhas da chave-alvo ou de acertos). */
   faixas: FaixaLeitura[];
 }
 
@@ -107,6 +109,23 @@ export function resultadoPorFaixas(respostas: readonly string[], chaveAlvo: stri
   const alinhadas = respostas.filter((r) => r === chaveAlvo).length;
   const atingidas = faixas.filter((f) => f.minimo <= alinhadas).sort((a, b) => b.minimo - a.minimo);
   return { alinhadas, total: respostas.length, leitura: atingidas[0]?.texto ?? null };
+}
+
+export interface ResultadoAcertos {
+  acertos: number;
+  /** Quantas perguntas com resposta correta cadastrada foram respondidas. */
+  total: number;
+  leitura: string | null;
+}
+
+/** Resultado do quiz de compreensão: conta as respostas iguais à chave correta de cada pergunta e devolve a
+ * leitura da faixa de maior mínimo atingido. Perguntas sem chave correta não entram. Sem respostas, não há resultado. */
+export function resultadoPorAcertos(respostas: Readonly<Record<number, string>>, perguntas: readonly { ordem: number; chaveCorreta: string | null }[], faixas: readonly FaixaLeitura[]): ResultadoAcertos | null {
+  const respondidas = perguntas.filter((p) => p.chaveCorreta !== null && respostas[p.ordem] !== undefined);
+  if (respondidas.length === 0) return null;
+  const acertos = respondidas.filter((p) => respostas[p.ordem] === p.chaveCorreta).length;
+  const atingidas = faixas.filter((f) => f.minimo <= acertos).sort((a, b) => b.minimo - a.minimo);
+  return { acertos, total: respondidas.length, leitura: atingidas[0]?.texto ?? null };
 }
 
 /** Resultado do quiz de reflexão: a opção mais escolhida define a leitura; se houver
