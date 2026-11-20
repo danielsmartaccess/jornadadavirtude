@@ -1,6 +1,6 @@
 /* Módulo de leitura da Bhagavad Gita: estrutura fixa e sincronia com o seed do banco. */
 import { describe, expect, it } from 'vitest';
-import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, resultadoPorAcertos, resultadoPorFaixas, splitTitulo, validarReflexao } from '../../src/domain/gita';
+import { capitulos, capituloAnterior, capituloSeguinte, dividirNoPrimeiroSubtitulo, etapas, getCapitulo, LIMITE_REFLEXAO, parseNumeroCapitulo, resultadoDoQuiz, resultadoPorAcertos, resultadoPorFaixas, semTituloInicialRepetido, splitTitulo, validarReflexao } from '../../src/domain/gita';
 import { parseConteudoCapitulo } from '../../src/infrastructure/gitaContent';
 import { paraRegistro } from '../../src/infrastructure/registrosGita';
 import seed from '../../supabase/seed.sql?raw';
@@ -98,6 +98,21 @@ describe.each(seedsDeCapitulo)('%s', (_arquivo, sql) => {
     const upserts = sql.match(/^on conflict /gm) ?? [];
     expect(inserts.length).toBeGreaterThan(0);
     expect(upserts).toHaveLength(inserts.length);
+  });
+});
+
+describe('semTituloInicialRepetido', () => {
+  it('remove o primeiro título quando repete o nome da etapa, ignorando caixa e espaços', () => {
+    const md = '## Contexto histórico e filosófico\n\nTexto da etapa.';
+    expect(semTituloInicialRepetido(md, 'contexto  histórico e filosófico')).toBe('Texto da etapa.');
+  });
+  it('mantém o texto quando o primeiro título é outro', () => {
+    const md = '## A cena inicial\n\nTexto.';
+    expect(semTituloInicialRepetido(md, 'Contexto histórico e filosófico')).toBe(md);
+  });
+  it('mantém o texto quando não começa com título', () => {
+    const md = 'Parágrafo inicial.\n\n## Contexto histórico e filosófico';
+    expect(semTituloInicialRepetido(md, 'Contexto histórico e filosófico')).toBe(md);
   });
 });
 

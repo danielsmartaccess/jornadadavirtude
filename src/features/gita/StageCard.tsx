@@ -1,8 +1,7 @@
 /* Uma das seis etapas de um capítulo: título e, quando o texto já está no banco, o conteúdo
  * em Markdown e, na etapa de reflexão, o quiz. Sem texto, mostra "Conteúdo em preparação". */
 import { lazy, Suspense } from 'react';
-import { Tag } from '../../components/ui';
-import { dividirNoPrimeiroSubtitulo, type ConteudoEtapa, type Etapa } from '../../domain/gita';
+import { dividirNoPrimeiroSubtitulo, semTituloInicialRepetido, type ConteudoEtapa, type Etapa } from '../../domain/gita';
 import { Quiz, type RegraQuiz } from './Quiz';
 import { ReflexaoAberta } from './ReflexaoAberta';
 
@@ -38,13 +37,16 @@ function Conteudo({ conteudo }: { conteudo: ConteudoEtapa & { conteudoMd: string
 
 export function StageCard({ etapa, conteudo, carregando }: { etapa: Etapa; conteudo?: ConteudoEtapa; carregando?: boolean }) {
   return (
-    <article id={`etapa-${etapa.ordem}`} className="card scroll-mt-4">
-      <div className="flex flex-wrap items-center gap-2">
-        <Tag accent>Etapa {etapa.ordem}</Tag>
+    <article id={`etapa-${etapa.ordem}`} className="scroll-mt-4 border-t-2 border-ink pt-5">
+      <div className="flex flex-wrap items-baseline gap-3">
+        <span className="font-mono text-[12px] tracking-[0.12em] text-accent" aria-hidden="true">
+          {String(etapa.ordem).padStart(2, '0')}
+        </span>
+        <p className="label">Etapa {etapa.ordem}</p>
       </div>
-      <h3 className="mt-2">{etapa.nome}</h3>
+      <h3 className="mt-1.5 text-[1.5rem]">{etapa.nome}</h3>
       {conteudo?.conteudoMd ? (
-        <Conteudo conteudo={{ ...conteudo, conteudoMd: conteudo.conteudoMd }} />
+        <Conteudo conteudo={{ ...conteudo, conteudoMd: semTituloInicialRepetido(conteudo.conteudoMd, etapa.nome) }} />
       ) : (
         <p className="hint">{carregando ? 'Carregando…' : 'Conteúdo em preparação.'}</p>
       )}

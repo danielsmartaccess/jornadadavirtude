@@ -6,6 +6,36 @@ import { Notice, Section, Tag } from '../../components/ui';
 import { currentStageName, journeyStats, nextAction, sortByDateDesc, STATUS_LABEL, workedStages } from '../../domain/journey';
 import { formatDate } from '../../shared/util';
 
+/* Provocações escritas pela própria plataforma para a reflexão. Não são citações: nenhuma frase é atribuída a pensadores. */
+const PROVOCACOES = [
+  'Em qual situação recente você percebeu uma virtude em ação, mesmo que por instantes?',
+  'O que você tem evitado observar em si mesmo(a)? Não é preciso responder agora.',
+  'Que escolha pequena, feita hoje, poderia ser feita com mais atenção?',
+  'Quando você se sente mais inteiro(a) ao agir? O que estava presente nesse momento?',
+  'O que mudaria na sua semana se você pensasse antes de reagir?',
+  'Diante de uma dificuldade repetida, o que ela pode estar ensinando?',
+  'O que você faria diferente se não precisasse provar nada a ninguém?',
+];
+
+/** Uma provocação por dia do ano: estável durante o dia, sem sorteio a cada visita. */
+function provocacaoDoDia(date: Date): string {
+  const start = Date.UTC(date.getFullYear(), 0, 0);
+  const day = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - start) / 86_400_000);
+  return PROVOCACOES[day % PROVOCACOES.length];
+}
+
+function ProvocacaoDoDia() {
+  return (
+    <section aria-labelledby="provocacao" className="mb-8">
+      <p className="label mb-2" id="provocacao">
+        Para pensar hoje
+      </p>
+      <p className="font-display text-[1.4rem] leading-snug text-accent">{provocacaoDoDia(new Date())}</p>
+      <p className="meta mt-2">Pergunta da plataforma para a sua reflexão. Não é uma citação.</p>
+    </section>
+  );
+}
+
 export function HomePage() {
   const data = useUserData();
   const meta = useStoreMeta();
@@ -122,6 +152,8 @@ export function HomePage() {
           </ol>
         </Section>
       )}
+
+      <ProvocacaoDoDia />
 
       <Section title="Três maneiras de começar">
         <div className="grid gap-3 sm:grid-cols-3">

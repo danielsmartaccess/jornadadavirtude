@@ -74,6 +74,14 @@ export function dividirNoPrimeiroSubtitulo(markdown: string): { introducao: stri
   return { introducao: markdown.slice(0, i).trimEnd(), resto: markdown.slice(i) };
 }
 
+/** Remove o primeiro título do texto quando ele repete o nome da etapa (o cabeçalho da etapa já o mostra). */
+export function semTituloInicialRepetido(markdown: string, nomeEtapa: string): string {
+  const normalizar = (s: string) => s.replace(/\s+/g, ' ').trim().toLowerCase();
+  const primeiro = /^\s*#{1,6}[ \t]+(.+?)[ \t]*(?:\r?\n|$)/.exec(markdown);
+  if (!primeiro || normalizar(primeiro[1]) !== normalizar(nomeEtapa)) return markdown;
+  return markdown.slice(primeiro[0].length).replace(/^\s*\n/, '');
+}
+
 /** Tamanho máximo de uma reflexão, em caracteres (cerca de cinco páginas). */
 export const LIMITE_REFLEXAO = 10000;
 

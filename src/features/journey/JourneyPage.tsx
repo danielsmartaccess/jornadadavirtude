@@ -104,22 +104,25 @@ export function JourneyPage() {
         <p className="label mb-2">
           Etapas trabalhadas: {workedStages(journey)} de 7 <span className="normal-case tracking-normal">· indica participação no percurso, não uma nota</span>
         </p>
-        <ol className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
+        {/* Percurso: cada etapa é um marco numa linha. A cor da régua indica o estado (com texto e símbolo, nunca só cor). */}
+        <ol className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7">
           {STAGES.map((s, i) => {
             const state = journey.stages[s.id].state;
+            const current = s.id === stageId;
+            const rule = state === 'concluida' ? 'border-ink' : state === 'em-andamento' || state === 'retomada' ? 'border-accent' : 'border-rule';
             return (
               <li key={s.id}>
                 <button
                   type="button"
-                  className="chip w-full flex-col !items-start !px-2.5"
-                  aria-current={s.id === stageId ? 'step' : undefined}
+                  className={`group flex min-h-[72px] w-full flex-col items-start gap-1 border-t-[3px] px-2 pb-2 pt-2.5 text-left transition-colors hover:bg-panel ${rule} ${current ? 'bg-panel' : ''}`}
+                  aria-current={current ? 'step' : undefined}
                   title={`${s.name}: ${STAGE_STATES[state].label}`}
                   onClick={() => setParams({ etapa: s.id }, { replace: true })}
                 >
-                  <span className="font-mono text-[11px]">
+                  <span className={`font-mono text-[11px] tracking-wider ${current ? 'text-accent' : 'text-muted'}`}>
                     {String(i + 1).padStart(2, '0')} <span aria-hidden="true">{STAGE_STATES[state].symbol}</span>
                   </span>
-                  <span className="text-[15px]">{s.name}</span>
+                  <span className="text-[15px] leading-snug">{s.name}</span>
                   <span className="sr-only">: {STAGE_STATES[state].label}</span>
                 </button>
               </li>
