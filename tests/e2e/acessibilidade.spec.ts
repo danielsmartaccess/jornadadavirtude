@@ -119,3 +119,33 @@ test('botão de tema: percorre sistema, claro, escuro e roxo e dourado, e lembra
   await expect(page.getByRole('button', { name: /Alterar tema/ })).toContainText('Tema: sistema');
   await expect(page.locator('html')).not.toHaveAttribute('data-theme', /.+/);
 });
+
+test('movimento: os cartões entram com animação e terminam visíveis, no estado normal da página', async ({ page }) => {
+  await page.goto('/virtudes');
+  const primeiro = page.locator('a.card.revelar').first();
+  expect(await primeiro.evaluate((el) => getComputedStyle(el).animationName)).toBe('revelar');
+  await page.waitForTimeout(900); // animação (240 ms) + o maior atraso (7 x 60 ms)
+  expect(await primeiro.evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+  expect(await page.locator('a.card.revelar').last().evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+});
+
+test('movimento: com prefers-reduced-motion nada anima e tudo aparece de uma vez', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/virtudes/V07');
+  for (const seletor of ['a.card.revelar', 'svg[data-simbolo="assinatura"] circle']) {
+    await page.goto(seletor.startsWith('a.card') ? '/virtudes' : '/virtudes/V07');
+    const el = page.locator(seletor).first();
+    expect(await el.evaluate((e) => getComputedStyle(e).animationName), seletor).toBe('none');
+  }
+  await page.goto('/virtudes');
+  expect(await page.locator('a.card.revelar').first().evaluate((e) => getComputedStyle(e).opacity)).toBe('1');
+});
+
+test('movimento: a animação dos anéis não muda o significado do símbolo (anel sem relação segue esmaecido)', async ({ page }) => {
+  await page.goto('/virtudes/V07');
+  await page.waitForTimeout(900);
+  const opacidades = await page.locator('svg[data-simbolo="assinatura"] circle').evaluateAll((cs) => cs.map((c) => getComputedStyle(c).opacity));
+  expect(opacidades).toHaveLength(7);
+  expect(opacidades).toContain('0.35'); // pelo menos um anel sem relação registrada
+  expect(opacidades).toContain('1'); // e pelo menos um com relação
+});

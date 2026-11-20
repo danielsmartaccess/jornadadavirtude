@@ -2,6 +2,7 @@
  * Conteúdo transcrito de um quadro de estudo e guardado no Supabase (ensinamentos e ensinamentos_gunas,
  * seed em supabase/seeds/ensinamentos-de-krishna.sql). Nada foi acrescentado ao quadro. */
 import { Link } from 'react-router-dom';
+import { atraso } from '../../components/movimento';
 import { Notice, PageHeader } from '../../components/ui';
 import { capitulos, NOTA_ENSINAMENTOS, TITULO_ENSINAMENTOS, type GunaDoQuadro, type ItemEnsinamento } from '../../domain/gita';
 import { useEnsinamentos } from './useEnsinamentos';
@@ -54,8 +55,8 @@ function Gunas({ gunas }: { gunas: GunaDoQuadro[] }) {
 function ListaDeEnsinamentos({ itens }: { itens: ItemEnsinamento[] }) {
   return (
     <ol aria-label="Os sete ensinamentos de Krishna" className="m-0 grid list-none gap-0 p-0">
-      {itens.map((item) => (
-        <li key={item.numero} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-t border-rule py-5 first:border-t-2 first:border-ink">
+      {itens.map((item, i) => (
+        <li key={item.numero} style={atraso(i)} className="revelar grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-t border-rule py-5 first:border-t-2 first:border-ink">
           <span className="pt-1.5 font-mono text-[13px] tracking-[0.12em] text-accent" aria-hidden="true">
             {String(item.numero).padStart(2, '0')}
           </span>

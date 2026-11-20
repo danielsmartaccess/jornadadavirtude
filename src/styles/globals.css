@@ -370,12 +370,46 @@
     color: var(--muted);
     border-bottom-color: var(--fg);
   }
+  /* Movimento com propósito: entrada suave de listas e cartões, com pequeno escalonamento (--i, no máximo 7),
+   * e anéis dos símbolos grandes surgindo em sequência. O estado final é o estado normal da página: com
+   * prefers-reduced-motion (regra no fim deste arquivo) nada anima e tudo aparece de uma vez. */
+  .revelar {
+    animation: revelar var(--duration-base) var(--ease-standard) both;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+  .anel-animado {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: aparecer-anel var(--duration-base) var(--ease-standard) both;
+    animation-delay: calc(var(--i, 0) * 45ms);
+  }
   .prose-list {
     list-style: disc;
     padding-left: 1.2rem;
   }
   .prose-list li {
     margin-bottom: 2px;
+  }
+}
+
+@keyframes revelar {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Só escala, sem opacidade: os anéis "sem relação" têm opacity própria no atributo, e uma animação de
+ * opacidade com preenchimento final a sobrescreveria, mudando o significado do símbolo. */
+@keyframes aparecer-anel {
+  from {
+    transform: scale(0.7);
+  }
+  to {
+    transform: none;
   }
 }
 

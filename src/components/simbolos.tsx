@@ -1,6 +1,7 @@
 /* Símbolos da identidade visual (ver domain/identidade.ts). Decorativos: aria-hidden, porque o nome
  * da virtude, da dimensão ou do pensador já vem como texto ao lado. Traços em currentColor. */
 import type { ReactNode } from 'react';
+import { atraso } from './movimento';
 import { corDaFamilia, emblemaDaTradicao, estadosDosAneis, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type EstadoAnel, type LeituraAnel, type MotivoFamilia, type TipoRelacaoDimensao } from '../domain/identidade';
 
 function Base({ size, color, dado, children }: { size: number; color?: string; dado: string; children: ReactNode }) {
@@ -73,7 +74,7 @@ export function SimboloFamilia({ familyId, size = 36 }: { familyId: string; size
 }
 
 /** Sete anéis concêntricos; o anel da dimensão vem em destaque (1 externo, 7 central). */
-export function AneisDimensao({ order, size = 56 }: { order: number; size?: number }) {
+export function AneisDimensao({ order, size = 56, animado = false }: { order: number; size?: number; animado?: boolean }) {
   const destaque = anelDaDimensao(order);
   if (!destaque) return null;
   return (
@@ -81,7 +82,18 @@ export function AneisDimensao({ order, size = 56 }: { order: number; size?: numb
       {[1, 2, 3, 4, 5, 6, 7].map((k) => {
         const r = 22 - 3 * (k - 1);
         const ativo = k === destaque;
-        return <circle key={k} cx="24" cy="24" r={r} strokeWidth={ativo ? 3 : 1} style={ativo ? { color: 'var(--accent)' } : undefined} fill={k === 7 && ativo ? 'currentColor' : 'none'} />;
+        return (
+          <circle
+            key={k}
+            cx="24"
+            cy="24"
+            r={r}
+            strokeWidth={ativo ? 3 : 1}
+            className={animado ? 'anel-animado' : undefined}
+            style={{ ...(ativo ? { color: 'var(--accent)' } : {}), ...(animado ? atraso(k - 1) : {}) }}
+            fill={k === 7 && ativo ? 'currentColor' : 'none'}
+          />
+        );
       })}
     </Base>
   );
@@ -130,13 +142,15 @@ const ESPESSURA_ANEL: Record<EstadoAnel, { width: number; dash?: string; opacity
 };
 
 /** Assinatura da virtude: os sete anéis, cada um com a espessura do tipo de relação (primária, secundária, contextual ou nenhuma). A forma diz o tipo; a cor só acompanha a família. */
-export function AssinaturaVirtude({ cor, relacoes, size = 64, rotulo = 'assinatura' }: { cor: string; relacoes: { dimensionOrder: number; tipo: TipoRelacaoDimensao }[]; size?: number; rotulo?: string }) {
+export function AssinaturaVirtude({ cor, relacoes, size = 64, rotulo = 'assinatura', animado = false }: { cor: string; relacoes: { dimensionOrder: number; tipo: TipoRelacaoDimensao }[]; size?: number; rotulo?: string; animado?: boolean }) {
   const estados = estadosDosAneis(relacoes);
   return (
     <Base size={size} color={cor} dado={rotulo}>
       {estados.map((estado, i) => {
         const cfg = ESPESSURA_ANEL[estado];
-        return <circle key={i} cx="24" cy="24" r={22 - 3 * i} strokeWidth={cfg.width} strokeDasharray={cfg.dash} opacity={cfg.opacity} />;
+        return (
+          <circle key={i} cx="24" cy="24" r={22 - 3 * i} strokeWidth={cfg.width} strokeDasharray={cfg.dash} opacity={cfg.opacity} className={animado ? 'anel-animado' : undefined} style={animado ? atraso(i) : undefined} />
+        );
       })}
     </Base>
   );

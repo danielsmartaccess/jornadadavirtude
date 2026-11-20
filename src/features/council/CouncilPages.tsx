@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useRun, useUserData } from '../../app/hooks';
 import { activeJourney, deleteSession, journeyById, saveEntry, saveSession } from '../../application/useCases';
+import { atraso } from '../../components/movimento';
 import { AssinaturaVirtude, ComparacaoAneis, EmblemaTradicaoSimbolo } from '../../components/simbolos';
 import { estadosDosAneis, leituraDoConjunto, type TipoRelacaoDimensao } from '../../domain/identidade';
 import { Accordion, AutoSaveArea, ConfirmButton, EmptyState, Notice, PageHeader, Section, StatusTag, Tag, TextArea } from '../../components/ui';
@@ -353,8 +354,8 @@ export function ThinkersPage() {
       <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores' }]} title="Pensadores e referências" lede="Cada integrante do Conselho tem um campo de contribuição baseado em suas obras e ideias, com limites declarados." />
       <Section title="Integrantes do Conselho">
         <div className="grid gap-3 sm:grid-cols-2">
-          {councilMembers.map((t) => (
-            <Link key={t.id} to={`/conselho/pensadores/${t.id}`} className="card">
+          {councilMembers.map((t, i) => (
+            <Link key={t.id} to={`/conselho/pensadores/${t.id}`} className="card revelar" style={atraso(i)}>
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <h3>{t.name}</h3>
@@ -391,7 +392,7 @@ export function ThinkerPage() {
         <p className="meta mt-2">{[thinker.tradition, thinker.period].filter(Boolean).join(' · ')}</p>
         <div className="mt-4 flex flex-wrap items-end gap-5 text-accent">
           <EmblemaTradicaoSimbolo tradicao={thinker.tradition} size={56} />
-          <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(thinker.id)} size={56} />
+          <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(thinker.id)} size={56} animado />
           <p className="meta max-w-[34ch] text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
         </div>
         <div className="mt-2">
