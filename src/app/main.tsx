@@ -1,21 +1,35 @@
-import { StrictMode } from 'react';
+import { lazy, StrictMode, type ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import '../styles/globals.css';
-import { CouncilPage, SessionPage, ThinkerPage, ThinkersPage } from '../features/council/CouncilPages';
-import { DiaryPage } from '../features/diary/DiaryPage';
-import { HistoryPage, JourneyDetailPage } from '../features/history/HistoryPages';
-import { ChapterPage } from '../features/gita/ChapterPage';
-import { GitaIntro, GitaLayout } from '../features/gita/GitaLayout';
 import { HomePage } from '../features/home/HomePage';
-import { JourneyPage } from '../features/journey/JourneyPage';
-import { StartJourneyPage } from '../features/journey/StartJourneyPage';
-import { AboutPage, SettingsPage } from '../features/settings/SettingsPages';
-import { DimensionPage, DimensionsPage, VirtuePage, VirtuesPage } from '../features/virtues/VirtuePages';
 import { initSync } from '../infrastructure/sync';
 import { ToastProvider } from './hooks';
 import { Layout } from './Layout';
 import { EmptyState } from '../components/ui';
+
+/* Telas carregadas por rota (o Início fica no pacote principal): o celular baixa só o que a pessoa abre. */
+const pagina = (carregar: () => Promise<object>, nome: string) =>
+  lazy(() => carregar().then((m) => ({ default: (m as Record<string, ComponentType>)[nome] })));
+
+const CouncilPage = pagina(() => import('../features/council/CouncilPages'), 'CouncilPage');
+const SessionPage = pagina(() => import('../features/council/CouncilPages'), 'SessionPage');
+const ThinkersPage = pagina(() => import('../features/council/CouncilPages'), 'ThinkersPage');
+const ThinkerPage = pagina(() => import('../features/council/CouncilPages'), 'ThinkerPage');
+const DiaryPage = pagina(() => import('../features/diary/DiaryPage'), 'DiaryPage');
+const HistoryPage = pagina(() => import('../features/history/HistoryPages'), 'HistoryPage');
+const JourneyDetailPage = pagina(() => import('../features/history/HistoryPages'), 'JourneyDetailPage');
+const ChapterPage = pagina(() => import('../features/gita/ChapterPage'), 'ChapterPage');
+const GitaIntro = pagina(() => import('../features/gita/GitaLayout'), 'GitaIntro');
+const GitaLayout = pagina(() => import('../features/gita/GitaLayout'), 'GitaLayout');
+const JourneyPage = pagina(() => import('../features/journey/JourneyPage'), 'JourneyPage');
+const StartJourneyPage = pagina(() => import('../features/journey/StartJourneyPage'), 'StartJourneyPage');
+const AboutPage = pagina(() => import('../features/settings/SettingsPages'), 'AboutPage');
+const SettingsPage = pagina(() => import('../features/settings/SettingsPages'), 'SettingsPage');
+const DimensionPage = pagina(() => import('../features/virtues/VirtuePages'), 'DimensionPage');
+const DimensionsPage = pagina(() => import('../features/virtues/VirtuePages'), 'DimensionsPage');
+const VirtuePage = pagina(() => import('../features/virtues/VirtuePages'), 'VirtuePage');
+const VirtuesPage = pagina(() => import('../features/virtues/VirtuePages'), 'VirtuesPage');
 
 void initSync();
 

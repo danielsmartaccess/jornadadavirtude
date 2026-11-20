@@ -19,7 +19,8 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
 
   // Só as perguntas que contam entram no resultado e são obrigatórias; as demais são reflexão.
   const contam = perguntas.filter((p) => p.contaNoResultado);
-  const completo = contam.every((p) => respostas[p.ordem]);
+  const pendentes = contam.filter((p) => !respostas[p.ordem]).map((p) => p.ordem);
+  const completo = pendentes.length === 0;
   const escolhidas = contam.map((p) => respostas[p.ordem]).filter(Boolean);
   const porOpcao = calculado && regra.modo === 'mais_escolhida' ? resultadoDoQuiz(escolhidas) : null;
   const porFaixa = calculado && regra.modo === 'faixas' ? resultadoPorFaixas(escolhidas, regra.chaveAlvo, regra.faixas) : null;
@@ -59,7 +60,9 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
       </button>
       {!completo && (
         <p className="hint mt-2 text-[0.95rem]">
-          Responda às {contam.length} perguntas{contam.length < perguntas.length ? ' que entram no cálculo' : ''} para ver a leitura.
+          {pendentes.length === contam.length
+            ? `Responda às ${contam.length} perguntas${contam.length < perguntas.length ? ' que entram no cálculo' : ''} para ver a leitura.`
+            : `Faltam as perguntas ${pendentes.join(', ')} para ver a leitura.`}
         </p>
       )}
 

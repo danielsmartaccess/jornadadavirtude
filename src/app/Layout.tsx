@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { useSync } from './hooks';
 
@@ -97,7 +97,9 @@ export function Layout() {
       </nav>
 
       <main id="conteudo" className="pt-8">
-        <Outlet />
+        <Suspense fallback={<p className="hint" role="status">Carregando…</p>}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <footer className="no-print mt-12 border-t-2 border-ink pt-4 font-mono text-[12px] text-muted">

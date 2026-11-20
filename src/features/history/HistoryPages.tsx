@@ -36,6 +36,28 @@ function JourneyCard({ journey }: { journey: Journey }) {
   );
 }
 
+/** Marcador do percurso: a forma indica o estado e o texto do cartão o repete (nunca só cor). */
+function markerClass(status: Journey['status']): string {
+  if (status === 'COMPLETED') return 'bg-ink border-ink';
+  if (status === 'ACTIVE') return 'bg-accent border-accent';
+  return 'bg-paper border-ink';
+}
+
+/** Jornadas em ordem cronológica (da primeira à mais recente), com o estado de cada uma. */
+function JourneyTimeline({ journeys }: { journeys: Journey[] }) {
+  const ordenadas = [...journeys].sort((a, b) => (a.startedOn || a.createdAt).localeCompare(b.startedOn || b.createdAt));
+  return (
+    <ol className="relative grid gap-6 border-l-2 border-ink pl-6">
+      {ordenadas.map((j) => (
+        <li key={j.id} className="relative">
+          <span aria-hidden="true" className={`absolute -left-[31px] top-7 block size-3.5 border-2 ${markerClass(j.status)}`} />
+          <JourneyCard journey={j} />
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 export function HistoryPage() {
   const data = useUserData();
   const [showArchived, setShowArchived] = useState(false);
@@ -44,11 +66,6 @@ export function HistoryPage() {
   const archived = journeys.filter(isArchived);
   const trail = virtueTrail(journeys);
   const learnings = sortByDateDesc(data.reviews.filter((r) => r.kind === 'final' && (r.learnings.trim() || r.synthesis.trim())));
-  const groups = [
-    { title: 'Em andamento e rascunhos', list: visible.filter((j) => j.status === 'ACTIVE' || j.status === 'DRAFT') },
-    { title: 'Pausadas', list: visible.filter((j) => j.status === 'PAUSED') },
-    { title: 'Concluídas', list: visible.filter((j) => j.status === 'COMPLETED') },
-  ];
 
   return (
     <>
@@ -66,17 +83,10 @@ export function HistoryPage() {
         </Section>
       )}
 
-      {groups.map(
-        (group) =>
-          group.list.length > 0 && (
-            <Section key={group.title} title={group.title}>
-              <div className="grid gap-3">
-                {group.list.map((j) => (
-                  <JourneyCard key={j.id} journey={j} />
-                ))}
-              </div>
-            </Section>
-          ),
+      {visible.length > 0 && (
+        <Section title="Percurso" aside={<span className="meta">{visible.length} {visible.length === 1 ? 'jornada' : 'jornadas'}</span>}>
+          <JourneyTimeline journeys={visible} />
+        </Section>
       )}
 
       {archived.length > 0 && (

@@ -46,8 +46,10 @@ function EntryForm({ initial, isNew, onDone }: { initial: DiaryEntry; isNew: boo
         <TextInput label="Data" type="date" value={entry.date} onChange={set('date')} />
         <Chips legend="Tipo de registro" options={ENTRY_TYPES.map((t) => t.label)} value={[entryTypeLabel(entry.type)]} onChange={([label]) => label && set('type')(ENTRY_TYPES.find((t) => t.label === label)!.id as EntryType)} />
       </div>
-      <TextInput
+      {/* A escrita é o centro do diário: a situação ocupa uma área de texto, não uma linha. */}
+      <TextArea
         label="Situação"
+        rows={3}
         value={entry.situation}
         onChange={set('situation')}
         placeholder="O que aconteceu?"
@@ -198,7 +200,7 @@ export function DiaryPage() {
                   {e.virtue && ` · ${e.virtue}`}
                   {e.stage && ` · etapa ${e.stage}`}
                 </p>
-                <p className="font-semibold">{e.situation}</p>
+                <p className="mt-1 whitespace-pre-wrap font-display text-[1.25rem] leading-snug">{e.situation}</p>
                 {e.context && <p>{e.context}</p>}
                 {e.thoughts && <p><span className="label">Pensei</span>{e.thoughts}</p>}
                 {e.feelings.length > 0 && <p>Senti: {e.feelings.join(', ')}</p>}
