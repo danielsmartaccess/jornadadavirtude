@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useRun, useUserData } from '../../app/hooks';
 import { activeJourney, deleteSession, journeyById, saveEntry, saveSession } from '../../application/useCases';
-import { EmblemaTradicaoSimbolo } from '../../components/simbolos';
+import { AssinaturaVirtude, ComparacaoAneis, EmblemaTradicaoSimbolo } from '../../components/simbolos';
+import { estadosDosAneis, leituraDoConjunto, type TipoRelacaoDimensao } from '../../domain/identidade';
 import { Accordion, AutoSaveArea, ConfirmButton, EmptyState, Notice, PageHeader, Section, StatusTag, Tag, TextArea } from '../../components/ui';
 import {
   casesOfThinker,
@@ -36,6 +37,15 @@ function CrisisNotice() {
       Se estiver em sofrimento intenso ou em risco, procure ajuda agora: CVV 188 (24 horas, gratuito), SAMU 192 ou Polícia 190. Central de Atendimento à Mulher: 180. A reflexão filosófica não substitui assistência médica, psicológica ou jurídica.
     </Notice>
   );
+}
+
+/** Relações do pensador com as dimensões, derivadas das virtudes relacionadas a ele na base. Não classifica o pensamento do autor. */
+function relacoesDoPensador(thinkerId: string): { dimensionOrder: number; tipo: TipoRelacaoDimensao }[] {
+  const ids = new Set(virtuesOfThinker(thinkerId).map((r) => r.virtue.id));
+  return virtueDimensions.flatMap((r) => {
+    const d = getDimension(r.dimensionId);
+    return ids.has(r.virtueId) && d ? [{ dimensionOrder: d.order, tipo: r.relationType as TipoRelacaoDimensao }] : [];
+  });
 }
 
 /** Compõe as contribuições de uma sessão a partir da situação e das escolhas da pessoa. */
@@ -265,6 +275,14 @@ export function SessionPage() {
       </Section>
 
       <Section title="3. Convergências e divergências">
+        {selection.length >= 2 && (
+          <div className="mb-5 flex flex-wrap items-center gap-5">
+            <ComparacaoAneis leitura={leituraDoConjunto(selection.map(({ thinker }) => estadosDosAneis(relacoesDoPensador(thinker.id))))} size={72} />
+            <p className="meta max-w-[46ch]">
+              Dimensões em comum entre as perspectivas. Anel cheio: todas se ligam a essa dimensão pelas virtudes da base. Tracejado: só algumas. Fino: nenhuma. É uma leitura de conjunto, não uma avaliação de quem tem razão.
+            </p>
+          </div>
+        )}
         <p className="label mb-1">Convergências</p>
         {synthesis.convergences.length ? <ul className="prose-list">{synthesis.convergences.map((c) => <li key={c}>{c}</li>)}</ul> : <p className="hint">A base não registra pontos comuns entre estas perspectivas.</p>}
         <p className="label mb-1 mt-4">Divergências e limites</p>
@@ -342,7 +360,10 @@ export function ThinkersPage() {
                   <h3>{t.name}</h3>
                   <p className="meta">{[t.tradition, t.period].filter(Boolean).join(' · ')}</p>
                 </div>
-                <EmblemaTradicaoSimbolo tradicao={t.tradition} size={40} />
+                <div className="flex shrink-0 items-center gap-2">
+                  <EmblemaTradicaoSimbolo tradicao={t.tradition} size={36} />
+                  <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(t.id)} size={36} />
+                </div>
               </div>
               <p className="mt-1">{t.field}</p>
             </Link>
@@ -368,8 +389,10 @@ export function ThinkerPage() {
     <>
       <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: thinker.name }]} title={thinker.name} lede={thinker.field}>
         <p className="meta mt-2">{[thinker.tradition, thinker.period].filter(Boolean).join(' · ')}</p>
-        <div className="mt-4 text-accent">
+        <div className="mt-4 flex flex-wrap items-end gap-5 text-accent">
           <EmblemaTradicaoSimbolo tradicao={thinker.tradition} size={56} />
+          <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(thinker.id)} size={56} />
+          <p className="meta max-w-[34ch] text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
         </div>
         <div className="mt-2">
           <StatusTag status={thinker.status} />

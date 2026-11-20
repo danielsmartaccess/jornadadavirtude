@@ -69,3 +69,14 @@ export function estadosDosAneis(relacoes: { dimensionOrder: number; tipo: TipoRe
     return tipo ? ESTADO[tipo] : 'nenhuma';
   });
 }
+
+/** Leitura de um conjunto de perspectivas por anel: comum (todas tocam a dimensão), parcial (algumas) ou ausente (nenhuma). */
+export type LeituraAnel = 'comum' | 'parcial' | 'ausente';
+
+export function leituraDoConjunto(conjuntos: EstadoAnel[][]): LeituraAnel[] {
+  return [0, 1, 2, 3, 4, 5, 6].map((i) => {
+    const tocam = conjuntos.filter((c) => (c[i] ?? 'nenhuma') !== 'nenhuma').length;
+    if (tocam === 0) return 'ausente';
+    return tocam === conjuntos.length ? 'comum' : 'parcial';
+  });
+}

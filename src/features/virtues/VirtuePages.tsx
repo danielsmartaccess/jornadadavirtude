@@ -138,7 +138,7 @@ export function VirtuesPage() {
                   <Link key={v.id} to={`/virtudes/${v.id}`} className="card" style={{ borderTop: `4px solid ${corDaFamilia(v.familyId)}` }}>
                     <div className="flex items-start justify-between gap-3">
                       <h3 className="uppercase tracking-wide">{v.name}</h3>
-                      <AssinaturaVirtude familyId={v.familyId} relacoes={relacoesDaVirtude(v.id)} size={40} />
+                      <AssinaturaVirtude cor={corDaFamilia(v.familyId)} relacoes={relacoesDaVirtude(v.id)} size={40} />
                     </div>
                     <p>{v.definition}</p>
                     <p className="meta mt-2">Conhecer esta virtude →</p>
@@ -164,7 +164,7 @@ export function VirtuePage() {
       <PageHeader crumbs={[{ label: 'Virtudes', to: '/virtudes' }, { label: family?.name ?? '' }, { label: virtue.name }]} title={virtue.name} lede={virtue.definition}>
         <div className="mt-4 flex flex-wrap items-end gap-5">
           <SimboloFamilia familyId={virtue.familyId} size={64} />
-          <AssinaturaVirtude familyId={virtue.familyId} relacoes={relacoesDaVirtude(virtue.id)} size={64} />
+          <AssinaturaVirtude cor={corDaFamilia(virtue.familyId)} relacoes={relacoesDaVirtude(virtue.id)} size={64} />
           <p className="meta max-w-[30ch]">Os anéis são as sete dimensões. A espessura mostra o tipo de relação: primária, secundária, contextual ou sem relação registrada.</p>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">

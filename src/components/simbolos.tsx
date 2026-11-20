@@ -1,7 +1,7 @@
 /* Símbolos da identidade visual (ver domain/identidade.ts). Decorativos: aria-hidden, porque o nome
  * da virtude, da dimensão ou do pensador já vem como texto ao lado. Traços em currentColor. */
 import type { ReactNode } from 'react';
-import { corDaFamilia, emblemaDaTradicao, estadosDosAneis, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type EstadoAnel, type MotivoFamilia, type TipoRelacaoDimensao } from '../domain/identidade';
+import { corDaFamilia, emblemaDaTradicao, estadosDosAneis, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type EstadoAnel, type LeituraAnel, type MotivoFamilia, type TipoRelacaoDimensao } from '../domain/identidade';
 
 function Base({ size, color, dado, children }: { size: number; color?: string; dado: string; children: ReactNode }) {
   return (
@@ -130,12 +130,30 @@ const ESPESSURA_ANEL: Record<EstadoAnel, { width: number; dash?: string; opacity
 };
 
 /** Assinatura da virtude: os sete anéis, cada um com a espessura do tipo de relação (primária, secundária, contextual ou nenhuma). A forma diz o tipo; a cor só acompanha a família. */
-export function AssinaturaVirtude({ familyId, relacoes, size = 64 }: { familyId: string; relacoes: { dimensionOrder: number; tipo: TipoRelacaoDimensao }[]; size?: number }) {
+export function AssinaturaVirtude({ cor, relacoes, size = 64, rotulo = 'assinatura' }: { cor: string; relacoes: { dimensionOrder: number; tipo: TipoRelacaoDimensao }[]; size?: number; rotulo?: string }) {
   const estados = estadosDosAneis(relacoes);
   return (
-    <Base size={size} color={corDaFamilia(familyId)} dado="assinatura">
+    <Base size={size} color={cor} dado={rotulo}>
       {estados.map((estado, i) => {
         const cfg = ESPESSURA_ANEL[estado];
+        return <circle key={i} cx="24" cy="24" r={22 - 3 * i} strokeWidth={cfg.width} strokeDasharray={cfg.dash} opacity={cfg.opacity} />;
+      })}
+    </Base>
+  );
+}
+
+const ESTILO_LEITURA: Record<LeituraAnel, { width: number; dash?: string; opacity: number }> = {
+  comum: { width: 3, opacity: 1 },
+  parcial: { width: 1.5, dash: '3 2', opacity: 1 },
+  ausente: { width: 0.75, opacity: 0.35 },
+};
+
+/** Dimensões em comum de um grupo de perspectivas: anel cheio (todas tocam), tracejado (algumas) ou fino (nenhuma). */
+export function ComparacaoAneis({ leitura, size = 64 }: { leitura: LeituraAnel[]; size?: number }) {
+  return (
+    <Base size={size} dado="comparacao">
+      {leitura.map((estado, i) => {
+        const cfg = ESTILO_LEITURA[estado];
         return <circle key={i} cx="24" cy="24" r={22 - 3 * i} strokeWidth={cfg.width} strokeDasharray={cfg.dash} opacity={cfg.opacity} />;
       })}
     </Base>

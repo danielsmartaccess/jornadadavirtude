@@ -83,3 +83,13 @@ test('assinatura da virtude e percurso por dimensão no histórico', async ({ pa
   await expect(page.getByRole('heading', { level: 2, name: 'Dimensões trabalhadas' })).toBeVisible();
   await expect(page.getByText('Contagem descritiva de atividades')).toBeVisible();
 });
+
+test('Conselho: cada pensador tem assinatura própria e a sessão mostra a leitura de conjunto', async ({ page }) => {
+  await page.goto('/conselho/pensadores');
+  await expect(page.locator('svg[data-simbolo="assinatura-pensador"]')).toHaveCount(27);
+  await page.goto('/conselho');
+  await page.getByLabel('Qual situação você deseja analisar?').fill('Tenho dificuldade em admitir quando estou errado e sempre tento me justificar.');
+  await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
+  await expect(page).toHaveURL(/conselho\/sessoes\//);
+  await expect(page.locator('svg[data-simbolo="comparacao"]')).toHaveCount(1);
+});
