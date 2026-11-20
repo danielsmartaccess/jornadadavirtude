@@ -16,6 +16,7 @@ import {
   getDimension,
   getFamily,
   getVirtue,
+  relacoesDeAnel,
   sourceLabel,
   thinkersOfVirtue,
   virtueDimensions,
@@ -28,11 +29,6 @@ import { normalize } from '../../shared/util';
 
 const RELATION_LABEL = { D1: 'Relação primária', D2: 'Relação secundária', D3: 'Relação contextual' } as const;
 const P_LABEL = { P1: 'Fundamentação direta', P2: 'Contribuição relevante', P3: 'Perspectiva complementar', P4: 'Interpretação contemporânea' } as const;
-
-/** Relações da virtude com as dimensões, no formato da assinatura visual (anel e tipo D1 a D3). */
-function relacoesDaVirtude(virtueId: string) {
-  return dimensionsOfVirtue(virtueId).map(({ dimension, relation }) => ({ dimensionOrder: dimension.order, tipo: relation.relationType }));
-}
 
 const INTERPRETIVE ='A relação entre virtudes e dimensões é uma proposta pedagógica da plataforma: uma referência para interpretar, não uma classificação da pessoa nem uma correspondência exclusiva das tradições filosóficas.';
 
@@ -79,6 +75,14 @@ export function VirtuesPage() {
         </div>
       </PageHeader>
 
+      <div role="group" aria-label="Atalhos do filtro" className="mb-4 flex flex-wrap gap-2">
+        {families.map((f) => (
+          <button key={f.id} type="button" className="chip !min-h-9 gap-2 !text-[15px]" aria-pressed={family === f.id} onClick={() => setFamily(family === f.id ? '' : f.id)}>
+            <SimboloFamilia familyId={f.id} size={18} cor="currentColor" />
+            {f.name}
+          </button>
+        ))}
+      </div>
       <div className="grid gap-3 sm:grid-cols-3">
         <div>
           <label className="label mb-1.5" htmlFor="busca">
@@ -139,7 +143,7 @@ export function VirtuesPage() {
                   <Link key={v.id} to={`/virtudes/${v.id}`} className="card revelar" style={{ borderTop: `4px solid ${corDaFamilia(v.familyId)}`, ...atraso(i) }}>
                     <div className="flex items-start justify-between gap-3">
                       <h3 className="uppercase tracking-wide">{v.name}</h3>
-                      <AssinaturaVirtude cor={corDaFamilia(v.familyId)} relacoes={relacoesDaVirtude(v.id)} size={40} />
+                      <AssinaturaVirtude cor={corDaFamilia(v.familyId)} relacoes={relacoesDeAnel(v.id)} size={40} />
                     </div>
                     <p>{v.definition}</p>
                     <p className="meta mt-2">Conhecer esta virtude →</p>
@@ -165,7 +169,7 @@ export function VirtuePage() {
       <PageHeader crumbs={[{ label: 'Virtudes', to: '/virtudes' }, { label: family?.name ?? '' }, { label: virtue.name }]} title={virtue.name} lede={virtue.definition}>
         <div className="mt-4 flex flex-wrap items-end gap-5">
           <SimboloFamilia familyId={virtue.familyId} size={64} />
-          <AssinaturaVirtude cor={corDaFamilia(virtue.familyId)} relacoes={relacoesDaVirtude(virtue.id)} size={64} animado />
+          <AssinaturaVirtude cor={corDaFamilia(virtue.familyId)} relacoes={relacoesDeAnel(virtue.id)} size={64} animado />
           <p className="meta max-w-[30ch]">Os anéis são as sete dimensões. A espessura mostra o tipo de relação: primária, secundária, contextual ou sem relação registrada.</p>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
@@ -221,7 +225,10 @@ export function VirtuePage() {
               const otherName = d.a === virtue.id ? d.bName : d.aName;
               return (
                 <li key={d.id} className="entry">
-                  <p className="meta">{otherId ? <Link to={`/virtudes/${otherId}`}>{otherName}</Link> : `${otherName} (conceito próximo, fora do catálogo)`}</p>
+                  <p className="meta flex items-center gap-2">
+                    {otherId && getVirtue(otherId) && <SimboloFamilia familyId={getVirtue(otherId)!.familyId} size={20} />}
+                    {otherId ? <Link to={`/virtudes/${otherId}`}>{otherName}</Link> : `${otherName} (conceito próximo, fora do catálogo)`}
+                  </p>
                   <p>{d.distinction}</p>
                 </li>
               );

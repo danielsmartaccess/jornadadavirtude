@@ -266,10 +266,10 @@ export function SessionPage() {
                 <span className="label">Fontes</span>
                 {contribution.workIds.length ? contribution.workIds.map((w) => getWork(w)?.title).filter(Boolean).join('; ') : 'Sem obra de referência registrada na base: fundamentação a completar pela curadoria.'}
               </p>
-              <p className="mt-2">
-                <span className="label">Limites desta perspectiva</span>
-                {thinker.limits}
-              </p>
+              <div className="entry mt-4">
+                <p className="label mb-1">Limites desta perspectiva</p>
+                <p>{thinker.limits}</p>
+              </div>
             </article>
           ))}
         </div>

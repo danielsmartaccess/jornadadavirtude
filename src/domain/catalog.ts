@@ -14,6 +14,7 @@ import exercisesJson from '../data/exercises.json';
 import type {
   CouncilCase,
   Dimension,
+  DimensionRelationType,
   Exercise,
   ExerciseCategory,
   Thinker,
@@ -92,6 +93,11 @@ export function dimensionsOfVirtue(virtueId: string) {
       const dimension = getDimension(relation.dimensionId);
       return dimension ? [{ dimension, relation }] : [];
     });
+}
+
+/** Relações da virtude com as dimensões no formato da assinatura visual: ordem do anel (1 a 7) e tipo D1 a D3. */
+export function relacoesDeAnel(virtueId: string): { dimensionOrder: number; tipo: DimensionRelationType }[] {
+  return dimensionsOfVirtue(virtueId).map(({ dimension, relation }) => ({ dimensionOrder: dimension.order, tipo: relation.relationType }));
 }
 
 /** Pensadores e tradições ligados a uma virtude: os prioritários do Doc. 04 primeiro. */

@@ -63,11 +63,11 @@ const MOTIVOS: Record<MotivoFamilia, ReactNode> = {
 };
 
 /** Símbolo da família. A cor vem do token --fam-N, que muda no tema escuro. */
-export function SimboloFamilia({ familyId, size = 36 }: { familyId: string; size?: number }) {
+export function SimboloFamilia({ familyId, size = 36, cor }: { familyId: string; size?: number; cor?: string }) {
   const motivo = motivoDaFamilia(familyId);
   if (!motivo) return null;
   return (
-    <Base size={size} color={corDaFamilia(familyId)} dado="familia">
+    <Base size={size} color={cor ?? corDaFamilia(familyId)} dado="familia">
       {MOTIVOS[motivo]}
     </Base>
   );

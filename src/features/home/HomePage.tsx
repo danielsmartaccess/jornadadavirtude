@@ -2,7 +2,10 @@
 import { Link } from 'react-router-dom';
 import { useStoreMeta, useUserData } from '../../app/hooks';
 import { focusJourney } from '../../application/useCases';
+import { AssinaturaVirtude, SimboloFamilia } from '../../components/simbolos';
 import { Notice, Section, Tag } from '../../components/ui';
+import { getVirtue, relacoesDeAnel } from '../../domain/catalog';
+import { corDaFamilia } from '../../domain/identidade';
 import { currentStageName, journeyStats, nextAction, sortByDateDesc, STATUS_LABEL, workedStages } from '../../domain/journey';
 import { formatDate } from '../../shared/util';
 
@@ -43,6 +46,7 @@ export function HomePage() {
   const completed = data.journeys.filter((j) => j.status === 'COMPLETED');
   const lastCompleted = sortByDateDesc(completed.map((j) => ({ ...j, date: j.completedOn })))[0];
   const firstAccess = data.journeys.length === 0 && data.entries.length === 0;
+  const virtude = journey?.virtueId ? getVirtue(journey.virtueId) : undefined;
 
   return (
     <>
@@ -86,8 +90,18 @@ export function HomePage() {
               <Tag accent>{STATUS_LABEL[journey.status]}</Tag>
               {journey.startedOn && <span className="meta">início em {formatDate(journey.startedOn)}</span>}
             </div>
-            <p className="mt-2 font-display text-2xl text-accent">{journey.virtueName}</p>
-            <p className="meta">{journey.title}</p>
+            <div className="mt-3 flex flex-wrap items-center gap-4">
+              {virtude && (
+                <span className="flex items-center gap-3">
+                  <SimboloFamilia familyId={virtude.familyId} size={44} />
+                  <AssinaturaVirtude cor={corDaFamilia(virtude.familyId)} relacoes={relacoesDeAnel(virtude.id)} size={44} />
+                </span>
+              )}
+              <div>
+                <p className="font-display text-2xl text-accent">{journey.virtueName}</p>
+                <p className="meta">{journey.title}</p>
+              </div>
+            </div>
             <dl className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
               <div>
                 <dt className="label">Etapa atual</dt>

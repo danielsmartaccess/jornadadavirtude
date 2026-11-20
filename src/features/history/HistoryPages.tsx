@@ -38,6 +38,13 @@ function JourneyCard({ journey }: { journey: Journey }) {
   );
 }
 
+/** Marcador de um marco da jornada: cheio (concluída), acento (início e retomada) ou vazado (demais). O texto do marco sempre o descreve. */
+function marcoClass(kind: Journey['history'][number]['kind']): string {
+  if (kind === 'concluida') return 'bg-ink border-ink';
+  if (kind === 'iniciada' || kind === 'retomada') return 'bg-accent border-accent';
+  return 'bg-paper border-ink';
+}
+
 /** Marcador do percurso: a forma indica o estado e o texto do cartão o repete (nunca só cor). */
 function markerClass(status: Journey['status']): string {
   if (status === 'COMPLETED') return 'bg-ink border-ink';
@@ -292,15 +299,21 @@ export function JourneyDetailPage() {
             ))}
           </ul>
         </Accordion>
-        <Accordion title="Alterações da jornada">
-          <ul>
-            {journey.history.map((h, i) => (
-              <li key={i} className="meta">
-                {formatDate(h.date)} · {EVENT_LABEL[h.kind]} {h.detail}
-              </li>
-            ))}
-            {journey.history.length === 0 && <li className="hint">Jornada trazida da versão anterior: sem histórico de alterações.</li>}
-          </ul>
+        <Accordion title={`Marcos da jornada (${journey.history.length})`} open={journey.history.length > 0}>
+          {journey.history.length === 0 && <p className="hint">Jornada trazida da versão anterior: sem histórico de alterações.</p>}
+          {journey.history.length > 0 && (
+            <ol aria-label="Marcos da jornada" className="m-0 grid list-none gap-4 border-l-2 border-ink p-0 pl-6">
+              {journey.history.map((h, i) => (
+                <li key={i} className="relative">
+                  <span aria-hidden="true" className={`absolute -left-[31px] top-1.5 block size-3.5 border-2 ${marcoClass(h.kind)}`} />
+                  <p className="meta">{formatDate(h.date)}</p>
+                  <p>
+                    {EVENT_LABEL[h.kind]} {h.detail}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          )}
         </Accordion>
       </Section>
 

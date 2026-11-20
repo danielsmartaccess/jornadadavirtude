@@ -2,7 +2,10 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useRun, useUserData } from '../../app/hooks';
 import { discardDraft, focusJourney, pauseJourney, resumeJourney, setStageState, startJourney } from '../../application/useCases';
+import { AssinaturaVirtude, SimboloFamilia } from '../../components/simbolos';
 import { ConfirmButton, EmptyState, PageHeader, Section, Tag } from '../../components/ui';
+import { getVirtue, relacoesDeAnel } from '../../domain/catalog';
+import { corDaFamilia } from '../../domain/identidade';
 import {
   canDiscardJourney,
   canPauseJourney,
@@ -59,6 +62,7 @@ export function JourneyPage() {
   const lastEntry = sortByDateDesc(data.entries.filter((e) => e.journeyId === journey.id))[0];
   const lastReview = sortByDateDesc(data.reviews.filter((r) => r.journeyId === journey.id))[0];
   const suggestion = nextAction(journey);
+  const virtude = journey.virtueId ? getVirtue(journey.virtueId) : undefined;
   const id = journey.id;
 
   return (
@@ -66,6 +70,12 @@ export function JourneyPage() {
       <PageHeader crumbs={[{ label: 'Minha Jornada', to: '/jornada' }, { label: stage.name }]} title={journey.title}>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <Tag accent>{STATUS_LABEL[journey.status]}</Tag>
+          {virtude && (
+            <span className="flex items-center gap-2">
+              <SimboloFamilia familyId={virtude.familyId} size={28} />
+              <AssinaturaVirtude cor={corDaFamilia(virtude.familyId)} relacoes={relacoesDeAnel(virtude.id)} size={28} />
+            </span>
+          )}
           <span className="meta">
             virtude principal: <Link to={`/virtudes/${journey.virtueId ?? ''}`}>{journey.virtueName}</Link>
             {journey.startedOn && ` · início em ${formatDate(journey.startedOn)}`}

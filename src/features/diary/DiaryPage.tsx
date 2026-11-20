@@ -5,7 +5,7 @@ import { useRun, useToast, useUserData } from '../../app/hooks';
 import { activeJourney, deleteEntry, journeyById, saveEntry, stampEntry } from '../../application/useCases';
 import { Chips, ConfirmButton, EmptyState, PageHeader, Section, Tag, TextArea, TextInput } from '../../components/ui';
 import { SimboloFamilia } from '../../components/simbolos';
-import { getExercise, getVirtue } from '../../domain/catalog';
+import { dimensions, getExercise, getVirtue, relacoesDeAnel } from '../../domain/catalog';
 import { ACTIONS, ENTRY_TYPES, entryTypeLabel, FEELINGS, SITUATIONS, sortByDateDesc } from '../../domain/journey';
 import { buildDiaryExport } from '../../domain/report';
 import type { DiaryEntry, EntryType } from '../../domain/types';
@@ -105,6 +105,7 @@ export function DiaryPage() {
   const [query, setQuery] = useState('');
   const [type, setType] = useState('');
   const [virtue, setVirtue] = useState('');
+  const [dimension, setDimension] = useState('');
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const journeyFilter = params.get('jornada') ?? '';
@@ -119,6 +120,7 @@ export function DiaryPage() {
       (!journeyFilter || e.journeyId === journeyFilter) &&
       (!type || e.type === type) &&
       (!virtue || e.virtue === virtue) &&
+      (!dimension || relacoesDeAnel(e.virtueId ?? '').some((r) => String(r.dimensionOrder) === dimension && (r.tipo === 'D1' || r.tipo === 'D2'))) &&
       (!from || e.date >= from) &&
       (!to || e.date <= to) &&
       (!q || normalize([e.situation, e.context, e.thoughts, e.consequences, e.learning, e.note, ...e.feelings, ...e.actions].join(' ')).includes(q)),
@@ -177,6 +179,16 @@ export function DiaryPage() {
                     <option key={name} value={name}>{name}</option>
                   ))}
                 </select>
+              </div>
+              <div className="mb-4">
+                <label className="label mb-1.5" htmlFor="f-dimensao">Dimensão</label>
+                <select id="f-dimensao" className="field" value={dimension} onChange={(e) => setDimension(e.target.value)} aria-describedby="f-dimensao-nota">
+                  <option value="">Todas</option>
+                  {dimensions.map((d) => (
+                    <option key={d.id} value={String(d.order)}>{d.order}. {d.name}</option>
+                  ))}
+                </select>
+                <p id="f-dimensao-nota" className="hint mt-1 text-[0.95rem]">Registros cujas virtudes se ligam à dimensão pela relação primária ou secundária.</p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <TextInput label="De" type="date" value={from} onChange={setFrom} />
