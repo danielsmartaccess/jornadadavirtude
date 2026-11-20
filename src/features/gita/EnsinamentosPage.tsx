@@ -1,8 +1,10 @@
 /* Parte final da leitura da Bhagavad Gita: os ensinamentos de Krishna, em sete pontos.
- * Conteúdo transcrito de um quadro de estudo (src/data/gita-ensinamentos.json). Nada foi acrescentado. */
+ * Conteúdo transcrito de um quadro de estudo e guardado no Supabase (ensinamentos e ensinamentos_gunas,
+ * seed em supabase/seeds/ensinamentos-de-krishna.sql). Nada foi acrescentado ao quadro. */
 import { Link } from 'react-router-dom';
-import { PageHeader } from '../../components/ui';
-import { capitulos, ensinamentosDeKrishna, type GunaDoQuadro } from '../../domain/gita';
+import { Notice, PageHeader } from '../../components/ui';
+import { capitulos, NOTA_ENSINAMENTOS, TITULO_ENSINAMENTOS, type GunaDoQuadro, type ItemEnsinamento } from '../../domain/gita';
+import { useEnsinamentos } from './useEnsinamentos';
 
 /** Esquema dos três gunas, redesenhado a partir do quadro: S no alto, R e T nas pontas da base. */
 function EsquemaGunas() {
@@ -49,33 +51,58 @@ function Gunas({ gunas }: { gunas: GunaDoQuadro[] }) {
   );
 }
 
+function ListaDeEnsinamentos({ itens }: { itens: ItemEnsinamento[] }) {
+  return (
+    <ol aria-label="Os sete ensinamentos de Krishna" className="m-0 grid list-none gap-0 p-0">
+      {itens.map((item) => (
+        <li key={item.numero} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-t border-rule py-5 first:border-t-2 first:border-ink">
+          <span className="pt-1.5 font-mono text-[13px] tracking-[0.12em] text-accent" aria-hidden="true">
+            {String(item.numero).padStart(2, '0')}
+          </span>
+          <div className="min-w-0">
+            {item.linhas.map((linha) => (
+              <p key={linha} className="m-0 font-display text-[1.45rem] leading-snug">
+                {linha}
+              </p>
+            ))}
+            {item.gunas && <Gunas gunas={item.gunas} />}
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 export function EnsinamentosPage() {
   const ultimo = capitulos[capitulos.length - 1];
+  const { ensinamentos, tentarDeNovo } = useEnsinamentos();
   return (
     <>
       <PageHeader
-        crumbs={[{ label: 'Bhagavad Gita', to: '/gita' }, { label: ensinamentosDeKrishna.titulo }]}
-        title={ensinamentosDeKrishna.titulo}
-        lede="Parte final da leitura: os sete ensinamentos."
+        crumbs={[{ label: 'Bhagavad Gita', to: '/gita' }, { label: TITULO_ENSINAMENTOS }]}
+        title={TITULO_ENSINAMENTOS}
+        lede="Parte final da leitura: os ensinamentos de Krishna."
       />
-      <ol aria-label="Os sete ensinamentos de Krishna" className="m-0 grid list-none gap-0 p-0">
-        {ensinamentosDeKrishna.itens.map((item) => (
-          <li key={item.numero} className="grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-t border-rule py-5 first:border-t-2 first:border-ink">
-            <span className="pt-1.5 font-mono text-[13px] tracking-[0.12em] text-accent" aria-hidden="true">
-              {String(item.numero).padStart(2, '0')}
-            </span>
-            <div className="min-w-0">
-              {item.linhas.map((linha) => (
-                <p key={linha} className="m-0 font-display text-[1.45rem] leading-snug">
-                  {linha}
-                </p>
-              ))}
-              {item.gunas && <Gunas gunas={item.gunas} />}
-            </div>
-          </li>
-        ))}
-      </ol>
-      <p className="meta mt-4">{ensinamentosDeKrishna.fonte}</p>
+      {ensinamentos.estado === 'carregando' && (
+        <p className="hint" role="status">
+          Carregando…
+        </p>
+      )}
+      {ensinamentos.estado === 'erro' && (
+        <Notice title="Não foi possível carregar os ensinamentos agora">
+          <p>{ensinamentos.mensagem}</p>
+          <button type="button" className="btn btn-ghost btn-sm mt-2" onClick={tentarDeNovo}>
+            Tentar de novo
+          </button>
+        </Notice>
+      )}
+      {ensinamentos.estado === 'pronto' && ensinamentos.itens.length === 0 && <p className="hint">Conteúdo em preparação.</p>}
+      {ensinamentos.estado === 'pronto' && ensinamentos.itens.length > 0 && (
+        <>
+          <ListaDeEnsinamentos itens={ensinamentos.itens} />
+          <p className="meta mt-4">{NOTA_ENSINAMENTOS}</p>
+        </>
+      )}
       <nav aria-label="Navegação entre capítulos" className="no-print mt-8 flex flex-wrap justify-between gap-3">
         <Link to={`/gita/${ultimo.numero}`} className="btn btn-ghost btn-sm">
           ← Capítulo {ultimo.numero}

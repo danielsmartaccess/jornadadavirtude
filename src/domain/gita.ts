@@ -2,7 +2,6 @@
  * Espelha as tabelas capitulos e etapas do banco (supabase/seed.sql). O texto de cada
  * etapa entra em uma fase posterior; aqui só existe a estrutura. */
 import capitulosJson from '../data/gita-capitulos.json';
-import ensinamentosJson from '../data/gita-ensinamentos.json';
 
 export interface Capitulo {
   numero: number;
@@ -28,12 +27,9 @@ export interface ItemEnsinamento {
   linhas: string[];
   gunas?: GunaDoQuadro[];
 }
-export interface EnsinamentosDeKrishna {
-  titulo: string;
-  fonte: string;
-  itens: ItemEnsinamento[];
-}
-export const ensinamentosDeKrishna = ensinamentosJson as EnsinamentosDeKrishna;
+/** Os pontos e os gunas vêm do banco (tabelas ensinamentos e ensinamentos_gunas); o título e a nota são do app. */
+export const TITULO_ENSINAMENTOS = 'Ensinamentos de Krishna';
+export const NOTA_ENSINAMENTOS = 'Transcrição de um quadro de estudo. O esquema dos três gunas foi redesenhado a partir do quadro.';
 /** Segmento da rota da parte final: /gita/ensinamentos. */
 export const ROTA_ENSINAMENTOS = 'ensinamentos';
 
