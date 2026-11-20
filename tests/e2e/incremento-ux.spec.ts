@@ -37,12 +37,20 @@ test('jornada e histórico: percurso das etapas com estado e linha do tempo das 
 });
 
 test('quiz da Gita: o aviso lista só as perguntas que faltam', async ({ page }) => {
+  // API simulada (como nos demais testes da Gita): o teste não depende da rede nem do banco real.
+  const opcoes = ['A', 'B', 'C'].map((chave) => ({ chave, texto: `Opção ${chave}` }));
+  const quiz = [1, 2, 3].map((ordem) => ({ ordem, enunciado: `Pergunta ${ordem}`, conta_no_resultado: true, opcoes }));
+  await page.route('**/rest/v1/capitulos*', (rota) =>
+    rota.fulfill({
+      json: [{ numero: 1, etapas: [{ id: 105, ordem: 5, nome: 'Reflexão pessoal interativa', conteudo_md: '## Reconhecer\n\nIntrodução.\n\n### Reflexão aberta\n\nPergunta aberta?', perguntas: quiz, leituras: opcoes.map((o) => ({ chave: o.chave, texto: `Leitura ${o.chave}` })) }] }],
+    }),
+  );
   await page.goto('/gita/1');
-  const aviso = page.getByText(/Responda às \d+ perguntas|Faltam as perguntas/).first();
-  await expect(aviso).toBeVisible();
-  await page.locator('input[type="radio"]').first().check();
-  await expect(page.getByText(/^Faltam as perguntas [\d, ]+ para ver a leitura\.$/)).toBeVisible();
-  await expect(page.getByText(/^Faltam as perguntas 1[,\s]/)).toHaveCount(0);
+  await expect(page.getByText('Responda às 3 perguntas para ver a leitura.')).toBeVisible();
+  await page.getByRole('radio', { name: 'Opção A' }).first().check(); // responde só a pergunta 1
+  await expect(page.getByText('Faltam as perguntas 2, 3 para ver a leitura.')).toBeVisible();
+  await page.getByRole('radio', { name: 'Opção B' }).nth(1).check(); // pergunta 2
+  await expect(page.getByText('Faltam as perguntas 3 para ver a leitura.')).toBeVisible();
 });
 
 test('identidade: cada família, dimensão e integrante do Conselho aparece com seu símbolo', async ({ page }) => {
