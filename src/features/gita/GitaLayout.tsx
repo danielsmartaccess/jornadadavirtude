@@ -4,13 +4,14 @@
  * texto ganha largura (a página também é mais larga nesta área; ver app/Layout.tsx). */
 import { Link, Outlet } from 'react-router-dom';
 import { EmptyState } from '../../components/ui';
+import { ROTA_ENSINAMENTOS } from '../../domain/gita';
 import { ChapterSidebar } from './ChapterSidebar';
 import { useMenuCapitulos } from './useMenuCapitulos';
 
 export function GitaIntro() {
   return (
     <EmptyState title="Leitura da Bhagavad Gita">
-      Uma jornada em 18 capítulos, cada um com seis etapas de estudo. Escolha um capítulo no menu para começar, por exemplo o <Link to="/gita/1">capítulo 1</Link>.
+      Uma jornada em 18 capítulos, cada um com seis etapas de estudo. Escolha um capítulo no menu para começar, por exemplo o <Link to="/gita/1">capítulo 1</Link>. Ao final, a parte dos <Link to={`/gita/${ROTA_ENSINAMENTOS}`}>Ensinamentos de Krishna</Link>.
     </EmptyState>
   );
 }

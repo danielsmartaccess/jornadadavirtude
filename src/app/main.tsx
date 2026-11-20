@@ -22,6 +22,7 @@ const JourneyDetailPage = pagina(() => import('../features/history/HistoryPages'
 const ChapterPage = pagina(() => import('../features/gita/ChapterPage'), 'ChapterPage');
 const GitaIntro = pagina(() => import('../features/gita/GitaLayout'), 'GitaIntro');
 const GitaLayout = pagina(() => import('../features/gita/GitaLayout'), 'GitaLayout');
+const EnsinamentosPage = pagina(() => import('../features/gita/EnsinamentosPage'), 'EnsinamentosPage');
 const JourneyPage = pagina(() => import('../features/journey/JourneyPage'), 'JourneyPage');
 const StartJourneyPage = pagina(() => import('../features/journey/StartJourneyPage'), 'StartJourneyPage');
 const AboutPage = pagina(() => import('../features/settings/SettingsPages'), 'AboutPage');
@@ -59,6 +60,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="historico/:id" element={<JourneyDetailPage />} />
             <Route path="gita" element={<GitaLayout />}>
               <Route index element={<GitaIntro />} />
+              <Route path="ensinamentos" element={<EnsinamentosPage />} />
               <Route path=":numero" element={<ChapterPage />} />
             </Route>
             <Route path="configuracoes" element={<SettingsPage />} />

@@ -2,6 +2,7 @@
  * Espelha as tabelas capitulos e etapas do banco (supabase/seed.sql). O texto de cada
  * etapa entra em uma fase posterior; aqui só existe a estrutura. */
 import capitulosJson from '../data/gita-capitulos.json';
+import ensinamentosJson from '../data/gita-ensinamentos.json';
 
 export interface Capitulo {
   numero: number;
@@ -15,6 +16,26 @@ export interface Etapa {
 }
 
 export const capitulos = capitulosJson as Capitulo[];
+
+/** Parte final da leitura: os sete ensinamentos de Krishna, transcritos de um quadro de estudo. */
+export interface GunaDoQuadro {
+  sigla: string;
+  nome: string;
+  sentido: string;
+}
+export interface ItemEnsinamento {
+  numero: number;
+  linhas: string[];
+  gunas?: GunaDoQuadro[];
+}
+export interface EnsinamentosDeKrishna {
+  titulo: string;
+  fonte: string;
+  itens: ItemEnsinamento[];
+}
+export const ensinamentosDeKrishna = ensinamentosJson as EnsinamentosDeKrishna;
+/** Segmento da rota da parte final: /gita/ensinamentos. */
+export const ROTA_ENSINAMENTOS = 'ensinamentos';
 
 /** As seis etapas de estudo, iguais em todos os capítulos. */
 export const etapas: Etapa[] = [

@@ -1,7 +1,7 @@
 /* Área principal do módulo Gita: o capítulo escolhido e suas seis etapas. */
 import { Link, useParams } from 'react-router-dom';
 import { EmptyState, Notice, PageHeader, Section } from '../../components/ui';
-import { capituloAnterior, capituloSeguinte, etapas, getCapitulo, parseNumeroCapitulo, splitTitulo } from '../../domain/gita';
+import { capituloAnterior, capituloSeguinte, etapas, getCapitulo, parseNumeroCapitulo, ROTA_ENSINAMENTOS, splitTitulo } from '../../domain/gita';
 import { StageCard } from './StageCard';
 import { useConteudoCapitulo } from './useConteudoCapitulo';
 
@@ -64,9 +64,13 @@ function Capitulo({ numero, titulo }: { numero: number; titulo: string }) {
         ) : (
           <span />
         )}
-        {seguinte && (
+        {seguinte ? (
           <Link to={`/gita/${seguinte.numero}`} className="btn btn-ghost btn-sm">
             Capítulo {seguinte.numero} →
+          </Link>
+        ) : (
+          <Link to={`/gita/${ROTA_ENSINAMENTOS}`} className="btn btn-ghost btn-sm">
+            Ensinamentos de Krishna →
           </Link>
         )}
       </nav>
