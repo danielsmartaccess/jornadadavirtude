@@ -15,6 +15,15 @@
   --muted: #5c5650;
   --accent: #aa5834;
   --panel: #e6e0d4;
+  /* Uma cor por família de virtudes (proposta de direção de arte, opção A). Sempre com forma e texto junto. */
+  --fam-1: #4b2c6e;
+  --fam-2: #2f4f6b;
+  --fam-3: #8c3a2b;
+  --fam-4: #4f6a2e;
+  --fam-5: #8a3b64;
+  --fam-6: #6a4aa0;
+  --fam-7: #7a5612;
+  --fam-8: #273c7c;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -24,6 +33,14 @@
     --muted: #a39b8f;
     --accent: #d88a63;
     --panel: #221f1c;
+    --fam-1: #b59ad8;
+    --fam-2: #9dbcd6;
+    --fam-3: #e09a86;
+    --fam-4: #b3cc8a;
+    --fam-5: #e0a3c2;
+    --fam-6: #bfa6ec;
+    --fam-7: #e0bd6a;
+    --fam-8: #a7b8ee;
     color-scheme: dark;
   }
 }
@@ -33,6 +50,14 @@
   --muted: #a39b8f;
   --accent: #d88a63;
   --panel: #221f1c;
+  --fam-1: #b59ad8;
+  --fam-2: #9dbcd6;
+  --fam-3: #e09a86;
+  --fam-4: #b3cc8a;
+  --fam-5: #e0a3c2;
+  --fam-6: #bfa6ec;
+  --fam-7: #e0bd6a;
+  --fam-8: #a7b8ee;
   color-scheme: dark;
 }
 

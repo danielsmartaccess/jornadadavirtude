@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useRun, useUserData } from '../../app/hooks';
 import { activeJourney, deleteSession, journeyById, saveEntry, saveSession } from '../../application/useCases';
+import { EmblemaTradicaoSimbolo } from '../../components/simbolos';
 import { Accordion, AutoSaveArea, ConfirmButton, EmptyState, Notice, PageHeader, Section, StatusTag, Tag, TextArea } from '../../components/ui';
 import {
   casesOfThinker,
@@ -235,7 +236,10 @@ export function SessionPage() {
                 <h3>
                   <Link to={`/conselho/pensadores/${thinker.id}`}>{thinker.name}</Link>
                 </h3>
-                <span className="meta">{[thinker.tradition, thinker.period].filter(Boolean).join(' · ')}</span>
+                <span className="flex items-center gap-2">
+                  <EmblemaTradicaoSimbolo tradicao={thinker.tradition} size={28} />
+                  <span className="meta">{[thinker.tradition, thinker.period].filter(Boolean).join(' · ')}</span>
+                </span>
               </div>
               <p className="mt-2">
                 <span className="label">Perspectiva</span>
@@ -333,8 +337,13 @@ export function ThinkersPage() {
         <div className="grid gap-3 sm:grid-cols-2">
           {councilMembers.map((t) => (
             <Link key={t.id} to={`/conselho/pensadores/${t.id}`} className="card">
-              <h3>{t.name}</h3>
-              <p className="meta">{[t.tradition, t.period].filter(Boolean).join(' · ')}</p>
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h3>{t.name}</h3>
+                  <p className="meta">{[t.tradition, t.period].filter(Boolean).join(' · ')}</p>
+                </div>
+                <EmblemaTradicaoSimbolo tradicao={t.tradition} size={40} />
+              </div>
               <p className="mt-1">{t.field}</p>
             </Link>
           ))}
@@ -359,6 +368,9 @@ export function ThinkerPage() {
     <>
       <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: thinker.name }]} title={thinker.name} lede={thinker.field}>
         <p className="meta mt-2">{[thinker.tradition, thinker.period].filter(Boolean).join(' · ')}</p>
+        <div className="mt-4 text-accent">
+          <EmblemaTradicaoSimbolo tradicao={thinker.tradition} size={56} />
+        </div>
         <div className="mt-2">
           <StatusTag status={thinker.status} />
         </div>

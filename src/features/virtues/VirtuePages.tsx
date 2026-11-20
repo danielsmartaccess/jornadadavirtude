@@ -1,7 +1,9 @@
 /* Tela 03 — Catálogo de virtudes e dimensões (Documento 06, seção 7; RF-023 a RF-032 e RF-042 a RF-047). */
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { AneisDimensao, SimboloFamilia } from '../../components/simbolos';
 import { Accordion, BulletList, EmptyState, Notice, PageHeader, Section, StatusTag, Tag } from '../../components/ui';
+import { corDaFamilia } from '../../domain/identidade';
 import {
   categoryLabel,
   dimensions,
@@ -114,12 +116,21 @@ export function VirtuesPage() {
       {families
         .filter((f) => filtered.some((v) => v.familyId === f.id))
         .map((f) => (
-          <Section key={f.id} title={f.name} aside={<span className="meta">{f.field}</span>}>
+          <Section
+            key={f.id}
+            title={f.name}
+            aside={
+              <span className="flex items-center gap-2">
+                <SimboloFamilia familyId={f.id} size={28} />
+                <span className="meta">{f.field}</span>
+              </span>
+            }
+          >
             <div className="grid gap-3 sm:grid-cols-2">
               {filtered
                 .filter((v) => v.familyId === f.id)
                 .map((v) => (
-                  <Link key={v.id} to={`/virtudes/${v.id}`} className="card">
+                  <Link key={v.id} to={`/virtudes/${v.id}`} className="card" style={{ borderTop: `4px solid ${corDaFamilia(v.familyId)}` }}>
                     <h3 className="uppercase tracking-wide">{v.name}</h3>
                     <p>{v.definition}</p>
                     <p className="meta mt-2">Conhecer esta virtude →</p>
@@ -143,6 +154,9 @@ export function VirtuePage() {
   return (
     <>
       <PageHeader crumbs={[{ label: 'Virtudes', to: '/virtudes' }, { label: family?.name ?? '' }, { label: virtue.name }]} title={virtue.name} lede={virtue.definition}>
+        <div className="mt-4" style={{ color: corDaFamilia(virtue.familyId) }}>
+          <SimboloFamilia familyId={virtue.familyId} size={64} />
+        </div>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link to={`/jornada/nova?virtude=${virtue.id}`} className="btn">
             Iniciar uma jornada com esta virtude
@@ -268,11 +282,11 @@ export function DimensionsPage() {
             {dimensions
               .filter((d) => d.group === group.id)
               .map((d) => (
-                <Link key={d.id} to={`/dimensoes/${d.id}`} className="card grid grid-cols-[40px_1fr] gap-3">
-                  <span className="pt-1 font-mono text-sm text-accent">{String(d.order).padStart(2, '0')}</span>
+                <Link key={d.id} to={`/dimensoes/${d.id}`} className="card grid grid-cols-[48px_1fr] gap-3">
+                  <AneisDimensao order={d.order} size={44} />
                   <div>
                     <h3>{d.name}</h3>
-                    <p className="meta">{d.traditionalName} · {d.field}</p>
+                    <p className="meta">Dimensão {d.order} de 7 · {d.traditionalName} · {d.field}</p>
                     <p className="mt-1 italic">{d.guidingQuestion}</p>
                   </div>
                 </Link>
@@ -310,6 +324,9 @@ export function DimensionPage() {
         title={dimension.name}
         lede={dimension.guidingQuestion}
       >
+        <div className="mt-4 text-accent">
+          <AneisDimensao order={dimension.order} size={88} />
+        </div>
         <p className="meta mt-2">
           Dimensão {dimension.order} de 7 · {dimension.group === 'personalidade' ? 'Personalidade' : 'Individualidade superior'} · nome tradicional associado: {dimension.traditionalName}
         </p>

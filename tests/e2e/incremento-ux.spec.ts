@@ -44,3 +44,12 @@ test('quiz da Gita: o aviso lista só as perguntas que faltam', async ({ page })
   await expect(page.getByText(/^Faltam as perguntas [\d, ]+ para ver a leitura\.$/)).toBeVisible();
   await expect(page.getByText(/^Faltam as perguntas 1[,\s]/)).toHaveCount(0);
 });
+
+test('identidade: cada família, dimensão e integrante do Conselho aparece com seu símbolo', async ({ page }) => {
+  await page.goto('/virtudes');
+  await expect(page.locator('svg[data-simbolo="familia"]')).toHaveCount(8);
+  await page.goto('/dimensoes');
+  await expect(page.locator('svg[data-simbolo="dimensao"]')).toHaveCount(7);
+  await page.goto('/conselho/pensadores');
+  await expect(page.locator('svg[data-simbolo="tradicao"]')).toHaveCount(27);
+});
