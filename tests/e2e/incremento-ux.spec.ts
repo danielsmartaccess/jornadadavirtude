@@ -126,10 +126,10 @@ test('catálogo: os atalhos de família filtram junto com a lista suspensa e fic
 
 test('virtude em foco: Início e Minha Jornada mostram o símbolo da família e a assinatura', async ({ page }) => {
   await criarJornadaDePaciencia(page);
-  await expect(page.locator('main svg[data-simbolo="familia"]')).toHaveCount(1);
+  await expect(page.locator('main svg[data-simbolo="emblema"]')).toHaveCount(1);
   await expect(page.locator('main svg[data-simbolo="assinatura"]')).toHaveCount(1);
   await page.goto('/');
-  await expect(page.locator('main svg[data-simbolo="familia"]')).toHaveCount(1);
+  await expect(page.locator('main svg[data-simbolo="emblema"]')).toHaveCount(1);
   await expect(page.locator('main svg[data-simbolo="assinatura"]')).toHaveCount(1);
 });
 
@@ -175,4 +175,17 @@ test('Conselho: os limites de cada perspectiva ganham destaque próprio', async 
   const limites = page.locator('article .entry', { hasText: 'Limites desta perspectiva' });
   await expect(limites.first()).toBeVisible(); // espera a sessão renderizar antes de contar
   await expect.poll(() => limites.count()).toBeGreaterThanOrEqual(2);
+});
+
+test('emblemas: cada uma das 48 virtudes tem o seu desenho, e a página da virtude o mostra em destaque', async ({ page }) => {
+  await page.goto('/virtudes');
+  await expect(page.locator('svg[data-simbolo="emblema"]')).toHaveCount(48);
+  // Cada emblema desenha algo (ao menos um traço) e nenhum é igual a outro.
+  const desenhos = await page.locator('svg[data-simbolo="emblema"]').evaluateAll((svgs) => svgs.map((s) => s.innerHTML));
+  expect(desenhos.every((d) => d.includes('<path') || d.includes('<circle'))).toBe(true);
+  expect(new Set(desenhos).size).toBe(48);
+  await page.goto('/virtudes/V07');
+  const emblema = page.locator('main svg[data-simbolo="emblema"]');
+  await expect(emblema).toHaveCount(1);
+  await expect(emblema).toHaveAttribute('width', '104');
 });

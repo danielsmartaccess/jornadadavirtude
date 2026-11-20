@@ -2,7 +2,7 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useRun, useUserData } from '../../app/hooks';
 import { discardDraft, focusJourney, pauseJourney, resumeJourney, setStageState, startJourney } from '../../application/useCases';
-import { AssinaturaVirtude, SimboloFamilia } from '../../components/simbolos';
+import { AssinaturaVirtude, EmblemaVirtude } from '../../components/simbolos';
 import { ConfirmButton, EmptyState, PageHeader, Section, Tag } from '../../components/ui';
 import { getVirtue, relacoesDeAnel } from '../../domain/catalog';
 import { corDaFamilia } from '../../domain/identidade';
@@ -72,7 +72,7 @@ export function JourneyPage() {
           <Tag accent>{STATUS_LABEL[journey.status]}</Tag>
           {virtude && (
             <span className="flex items-center gap-2">
-              <SimboloFamilia familyId={virtude.familyId} size={28} />
+              <EmblemaVirtude virtueId={virtude.id} cor={corDaFamilia(virtude.familyId)} size={34} />
               <AssinaturaVirtude cor={corDaFamilia(virtude.familyId)} relacoes={relacoesDeAnel(virtude.id)} size={28} />
             </span>
           )}

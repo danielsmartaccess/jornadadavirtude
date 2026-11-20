@@ -2,7 +2,7 @@
  * da virtude, da dimensão ou do pensador já vem como texto ao lado. Traços em currentColor. */
 import type { ReactNode } from 'react';
 import { atraso } from './movimento';
-import { corDaFamilia, emblemaDaTradicao, estadosDosAneis, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type EstadoAnel, type LeituraAnel, type MotivoFamilia, type TipoRelacaoDimensao } from '../domain/identidade';
+import { corDaFamilia, emblemaDaTradicao, emblemaDaVirtude, estadosDosAneis, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type EstadoAnel, type LeituraAnel, type MotivoFamilia, type TipoRelacaoDimensao } from '../domain/identidade';
 
 function Base({ size, color, dado, children }: { size: number; color?: string; dado: string; children: ReactNode }) {
   return (
@@ -170,6 +170,23 @@ export function ComparacaoAneis({ leitura, size = 64 }: { leitura: LeituraAnel[]
         const cfg = ESTILO_LEITURA[estado];
         return <circle key={i} cx="24" cy="24" r={22 - 3 * i} strokeWidth={cfg.width} strokeDasharray={cfg.dash} opacity={cfg.opacity} />;
       })}
+    </Base>
+  );
+}
+
+/** Emblema próprio da virtude: figura linear ligada ao sentido da definição, na cor da família. Decorativo (aria-hidden): o nome já está no texto. */
+export function EmblemaVirtude({ virtueId, size = 56, cor }: { virtueId: string; size?: number; cor?: string }) {
+  const emblema = emblemaDaVirtude(virtueId);
+  if (!emblema) return null;
+  return (
+    <Base size={size} color={cor} dado="emblema">
+      {emblema.el.map((e, i) =>
+        e[0] === 'p' ? (
+          <path key={i} d={e[1]} fill={e[2] ? 'currentColor' : 'none'} strokeDasharray={e[3] || undefined} />
+        ) : (
+          <circle key={i} cx={e[1]} cy={e[2]} r={e[3]} fill={e[4] ? 'currentColor' : 'none'} strokeDasharray={e[5] || undefined} />
+        ),
+      )}
     </Base>
   );
 }

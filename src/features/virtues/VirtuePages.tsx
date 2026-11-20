@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { atraso } from '../../components/movimento';
-import { AneisDimensao, AssinaturaVirtude, SimboloFamilia } from '../../components/simbolos';
+import { AneisDimensao, AssinaturaVirtude, EmblemaVirtude, SimboloFamilia } from '../../components/simbolos';
 import { Accordion, BulletList, EmptyState, Notice, PageHeader, Section, StatusTag, Tag } from '../../components/ui';
 import { corDaFamilia } from '../../domain/identidade';
 import {
@@ -141,8 +141,9 @@ export function VirtuesPage() {
                 .filter((v) => v.familyId === f.id)
                 .map((v, i) => (
                   <Link key={v.id} to={`/virtudes/${v.id}`} className="card revelar" style={{ borderTop: `4px solid ${corDaFamilia(v.familyId)}`, ...atraso(i) }}>
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="uppercase tracking-wide">{v.name}</h3>
+                    <div className="flex items-start gap-3">
+                      <EmblemaVirtude virtueId={v.id} cor={corDaFamilia(v.familyId)} size={48} />
+                      <h3 className="min-w-0 flex-1 uppercase tracking-wide">{v.name}</h3>
                       <AssinaturaVirtude cor={corDaFamilia(v.familyId)} relacoes={relacoesDeAnel(v.id)} size={40} />
                     </div>
                     <p>{v.definition}</p>
@@ -168,7 +169,8 @@ export function VirtuePage() {
     <>
       <PageHeader crumbs={[{ label: 'Virtudes', to: '/virtudes' }, { label: family?.name ?? '' }, { label: virtue.name }]} title={virtue.name} lede={virtue.definition}>
         <div className="mt-4 flex flex-wrap items-end gap-5">
-          <SimboloFamilia familyId={virtue.familyId} size={64} />
+          <EmblemaVirtude virtueId={virtue.id} cor={corDaFamilia(virtue.familyId)} size={104} />
+          <SimboloFamilia familyId={virtue.familyId} size={48} />
           <AssinaturaVirtude cor={corDaFamilia(virtue.familyId)} relacoes={relacoesDeAnel(virtue.id)} size={64} animado />
           <p className="meta max-w-[30ch]">Os anéis são as sete dimensões. A espessura mostra o tipo de relação: primária, secundária, contextual ou sem relação registrada.</p>
         </div>

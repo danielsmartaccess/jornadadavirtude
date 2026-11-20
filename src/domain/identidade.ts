@@ -3,6 +3,8 @@
  * provisórios, aguardando validação da direção de arte (ver docs de auditoria); nada aqui afirma
  * relações filosóficas: só associa forma e cor a dados que já existem na base. */
 
+import emblemasJson from '../data/virtue-emblems.json';
+
 /** Motivos geométricos das famílias, na ordem do catálogo (F01 a F08). */
 export const MOTIVO_FAMILIA = ['raios', 'meia-lua', 'triangulo', 'balanca', 'duplo-circulo', 'alvo', 'seta', 'estrela'] as const;
 export type MotivoFamilia = (typeof MOTIVO_FAMILIA)[number];
@@ -80,3 +82,43 @@ export function leituraDoConjunto(conjuntos: EstadoAnel[][]): LeituraAnel[] {
     return tocam === conjuntos.length ? 'comum' : 'parcial';
   });
 }
+
+/* ------------------------------------------------------------------------- */
+/* Emblema próprio de cada virtude (src/data/virtue-emblems.json)            */
+/* ------------------------------------------------------------------------- */
+
+/** Elementos de um emblema, em viewBox 48 x 48: ["p", d, preenchido?, tracejado?] ou ["c", cx, cy, r, preenchido?, tracejado?]. */
+export type ElementoEmblema = ['p', string, (0 | 1)?, string?] | ['c', number, number, number, (0 | 1)?, string?];
+
+export interface EmblemaDaVirtude {
+  /** Figura escolhida, em palavras (documentação para curadoria; não aparece na interface). */
+  figura: string;
+  el: ElementoEmblema[];
+}
+
+const DADOS_DE_CAMINHO = /^[MmLlHhVvCcSsQqTtAaZz0-9 .,-]{1,400}$/;
+const TRACEJADO = /^[0-9. ]{1,20}$/;
+const numeroNoQuadro = (n: unknown): n is number => typeof n === 'number' && Number.isFinite(n) && n >= -2 && n <= 50;
+const marca = (v: unknown) => v === undefined || v === 0 || v === 1;
+const tracejado = (v: unknown) => v === undefined || v === '' || (typeof v === 'string' && TRACEJADO.test(v));
+
+/** Só desenha o que é geometria segura: comandos e números de caminho SVG, círculos dentro do quadro. Nunca marcação. */
+export function elementoDeEmblemaValido(e: unknown): e is ElementoEmblema {
+  if (!Array.isArray(e)) return false;
+  if (e[0] === 'p') return typeof e[1] === 'string' && DADOS_DE_CAMINHO.test(e[1]) && marca(e[2]) && tracejado(e[3]) && e.length <= 4;
+  if (e[0] === 'c') return numeroNoQuadro(e[1]) && numeroNoQuadro(e[2]) && typeof e[3] === 'number' && e[3] > 0 && e[3] <= 24 && marca(e[4]) && tracejado(e[5]) && e.length <= 6;
+  return false;
+}
+
+const emblemas = emblemasJson as unknown as Record<string, EmblemaDaVirtude>;
+
+/** Emblema da virtude, só com os elementos válidos. Null quando a virtude não tem emblema. */
+export function emblemaDaVirtude(virtueId: string): EmblemaDaVirtude | null {
+  const e = emblemas[virtueId];
+  if (!e || !Array.isArray(e.el)) return null;
+  const el = e.el.filter(elementoDeEmblemaValido);
+  return el.length > 0 ? { figura: e.figura, el } : null;
+}
+
+/** Ids com emblema na base (para conferir que toda virtude tem o seu). */
+export const virtudesComEmblema = Object.keys(emblemas);

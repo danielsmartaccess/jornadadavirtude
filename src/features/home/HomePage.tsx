@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { useStoreMeta, useUserData } from '../../app/hooks';
 import { focusJourney } from '../../application/useCases';
-import { AssinaturaVirtude, SimboloFamilia } from '../../components/simbolos';
+import { AssinaturaVirtude, EmblemaVirtude } from '../../components/simbolos';
 import { Notice, Section, Tag } from '../../components/ui';
 import { getVirtue, relacoesDeAnel } from '../../domain/catalog';
 import { corDaFamilia } from '../../domain/identidade';
@@ -93,7 +93,7 @@ export function HomePage() {
             <div className="mt-3 flex flex-wrap items-center gap-4">
               {virtude && (
                 <span className="flex items-center gap-3">
-                  <SimboloFamilia familyId={virtude.familyId} size={44} />
+                  <EmblemaVirtude virtueId={virtude.id} cor={corDaFamilia(virtude.familyId)} size={52} />
                   <AssinaturaVirtude cor={corDaFamilia(virtude.familyId)} relacoes={relacoesDeAnel(virtude.id)} size={44} />
                 </span>
               )}
