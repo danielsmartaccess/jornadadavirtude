@@ -5,6 +5,9 @@ import { defineConfig } from '@playwright/test';
 export default defineConfig({
   testDir: 'tests/e2e',
   timeout: 45_000,
+  // As telas são carregadas por rota (chunks sob demanda): em máquina lenta ou sob contenção o primeiro
+  // carregamento passa dos 5 s padrão. A asserção retorna assim que a condição vale, então testes rápidos não ficam mais lentos.
+  expect: { timeout: process.env.CI ? 15_000 : 10_000 },
   fullyParallel: false,
   reporter: [['list']],
   use: {

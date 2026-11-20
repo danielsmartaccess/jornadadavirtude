@@ -173,5 +173,6 @@ test('Conselho: os limites de cada perspectiva ganham destaque próprio', async 
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   await expect(page).toHaveURL(/conselho\/sessoes\//);
   const limites = page.locator('article .entry', { hasText: 'Limites desta perspectiva' });
-  expect(await limites.count()).toBeGreaterThanOrEqual(2);
+  await expect(limites.first()).toBeVisible(); // espera a sessão renderizar antes de contar
+  await expect.poll(() => limites.count()).toBeGreaterThanOrEqual(2);
 });
