@@ -4,7 +4,8 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useRun, useToast, useUserData } from '../../app/hooks';
 import { activeJourney, deleteEntry, journeyById, saveEntry, stampEntry } from '../../application/useCases';
 import { Chips, ConfirmButton, EmptyState, PageHeader, Section, Tag, TextArea, TextInput } from '../../components/ui';
-import { getExercise } from '../../domain/catalog';
+import { SimboloFamilia } from '../../components/simbolos';
+import { getExercise, getVirtue } from '../../domain/catalog';
 import { ACTIONS, ENTRY_TYPES, entryTypeLabel, FEELINGS, SITUATIONS, sortByDateDesc } from '../../domain/journey';
 import { buildDiaryExport } from '../../domain/report';
 import type { DiaryEntry, EntryType } from '../../domain/types';
@@ -197,7 +198,13 @@ export function DiaryPage() {
               <li key={e.id} className="entry">
                 <p className="meta">
                   {formatDate(e.date)} · {entryTypeLabel(e.type)}
-                  {e.virtue && ` · ${e.virtue}`}
+                  {e.virtue && (
+                    <span className="inline-flex items-center gap-1.5">
+                      {' · '}
+                      {e.virtueId && getVirtue(e.virtueId) && <SimboloFamilia familyId={getVirtue(e.virtueId)!.familyId} size={16} />}
+                      {e.virtue}
+                    </span>
+                  )}
                   {e.stage && ` · etapa ${e.stage}`}
                 </p>
                 <p className="mt-1 whitespace-pre-wrap font-display text-[1.25rem] leading-snug">{e.situation}</p>

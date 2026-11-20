@@ -71,6 +71,10 @@
   --font-display: 'Gloock', Georgia, serif;
   --font-body: 'Crimson Pro', Georgia, serif;
   --font-mono: 'Geist Mono', ui-monospace, Menlo, monospace;
+  /* Movimento: poucos valores, sempre usados por estes tokens. Zerados por prefers-reduced-motion. */
+  --duration-quick: 160ms;
+  --duration-base: 240ms;
+  --ease-standard: cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
 @layer base {
@@ -195,6 +199,7 @@
     border-width: 2px;
   }
   .chip {
+    transition: background-color var(--duration-quick) var(--ease-standard), color var(--duration-quick) var(--ease-standard);
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -241,6 +246,7 @@
     color: var(--accent);
   }
   .card {
+    transition: border-color var(--duration-base) var(--ease-standard);
     display: block;
     padding: 16px;
     border: 1px solid var(--color-rule);

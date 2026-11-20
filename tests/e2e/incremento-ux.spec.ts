@@ -53,3 +53,17 @@ test('identidade: cada família, dimensão e integrante do Conselho aparece com 
   await page.goto('/conselho/pensadores');
   await expect(page.locator('svg[data-simbolo="tradicao"]')).toHaveCount(27);
 });
+
+test('diário: o registro ligado a uma virtude mostra o símbolo da família', async ({ page }) => {
+  await page.goto('/jornada/nova');
+  await page.getByRole('button', { name: 'Criar e iniciar a jornada' }).click();
+  await page.getByLabel('O que motiva você a começar esta jornada?').fill('Reagir com mais calma nas discussões');
+  await page.getByLabel('Virtude que você quer desenvolver').selectOption({ label: 'Paciência' });
+  await page.getByRole('button', { name: 'Criar e iniciar a jornada' }).click();
+  await expect(page).toHaveURL(/\/jornada$/);
+  await page.goto('/diario?novo=1');
+  await page.getByLabel('Situação', { exact: true }).fill('Espera longa em uma fila');
+  await page.getByRole('button', { name: 'Registrar', exact: true }).click();
+  await expect(page.getByText('Registro salvo no diário.')).toBeVisible();
+  await expect(page.locator('li.entry svg[data-simbolo="familia"]')).toHaveCount(1);
+});
