@@ -69,21 +69,53 @@ function contraste(a: string, b: string): number {
   return (x + 0.05) / (y + 0.05);
 }
 
+/** Lê as cores do tema ativo e confere o contraste dos textos e das cores de família. */
+async function conferirContraste(page: Page, rotulo: string) {
+  const cores = await page.evaluate(() => {
+    const css = getComputedStyle(document.documentElement);
+    const ler = (nome: string) => css.getPropertyValue(nome).trim();
+    return { bg: ler('--bg'), fg: ler('--fg'), muted: ler('--muted'), panel: ler('--panel'), accent: ler('--accent'), fam: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ler(`--fam-${n}`)) };
+  });
+  const textos: [string, string][] = [['--fg', cores.fg], ['--muted', cores.muted], ['--accent', cores.accent], ...cores.fam.map((c, i): [string, string] => [`--fam-${i + 1}`, c])];
+  for (const [nome, cor] of textos) {
+    for (const [sobre, fundo] of [['fundo', cores.bg], ['painel', cores.panel]]) {
+      expect(contraste(cor, fundo), `${rotulo}: ${nome} ${cor} sobre ${sobre} ${fundo}`).toBeGreaterThanOrEqual(4.5);
+    }
+  }
+  // O texto do botão em hover (cor de fundo da página sobre o acento) também precisa passar.
+  expect(contraste(cores.bg, cores.accent), `${rotulo}: texto do botão em hover`).toBeGreaterThanOrEqual(4.5);
+}
+
 for (const esquema of ['light', 'dark'] as const) {
-  test(`contraste (${esquema}): acento e cores de família passam de 4,5:1 no fundo e no painel`, async ({ page }) => {
+  test(`contraste (${esquema}): textos, acento e cores de família passam de 4,5:1 no fundo e no painel`, async ({ page }) => {
     await page.emulateMedia({ colorScheme: esquema });
     await page.goto('/');
-    const cores = await page.evaluate(() => {
-      const css = getComputedStyle(document.documentElement);
-      const ler = (nome: string) => css.getPropertyValue(nome).trim();
-      return { bg: ler('--bg'), panel: ler('--panel'), accent: ler('--accent'), fam: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => ler(`--fam-${n}`)) };
-    });
-    for (const [nome, cor] of [['--accent', cores.accent], ...cores.fam.map((c, i) => [`--fam-${i + 1}`, c])] as [string, string][]) {
-      for (const [sobre, fundo] of [['fundo', cores.bg], ['painel', cores.panel]]) {
-        expect(contraste(cor, fundo), `${esquema}: ${nome} ${cor} sobre ${sobre} ${fundo}`).toBeGreaterThanOrEqual(4.5);
-      }
-    }
-    // O texto claro do botão em hover (cor de fundo da página sobre o acento) também precisa passar.
-    expect(contraste(cores.bg, cores.accent), `${esquema}: texto do botão em hover`).toBeGreaterThanOrEqual(4.5);
+    await conferirContraste(page, esquema);
   });
 }
+
+test('contraste (roxo e dourado): textos, acento e cores de família passam de 4,5:1 no fundo e no painel', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('jv-theme', 'roxo'));
+  await page.goto('/');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'roxo');
+  await conferirContraste(page, 'roxo');
+});
+
+test('botão de tema: percorre sistema, claro, escuro e roxo e dourado, e lembra a escolha', async ({ page }) => {
+  await page.goto('/');
+  const botao = page.getByRole('button', { name: /Alterar tema/ });
+  await expect(botao).toContainText('Tema: sistema');
+  await botao.click();
+  await expect(botao).toContainText('Tema: claro');
+  await botao.click();
+  await expect(botao).toContainText('Tema: escuro');
+  await botao.click();
+  await expect(botao).toContainText('Tema: roxo e dourado');
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'roxo');
+  await page.reload();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'roxo');
+  await expect(page.getByRole('button', { name: /Alterar tema/ })).toContainText('Tema: roxo e dourado');
+  await page.getByRole('button', { name: /Alterar tema/ }).click();
+  await expect(page.getByRole('button', { name: /Alterar tema/ })).toContainText('Tema: sistema');
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme', /.+/);
+});

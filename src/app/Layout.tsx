@@ -12,13 +12,14 @@ const AREAS = [
   { to: '/historico', label: 'Histórico', short: 'Histórico' },
 ];
 
-type Theme = 'system' | 'light' | 'dark';
-const THEME_LABEL: Record<Theme, string> = { system: 'Tema: sistema', light: 'Tema: claro', dark: 'Tema: escuro' };
+type Theme = 'system' | 'light' | 'dark' | 'roxo';
+const THEME_LABEL: Record<Theme, string> = { system: 'Tema: sistema', light: 'Tema: claro', dark: 'Tema: escuro', roxo: 'Tema: roxo e dourado' };
+const NEXT_THEME: Record<Theme, Theme> = { system: 'light', light: 'dark', dark: 'roxo', roxo: 'system' };
 
 function readTheme(): Theme {
   try {
     const stored = localStorage.getItem('jv-theme');
-    return stored === 'light' || stored === 'dark' ? stored : 'system';
+    return stored === 'light' || stored === 'dark' || stored === 'roxo' ? stored : 'system';
   } catch {
     return 'system';
   }
@@ -27,7 +28,7 @@ function readTheme(): Theme {
 function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>(readTheme);
   function next() {
-    const value: Theme = theme === 'system' ? 'light' : theme === 'light' ? 'dark' : 'system';
+    const value: Theme = NEXT_THEME[theme];
     setTheme(value);
     if (value === 'system') document.documentElement.removeAttribute('data-theme');
     else document.documentElement.setAttribute('data-theme', value);
