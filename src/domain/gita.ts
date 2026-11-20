@@ -99,6 +99,30 @@ export function semTituloInicialRepetido(markdown: string, nomeEtapa: string): s
   return markdown.slice(primeiro[0].length).replace(/^\s*\n/, '');
 }
 
+/** Menor nível de título (1 a 6) usado no texto, fora de blocos de código. Null quando não há título. */
+export function menorNivelDeTitulo(markdown: string): number | null {
+  let menor: number | null = null;
+  let emCodigo = false;
+  for (const linha of markdown.split('\n')) {
+    if (/^\s*(```|~~~)/.test(linha)) emCodigo = !emCodigo;
+    if (emCodigo) continue;
+    const m = /^ {0,3}(#{1,6})\s/.exec(linha);
+    if (m && (menor === null || m[1].length < menor)) menor = m[1].length;
+  }
+  return menor;
+}
+
+/** Quantas tabelas GFM o texto tem (linhas delimitadoras como |---|---|), fora de blocos de código. */
+export function contarTabelas(markdown: string): number {
+  let total = 0;
+  let emCodigo = false;
+  for (const linha of markdown.split('\n')) {
+    if (/^\s*(```|~~~)/.test(linha)) emCodigo = !emCodigo;
+    if (!emCodigo && /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)*\|?\s*$/.test(linha) && linha.includes('|')) total += 1;
+  }
+  return total;
+}
+
 /** Tamanho máximo de uma reflexão, em caracteres (cerca de cinco páginas). */
 export const LIMITE_REFLEXAO = 10000;
 

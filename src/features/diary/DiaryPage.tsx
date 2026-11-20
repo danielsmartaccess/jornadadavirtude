@@ -37,7 +37,8 @@ function EntryForm({ initial, isNew, onDone }: { initial: DiaryEntry; isNew: boo
 
   return (
     <div className="card mb-6">
-      <h3 className="mb-3">{isNew ? 'Novo registro' : 'Editar registro'}</h3>
+      {/* Novo registro vem logo abaixo do h1 (antes da linha do tempo): h2. Editar fica dentro da linha do tempo: h3. */}
+      {isNew ? <h2 className="mb-3 text-[1.2rem]">Novo registro</h2> : <h3 className="mb-3">Editar registro</h3>}
       {exercise && (
         <p className="mb-3">
           <Tag accent>Exercício</Tag> {exercise.title}

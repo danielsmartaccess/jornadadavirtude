@@ -7,10 +7,10 @@ import { ReflexaoAberta } from './ReflexaoAberta';
 
 const Markdown = lazy(() => import('./Markdown'));
 
-function Texto({ markdown }: { markdown: string }) {
+function Texto({ markdown, rotulo }: { markdown: string; rotulo: string }) {
   return (
     <Suspense fallback={<p className="hint">Carregando o texto…</p>}>
-      <Markdown>{markdown}</Markdown>
+      <Markdown rotulo={rotulo}>{markdown}</Markdown>
     </Suspense>
   );
 }
@@ -21,15 +21,15 @@ function regraDoQuiz(c: ConteudoEtapa): RegraQuiz {
   return { modo: 'mais_escolhida', leituras: c.leituras };
 }
 
-function Conteudo({ conteudo }: { conteudo: ConteudoEtapa & { conteudoMd: string } }) {
-  if (conteudo.perguntas.length === 0) return <Texto markdown={conteudo.conteudoMd} />;
+function Conteudo({ conteudo, nome }: { conteudo: ConteudoEtapa & { conteudoMd: string }; nome: string }) {
+  if (conteudo.perguntas.length === 0) return <Texto markdown={conteudo.conteudoMd} rotulo={nome} />;
   // O quiz fica entre a introdução e a reflexão aberta, como no material de origem.
   const { introducao, resto } = dividirNoPrimeiroSubtitulo(conteudo.conteudoMd);
   return (
     <>
-      {introducao && <Texto markdown={introducao} />}
+      {introducao && <Texto markdown={introducao} rotulo={nome} />}
       <Quiz perguntas={conteudo.perguntas} regra={regraDoQuiz(conteudo)} />
-      {resto && <Texto markdown={resto} />}
+      {resto && <Texto markdown={resto} rotulo={`${nome} (continuação)`} />}
       {conteudo.id !== null && <ReflexaoAberta etapaId={conteudo.id} />}
     </>
   );
@@ -46,7 +46,7 @@ export function StageCard({ etapa, conteudo, carregando }: { etapa: Etapa; conte
       </div>
       <h3 className="mt-1.5 text-[1.5rem]">{etapa.nome}</h3>
       {conteudo?.conteudoMd ? (
-        <Conteudo conteudo={{ ...conteudo, conteudoMd: semTituloInicialRepetido(conteudo.conteudoMd, etapa.nome) }} />
+        <Conteudo nome={etapa.nome} conteudo={{ ...conteudo, conteudoMd: semTituloInicialRepetido(conteudo.conteudoMd, etapa.nome) }} />
       ) : (
         <p className="hint">{carregando ? 'Carregando…' : 'Conteúdo em preparação.'}</p>
       )}
