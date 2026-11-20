@@ -1,7 +1,7 @@
 /* Tela 03 — Catálogo de virtudes e dimensões (Documento 06, seção 7; RF-023 a RF-032 e RF-042 a RF-047). */
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { AneisDimensao, SimboloFamilia } from '../../components/simbolos';
+import { AneisDimensao, AssinaturaVirtude, SimboloFamilia } from '../../components/simbolos';
 import { Accordion, BulletList, EmptyState, Notice, PageHeader, Section, StatusTag, Tag } from '../../components/ui';
 import { corDaFamilia } from '../../domain/identidade';
 import {
@@ -28,7 +28,12 @@ import { normalize } from '../../shared/util';
 const RELATION_LABEL = { D1: 'Relação primária', D2: 'Relação secundária', D3: 'Relação contextual' } as const;
 const P_LABEL = { P1: 'Fundamentação direta', P2: 'Contribuição relevante', P3: 'Perspectiva complementar', P4: 'Interpretação contemporânea' } as const;
 
-const INTERPRETIVE = 'A relação entre virtudes e dimensões é uma proposta pedagógica da plataforma: uma referência para interpretar, não uma classificação da pessoa nem uma correspondência exclusiva das tradições filosóficas.';
+/** Relações da virtude com as dimensões, no formato da assinatura visual (anel e tipo D1 a D3). */
+function relacoesDaVirtude(virtueId: string) {
+  return dimensionsOfVirtue(virtueId).map(({ dimension, relation }) => ({ dimensionOrder: dimension.order, tipo: relation.relationType }));
+}
+
+const INTERPRETIVE ='A relação entre virtudes e dimensões é uma proposta pedagógica da plataforma: uma referência para interpretar, não uma classificação da pessoa nem uma correspondência exclusiva das tradições filosóficas.';
 
 export function ExerciseSummary({ exercise }: { exercise: Exercise }) {
   return (
@@ -131,7 +136,10 @@ export function VirtuesPage() {
                 .filter((v) => v.familyId === f.id)
                 .map((v) => (
                   <Link key={v.id} to={`/virtudes/${v.id}`} className="card" style={{ borderTop: `4px solid ${corDaFamilia(v.familyId)}` }}>
-                    <h3 className="uppercase tracking-wide">{v.name}</h3>
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="uppercase tracking-wide">{v.name}</h3>
+                      <AssinaturaVirtude familyId={v.familyId} relacoes={relacoesDaVirtude(v.id)} size={40} />
+                    </div>
                     <p>{v.definition}</p>
                     <p className="meta mt-2">Conhecer esta virtude →</p>
                   </Link>
@@ -154,8 +162,10 @@ export function VirtuePage() {
   return (
     <>
       <PageHeader crumbs={[{ label: 'Virtudes', to: '/virtudes' }, { label: family?.name ?? '' }, { label: virtue.name }]} title={virtue.name} lede={virtue.definition}>
-        <div className="mt-4" style={{ color: corDaFamilia(virtue.familyId) }}>
+        <div className="mt-4 flex flex-wrap items-end gap-5">
           <SimboloFamilia familyId={virtue.familyId} size={64} />
+          <AssinaturaVirtude familyId={virtue.familyId} relacoes={relacoesDaVirtude(virtue.id)} size={64} />
+          <p className="meta max-w-[30ch]">Os anéis são as sete dimensões. A espessura mostra o tipo de relação: primária, secundária, contextual ou sem relação registrada.</p>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link to={`/jornada/nova?virtude=${virtue.id}`} className="btn">

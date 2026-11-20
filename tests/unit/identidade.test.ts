@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { families, councilMembers, dimensions, virtues } from '../../src/domain/catalog';
-import { anelDaDimensao, corDaFamilia, emblemaDaTradicao, motivoDaFamilia, MOTIVO_FAMILIA, numeroDaFamilia } from '../../src/domain/identidade';
+import { anelDaDimensao, corDaFamilia, emblemaDaTradicao, estadosDosAneis, motivoDaFamilia, MOTIVO_FAMILIA, numeroDaFamilia } from '../../src/domain/identidade';
 
 describe('identidade das famílias', () => {
   it('toda família da base tem cor e motivo próprios', () => {
@@ -54,5 +54,29 @@ describe('emblemas das tradições', () => {
 
   it('todos os integrantes do Conselho têm um emblema resolvido', () => {
     for (const t of councilMembers) expect(emblemaDaTradicao(t.tradition), t.id).toBeTruthy();
+  });
+});
+
+describe('assinatura da virtude', () => {
+  it('sem relações, os sete anéis ficam sem relação registrada', () => {
+    expect(estadosDosAneis([])).toEqual(['nenhuma', 'nenhuma', 'nenhuma', 'nenhuma', 'nenhuma', 'nenhuma', 'nenhuma']);
+  });
+
+  it('cada tipo ocupa o anel da sua dimensão', () => {
+    const e = estadosDosAneis([
+      { dimensionOrder: 1, tipo: 'D1' },
+      { dimensionOrder: 3, tipo: 'D2' },
+      { dimensionOrder: 7, tipo: 'D3' },
+    ]);
+    expect(e).toEqual(['primaria', 'nenhuma', 'secundaria', 'nenhuma', 'nenhuma', 'nenhuma', 'contextual']);
+  });
+
+  it('em duplicidade, vale a relação mais forte', () => {
+    expect(estadosDosAneis([{ dimensionOrder: 2, tipo: 'D3' }, { dimensionOrder: 2, tipo: 'D1' }])[1]).toBe('primaria');
+    expect(estadosDosAneis([{ dimensionOrder: 2, tipo: 'D1' }, { dimensionOrder: 2, tipo: 'D2' }])[1]).toBe('primaria');
+  });
+
+  it('ordens fora de 1 a 7 são ignoradas', () => {
+    expect(estadosDosAneis([{ dimensionOrder: 9, tipo: 'D1' }])).toEqual(Array(7).fill('nenhuma'));
   });
 });

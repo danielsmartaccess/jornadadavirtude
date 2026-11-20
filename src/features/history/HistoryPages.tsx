@@ -3,8 +3,10 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useRun, useToast, useUserData } from '../../app/hooks';
 import { archiveJourney, entriesOf, reviewsOf, sessionsOf, unarchiveJourney } from '../../application/useCases';
+import { AneisDimensao } from '../../components/simbolos';
 import { Accordion, EmptyState, Notice, PageHeader, Section, Tag } from '../../components/ui';
-import { getExercise, getThinker, getVirtue } from '../../domain/catalog';
+import { dimensions, getExercise, getThinker, getVirtue, virtueDimensions, getDimension } from '../../domain/catalog';
+import { registrosPorDimensao, virtudesNaOrdem, type RelacaoVirtudeDimensao } from '../../domain/historico';
 import { canArchiveJourney, entryTypeLabel, INVESTIGATION_BLOCKS, isArchived, isOpenJourney, journeyStats, sortByDateDesc, STAGE_STATES, STAGES, STATUS_LABEL, virtueTrail } from '../../domain/journey';
 import { buildJourneyReport } from '../../domain/report';
 import type { Journey } from '../../domain/types';
@@ -300,6 +302,33 @@ export function JourneyDetailPage() {
             {journey.history.length === 0 && <li className="hint">Jornada trazida da versão anterior: sem histórico de alterações.</li>}
           </ul>
         </Accordion>
+      </Section>
+
+      <Section title="Dimensões trabalhadas" aside={<span className="meta">{entries.length} {entries.length === 1 ? 'registro' : 'registros'}</span>}>
+        {(() => {
+          const relacoes: RelacaoVirtudeDimensao[] = virtueDimensions.flatMap((r) => {
+            const d = getDimension(r.dimensionId);
+            return d ? [{ virtueId: r.virtueId, dimensionOrder: d.order, tipo: r.relationType }] : [];
+          });
+          const linhas = registrosPorDimensao(entries, relacoes);
+          const virtudes = virtudesNaOrdem(entries).map((id) => getVirtue(id)?.name).filter(Boolean);
+          return (
+            <>
+              <p className="hint mb-3 text-[0.95rem]">Registros cujas virtudes se ligam a cada dimensão pela relação primária ou secundária.</p>
+              <ol className="grid gap-3">
+                {linhas.map(({ ordem, registros }) => (
+                  <li key={ordem} className="flex items-center gap-4">
+                    <AneisDimensao order={ordem} size={36} />
+                    <span className="flex-1">{dimensions.find((d) => d.order === ordem)?.name}</span>
+                    <span className="meta">{registros} {registros === 1 ? 'registro' : 'registros'}</span>
+                  </li>
+                ))}
+              </ol>
+              {virtudes.length > 0 && <p className="meta mt-4">Virtudes do percurso, na ordem em que apareceram: {virtudes.join(' → ')}</p>}
+              <Notice>Contagem descritiva de atividades: mostra onde a prática se concentrou. Não mede virtude, caráter nem valor pessoal.</Notice>
+            </>
+          );
+        })()}
       </Section>
 
       <Section title="Síntese produzida pelo sistema">

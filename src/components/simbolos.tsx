@@ -1,7 +1,7 @@
 /* Símbolos da identidade visual (ver domain/identidade.ts). Decorativos: aria-hidden, porque o nome
  * da virtude, da dimensão ou do pensador já vem como texto ao lado. Traços em currentColor. */
 import type { ReactNode } from 'react';
-import { corDaFamilia, emblemaDaTradicao, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type MotivoFamilia } from '../domain/identidade';
+import { corDaFamilia, emblemaDaTradicao, estadosDosAneis, motivoDaFamilia, anelDaDimensao, type EmblemaTradicao, type EstadoAnel, type MotivoFamilia, type TipoRelacaoDimensao } from '../domain/identidade';
 
 function Base({ size, color, dado, children }: { size: number; color?: string; dado: string; children: ReactNode }) {
   return (
@@ -120,4 +120,24 @@ const EMBLEMAS: Record<EmblemaTradicao, ReactNode> = {
 /** Emblema da tradição filosófica, sem rosto: nenhum retrato é inventado (ver direção de arte). */
 export function EmblemaTradicaoSimbolo({ tradicao, size = 40 }: { tradicao: string; size?: number }) {
   return <Base size={size} dado="tradicao">{EMBLEMAS[emblemaDaTradicao(tradicao)]}</Base>;
+}
+
+const ESPESSURA_ANEL: Record<EstadoAnel, { width: number; dash?: string; opacity: number }> = {
+  primaria: { width: 3.25, opacity: 1 },
+  secundaria: { width: 2, opacity: 1 },
+  contextual: { width: 1.25, dash: '2.5 2', opacity: 1 },
+  nenhuma: { width: 0.75, opacity: 0.35 },
+};
+
+/** Assinatura da virtude: os sete anéis, cada um com a espessura do tipo de relação (primária, secundária, contextual ou nenhuma). A forma diz o tipo; a cor só acompanha a família. */
+export function AssinaturaVirtude({ familyId, relacoes, size = 64 }: { familyId: string; relacoes: { dimensionOrder: number; tipo: TipoRelacaoDimensao }[]; size?: number }) {
+  const estados = estadosDosAneis(relacoes);
+  return (
+    <Base size={size} color={corDaFamilia(familyId)} dado="assinatura">
+      {estados.map((estado, i) => {
+        const cfg = ESPESSURA_ANEL[estado];
+        return <circle key={i} cx="24" cy="24" r={22 - 3 * i} strokeWidth={cfg.width} strokeDasharray={cfg.dash} opacity={cfg.opacity} />;
+      })}
+    </Base>
+  );
 }

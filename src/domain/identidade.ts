@@ -48,3 +48,24 @@ export function emblemaDaTradicao(tradicao: string): EmblemaTradicao {
 export function anelDaDimensao(order: number): number | null {
   return Number.isInteger(order) && order >= 1 && order <= 7 ? order : null;
 }
+
+/** Tipo de relação entre virtude e dimensão, da mais forte para a mais fraca (Documento 04). */
+export type TipoRelacaoDimensao = 'D1' | 'D2' | 'D3';
+export type EstadoAnel = 'primaria' | 'secundaria' | 'contextual' | 'nenhuma';
+
+const FORCA: Record<TipoRelacaoDimensao, number> = { D1: 3, D2: 2, D3: 1 };
+const ESTADO: Record<TipoRelacaoDimensao, EstadoAnel> = { D1: 'primaria', D2: 'secundaria', D3: 'contextual' };
+
+/** Estado de cada um dos sete anéis (1 a 7) a partir das relações da virtude. Em caso de duplicidade, vence a mais forte. */
+export function estadosDosAneis(relacoes: { dimensionOrder: number; tipo: TipoRelacaoDimensao }[]): EstadoAnel[] {
+  const melhor = new Map<number, TipoRelacaoDimensao>();
+  for (const r of relacoes) {
+    if (anelDaDimensao(r.dimensionOrder) === null) continue;
+    const atual = melhor.get(r.dimensionOrder);
+    if (!atual || FORCA[r.tipo] > FORCA[atual]) melhor.set(r.dimensionOrder, r.tipo);
+  }
+  return [1, 2, 3, 4, 5, 6, 7].map((ordem) => {
+    const tipo = melhor.get(ordem);
+    return tipo ? ESTADO[tipo] : 'nenhuma';
+  });
+}

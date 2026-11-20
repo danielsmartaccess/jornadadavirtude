@@ -67,3 +67,19 @@ test('diário: o registro ligado a uma virtude mostra o símbolo da família', a
   await expect(page.getByText('Registro salvo no diário.')).toBeVisible();
   await expect(page.locator('li.entry svg[data-simbolo="familia"]')).toHaveCount(1);
 });
+
+test('assinatura da virtude e percurso por dimensão no histórico', async ({ page }) => {
+  await page.goto('/virtudes');
+  await expect(page.locator('svg[data-simbolo="assinatura"]')).toHaveCount(48);
+  await page.goto('/virtudes/V07');
+  await expect(page.locator('svg[data-simbolo="assinatura"]')).toHaveCount(1);
+  await page.goto('/jornada/nova');
+  await page.getByRole('button', { name: 'Criar e iniciar a jornada' }).click();
+  await page.getByLabel('O que motiva você a começar esta jornada?').fill('Reagir com mais calma nas discussões');
+  await page.getByLabel('Virtude que você quer desenvolver').selectOption({ label: 'Paciência' });
+  await page.getByRole('button', { name: 'Criar e iniciar a jornada' }).click();
+  await page.goto('/historico');
+  await page.getByRole('link', { name: /Paciência/ }).first().click();
+  await expect(page.getByRole('heading', { level: 2, name: 'Dimensões trabalhadas' })).toBeVisible();
+  await expect(page.getByText('Contagem descritiva de atividades')).toBeVisible();
+});
