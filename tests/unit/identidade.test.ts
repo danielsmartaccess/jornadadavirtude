@@ -47,13 +47,37 @@ describe('emblemas das tradições', () => {
     expect(emblemaDaTradicao('Tradição marcial japonesa')).toBe('marcial');
   });
 
+  it('os campos de pensamento mais recentes recebem o emblema do seu campo', () => {
+    expect(emblemaDaTradicao('Filosofia medieval cristã')).toBe('medieval');
+    expect(emblemaDaTradicao('Filosofia moderna')).toBe('iluminista');
+    expect(emblemaDaTradicao('Iluminismo norte-americano')).toBe('iluminista');
+    expect(emblemaDaTradicao('Ciência (física)')).toBe('ciencia');
+    expect(emblemaDaTradicao('Filosofia da ciência')).toBe('ciencia');
+    expect(emblemaDaTradicao('Pensamento sistêmico')).toBe('ciencia');
+    expect(emblemaDaTradicao('Ensaios sobre risco e incerteza')).toBe('ciencia');
+    expect(emblemaDaTradicao('Psiquiatria e logoterapia')).toBe('mente');
+    expect(emblemaDaTradicao('Psicologia do julgamento e da decisão')).toBe('mente');
+    expect(emblemaDaTradicao('Psicanálise humanista')).toBe('mente');
+    expect(emblemaDaTradicao('Teoria da gestão')).toBe('gestao');
+    expect(emblemaDaTradicao('Fenomenologia')).toBe('contemporanea');
+    expect(emblemaDaTradicao('Filosofia contemporânea')).toBe('contemporanea');
+    expect(emblemaDaTradicao('Liberalismo e utilitarismo')).toBe('politica');
+  });
+
+  it('"filosofia política contemporânea" é política, não contemporânea (a ordem das regras importa)', () => {
+    expect(emblemaDaTradicao('Filosofia política contemporânea')).toBe('politica');
+  });
+
   it('tradições sem emblema próprio caem no emblema geral, sem inventar símbolo', () => {
-    expect(emblemaDaTradicao('Fenomenologia')).toBe('geral');
+    expect(emblemaDaTradicao('Filosofia analítica')).toBe('geral');
+    expect(emblemaDaTradicao('Humanismo')).toBe('geral');
     expect(emblemaDaTradicao('')).toBe('geral');
   });
 
-  it('todos os integrantes do Conselho têm um emblema resolvido', () => {
-    for (const t of councilMembers) expect(emblemaDaTradicao(t.tradition), t.id).toBeTruthy();
+  it('nenhum integrante do Conselho fica com o emblema genérico, e a galeria usa 13 emblemas diferentes', () => {
+    const emblemas = councilMembers.map((t) => emblemaDaTradicao(t.tradition));
+    for (const t of councilMembers) expect(emblemaDaTradicao(t.tradition), `${t.name} (${t.tradition})`).not.toBe('geral');
+    expect(new Set(emblemas).size).toBe(13);
   });
 });
 

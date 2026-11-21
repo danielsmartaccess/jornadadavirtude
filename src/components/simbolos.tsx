@@ -121,6 +121,45 @@ const EMBLEMAS: Record<EmblemaTradicao, ReactNode> = {
   ),
   estoica: <path d="M8 40 40 8M8 8l32 32" />,
   marcial: <path d="M6 24h36M24 6v36M12 12l24 24M36 12 12 36" />,
+  medieval: (
+    <>
+      <path d="M10 42V22Q10 8 24 4Q38 8 38 22V42M6 42H42" />
+      <circle cx="24" cy="22" r="6" />
+      <path d="M24 16V28M18.8 19L29.2 25M18.8 25L29.2 19" />
+    </>
+  ),
+  iluminista: (
+    <>
+      <circle cx="24" cy="6" r="2.5" />
+      <path d="M24 8.5L12 42M24 8.5L36 42M17.5 28H30.5" />
+    </>
+  ),
+  ciencia: (
+    <>
+      <circle cx="24" cy="24" r="3" fill="currentColor" />
+      <path d="M4 24A20 8 0 1 0 44 24A20 8 0 1 0 4 24Z" />
+      <path d="M24 4A8 20 0 1 0 24 44A8 20 0 1 0 24 4Z" />
+    </>
+  ),
+  mente: <path d="M24 24a2 2 0 0 1 4 0a5 5 0 0 1-10 0a8 8 0 0 1 16 0a11 11 0 0 1-22 0a14 14 0 0 1 28 0" />,
+  contemporanea: (
+    <>
+      <path d="M35.3 12.7A16 16 0 1 0 40 24" />
+      <circle cx="24" cy="24" r="3" fill="currentColor" />
+    </>
+  ),
+  politica: (
+    <>
+      <path d="M10 24H38V40H10Z M20 24H28" />
+      <path d="M18 8H30V20H18Z M21 12H27M21 16H27" />
+    </>
+  ),
+  gestao: (
+    <>
+      <path d="M18 6H30V14H18Z M24 14V22M9 22H39M9 22V28M24 22V28M39 22V28" />
+      <path d="M4 28H14V38H4Z M19 28H29V38H19Z M34 28H44V38H34Z" />
+    </>
+  ),
   geral: (
     <>
       <circle cx="24" cy="24" r="18" />

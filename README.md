@@ -30,7 +30,7 @@ npm run dev          # http://localhost:5173
 - **Conselho de Sabedoria** sem inteligência artificial: reconhece a situação, sugere virtudes e dimensões como hipóteses, seleciona 2 a 5 perspectivas só quando há relação registrada na base, mostra fontes, limites, convergências e divergências, e nunca atribui falas a pensadores.
 - **Preservação dos dados da versão anterior:** a chave `jornada-virtude-v2` do `localStorage` e os arquivos `.json` exportados pela v1/v3 são convertidos automaticamente.
 - **Privacidade:** tudo fica no navegador. Conta opcional (Supabase) sincroniza com Row Level Security; exportar, importar e apagar dados em Configurações.
-- **Identidade visual própria:** uma cor, um símbolo e um motivo geométrico por família de virtudes; sete anéis para as dimensões; um emblema linear para cada uma das 48 virtudes; emblemas por tradição no Conselho (sem rostos). A assinatura de cada virtude e de cada pensador mostra, pela espessura dos anéis, o tipo de relação com as dimensões, sempre a partir de dados que já existem na base. Temas claro, escuro e "roxo e dourado".
+- **Identidade visual própria:** uma cor, um símbolo e um motivo geométrico por família de virtudes; sete anéis para as dimensões; um emblema linear para cada uma das 48 virtudes; emblemas por tradição no Conselho, 13 campos de pensamento no total, dos estoicos e do budismo à ciência, à psicologia e à gestão (sem rostos). A assinatura de cada virtude e de cada pensador mostra, pela espessura dos anéis, o tipo de relação com as dimensões, sempre a partir de dados que já existem na base. Temas claro, escuro e "roxo e dourado".
 - **Sem notas morais:** os indicadores são contagens de atividades registradas e dizem isso na tela.
 
 ## Arquitetura (Doc. 08)

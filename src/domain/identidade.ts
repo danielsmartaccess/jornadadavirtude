@@ -30,7 +30,7 @@ export function motivoDaFamilia(familyId: string): MotivoFamilia | null {
 }
 
 /** Emblema por tradição. "geral" para tradições sem emblema próprio ainda, sem inventar símbolo. */
-export type EmblemaTradicao = 'grega' | 'confuciana' | 'taoista' | 'budista' | 'estoica' | 'marcial' | 'geral';
+export type EmblemaTradicao = 'grega' | 'confuciana' | 'taoista' | 'budista' | 'estoica' | 'marcial' | 'medieval' | 'iluminista' | 'ciencia' | 'mente' | 'contemporanea' | 'politica' | 'gestao' | 'geral';
 
 export function emblemaDaTradicao(tradicao: string): EmblemaTradicao {
   const t = tradicao
@@ -43,6 +43,14 @@ export function emblemaDaTradicao(tradicao: string): EmblemaTradicao {
   if (t.includes('budis')) return 'budista';
   if (t.includes('estoic')) return 'estoica';
   if (t.includes('marcial')) return 'marcial';
+  // Campos de pensamento mais recentes, agrupados por afinidade. A ordem importa: "filosofia politica contemporanea" é política, não contemporânea.
+  if (t.includes('medieval')) return 'medieval';
+  if (t.includes('politica') || t.includes('liberalismo')) return 'politica';
+  if (t.includes('moderna') || t.includes('iluminismo')) return 'iluminista';
+  if (t.includes('ciencia') || t.includes('sistemic') || t.includes('risco')) return 'ciencia';
+  if (t.includes('psiquiatria') || t.includes('psicolog') || t.includes('psicanalise')) return 'mente';
+  if (t.includes('gestao')) return 'gestao';
+  if (t.includes('fenomenologia') || t.includes('existencia') || t.includes('contemporanea')) return 'contemporanea';
   return 'geral';
 }
 
