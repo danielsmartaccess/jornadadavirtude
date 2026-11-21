@@ -27,6 +27,12 @@ function precarregarFontes(): Plugin {
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), precarregarFontes()],
+  build: {
+    // Sem embutir arquivos pequenos no CSS: os subconjuntos de fonte (cirílico, vietnamita etc.) viravam data: URIs que
+    // inflavam o CSS, que bloqueia a renderização, e que a política de segurança (font-src) bloqueia. Saem como arquivos
+    // próprios e só são baixados se algum caractere deles aparecer na página.
+    assetsInlineLimit: 0,
+  },
   test: {
     environment: 'node',
     include: ['tests/**/*.test.ts'],
