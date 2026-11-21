@@ -7,6 +7,7 @@
  * Registros "Falha" passam a DIFFICULTY e "Prática" a PRACTICE; a jornada "arquivada"
  * da versão anterior equivale a COMPLETED. */
 import { findVirtueByName } from '../domain/catalog';
+import type { ReflexaoExportada } from './registrosGita';
 import { emptyStages } from '../domain/journey';
 import { sanitizeWithReport, type SanitizeResult } from './sanitize';
 import type { StageId } from '../domain/types';
@@ -184,6 +185,9 @@ export function parseImport(fileText: string): SanitizeResult & { kind: ImportKi
   throw new Error('O arquivo não foi reconhecido como exportação da Jornada da Virtude.');
 }
 
-export function buildExport(data: unknown, now: Date = new Date()) {
-  return { application: EXPORT_APPLICATION, schemaVersion: SCHEMA_VERSION, exportedAt: now.toISOString(), data };
+/** Envelope do arquivo de exportação. `reflexoesGita` é opcional e só vai para quem tem conta: as reflexões ficam na nuvem, não
+ * no aparelho. É um campo irmão de `data`, então versões antigas do app o ignoram e a importação não o restaura (ele não altera
+ * o schema dos dados do aparelho). */
+export function buildExport(data: unknown, now: Date = new Date(), reflexoesGita?: ReflexaoExportada[]) {
+  return { application: EXPORT_APPLICATION, schemaVersion: SCHEMA_VERSION, exportedAt: now.toISOString(), data, ...(reflexoesGita ? { reflexoesGita } : {}) };
 }

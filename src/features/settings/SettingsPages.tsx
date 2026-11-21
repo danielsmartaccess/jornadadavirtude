@@ -7,6 +7,7 @@ import { councilMembers, dimensions, exercises, virtues } from '../../domain/cat
 import type { UserData } from '../../domain/types';
 import { downloadText } from '../../infrastructure/download';
 import { buildExport, parseImport } from '../../infrastructure/legacy';
+import { listarTodasAsReflexoes, type ReflexaoExportada } from '../../infrastructure/registrosGita';
 import { store } from '../../infrastructure/localRepository';
 import { isEmptyData } from '../../infrastructure/sanitize';
 import { deleteCloudData, resolveConflict, sendMagicLink, signIn, signOut, signUp, syncNow } from '../../infrastructure/sync';
@@ -103,11 +104,28 @@ export function SettingsPage() {
   const sync = useSync();
   const toast = useToast();
   const fileInput = useRef<HTMLInputElement>(null);
+  const [exportando, setExportando] = useState(false);
   const [pending, setPending] = useState<{ data: UserData; ignored: number; kind: string; name: string } | null>(null);
 
-  function exportAll() {
-    const ok = downloadText(`jornada-da-virtude-${today()}.json`, JSON.stringify(buildExport(data), null, 2), 'application/json');
-    toast(ok ? 'Arquivo de exportação gerado com todos os seus dados.' : 'Não foi possível gerar o arquivo neste navegador.', ok ? 'ok' : 'erro');
+  async function exportAll() {
+    if (exportando) return;
+    setExportando(true);
+    // Com conta, as reflexões da Gita (que ficam só na nuvem) entram no arquivo. Se não der para buscá-las, o arquivo sai
+    // com os dados do aparelho e a pessoa é avisada, em vez de falhar a exportação inteira.
+    let reflexoes: ReflexaoExportada[] | undefined;
+    let semReflexoes = false;
+    if (sync.user) {
+      try {
+        reflexoes = await listarTodasAsReflexoes();
+      } catch {
+        semReflexoes = true;
+      }
+    }
+    const ok = downloadText(`jornada-da-virtude-${today()}.json`, JSON.stringify(buildExport(data, new Date(), reflexoes), null, 2), 'application/json');
+    setExportando(false);
+    if (!ok) return toast('Não foi possível gerar o arquivo neste navegador.', 'erro');
+    if (semReflexoes) return toast('Arquivo gerado com os dados deste aparelho, mas sem as reflexões da Gita: não foi possível lê-las agora (sem conexão ou sessão expirada). Tente de novo para incluí-las.', 'erro');
+    toast(reflexoes?.length ? `Arquivo de exportação gerado com todos os seus dados, incluindo ${plural(reflexoes.length, 'reflexão da Gita', 'reflexões da Gita')}.` : 'Arquivo de exportação gerado com todos os seus dados.');
   }
 
   async function readFile(file: File | undefined) {
@@ -155,9 +173,9 @@ export function SettingsPage() {
       </Section>
 
       <Section title="Exportar e importar">
-        <p className="mb-3">O arquivo exportado contém todos os seus dados em formato aberto (JSON) e serve como cópia de segurança ou para levar a outro aparelho. A importação aceita também arquivos da versão anterior.</p>
+        <p className="mb-3">O arquivo exportado contém todos os seus dados em formato aberto (JSON) e serve como cópia de segurança ou para levar a outro aparelho. A importação aceita também arquivos da versão anterior. Se você entrou com uma conta, o arquivo inclui também as suas reflexões da Gita, que ficam só na nuvem; ao importar, elas não são restauradas: continuam na sua conta.</p>
         <div className="flex flex-wrap gap-2">
-          <button type="button" className="btn" onClick={exportAll}>
+          <button type="button" className="btn" onClick={() => void exportAll()} disabled={exportando}>
             Exportar meus dados
           </button>
           <button type="button" className="btn btn-ghost" onClick={() => fileInput.current?.click()}>

@@ -54,3 +54,58 @@ export async function apagarRegistro(id: string): Promise<void> {
   const { error } = await cliente().from('registros').delete().eq('id', id);
   if (error) throw falha(error, 'apagar a reflexão');
 }
+
+/* ------------------------------------------------------------------------- */
+/* Exportação: todas as reflexões da pessoa, com o capítulo e a etapa de cada uma */
+/* ------------------------------------------------------------------------- */
+
+/** Uma reflexão no arquivo de exportação. O id interno da etapa não serve fora do banco, então vai o capítulo e o nome da etapa. */
+export interface ReflexaoExportada {
+  capitulo: number | null;
+  tituloDoCapitulo: string | null;
+  etapa: number | null;
+  nomeDaEtapa: string | null;
+  texto: string;
+  criadoEm: string;
+}
+
+const COLUNAS_EXPORTACAO = 'id,texto,criado_em,etapas(ordem,nome,capitulos(numero,titulo))';
+const TAMANHO_DA_PAGINA = 1000;
+const MAXIMO_DE_PAGINAS = 20;
+
+const objeto = (v: unknown): Record<string, unknown> | null => {
+  const item = Array.isArray(v) ? v[0] : v; // uma relação de muitos para um vem como objeto; por cautela aceita lista de um item
+  return typeof item === 'object' && item !== null ? (item as Record<string, unknown>) : null;
+};
+const texto = (v: unknown) => (typeof v === 'string' ? v : null);
+const numero = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? v : null);
+
+/** Converte uma linha da consulta de exportação. Devolve null se faltar o texto ou a data. Capítulo e etapa ausentes viram null. */
+export function paraReflexaoExportada(linha: unknown): ReflexaoExportada | null {
+  const l = objeto(linha);
+  if (!l || typeof l.texto !== 'string' || typeof l.criado_em !== 'string') return null;
+  const etapa = objeto(l.etapas);
+  const capitulo = etapa ? objeto(etapa.capitulos) : null;
+  return {
+    capitulo: capitulo ? numero(capitulo.numero) : null,
+    tituloDoCapitulo: capitulo ? texto(capitulo.titulo) : null,
+    etapa: etapa ? numero(etapa.ordem) : null,
+    nomeDaEtapa: etapa ? texto(etapa.nome) : null,
+    texto: l.texto,
+    criadoEm: l.criado_em,
+  };
+}
+
+/** Todas as reflexões da pessoa (a RLS limita ao dono), da mais antiga para a mais recente, em páginas de 1.000. */
+export async function listarTodasAsReflexoes(): Promise<ReflexaoExportada[]> {
+  const todas: ReflexaoExportada[] = [];
+  for (let pagina = 0; pagina < MAXIMO_DE_PAGINAS; pagina++) {
+    const de = pagina * TAMANHO_DA_PAGINA;
+    const { data, error } = await cliente().from('registros').select(COLUNAS_EXPORTACAO).order('criado_em', { ascending: true }).order('id', { ascending: true }).range(de, de + TAMANHO_DA_PAGINA - 1);
+    if (error) throw falha(error, 'ler suas reflexões');
+    const linhas = data ?? [];
+    todas.push(...linhas.map(paraReflexaoExportada).filter((r): r is ReflexaoExportada => r !== null));
+    if (linhas.length < TAMANHO_DA_PAGINA) break;
+  }
+  return todas;
+}
