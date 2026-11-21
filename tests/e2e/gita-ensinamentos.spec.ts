@@ -1,6 +1,7 @@
 /* Parte final da leitura da Gita: Ensinamentos de Krishna (transcritos de um quadro de estudo e guardados
  * no Supabase). A API é simulada (page.route), como nos demais testes da Gita: sem rede e sem banco. */
 import { expect, test, type Page } from '@playwright/test';
+import { CELULAR_LIGHTHOUSE, instalarMedidorDeCls, lerCls } from './ajuda-cls';
 
 const PONTOS = [
   { ordem: 1, linhas: ['Despertar consciência'], ensinamentos_gunas: [] },
@@ -100,4 +101,18 @@ test('capítulo 18: o fim da leitura leva aos Ensinamentos de Krishna e dá para
   await expect(page.getByText('Despertar consciência', { exact: true })).toBeVisible();
   await page.getByRole('link', { name: '← Capítulo 18' }).click();
   await expect(page).toHaveURL(/\/gita\/18$/);
+});
+
+test('sem salto de layout: o espaço da lista é reservado enquanto os pontos carregam (CLS abaixo de 0,1)', async ({ page }) => {
+  await page.setViewportSize(CELULAR_LIGHTHOUSE);
+  await instalarMedidorDeCls(page);
+  await page.route('**/rest/v1/ensinamentos*', async (rota) => {
+    await new Promise((fim) => setTimeout(fim, 700)); // API lenta: a lista chega depois do primeiro desenho
+    await rota.fulfill({ json: PONTOS });
+  });
+  await page.goto('/gita/ensinamentos');
+  await expect(page.getByText('Carregando…')).toBeVisible();
+  await expect(page.getByText('Despertar consciência', { exact: true })).toBeVisible();
+  const cls = await lerCls(page);
+  expect(cls, `CLS medido: ${cls}`).toBeLessThan(0.1);
 });

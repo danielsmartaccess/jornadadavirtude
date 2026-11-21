@@ -85,9 +85,13 @@ export function EnsinamentosPage() {
         lede="Parte final da leitura: os ensinamentos de Krishna."
       />
       {ensinamentos.estado === 'carregando' && (
-        <p className="hint" role="status">
-          Carregando…
-        </p>
+        // Reserva o espaço da lista (de 709 px no computador a cerca de 900 px no celular estreito): sem isso, a lista
+        // chega de uma vez e empurra tudo o que vem depois (CLS de 0,27 medido no Lighthouse).
+        <div className="min-h-[56rem] lg:min-h-[44.5rem]">
+          <p className="hint" role="status">
+            Carregando…
+          </p>
+        </div>
       )}
       {ensinamentos.estado === 'erro' && (
         <Notice title="Não foi possível carregar os ensinamentos agora">

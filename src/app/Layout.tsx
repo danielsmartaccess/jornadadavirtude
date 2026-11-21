@@ -98,7 +98,17 @@ export function Layout() {
       </nav>
 
       <main id="conteudo" className="pt-8">
-        <Suspense fallback={<p className="hint" role="status">Carregando…</p>}>
+        {/* Enquanto a tela carrega, o aviso ocupa uma altura de viewport: com um aviso curto, o rodapé subia para perto do topo e
+            descia de uma vez quando a tela chegava (deslocamento de layout em todas as rotas carregadas por demanda). */}
+        <Suspense
+          fallback={
+            <div className="min-h-dvh">
+              <p className="hint" role="status">
+                Carregando…
+              </p>
+            </div>
+          }
+        >
           <Outlet />
         </Suspense>
       </main>
