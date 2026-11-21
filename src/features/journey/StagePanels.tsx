@@ -104,7 +104,7 @@ function Identificar({ journey }: PanelProps) {
               </Link>
             ))}
           </div>
-          <p className="hint mt-2 text-[0.95rem]">Referência para interpretar onde a virtude costuma se manifestar. Não é uma classificação sua.</p>
+          <p className="hint mt-2 text-nota">Referência para interpretar onde a virtude costuma se manifestar. Não é uma classificação sua.</p>
         </div>
       )}
 
@@ -140,7 +140,7 @@ function Identificar({ journey }: PanelProps) {
                 Adicionar
               </button>
             </div>
-            <p className="hint mt-1 text-[0.95rem]">As relacionadas acompanham a jornada sem substituir a virtude principal.</p>
+            <p className="hint mt-1 text-nota">As relacionadas acompanham a jornada sem substituir a virtude principal.</p>
           </div>
 
           <Accordion title="Trocar a virtude principal">
@@ -397,7 +397,7 @@ function Praticar({ journey }: PanelProps) {
         ))}
       </div>
       <p className="label mb-1 mt-6">Outros exercícios do catálogo</p>
-      <p className="hint text-[0.95rem]">Você pode escolher exercícios diferentes dos recomendados.</p>
+      <p className="hint text-nota">Você pode escolher exercícios diferentes dos recomendados.</p>
       {EXERCISE_CATEGORIES.map((category) => {
         const list = rest.filter((o) => o.exercise.category === category.id);
         if (!list.length) return null;
@@ -533,7 +533,7 @@ function Revisar({ journey }: PanelProps) {
           <button type="button" className="btn" onClick={savePeriodic}>
             Guardar revisão
           </button>
-          <p className="hint mt-2 text-[0.95rem]">Cada revisão fica guardada com data própria. A plataforma não transforma revisões em notas.</p>
+          <p className="hint mt-2 text-nota">Cada revisão fica guardada com data própria. A plataforma não transforma revisões em notas.</p>
         </Accordion>
       )}
 

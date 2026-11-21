@@ -90,6 +90,30 @@
   --font-display: 'Gloock', Georgia, serif;
   --font-body: 'Crimson Pro', Georgia, serif;
   --font-mono: 'Geist Mono', ui-monospace, Menlo, monospace;
+  /* Escala tipográfica: todo tamanho de texto vem daqui (nada de text-[...] solto nas telas; o teste
+   * tests/unit/design-system.test.ts impede). Os nomes dizem o papel, não o número. */
+  --text-minimo: 0.625rem; /* 10px: legenda da barra inferior */
+  --text-micro: 0.6875rem; /* 11px: botão pequeno e etiqueta */
+  --text-rotulo: 0.75rem; /* 12px: rótulos e metadados em mono */
+  --text-meta: 0.8125rem; /* 13px: botões e texto técnico */
+  --text-nota: 0.95rem; /* notas, dicas e legendas */
+  --text-chip: 1rem; /* opções de toque */
+  --text-corpo: 1.125rem; /* 18px: texto corrido */
+  --text-lede: 1.15rem; /* subtítulo de página e títulos menores */
+  --text-subtitulo: 1.2rem; /* títulos de bloco (h3) */
+  --text-titulo: 1.6rem; /* títulos de seção */
+  --text-destaque: 1.45rem; /* frase em destaque e título de etapa */
+  --text-leitura-titulo: 1.35rem; /* h4 do texto de leitura da Gita */
+  --text-leitura-subtitulo: 1.1rem; /* h5 do texto de leitura da Gita */
+  --tracking-rotulo: 0.12em;
+  --tracking-botao: 0.06em;
+  /* Larguras de conteúdo */
+  --container-pagina: 51.25rem; /* 820px */
+  --container-pagina-larga: 73.75rem; /* 1180px: área da leitura da Gita */
+  --container-leitura: 52rem;
+  --container-leitura-larga: 66rem;
+  --container-legenda: 34ch;
+  --container-legenda-larga: 46ch;
   /* Movimento: poucos valores, sempre usados por estes tokens. Zerados por prefers-reduced-motion. */
   --duration-quick: 160ms;
   --duration-base: 240ms;
@@ -105,7 +129,7 @@
   body {
     margin: 0;
     font-family: var(--font-body);
-    font-size: 18px;
+    font-size: var(--text-corpo);
     line-height: 1.5;
   }
   h1,
@@ -120,10 +144,10 @@
     font-size: clamp(2.1rem, 6vw, 3rem);
   }
   h2 {
-    font-size: 1.6rem;
+    font-size: var(--text-titulo);
   }
   h3 {
-    font-size: 1.2rem;
+    font-size: var(--text-subtitulo);
   }
   a {
     color: inherit;
@@ -151,8 +175,8 @@
   .label {
     display: block;
     font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-size: var(--text-rotulo);
+    letter-spacing: var(--tracking-rotulo);
     text-transform: uppercase;
     color: var(--muted);
   }
@@ -171,8 +195,8 @@
     background: var(--fg);
     color: var(--bg);
     font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
+    font-size: var(--text-meta);
+    letter-spacing: var(--tracking-botao);
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
@@ -194,7 +218,7 @@
   .btn-sm {
     min-height: 34px;
     padding: 5px 10px;
-    font-size: 11px;
+    font-size: var(--text-micro);
   }
   .btn:disabled {
     opacity: 0.45;
@@ -226,7 +250,7 @@
     padding: 7px 12px;
     border: 1px solid var(--fg);
     background: var(--panel);
-    font-size: 16px;
+    font-size: var(--text-chip);
     cursor: pointer;
     text-decoration: none;
   }
@@ -254,8 +278,8 @@
     padding: 1px 7px;
     border: 1px solid var(--color-rule);
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: var(--text-micro);
+    letter-spacing: var(--tracking-botao);
     text-transform: uppercase;
     color: var(--muted);
     white-space: nowrap;
@@ -282,7 +306,7 @@
   }
   .meta {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: var(--text-rotulo);
     color: var(--muted);
   }
   .rule-top {
@@ -295,14 +319,14 @@
   }
   .gita-md h4 {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: var(--text-leitura-titulo);
     font-weight: 400;
     line-height: 1.2;
     margin: 1.25rem 0 0.5rem;
   }
   .gita-md h5 {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: var(--text-leitura-subtitulo);
     font-weight: 400;
     margin: 1.5rem 0 0.4rem;
   }
@@ -337,7 +361,7 @@
     overflow-x: auto;
     border: 1px solid var(--color-rule);
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: var(--text-meta);
     line-height: 1.55;
   }
   .gita-md pre code {
@@ -352,7 +376,7 @@
     width: 100%;
     min-width: 28rem;
     border-collapse: collapse;
-    font-size: 0.95rem;
+    font-size: var(--text-nota);
   }
   .gita-md th,
   .gita-md td {
@@ -363,12 +387,21 @@
   }
   .gita-md th {
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: var(--text-rotulo);
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: var(--tracking-botao);
     text-transform: uppercase;
     color: var(--muted);
     border-bottom-color: var(--fg);
+  }
+  /* Áreas de toque: em telas de toque (pointer: coarse) botões e opções têm ao menos 44 px de altura. No computador
+   * (mouse) os tamanhos compactos continuam. O !important vence os utilitários !min-h-* usados em chips menores. */
+  @media (pointer: coarse) {
+    .btn,
+    .btn-sm,
+    .chip {
+      min-height: 44px !important;
+    }
   }
   /* Movimento com propósito: entrada suave de listas e cartões, com pequeno escalonamento (--i, no máximo 7),
    * e anéis dos símbolos grandes surgindo em sequência. O estado final é o estado normal da página: com

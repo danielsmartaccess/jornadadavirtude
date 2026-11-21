@@ -136,7 +136,7 @@ export function CouncilPage() {
         <button type="button" className="btn" onClick={convene}>
           Convocar o Conselho
         </button>
-        <p className="hint mt-2 text-[0.95rem]">A situação fica guardada com seus dados, neste navegador. Nada é enviado a serviços de inteligência artificial.</p>
+        <p className="hint mt-2 text-nota">A situação fica guardada com seus dados, neste navegador. Nada é enviado a serviços de inteligência artificial.</p>
       </Section>
 
       <Section title="Sessões anteriores">
@@ -235,7 +235,7 @@ export function SessionPage() {
           ))}
           {session.dimensionIds.length === 0 && <span className="hint">Nenhuma destacada.</span>}
         </div>
-        <p className="hint mt-2 text-[0.95rem]">São hipóteses para orientar a reflexão, nunca um diagnóstico. Toque em uma virtude para incluí-la ou retirá-la.</p>
+        <p className="hint mt-2 text-nota">São hipóteses para orientar a reflexão, nunca um diagnóstico. Toque em uma virtude para incluí-la ou retirá-la.</p>
       </Section>
 
       <Section title="2. Perspectivas selecionadas">
@@ -256,7 +256,7 @@ export function SessionPage() {
                 <span className="label">Perspectiva</span>
                 {contribution.perspective}
               </p>
-              <p className="mt-2 font-display text-[1.15rem] text-accent">{contribution.question}</p>
+              <p className="mt-2 font-display text-lede text-accent">{contribution.question}</p>
               <p className="meta">{thinker.questionSource === 'documento' ? 'Pergunta registrada no Documento 04.' : 'Pergunta de aplicação pedagógica da plataforma, não uma citação.'}</p>
               <p className="mt-2">
                 <span className="label">Por que foi convocado</span>
@@ -279,7 +279,7 @@ export function SessionPage() {
         {selection.length >= 2 && (
           <div className="mb-5 flex flex-wrap items-center gap-5">
             <ComparacaoAneis leitura={leituraDoConjunto(selection.map(({ thinker }) => estadosDosAneis(relacoesDoPensador(thinker.id))))} size={72} />
-            <p className="meta max-w-[46ch]">
+            <p className="meta max-w-legenda-larga">
               Dimensões em comum entre as perspectivas. Anel cheio: todas se ligam a essa dimensão pelas virtudes da base. Tracejado: só algumas. Fino: nenhuma. É uma leitura de conjunto, não uma avaliação de quem tem razão.
             </p>
           </div>
@@ -393,7 +393,7 @@ export function ThinkerPage() {
         <div className="mt-4 flex flex-wrap items-end gap-5 text-accent">
           <EmblemaTradicaoSimbolo tradicao={thinker.tradition} size={56} />
           <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(thinker.id)} size={56} animado />
-          <p className="meta max-w-[34ch] text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
+          <p className="meta max-w-legenda text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
         </div>
         <div className="mt-2">
           <StatusTag status={thinker.status} />
@@ -410,7 +410,7 @@ export function ThinkerPage() {
         {thinker.question && (
           <>
             <p className="label mt-4">Pergunta característica</p>
-            <p className="font-display text-[1.3rem] text-accent">{thinker.question}</p>
+            <p className="font-display text-subtitulo text-accent">{thinker.question}</p>
             <p className="meta">{thinker.questionSource === 'documento' ? 'Registrada no Documento 04.' : 'Formulação pedagógica da plataforma a partir do campo de contribuição. Não é uma citação.'}</p>
           </>
         )}

@@ -106,8 +106,8 @@ export function JourneyPage() {
             Nova jornada
           </Link>
         </div>
-        {journey.status === 'DRAFT' && <p className="hint mt-2 text-[0.95rem]">Rascunho: você pode editar tudo antes de iniciar.</p>}
-        {journey.status === 'PAUSED' && <p className="hint mt-2 text-[0.95rem]">Jornada pausada. Pausar faz parte do percurso; nada foi perdido.</p>}
+        {journey.status === 'DRAFT' && <p className="hint mt-2 text-nota">Rascunho: você pode editar tudo antes de iniciar.</p>}
+        {journey.status === 'PAUSED' && <p className="hint mt-2 text-nota">Jornada pausada. Pausar faz parte do percurso; nada foi perdido.</p>}
       </PageHeader>
 
       <nav aria-label="Etapas da jornada" className="rule-top">
@@ -129,10 +129,10 @@ export function JourneyPage() {
                   title={`${s.name}: ${STAGE_STATES[state].label}`}
                   onClick={() => setParams({ etapa: s.id }, { replace: true })}
                 >
-                  <span className={`font-mono text-[11px] tracking-wider ${current ? 'text-accent' : 'text-muted'}`}>
+                  <span className={`font-mono text-micro tracking-wider ${current ? 'text-accent' : 'text-muted'}`}>
                     {String(i + 1).padStart(2, '0')} <span aria-hidden="true">{STAGE_STATES[state].symbol}</span>
                   </span>
-                  <span className="text-[15px] leading-snug">{s.name}</span>
+                  <span className="text-nota leading-snug">{s.name}</span>
                   <span className="sr-only">: {STAGE_STATES[state].label}</span>
                 </button>
               </li>
@@ -168,7 +168,7 @@ export function JourneyPage() {
             </select>
           </div>
         </div>
-        <p className="hint mt-1 text-[0.95rem]">Concluir uma etapa significa que uma atividade foi realizada, não que a virtude foi adquirida. As etapas podem ser revisitadas.</p>
+        <p className="hint mt-1 text-nota">Concluir uma etapa significa que uma atividade foi realizada, não que a virtude foi adquirida. As etapas podem ser revisitadas.</p>
         <div className="mt-5">
           <StagePanel journey={journey} stage={stageId} />
         </div>

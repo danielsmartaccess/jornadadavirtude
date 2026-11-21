@@ -68,7 +68,7 @@ export function Layout() {
   }, [pathname]);
 
   return (
-    <div className={`mx-auto min-h-dvh ${larga ? 'max-w-[1180px]' : 'max-w-[820px]'} px-4 pb-28 md:pb-12`} style={{ paddingLeft: 'max(16px, env(safe-area-inset-left))', paddingRight: 'max(16px, env(safe-area-inset-right))' }}>
+    <div className={`mx-auto min-h-dvh ${larga ? 'max-w-pagina-larga' : 'max-w-pagina'} px-4 pb-28 md:pb-12`} style={{ paddingLeft: 'max(16px, env(safe-area-inset-left))', paddingRight: 'max(16px, env(safe-area-inset-right))' }}>
       <a href="#conteudo" className="btn btn-sm sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50">
         Pular para o conteúdo
       </a>
@@ -78,7 +78,7 @@ export function Layout() {
             <path d="M32 12 54 52H10Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
             <circle cx="32" cy="12" r="4.5" fill="var(--accent)" />
           </svg>
-          <span className="font-display text-[1.45rem] leading-none">Jornada da Virtude</span>
+          <span className="font-display text-destaque leading-none">Jornada da Virtude</span>
         </Link>
         <div className="flex items-center gap-2">
           <SyncBadge />
@@ -91,7 +91,7 @@ export function Layout() {
 
       <nav aria-label="Áreas da plataforma" className="no-print hidden gap-2 border-b border-rule py-3 md:flex md:flex-wrap">
         {AREAS.map((area) => (
-          <NavLink key={area.to} to={area.to} end={area.end} className="chip !min-h-9 font-mono !text-[12px] uppercase tracking-wider">
+          <NavLink key={area.to} to={area.to} end={area.end} className="chip !min-h-9 font-mono !text-rotulo uppercase tracking-wider">
             {area.label}
           </NavLink>
         ))}
@@ -113,7 +113,7 @@ export function Layout() {
         </Suspense>
       </main>
 
-      <footer className="no-print mt-12 border-t-2 border-ink pt-4 font-mono text-[12px] text-muted">
+      <footer className="no-print mt-12 border-t-2 border-ink pt-4 font-mono text-rotulo text-muted">
         <p>
           Seus registros ficam neste navegador. A conta na nuvem é opcional. <Link to="/configuracoes">Seus dados e privacidade</Link> · <Link to="/sobre">Fundamentos e limites</Link>
         </p>
@@ -126,7 +126,7 @@ export function Layout() {
             key={area.to}
             to={area.to}
             end={area.end}
-            className={({ isActive }) => `flex min-h-14 items-center justify-center px-0.5 text-center font-mono text-[10px] uppercase tracking-wide no-underline ${isActive ? 'bg-ink text-paper' : 'text-ink'}`}
+            className={({ isActive }) => `flex min-h-14 items-center justify-center px-0.5 text-center font-mono text-minimo uppercase tracking-wide no-underline ${isActive ? 'bg-ink text-paper' : 'text-ink'}`}
           >
             {area.short}
           </NavLink>

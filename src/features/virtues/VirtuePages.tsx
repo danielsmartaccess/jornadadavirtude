@@ -77,7 +77,7 @@ export function VirtuesPage() {
 
       <div role="group" aria-label="Atalhos do filtro" className="mb-4 flex flex-wrap gap-2">
         {families.map((f) => (
-          <button key={f.id} type="button" className="chip !min-h-9 gap-2 !text-[15px]" aria-pressed={family === f.id} onClick={() => setFamily(family === f.id ? '' : f.id)}>
+          <button key={f.id} type="button" className="chip !min-h-9 gap-2 !text-nota" aria-pressed={family === f.id} onClick={() => setFamily(family === f.id ? '' : f.id)}>
             <SimboloFamilia familyId={f.id} size={18} cor="currentColor" />
             {f.name}
           </button>
@@ -172,7 +172,7 @@ export function VirtuePage() {
           <EmblemaVirtude virtueId={virtue.id} cor={corDaFamilia(virtue.familyId)} size={104} />
           <SimboloFamilia familyId={virtue.familyId} size={48} />
           <AssinaturaVirtude cor={corDaFamilia(virtue.familyId)} relacoes={relacoesDeAnel(virtue.id)} size={64} animado />
-          <p className="meta max-w-[30ch]">Os anéis são as sete dimensões. A espessura mostra o tipo de relação: primária, secundária, contextual ou sem relação registrada.</p>
+          <p className="meta max-w-legenda">Os anéis são as sete dimensões. A espessura mostra o tipo de relação: primária, secundária, contextual ou sem relação registrada.</p>
         </div>
         <div className="mt-5 flex flex-wrap gap-3">
           <Link to={`/jornada/nova?virtude=${virtue.id}`} className="btn">
@@ -199,12 +199,12 @@ export function VirtuePage() {
             <p>{virtue.excess}</p>
           </div>
         </div>
-        <p className="hint mt-3 text-[0.95rem]">A virtude é a medida adequada à situação, não uma média matemática entre os extremos.</p>
+        <p className="hint mt-3 text-nota">A virtude é a medida adequada à situação, não uma média matemática entre os extremos.</p>
       </Section>
 
       <Section title="Comportamentos observáveis">
         <BulletList items={virtue.behaviors} />
-        <p className="hint mt-2 text-[0.95rem]">Servem para reconhecer situações de prática e refletir sobre escolhas. Não são critérios de nota.</p>
+        <p className="hint mt-2 text-nota">Servem para reconhecer situações de prática e refletir sobre escolhas. Não são critérios de nota.</p>
       </Section>
 
       <Section title="Dimensões associadas">
@@ -216,7 +216,7 @@ export function VirtuePage() {
             </Link>
           ))}
         </div>
-        <p className="hint mt-3 text-[0.95rem]">{INTERPRETIVE}</p>
+        <p className="hint mt-3 text-nota">{INTERPRETIVE}</p>
       </Section>
 
       {related.length > 0 && (
@@ -245,11 +245,11 @@ export function VirtuePage() {
             <ExerciseSummary key={e.id} exercise={e} />
           ))}
         </div>
-        <p className="hint mt-3 text-[0.95rem]">Para acompanhar um exercício e registrar a experiência, inicie uma jornada com esta virtude.</p>
+        <p className="hint mt-3 text-nota">Para acompanhar um exercício e registrar a experiência, inicie uma jornada com esta virtude.</p>
       </Section>
 
       <Section title="Pensadores e referências">
-        <p className="hint mb-2 text-[0.95rem]">
+        <p className="hint mb-2 text-nota">
           Associações registradas nos documentos do projeto. A classificação do tipo de relação (P1 a P4) só aparece onde foi documentada; as demais aguardam curadoria.
         </p>
         {thinkers.map(({ thinker, relation }) => (
@@ -375,7 +375,7 @@ export function DimensionPage() {
             <li key={q}>{q}</li>
           ))}
         </ol>
-        <p className="hint mt-3 text-[0.95rem]">Perguntas para refletir, sem resposta certa. O resultado é sempre uma oportunidade de reflexão, nunca um rótulo.</p>
+        <p className="hint mt-3 text-nota">Perguntas para refletir, sem resposta certa. O resultado é sempre uma oportunidade de reflexão, nunca um rótulo.</p>
       </Section>
 
       <Section title="Virtudes relacionadas">
@@ -395,7 +395,7 @@ export function DimensionPage() {
             </div>
           );
         })}
-        <p className="hint text-[0.95rem]">{INTERPRETIVE}</p>
+        <p className="hint text-nota">{INTERPRETIVE}</p>
       </Section>
 
       <Section title="Exercício proposto">

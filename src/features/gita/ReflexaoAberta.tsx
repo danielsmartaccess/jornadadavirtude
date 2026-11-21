@@ -96,7 +96,7 @@ function Registros({ etapaId, userId }: { etapaId: number; userId: string }) {
       <button type="button" className="btn" disabled={!validacao.ok || salvando} onClick={() => void guardar()}>
         {salvando ? 'Guardando…' : 'Guardar reflexão'}
       </button>
-      <div role="status" aria-live="polite" className="mt-2 min-h-6 text-[0.95rem]">
+      <div role="status" aria-live="polite" className="mt-2 min-h-6 text-nota">
         {aviso}
       </div>
       {erro && (

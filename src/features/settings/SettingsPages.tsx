@@ -64,7 +64,7 @@ function Account() {
           </button>
           <ConfirmButton label="Apagar meus dados da nuvem" confirmLabel="Confirmar exclusão na nuvem" onConfirm={() => void act(deleteCloudData)} />
         </div>
-        <p className="hint mt-2 text-[0.95rem]">Ao sair, os dados continuam neste aparelho. Apagar da nuvem remove jornadas, diário, revisões, sessões e as reflexões da leitura da Gita do servidor e encerra a sessão; a cópia local é mantida.</p>
+        <p className="hint mt-2 text-nota">Ao sair, os dados continuam neste aparelho. Apagar da nuvem remove jornadas, diário, revisões, sessões e as reflexões da leitura da Gita do servidor e encerra a sessão; a cópia local é mantida.</p>
       </>
     );
   }
@@ -92,7 +92,7 @@ function Account() {
           Receber link de acesso
         </button>
       </div>
-      <p className="hint mt-2 text-[0.95rem]">Esqueceu a senha? Informe o e-mail e peça o link de acesso.</p>
+      <p className="hint mt-2 text-nota">Esqueceu a senha? Informe o e-mail e peça o link de acesso.</p>
     </>
   );
 }
@@ -194,7 +194,7 @@ export function SettingsPage() {
             toast('Os dados deste aparelho foram apagados.');
           }}
         />
-        {sync.user && <p className="hint mt-2 text-[0.95rem]">Você está conectado: para remover também a cópia da nuvem, use “Apagar meus dados da nuvem” acima, antes de apagar os dados locais.</p>}
+        {sync.user && <p className="hint mt-2 text-nota">Você está conectado: para remover também a cópia da nuvem, use “Apagar meus dados da nuvem” acima, antes de apagar os dados locais.</p>}
       </Section>
 
       <Section title="Sobre">

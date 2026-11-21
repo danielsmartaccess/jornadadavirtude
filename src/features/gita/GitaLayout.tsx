@@ -28,7 +28,7 @@ export function GitaLayout() {
       </aside>
       {/* min-w-0: sem isso, tabelas largas esticam a coluna em vez de rolar dentro do próprio contêiner.
           O limite de largura é maior com o menu recolhido, para aproveitar o espaço liberado. */}
-      <div className={`min-w-0 md:w-full ${menu.recolhido ? 'md:mx-auto md:max-w-[66rem]' : 'md:max-w-[52rem]'}`}>
+      <div className={`min-w-0 md:w-full ${menu.recolhido ? 'md:mx-auto md:max-w-leitura-larga' : 'md:max-w-leitura'}`}>
         <Outlet />
       </div>
     </div>

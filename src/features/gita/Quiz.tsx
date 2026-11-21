@@ -42,7 +42,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
     >
       {perguntas.map((p) => (
         <fieldset key={p.ordem} className="mb-5 min-w-0 border-0 p-0">
-          <legend className="mb-2 font-display text-[1.1rem] leading-snug">
+          <legend className="mb-2 font-display text-lede leading-snug">
             {p.ordem}. {p.enunciado}
           </legend>
           {p.opcoes.map((o) => (
@@ -51,7 +51,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
               <span>{o.texto}</span>
             </label>
           ))}
-          {!p.contaNoResultado && <p className="hint mt-1.5 text-[0.95rem]">Esta pergunta é só para a sua reflexão: não entra no cálculo da leitura.</p>}
+          {!p.contaNoResultado && <p className="hint mt-1.5 text-nota">Esta pergunta é só para a sua reflexão: não entra no cálculo da leitura.</p>}
         </fieldset>
       ))}
 
@@ -59,7 +59,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
         Ver minha leitura
       </button>
       {!completo && (
-        <p className="hint mt-2 text-[0.95rem]">
+        <p className="hint mt-2 text-nota">
           {pendentes.length === contam.length
             ? `Responda às ${contam.length} perguntas${contam.length < perguntas.length ? ' que entram no cálculo' : ''} para ver a leitura.`
             : `Faltam as perguntas ${pendentes.join(', ')} para ver a leitura.`}
@@ -91,7 +91,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
                 .map(([chave, n]) => `${chave}: ${n}`)
                 .join(' · ')}
             </p>
-            <p className="hint mt-2 text-[0.95rem]">Não é uma avaliação de quem você é: mostra o que predominou nas suas respostas desta vez.</p>
+            <p className="hint mt-2 text-nota">Não é uma avaliação de quem você é: mostra o que predominou nas suas respostas desta vez.</p>
           </div>
         )}
         {porFaixa && (
@@ -101,7 +101,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
             <p className="meta mt-2">
               Respostas alinhadas ao ensinamento: {porFaixa.alinhadas} de {porFaixa.total}
             </p>
-            <p className="hint mt-2 text-[0.95rem]">Não é uma avaliação de quem você é nem uma medida de evolução espiritual: é um recurso de auto-observação.</p>
+            <p className="hint mt-2 text-nota">Não é uma avaliação de quem você é nem uma medida de evolução espiritual: é um recurso de auto-observação.</p>
           </div>
         )}
         {porAcertos && (
@@ -113,7 +113,7 @@ export function Quiz({ perguntas, regra }: { perguntas: PerguntaQuiz[]; regra: R
               </strong>
             </p>
             <p>{porAcertos.leitura ?? 'Não há leitura cadastrada para este resultado.'}</p>
-            <p className="hint mt-2 text-[0.95rem]">Esta devolutiva verifica a compreensão do capítulo. Não é teste psicológico nem avaliação de quem você é.</p>
+            <p className="hint mt-2 text-nota">Esta devolutiva verifica a compreensão do capítulo. Não é teste psicológico nem avaliação de quem você é.</p>
           </div>
         )}
       </div>

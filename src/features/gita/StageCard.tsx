@@ -39,12 +39,12 @@ export function StageCard({ etapa, conteudo, carregando }: { etapa: Etapa; conte
   return (
     <article id={`etapa-${etapa.ordem}`} className="scroll-mt-4 border-t-2 border-ink pt-5">
       <div className="flex flex-wrap items-baseline gap-3">
-        <span className="font-mono text-[12px] tracking-[0.12em] text-accent" aria-hidden="true">
+        <span className="font-mono text-rotulo tracking-rotulo text-accent" aria-hidden="true">
           {String(etapa.ordem).padStart(2, '0')}
         </span>
         <p className="label">Etapa {etapa.ordem}</p>
       </div>
-      <h3 className="mt-1.5 text-[1.5rem]">{etapa.nome}</h3>
+      <h3 className="mt-1.5 text-destaque">{etapa.nome}</h3>
       {conteudo?.conteudoMd ? (
         <Conteudo nome={etapa.nome} conteudo={{ ...conteudo, conteudoMd: semTituloInicialRepetido(conteudo.conteudoMd, etapa.nome) }} />
       ) : (

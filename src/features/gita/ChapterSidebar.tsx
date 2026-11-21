@@ -37,10 +37,10 @@ export function ChapterSidebar({ menu }: { menu: MenuCapitulos }) {
                 to={`/gita/${c.numero}`}
                 onClick={menu.fecharAberto}
                 className={({ isActive }) =>
-                  `flex items-baseline gap-3 border-l-2 px-3 py-2 text-[0.95rem] leading-snug no-underline ${isActive ? 'border-accent bg-panel text-ink' : 'border-transparent text-muted hover:text-ink'}`
+                  `flex items-baseline gap-3 border-l-2 px-3 py-2 text-nota leading-snug no-underline ${isActive ? 'border-accent bg-panel text-ink' : 'border-transparent text-muted hover:text-ink'}`
                 }
               >
-                <span className="w-5 shrink-0 text-right font-mono text-[12px]">{c.numero}</span>
+                <span className="w-5 shrink-0 text-right font-mono text-rotulo">{c.numero}</span>
                 <span>{splitTitulo(c.titulo).traducao}</span>
               </NavLink>
             </li>
@@ -54,10 +54,10 @@ export function ChapterSidebar({ menu }: { menu: MenuCapitulos }) {
           to={`/gita/${ROTA_ENSINAMENTOS}`}
           onClick={menu.fecharAberto}
           className={({ isActive }) =>
-            `flex items-baseline gap-3 border-l-2 px-3 py-2 text-[0.95rem] leading-snug no-underline ${isActive ? 'border-accent bg-panel text-ink' : 'border-transparent text-muted hover:text-ink'}`
+            `flex items-baseline gap-3 border-l-2 px-3 py-2 text-nota leading-snug no-underline ${isActive ? 'border-accent bg-panel text-ink' : 'border-transparent text-muted hover:text-ink'}`
           }
         >
-          <span className="w-5 shrink-0 text-right font-mono text-[12px]" aria-hidden="true">
+          <span className="w-5 shrink-0 text-right font-mono text-rotulo" aria-hidden="true">
             ✦
           </span>
           <span>Ensinamentos de Krishna</span>

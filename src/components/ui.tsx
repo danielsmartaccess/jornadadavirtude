@@ -23,7 +23,7 @@ export function PageHeader(props: { crumbs: { label: string; to?: string }[]; ti
     <header className="pb-6">
       <Breadcrumb items={props.crumbs} />
       <h1>{props.title}</h1>
-      {props.lede && <p className="hint mt-2 text-[1.15rem]">{props.lede}</p>}
+      {props.lede && <p className="hint mt-2 text-lede">{props.lede}</p>}
       {props.children}
     </header>
   );
@@ -78,7 +78,7 @@ export function Field(props: { label: string; hint?: string; error?: string; chi
       </label>
       {props.children(id, note ? noteId : undefined)}
       {note && (
-        <p id={noteId} role={props.error ? 'alert' : undefined} className={`mt-1 text-[0.95rem] ${props.error ? 'text-accent' : 'hint'}`}>
+        <p id={noteId} role={props.error ? 'alert' : undefined} className={`mt-1 text-nota ${props.error ? 'text-accent' : 'hint'}`}>
           {props.error ? `⚠ ${props.error}` : props.hint}
         </p>
       )}
@@ -198,7 +198,7 @@ export function Chips(props: { legend: string; options: readonly string[]; value
   return (
     <fieldset className="mb-4 min-w-0 border-0 p-0">
       <legend className="label mb-1.5">{props.legend}</legend>
-      {props.hint && <p className="hint mb-2 text-[0.95rem]">{props.hint}</p>}
+      {props.hint && <p className="hint mb-2 text-nota">{props.hint}</p>}
       <div className="flex flex-wrap gap-2">
         {options.map((option) => (
           <label key={option} className="chip">
@@ -256,7 +256,7 @@ export function ConfirmButton(props: { label: string; confirmLabel: string; onCo
 export function Accordion({ title, children, open }: { title: ReactNode; children: ReactNode; open?: boolean }) {
   return (
     <details className="border-t border-rule py-3" open={open}>
-      <summary className="font-display text-[1.15rem]">{title}</summary>
+      <summary className="font-display text-lede">{title}</summary>
       <div className="pt-3">{children}</div>
     </details>
   );

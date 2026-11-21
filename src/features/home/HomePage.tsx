@@ -33,7 +33,7 @@ function ProvocacaoDoDia() {
       <p className="label mb-2" id="provocacao">
         Para pensar hoje
       </p>
-      <p className="font-display text-[1.4rem] leading-snug text-accent">{provocacaoDoDia(new Date())}</p>
+      <p className="font-display text-destaque leading-snug text-accent">{provocacaoDoDia(new Date())}</p>
       <p className="meta mt-2">Pergunta da plataforma para a sua reflexão. Não é uma citação.</p>
     </section>
   );
@@ -53,7 +53,7 @@ export function HomePage() {
       <header className="pb-8">
         <p className="label mb-3">Filosofia prática · desenvolvimento humano</p>
         <h1>Uma jornada de conhecimento, consciência e prática.</h1>
-        <p className="hint mt-3 text-[1.2rem]">Conheça as virtudes, observe suas escolhas e desenvolva novas maneiras de agir.</p>
+        <p className="hint mt-3 text-subtitulo">Conheça as virtudes, observe suas escolhas e desenvolva novas maneiras de agir.</p>
         <div className="mt-6 flex flex-wrap gap-3">
           {journey ? (
             <>
@@ -117,7 +117,7 @@ export function HomePage() {
               </div>
               <Activity />
             </dl>
-            <p className="hint mt-3 text-[0.95rem]">Os números indicam atividades registradas e participação no percurso. Não medem virtude nem valor pessoal.</p>
+            <p className="hint mt-3 text-nota">Os números indicam atividades registradas e participação no percurso. Não medem virtude nem valor pessoal.</p>
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
             <Link to="/diario?novo=1" className="btn btn-ghost btn-sm">

@@ -38,7 +38,7 @@ function EntryForm({ initial, isNew, onDone }: { initial: DiaryEntry; isNew: boo
   return (
     <div className="card mb-6">
       {/* Novo registro vem logo abaixo do h1 (antes da linha do tempo): h2. Editar fica dentro da linha do tempo: h3. */}
-      {isNew ? <h2 className="mb-3 text-[1.2rem]">Novo registro</h2> : <h3 className="mb-3">Editar registro</h3>}
+      {isNew ? <h2 className="mb-3 text-subtitulo">Novo registro</h2> : <h3 className="mb-3">Editar registro</h3>}
       {exercise && (
         <p className="mb-3">
           <Tag accent>Exercício</Tag> {exercise.title}
@@ -59,7 +59,7 @@ function EntryForm({ initial, isNew, onDone }: { initial: DiaryEntry; isNew: boo
       />
       <div className="-mt-2 mb-4 flex flex-wrap gap-2">
         {SITUATIONS.map((s) => (
-          <button key={s} type="button" className="chip !min-h-8 !py-1 !text-[14px]" onClick={() => set('situation')(s)}>
+          <button key={s} type="button" className="chip !min-h-8 !py-1 !text-meta" onClick={() => set('situation')(s)}>
             {s}
           </button>
         ))}
@@ -188,7 +188,7 @@ export function DiaryPage() {
                     <option key={d.id} value={String(d.order)}>{d.order}. {d.name}</option>
                   ))}
                 </select>
-                <p id="f-dimensao-nota" className="hint mt-1 text-[0.95rem]">Registros cujas virtudes se ligam à dimensão pela relação primária ou secundária.</p>
+                <p id="f-dimensao-nota" className="hint mt-1 text-nota">Registros cujas virtudes se ligam à dimensão pela relação primária ou secundária.</p>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <TextInput label="De" type="date" value={from} onChange={setFrom} />
@@ -220,7 +220,7 @@ export function DiaryPage() {
                   )}
                   {e.stage && ` · etapa ${e.stage}`}
                 </p>
-                <p className="mt-1 whitespace-pre-wrap font-display text-[1.25rem] leading-snug">{e.situation}</p>
+                <p className="mt-1 whitespace-pre-wrap font-display text-subtitulo leading-snug">{e.situation}</p>
                 {e.context && <p>{e.context}</p>}
                 {e.thoughts && <p><span className="label">Pensei</span>{e.thoughts}</p>}
                 {e.feelings.length > 0 && <p>Senti: {e.feelings.join(', ')}</p>}
@@ -246,7 +246,7 @@ export function DiaryPage() {
             ),
           )}
         </ul>
-        {data.entries.length > 0 && <p className="hint mt-6 text-[0.95rem]">Dificuldades, dúvidas e situações não resolvidas também fazem parte do processo.</p>}
+        {data.entries.length > 0 && <p className="hint mt-6 text-nota">Dificuldades, dúvidas e situações não resolvidas também fazem parte do processo.</p>}
       </Section>
     </>
   );

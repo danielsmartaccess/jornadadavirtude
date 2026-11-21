@@ -40,7 +40,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
           <p
             key={t.id}
             role={t.kind === 'erro' ? 'alert' : 'status'}
-            className={`revelar max-w-xl border px-4 py-2 font-mono text-[13px] shadow-lg ${t.kind === 'erro' ? 'border-accent bg-paper text-ink' : 'border-ink bg-ink text-paper'}`}
+            className={`revelar max-w-xl border px-4 py-2 font-mono text-meta shadow-lg ${t.kind === 'erro' ? 'border-accent bg-paper text-ink' : 'border-ink bg-ink text-paper'}`}
           >
             {t.kind === 'erro' ? '⚠ ' : '✓ '}
             {t.text}

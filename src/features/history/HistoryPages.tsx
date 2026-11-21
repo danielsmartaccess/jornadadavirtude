@@ -88,7 +88,7 @@ export function HistoryPage() {
       {trail.length > 0 && (
         <Section title="Virtudes investigadas">
           <p className="font-display text-xl">{trail.join(' → ')}</p>
-          <p className="hint mt-1 text-[0.95rem]">Ordem em que você as trabalhou. Não é uma sequência obrigatória de desenvolvimento.</p>
+          <p className="hint mt-1 text-nota">Ordem em que você as trabalhou. Não é uma sequência obrigatória de desenvolvimento.</p>
         </Section>
       )}
 
@@ -205,7 +205,7 @@ export function JourneyDetailPage() {
             </Link>
           )}
         </div>
-        {journey.status === 'COMPLETED' && <p className="hint mt-2 text-[0.95rem]">Concluir encerra um ciclo de investigação e prática. Não significa domínio definitivo da virtude.</p>}
+        {journey.status === 'COMPLETED' && <p className="hint mt-2 text-nota">Concluir encerra um ciclo de investigação e prática. Não significa domínio definitivo da virtude.</p>}
       </PageHeader>
 
       <Section title="Percepções declaradas por você">
@@ -327,7 +327,7 @@ export function JourneyDetailPage() {
           const virtudes = virtudesNaOrdem(entries).map((id) => getVirtue(id)?.name).filter(Boolean);
           return (
             <>
-              <p className="hint mb-3 text-[0.95rem]">Registros cujas virtudes se ligam a cada dimensão pela relação primária ou secundária.</p>
+              <p className="hint mb-3 text-nota">Registros cujas virtudes se ligam a cada dimensão pela relação primária ou secundária.</p>
               <ol className="grid gap-3">
                 {linhas.map(({ ordem, registros }) => (
                   <li key={ordem} className="flex items-center gap-4">

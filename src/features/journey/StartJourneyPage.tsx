@@ -107,11 +107,11 @@ export function StartJourneyPage() {
             ))}
           </select>
           {attempted && !virtue && (
-            <p role="alert" className="mt-1 text-[0.95rem] text-accent">
+            <p role="alert" className="mt-1 text-nota text-accent">
               ⚠ Escolha a virtude principal antes de criar a jornada.
             </p>
           )}
-          <p className="hint mt-1 text-[0.95rem]">
+          <p className="hint mt-1 text-nota">
             Ainda não sabe? <Link to="/virtudes">Explore o catálogo</Link> ou as <Link to="/dimensoes">sete dimensões</Link> e volte quando quiser.
           </p>
         </div>
@@ -135,7 +135,7 @@ export function StartJourneyPage() {
           Salvar como rascunho
         </button>
       </div>
-      <p className="hint mt-3 text-[0.95rem]">Concluir uma jornada, mais adiante, não significará dominar a virtude: significa encerrar um ciclo de investigação e prática.</p>
+      <p className="hint mt-3 text-nota">Concluir uma jornada, mais adiante, não significará dominar a virtude: significa encerrar um ciclo de investigação e prática.</p>
     </>
   );
 }

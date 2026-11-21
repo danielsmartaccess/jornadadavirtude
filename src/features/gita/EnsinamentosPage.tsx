@@ -57,12 +57,12 @@ function ListaDeEnsinamentos({ itens }: { itens: ItemEnsinamento[] }) {
     <ol aria-label="Os sete ensinamentos de Krishna" className="m-0 grid list-none gap-0 p-0">
       {itens.map((item, i) => (
         <li key={item.numero} style={atraso(i)} className="revelar grid grid-cols-[2.5rem_minmax(0,1fr)] gap-3 border-t border-rule py-5 first:border-t-2 first:border-ink">
-          <span className="pt-1.5 font-mono text-[13px] tracking-[0.12em] text-accent" aria-hidden="true">
+          <span className="pt-1.5 font-mono text-meta tracking-rotulo text-accent" aria-hidden="true">
             {String(item.numero).padStart(2, '0')}
           </span>
           <div className="min-w-0">
             {item.linhas.map((linha) => (
-              <p key={linha} className="m-0 font-display text-[1.45rem] leading-snug">
+              <p key={linha} className="m-0 font-display text-destaque leading-snug">
                 {linha}
               </p>
             ))}
