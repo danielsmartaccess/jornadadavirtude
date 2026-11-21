@@ -36,6 +36,8 @@ test('cabeçalhos simples e política de conteúdo restritiva (lidos do vercel.j
   expect(cabecalhos['x-frame-options']).toBe('DENY');
   expect(cabecalhos['referrer-policy']).toBe('strict-origin-when-cross-origin');
   expect(cabecalhos['permissions-policy']).toContain('camera=()');
+  expect(cabecalhos['content-security-policy'], 'a política é aplicada (bloqueia), não só observada').toBeTruthy();
+  expect(cabecalhos['content-security-policy-report-only'], 'sem a versão só de relatório').toBeUndefined();
   expect(politica).toContain("default-src 'self'");
   expect(politica).toContain("object-src 'none'");
   expect(politica).toContain("frame-ancestors 'none'");
@@ -108,5 +110,29 @@ test('política aplicada: Gita e Ensinamentos de Krishna, com a API do Supabase,
   await expect(page.locator('#etapa-1 h4')).toBeVisible();
   await page.goto('/gita/ensinamentos');
   await expect(page.getByText('Despertar consciência', { exact: true })).toBeVisible();
+  expect(await violacoes(page)).toEqual([]);
+});
+
+test('política aplicada: entrar na conta e sincronizar (Supabase Auth e RPC) sem violações', async ({ page }) => {
+  await comCabecalhosDeProducao(page);
+  const usuario = { id: 'usuario-1', email: 'pessoa@exemplo.com', aud: 'authenticated', role: 'authenticated', app_metadata: {}, user_metadata: {}, created_at: '2026-11-01T00:00:00Z' };
+  await page.route('**/auth/v1/token*', (rota) =>
+    rota.fulfill({ json: { access_token: 'cabecalho.carga.assinatura', token_type: 'bearer', expires_in: 3600, expires_at: Math.floor(Date.now() / 1000) + 3600, refresh_token: 'renovacao', user: usuario } }),
+  );
+  await page.route('**/auth/v1/user*', (rota) => rota.fulfill({ json: usuario }));
+  await page.route('**/rest/v1/rpc/jv_pull_state*', (rota) => rota.fulfill({ json: { revision: 0, state: { schema: 4, journeys: [], entries: [], reviews: [], sessions: [] } } }));
+  await page.route('**/rest/v1/rpc/jv_push_state*', (rota) => rota.fulfill({ json: { revision: 1 } }));
+  await page.route('**/rest/v1/registros*', (rota) => rota.fulfill({ json: [] }));
+  await page.goto('/configuracoes');
+  await page.getByLabel('E-mail').fill('pessoa@exemplo.com');
+  await page.getByLabel('Senha').fill('senha-segura-1');
+  // O login chama o Supabase Auth e, em seguida, a sincronização chama as funções do banco: ambos são conexões que a política precisa permitir.
+  const [login, sincronizacao] = await Promise.all([
+    page.waitForResponse('**/auth/v1/token*'),
+    page.waitForRequest('**/rest/v1/rpc/jv_pull_state*'),
+    page.getByRole('button', { name: 'Entrar', exact: true }).click(),
+  ]);
+  expect(login.status()).toBe(200);
+  expect(sincronizacao.method()).toBe('POST');
   expect(await violacoes(page)).toEqual([]);
 });
