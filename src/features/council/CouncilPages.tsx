@@ -436,7 +436,7 @@ function Monograma({ nome, tipo }: { nome: string; tipo: TipoParticipacao }) {
 function TagsDaEntrada({ tipo, lista }: { tipo: TipoParticipacao; lista: Universo[] }) {
   return (
     <div className="mt-2 flex flex-wrap gap-1.5">
-      <Tag accent={naoEPessoa(tipo)}>{TIPO_PARTICIPACAO[tipo].nome}{naoEPessoa(tipo) ? ' · não é uma pessoa' : ''}</Tag>
+      <Tag accent={naoEPessoa(tipo)} quebra>{TIPO_PARTICIPACAO[tipo].nome}{naoEPessoa(tipo) ? ' · não é uma pessoa' : ''}</Tag>
       {lista.map((u) => (
         <Tag key={u}>{getUniverso(u)?.nome ?? u}</Tag>
       ))}
@@ -654,7 +654,7 @@ function CandidatoView({ c }: { c: Candidato }) {
         <TagsDaEntrada tipo={c.tipo} lista={c.universos} />
         <div className="mt-2 flex flex-wrap gap-1.5">
           <StatusTag status={c.status} />
-          <Tag accent>{NAO_HABILITADO}</Tag>
+          <Tag accent quebra>{NAO_HABILITADO}</Tag>
         </div>
       </PageHeader>
       <Section title="Por que está no acervo">
@@ -825,8 +825,8 @@ export function ThinkerPage() {
         )}
         <div className="mt-2 flex flex-wrap gap-1.5">
           <StatusTag status={thinker.status} />
-          {!thinker.council && <Tag accent>{NAO_HABILITADO}</Tag>}
-          {corpusDeApoio && <Tag accent>{PAPEL_SELECAO.contextual_corpus}</Tag>}
+          {!thinker.council && <Tag accent quebra>{NAO_HABILITADO}</Tag>}
+          {corpusDeApoio && <Tag accent quebra>{PAPEL_SELECAO.contextual_corpus}</Tag>}
         </div>
         {corpusDeApoio && (
           <Notice title="Corpus de apoio, não pessoa">
