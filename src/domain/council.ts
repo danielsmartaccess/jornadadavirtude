@@ -15,6 +15,7 @@ import {
   virtueDimensions,
   virtues,
 } from './catalog';
+import { evidencias, paresNaoIndependentes, relacaoUtilizavel, type EvidenciaRelacao } from './curadoria';
 import type { CouncilCase, CouncilContribution, Thinker, ThinkerVirtue } from './types';
 import { normalize, unique, words } from '../shared/util';
 
@@ -128,13 +129,20 @@ export function suggest(text: string): Suggestion {
 /* Etapa 4: seleção dos pensadores                                            */
 /* ------------------------------------------------------------------------- */
 
-const relationsByThinker = new Map<string, ThinkerVirtue[]>();
-for (const relation of thinkerVirtues) {
-  if (relation.status === 'suspensa') continue;
-  const current = relationsByThinker.get(relation.thinkerId) ?? [];
-  current.push(relation);
-  relationsByThinker.set(relation.thinkerId, current);
+/** Relações que podem fundamentar uma perspectiva, por pensador: ficam de fora as suspensas, as
+ *  rejeitadas e as classificadas como F4 numa evidência (Documento 14, seção 9). */
+function indexarRelacoes(relacoes: ThinkerVirtue[], lista: EvidenciaRelacao[]): Map<string, ThinkerVirtue[]> {
+  const index = new Map<string, ThinkerVirtue[]>();
+  for (const relation of relacoes) {
+    if (!relacaoUtilizavel(relation, lista)) continue;
+    const current = index.get(relation.thinkerId) ?? [];
+    current.push(relation);
+    index.set(relation.thinkerId, current);
+  }
+  return index;
 }
+
+const relationsByThinker = indexarRelacoes(thinkerVirtues, evidencias);
 
 const primaryDimensions = new Map<string, string[]>();
 for (const relation of virtueDimensions) {
@@ -168,12 +176,36 @@ interface Candidate {
   perspective: string;
 }
 
+/** Dados usados pela seleção. O padrão é o catálogo do app; testes podem injetar outro. */
+export interface ContextoSelecao {
+  /** Só quem está aqui pode ser convocado: os integrantes habilitados (`council: true`). */
+  membros: Thinker[];
+  relacoes: ThinkerVirtue[];
+  casos: CouncilCase[];
+  evidencias: EvidenciaRelacao[];
+  /** Registros que não entram juntos como vozes independentes (tradição × autor nomeado). */
+  pares: Map<string, Set<string>>;
+}
+
+export const CONTEXTO_PADRAO: ContextoSelecao = {
+  membros: councilMembers,
+  relacoes: thinkerVirtues,
+  casos: councilCases,
+  evidencias,
+  pares: paresNaoIndependentes(),
+};
+
 export function selectThinkers(input: SelectionInput, max: number = MAX_THINKERS): CouncilSelection[] {
-  const cases = input.caseIds.flatMap((id) => getCase(id) ?? []);
+  return selecionarPerspectivas(CONTEXTO_PADRAO, input, max);
+}
+
+export function selecionarPerspectivas(ctx: ContextoSelecao, input: SelectionInput, max: number = MAX_THINKERS): CouncilSelection[] {
+  const porPensador = ctx === CONTEXTO_PADRAO ? relationsByThinker : indexarRelacoes(ctx.relacoes, ctx.evidencias);
+  const cases = input.caseIds.flatMap((id) => ctx.casos.find((c) => c.id === id) ?? []);
   const candidates: Candidate[] = [];
 
-  for (const thinker of councilMembers) {
-    const relations = relationsByThinker.get(thinker.id) ?? [];
+  for (const thinker of ctx.membros) {
+    const relations = porPensador.get(thinker.id) ?? [];
     const related = relations.filter((r) => input.virtueIds.includes(r.virtueId));
     const documented = Math.min(1, related.reduce((sum, r) => sum + strength(r), 0) / 2);
 
@@ -223,7 +255,11 @@ export function selectThinkers(input: SelectionInput, max: number = MAX_THINKERS
     const traditions = new Set(chosen.map((c) => c.thinker.tradition));
     const score = (c: Candidate) => c.base + (traditions.has(c.thinker.tradition) ? 0 : WEIGHTS.complementarity);
     pool.sort((a, b) => score(b) - score(a) || a.thinker.name.localeCompare(b.thinker.name));
-    chosen.push(pool.shift()!);
+    const escolhido = pool.shift()!;
+    chosen.push(escolhido);
+    /* Documento 14, seções 8 e 10: tradição e autor nomeado não entram como vozes independentes. */
+    const excluir = ctx.pares.get(escolhido.thinker.id);
+    if (excluir) for (let i = pool.length - 1; i >= 0; i--) if (excluir.has(pool[i].thinker.id)) pool.splice(i, 1);
   }
 
   return chosen.map(({ thinker, reasons, perspective }) => ({
