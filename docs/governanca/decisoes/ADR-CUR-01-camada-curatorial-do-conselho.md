@@ -38,6 +38,13 @@ No código, o catálogo é JSON somente leitura em `src/data/`, embutido no buil
    - **Prova de não mudança:** com os dados atuais, nenhuma dessas regras altera a seleção. Isso é provado pelo snapshot `tests/unit/__snapshots__/conselho-selecao-referencia.test.ts.snap`, gravado antes da mudança, no commit `931cd9c`.
    - **Sem mudança de regra numérica:** pesos e limites não mudaram.
 7. **Dados do usuário:** nenhuma mudança de schema, de `sanitize.ts`, de `localRepository.ts` ou do Supabase. Não há migração de dados do usuário, porque o catálogo não é dado do usuário.
+8. **Interface (`/conselho/pensadores`):**
+   - A página vira uma biblioteca com quatro grupos: integrantes (27), tradições (14), candidatos (28) e outras referências (15).
+   - Filtros por categoria, universo, tipo de participação, virtude, dimensão e palavra-chave.
+   - Cada cartão mostra tipo, universos e se participa ou não do Conselho. Candidatos, tradições e referências trazem "Não habilitado · não participa do Conselho". Tradições e escolas trazem "não é uma pessoa".
+   - Candidatos e tradições têm página própria na mesma rota de detalhe; a tradição é apresentada como recorte de estudo, sem biografia.
+   - Sem imagens: emblemas e assinaturas continuam só nos integrantes; as demais entradas usam monograma tipográfico. Nenhum recurso remoto.
+   - A página do integrante mostra tipo, universos e o estado da fundamentação por relação (hoje: não avaliada).
 
 ## Conflitos registrados (não resolvidos)
 
