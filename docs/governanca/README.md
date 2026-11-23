@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Versão | 0.4 |
+| Versão | 0.7 |
 | Status | ÍNDICE DE GOVERNANÇA (nenhum documento desta pasta está aprovado) |
 | Data de atualização | 2026-11-23 |
 | Base do repositório | `main` em `b23ddac` |
@@ -16,6 +16,9 @@
 | 0.2 | 2026-11-23 | Classificação documental por tipo (complemento, reconstrução, artefato, registro, índice); papéis de validação; separação entre status de implementação e status de evidência nos requisitos. Conteúdo e proveniência preservados. |
 | 0.3 | 2026-11-23 | Totais do histórico de decisões corrigidos: 24 pendentes, 1 aprovada (D-GOV-01, formalizada em DEC-15), 11 conflitos preservados. |
 | 0.4 | 2026-11-23 | Inclusão do Documento 14 (curadoria ampliada) e do ADR-CUR-01 no índice. Nenhum status alterado. |
+| 0.5 | 2026-11-23 | Fase 2 de curadoria: ADR-CUR-02 a ADR-CUR-05 e relatórios gerados (comparação das políticas de seleção e inventário das 189 relações). Totais do histórico atualizados. Nenhum documento oficial original foi alterado. |
+| 0.6 | 2026-11-23 | Revisão humana da Fase 2 (DEC-CUR-10): comparação v1 × v2 × v2.1 incluída; ADR-CUR-02 a 04 com seções de revisão. Nenhum documento oficial original foi alterado. |
+| 0.7 | 2026-11-23 | Revisão final: VIN-DAL-03 volta a "a confirmar" (ADR-CUR-02, histórico v0.7). Nenhum documento oficial original foi alterado. |
 
 ## Classificação documental
 
@@ -74,8 +77,15 @@ O objetivo é deixar a documentação pronta para validação. Nenhuma aprovaç�
 | 09 — Backlog e Testes | `documentos/Documento-09-Backlog-Testes.md` | RECONSTRUÍDO PARA VALIDAÇÃO | Docs. 07, 08, 13 v2; testes; relatórios locais | Responsável pelo produto (prioridades, reconciliação com a auditoria não localizada); revisor técnico (estratégia de testes) |
 | Matriz de rastreabilidade | `rastreabilidade/matriz-rastreabilidade.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO | Complemento do Doc. 07 | Revisor técnico |
 | Inventário de evidências | `rastreabilidade/inventario-evidencias.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO | Todas as fontes examinadas | Revisor técnico; revisor filosófico/curatorial (fontes documentais) |
-| Histórico de decisões | `decisoes/historico-decisoes.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | Documentos, commits, código | Responsável pelo produto (24 decisões pendentes; 1 aprovada, D-GOV-01, formalizada em DEC-15; 11 conflitos preservados) |
+| Histórico de decisões | `decisoes/historico-decisoes.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | Documentos, commits, código | Responsável pelo produto (23 decisões pendentes; 2 aprovadas: D-GOV-01 em DEC-15 e D-08-04 em DEC-CUR-05; DEC-CUR-02 a 09 registradas; 11 conflitos preservados, 1 resolvido) |
 | ADR-CUR-01 — Camada curatorial do Conselho | `decisoes/ADR-CUR-01-camada-curatorial-do-conselho.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | Doc. 14; Docs. 04, 08, 12, 13; código | Responsável pelo produto (conflitos C-CUR-1 a C-CUR-5); revisor filosófico/curatorial (classificação, candidatos, tradições); revisor técnico (modelo de dados e seleção) |
+| ADR-CUR-02 — Tradições como corpus de apoio; recorte do Dalai Lama | `decisoes/ADR-CUR-02-papel-das-tradicoes-e-corpora.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-02, DEC-CUR-03; fontes oficiais do Dalai Lama | Revisor filosófico/curatorial (vínculo Gelug, recorte das tradições) |
+| ADR-CUR-03 — Pesos, taxonomia e diversidade da seleção | `decisoes/ADR-CUR-03-pesos-e-diversidade-da-selecao.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-05, 06, 07; Docs. 04, 13 v2, 14 | Revisor técnico (critérios, piso de pertinência); responsável pelo produto (efeito da diversidade) |
+| ADR-CUR-04 — Fontes-base e revisão das relações | `decisoes/ADR-CUR-04-fontes-e-revisao-das-relacoes.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-04, 08; páginas de editores e registros institucionais | Revisor filosófico/curatorial (edições, traduções, revisão das relações) |
+| ADR-CUR-05 — Medição do bundle | `decisoes/ADR-CUR-05-medicao-do-bundle.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-09; medição do build | Revisor técnico |
+| Comparação v1 × v2 × v2.1 (revisão DEC-CUR-10) | `curadoria/comparacao-politicas-selecao-v2.1.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO (gerado por teste) | Motor de seleção; 79 entradas de referência | Revisor técnico; responsável pelo produto |
+| Comparação das políticas de seleção (A/B) | `curadoria/comparacao-politicas-selecao.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO (gerado por teste) | Motor de seleção; 79 entradas de referência | Revisor técnico; responsável pelo produto |
+| Inventário das 189 relações (v1) | `curadoria/inventario-relacoes-v1.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO (gerado por teste) | `thinker-virtues.json`; camada curatorial | Revisor filosófico/curatorial |
 
 ## Fontes
 

@@ -43,8 +43,9 @@ export function Section({ title, children, id, aside }: { title: string; childre
   );
 }
 
-export function Tag({ children, accent }: { children: ReactNode; accent?: boolean }) {
-  return <span className={`tag ${accent ? 'tag-accent' : ''}`}>{children}</span>;
+/** `quebra`: permite quebrar linha em etiquetas de texto longo, para não estourar a largura em telas estreitas (360px). */
+export function Tag({ children, accent, quebra }: { children: ReactNode; accent?: boolean; quebra?: boolean }) {
+  return <span className={`tag ${accent ? 'tag-accent' : ''}${quebra ? ' max-w-full whitespace-normal' : ''}`}>{children}</span>;
 }
 
 const STATUS_TEXT: Record<ValidationStatus, string> = {

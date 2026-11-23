@@ -30,7 +30,7 @@ const CAPITULO = [
 ];
 const PONTOS = [{ ordem: 1, linhas: ['Despertar consciência'], ensinamentos_gunas: [] }];
 
-const ROTAS = ['/', '/jornada', '/jornada/nova', '/virtudes', '/virtudes/V07', '/dimensoes', '/dimensoes/DIM03', '/conselho', '/conselho/pensadores', '/conselho/pensadores/socrates', '/conselho/pensadores/estoicismo', '/conselho/pensadores/hannah-arendt', '/conselho/pensadores/tradicao-estoicismo', '/conselho/pensadores/corpus-bhagavad-gita', '/diario', '/diario?novo=1', '/historico', '/configuracoes', '/sobre', '/gita', '/gita/ensinamentos', '/gita/14'];
+const ROTAS = ['/', '/jornada', '/jornada/nova', '/virtudes', '/virtudes/V07', '/dimensoes', '/dimensoes/DIM03', '/conselho', '/conselho/pensadores', '/conselho/pensadores/socrates', '/conselho/pensadores/estoicismo', '/conselho/pensadores/hannah-arendt', '/conselho/pensadores/tradicao-estoicismo', '/conselho/pensadores/corpus-bhagavad-gita', '/conselho/pensadores/dalai-lama', '/conselho/pensadores/tradicoes-budistas', '/diario', '/diario?novo=1', '/historico', '/configuracoes', '/sobre', '/gita', '/gita/ensinamentos', '/gita/14'];
 
 test('estrutura de títulos: um h1 e nenhum salto de nível em todas as telas', async ({ page }) => {
   await page.route('**/rest/v1/capitulos*', (r) => r.fulfill({ json: CAPITULO }));

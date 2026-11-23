@@ -25,7 +25,10 @@ test('acervo completo: integrantes, tradições, candidatos e referências disti
   await expect(cartoes(page, 'candidato')).toHaveCount(28);
   await expect(cartoes(page, 'referencia')).toHaveCount(15);
   // Só os integrantes dizem que participam; todos os outros dizem que não.
-  await expect(cartoes(page).filter({ hasText: /Participa do Conselho/ })).toHaveCount(27); // regex diferencia maiúscula: não casa com “não participa”
+  await expect(cartoes(page).filter({ hasText: /Participa do Conselho/ })).toHaveCount(26); // regex diferencia maiúscula: não casa com “não participa”
+  // DEC-CUR-02: dos 27 habilitados, Tradições budistas é corpus de apoio, não voz.
+  await expect(cartoes(page, 'integrante').filter({ hasText: 'Corpus de apoio — não convocado como pessoa' })).toHaveCount(1);
+  await expect(page.getByText('Classificação curatorial v1 — sujeita a revisão especializada')).toBeVisible();
   for (const c of ['tradicao', 'candidato', 'referencia']) {
     const n = await cartoes(page, c).count();
     await expect(cartoes(page, c).filter({ hasText: 'Não habilitado · não participa do Conselho' })).toHaveCount(n);
@@ -125,10 +128,72 @@ test('candidatos não são convocados numa sessão do Conselho', async ({ page }
 
 test('celular: biblioteca e páginas de detalhe sem rolagem horizontal', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
-  for (const rota of ['/conselho/pensadores', '/conselho/pensadores/hannah-arendt', '/conselho/pensadores/corpus-bhagavad-gita']) {
+  /* Todas as variantes de página de detalhe: integrante com referências-base ou testemunhos, corpus de apoio,
+   * candidato, tradição e referência do catálogo (a falta de Dalai Lama e Sócrates aqui deixou passar um estouro). */
+  for (const rota of [
+    '/conselho/pensadores',
+    '/conselho/pensadores/hannah-arendt',
+    '/conselho/pensadores/corpus-bhagavad-gita',
+    '/conselho/pensadores/tradicao-estoicismo',
+    '/conselho/pensadores/estoicismo',
+    '/conselho/pensadores/tradicoes-budistas',
+    '/conselho/pensadores/dalai-lama',
+    '/conselho/pensadores/socrates',
+    '/conselho/pensadores/benjamin-franklin',
+    '/conselho/pensadores/richard-feynman',
+  ]) {
     await page.goto(rota);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const sobra = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(sobra, rota).toBeLessThanOrEqual(0);
   }
+});
+
+test('Fase 2: corpus de apoio, recorte do Dalai Lama e testemunhos de Sócrates', async ({ page }) => {
+  const erros = errors(page);
+  await page.goto('/conselho/pensadores/tradicoes-budistas');
+  await expect(page.getByText('Corpus de apoio, não pessoa')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Dalai Lama (Tenzin Gyatso)' })).toBeVisible();
+
+  await page.goto('/conselho/pensadores/dalai-lama');
+  const recorte = page.getByRole('region', { name: 'Recorte desta perspectiva' });
+  await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').first()).toContainText('Budismo tibetano');
+  // Revisão DEC-CUR-10: prática Gelug no início da vida sustentada pela declaração oficial; chefia formal (Ganden Tripa) não afirmada.
+  // Revisão final: filiação à ordem monástica (VIN-DAL-03) a confirmar, com a fonte marcada como em revisão.
+  const filiacao = recorte.locator('[data-vinculo="a_confirmar"]');
+  await expect(filiacao).toHaveCount(1);
+  await expect(filiacao).toContainText('Escola Gelug');
+  await expect(filiacao).toContainText('A confirmar');
+  await expect(filiacao.locator('[data-fonte-em-revisao]')).toHaveCount(1);
+  await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: /ordem monástica/i })).toHaveCount(0);
+  const inicial = recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: 'Tradição Gelug — prática no início da vida' });
+  await expect(inicial).toContainText('In the early part of my life, I followed only the Gelug tradition.');
+  await expect(inicial).toContainText('2017-09-25');
+  await expect(recorte.locator('[data-vinculo="nao_afirmar"]').filter({ hasText: 'Ganden Tripa' })).toContainText('p. 527');
+  await expect(recorte.locator('[data-vinculo="nao_afirmar"]').filter({ hasText: 'Todos os budismos' })).toHaveCount(1);
+  await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: /chefe formal|líder de toda/i })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Referências-base' })).toContainText('Ethics for the New Millennium');
+  await expect(page.getByText('referência cadastrada não é relação validada')).toBeVisible();
+
+  await page.goto('/conselho/pensadores/socrates');
+  const testemunhos = page.getByRole('region', { name: 'Testemunhos sobre Sócrates' });
+  await expect(testemunhos.locator('[data-referencia]')).toHaveCount(3);
+  await expect(testemunhos).toContainText('Nenhum destes textos é de autoria de Sócrates');
+  // Revisão DEC-CUR-10: metadados pendentes não viram baixa confiabilidade; natureza de cada testemunho com localização.
+  await expect(testemunhos.locator('[data-completude="pendente"]')).toHaveCount(3);
+  await expect(testemunhos.locator('[data-natureza-testemunho]')).toHaveCount(3);
+  await expect(testemunhos.getByText('Confiabilidade da fonte: não avaliada', { exact: false })).toHaveCount(3);
+  expect(erros).toEqual([]);
+});
+
+test('Fase 2: no caso do perdão, Dalai Lama é voz e Tradições budistas só dá contexto', async ({ page }) => {
+  await page.goto('/conselho');
+  await page.getByLabel('Qual situação você deseja analisar?').fill('A pessoa guarda ressentimento por uma ofensa ou injustiça sofrida.');
+  await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
+  await expect(page).toHaveURL(/conselho\/sessoes\//);
+  const vozes = await page.locator('main a[href^="/conselho/pensadores/"]').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+  expect(vozes).toContain('/conselho/pensadores/dalai-lama');
+  expect(vozes).not.toContain('/conselho/pensadores/tradicoes-budistas');
+  await expect(page.getByText('Contexto de apoio: Tradições budistas, recorte budismo tibetano').first()).toBeVisible();
+  await expect(page.getByText('Critérios de seleção: versão 2.1 (Documento 13).').first()).toBeVisible();
 });

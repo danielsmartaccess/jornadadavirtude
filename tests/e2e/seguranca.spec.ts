@@ -68,7 +68,7 @@ test('política aplicada: tema, navegação e catálogo sem violações', async 
   const botao = page.getByRole('button', { name: /Alterar tema/ });
   await botao.click();
   await expect(page.locator('html')).not.toHaveAttribute('data-theme', /.+/);
-  for (const rota of ['/virtudes', '/virtudes/V07', '/dimensoes', '/conselho/pensadores', '/conselho/pensadores/socrates', '/conselho/pensadores/hannah-arendt', '/conselho/pensadores/tradicao-estoicismo', '/sobre']) {
+  for (const rota of ['/virtudes', '/virtudes/V07', '/dimensoes', '/conselho/pensadores', '/conselho/pensadores/socrates', '/conselho/pensadores/hannah-arendt', '/conselho/pensadores/tradicao-estoicismo', '/conselho/pensadores/dalai-lama', '/sobre']) {
     await page.goto(rota);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
   }
