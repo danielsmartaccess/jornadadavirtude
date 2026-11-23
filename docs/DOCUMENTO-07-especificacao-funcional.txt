@@ -1,0 +1,1035 @@
+# DOCUMENTO 07
+# ESPECIFICAÇÃO FUNCIONAL E REQUISITOS DO SISTEMA
+
+**Projeto:** Jornada da Virtude
+**Versão:** 2.0
+**Status:** Documento de referência para desenvolvimento
+**Documento relacionado:** Documento 08 — Arquitetura Técnica e Modelo de Dados V2.0
+**Stack tecnológica de referência:** React + Vite + TypeScript + Tailwind CSS
+
+---
+
+# 1. FINALIDADE DO DOCUMENTO
+
+Este documento especifica o comportamento esperado da plataforma Jornada da Virtude, definindo suas funcionalidades, requisitos, regras de negócio, critérios de aceitação e prioridades de implementação.
+
+Seu objetivo é estabelecer uma referência comum para:
+
+- Desenvolvimento do sistema.
+- Organização do backlog.
+- Definição dos critérios de aceitação.
+- Planejamento dos testes.
+- Validação das entregas.
+- Evolução funcional do produto.
+
+Este documento define **o que o sistema deve fazer**.
+
+A arquitetura técnica, as tecnologias, a organização do código e as estratégias de persistência são especificadas no Documento 08.
+
+## 1.1. Relação com os demais documentos
+
+| Documento | Responsabilidade |
+|---|---|
+| 01 — Fundamentos e Propósito | Define a razão de existir e os princípios do projeto. |
+| 02 — Sete Dimensões do Ser Humano | Define o modelo dimensional adotado pela plataforma. |
+| 03 — Taxonomia das Virtudes | Organiza as virtudes e suas famílias. |
+| 04 — Matriz de Integração | Relaciona dimensões, virtudes e pensadores. |
+| 05 — Metodologia da Jornada | Define o processo pedagógico e de desenvolvimento pessoal. |
+| 06 — Arquitetura Funcional e UX | Define organização funcional e experiência do usuário. |
+| 07 — Especificação Funcional | Define requisitos, regras e comportamentos esperados. |
+| 08 — Arquitetura Técnica | Define arquitetura, tecnologias, componentes e modelo de dados. |
+| 09 — Plano de Implementação | Deverá transformar os documentos anteriores em etapas, tarefas e testes. |
+
+---
+
+# 2. VISÃO GERAL DO SISTEMA
+
+A Jornada da Virtude é uma plataforma digital de autoconhecimento e desenvolvimento de virtudes humanas.
+
+O sistema conduz o usuário por uma experiência estruturada de:
+
+1. Reconhecimento de uma virtude que deseja desenvolver.
+2. Investigação de seu significado e aplicação na vida cotidiana.
+3. Identificação de situações pessoais relacionadas à virtude.
+4. Prática por meio de exercícios e experiências.
+5. Registro das experiências em diário.
+6. Revisão periódica das experiências.
+7. Reflexão sobre aprendizados e mudanças percebidas.
+8. Encerramento de uma jornada e possibilidade de iniciar outra.
+
+A plataforma poderá oferecer um Conselho de Sabedoria, composto por perspectivas documentadas de pensadores, para apoiar a reflexão sobre situações concretas.
+
+O Conselho não decide pelo usuário, não substitui seu julgamento e não apresenta interpretações artificiais como declarações autênticas dos pensadores.
+
+## 2.1. Objetivos funcionais
+
+- Facilitar o conhecimento das virtudes.
+- Estimular o autoconhecimento.
+- Transformar reflexão em prática cotidiana.
+- Permitir o acompanhamento de jornadas pessoais.
+- Registrar experiências e aprendizados.
+- Relacionar virtudes às dimensões humanas.
+- Apresentar perspectivas filosóficas e intelectuais.
+- Reconhecer processos de desenvolvimento sem estabelecer notas morais.
+
+## 2.2. Público e contexto de utilização
+
+O sistema destina-se a pessoas interessadas em desenvolvimento pessoal, reflexão filosófica e prática consciente de virtudes.
+
+A utilização deve ser individual, voluntária e flexível.
+
+A plataforma não deve pressupor que todos os usuários compartilham a mesma tradição filosófica, religiosa ou concepção de vida.
+
+---
+
+# 3. PRINCÍPIOS FUNCIONAIS E LIMITES DO PRODUTO
+
+As funcionalidades deverão respeitar os seguintes princípios:
+
+**P1 — Autonomia:** o usuário decide quais virtudes deseja trabalhar e como interpretar suas experiências.
+
+**P2 — Não julgamento:** o sistema não classifica pessoas como virtuosas ou não virtuosas.
+
+**P3 — Reflexão antes da pontuação:** o desenvolvimento é apresentado por meio de registros, experiências e aprendizados, não por notas morais.
+
+**P4 — Flexibilidade:** o usuário pode adaptar, pausar ou interromper sua jornada.
+
+**P5 — Privacidade:** os registros pessoais devem ser tratados como informações privadas.
+
+**P6 — Fundamentação:** conteúdos conceituais e contribuições de pensadores devem possuir referências rastreáveis.
+
+**P7 — Transparência:** recomendações e interpretações devem apresentar suas justificativas.
+
+**P8 — Não determinismo:** a ausência de registros não significa ausência de prática ou desenvolvimento.
+
+**P9 — Pluralidade:** perspectivas filosóficas diferentes devem ser apresentadas sem criar falsas equivalências conceituais.
+
+**P10 — Evolução contínua:** concluir uma jornada não significa dominar definitivamente uma virtude.
+
+---
+
+# 4. PERFIS E ATORES DO SISTEMA
+
+| Ator | Responsabilidade |
+|---|---|
+| Usuário | Realiza jornadas, registra experiências, consulta conteúdos e acompanha aprendizados. |
+| Sistema | Organiza jornadas, aplica regras, apresenta conteúdos e mantém registros. |
+| Conselho de Sabedoria | Oferece perspectivas documentadas e perguntas para reflexão. |
+| Provedor de Inteligência Artificial | Processa solicitações do Conselho, quando habilitado. |
+| Administrador de Conteúdo | Mantém taxonomias, dimensões, exercícios, pensadores e fontes. |
+
+O MVP poderá operar inicialmente sem painel administrativo completo. Os conteúdos poderão ser mantidos em estruturas de dados controladas pela aplicação.
+
+---
+
+# 5. ORGANIZAÇÃO FUNCIONAL
+
+A plataforma será organizada nos seguintes módulos:
+
+| Código | Módulo | Finalidade |
+|---|---|---|
+| MOD-01 | Início | Apresentar situação atual e acesso às jornadas. |
+| MOD-02 | Jornada | Criar, configurar e acompanhar jornadas. |
+| MOD-03 | Virtudes | Consultar e selecionar virtudes. |
+| MOD-04 | Investigação | Investigar a virtude escolhida. |
+| MOD-05 | Dimensões | Relacionar virtudes às sete dimensões humanas. |
+| MOD-06 | Exercícios | Recomendar e registrar práticas. |
+| MOD-07 | Diário | Registrar experiências pessoais. |
+| MOD-08 | Revisões | Realizar reflexões periódicas. |
+| MOD-09 | Conselho | Consultar perspectivas de pensadores. |
+| MOD-10 | Histórico | Consultar jornadas anteriores. |
+| MOD-11 | Relatórios | Apresentar sínteses e aprendizados. |
+| MOD-12 | Configurações | Administrar preferências e dados pessoais. |
+
+---
+
+# 6. REQUISITOS FUNCIONAIS
+
+Os requisitos funcionais foram reorganizados por módulo.
+
+## 6.1. MOD-01 — Início
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-001 | O sistema deve apresentar uma página inicial com acesso às principais funcionalidades. | P0 |
+| RF-002 | O sistema deve apresentar a jornada ativa do usuário, quando existente. | P0 |
+| RF-003 | O sistema deve informar a situação atual da jornada. | P0 |
+| RF-004 | O sistema deve apresentar atalhos para diário, exercícios e revisões. | P1 |
+| RF-005 | O sistema deve apresentar um resumo das atividades recentes. | P1 |
+| RF-006 | O sistema deve permitir iniciar uma nova jornada quando não houver uma jornada ativa incompatível com as regras de negócio. | P0 |
+
+## 6.2. MOD-02 — Jornada
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-007 | O sistema deve permitir criar uma jornada. | P0 |
+| RF-008 | O sistema deve permitir informar um título para a jornada. | P0 |
+| RF-009 | O sistema deve permitir registrar a intenção pessoal da jornada. | P0 |
+| RF-010 | O sistema deve permitir selecionar uma virtude principal. | P0 |
+| RF-011 | O sistema deve permitir adicionar virtudes relacionadas. | P1 |
+| RF-012 | O sistema deve permitir consultar os dados de configuração da jornada. | P0 |
+| RF-013 | O sistema deve permitir iniciar uma jornada em estado de rascunho. | P0 |
+| RF-014 | O sistema deve permitir pausar uma jornada ativa. | P0 |
+| RF-015 | O sistema deve permitir retomar uma jornada pausada. | P0 |
+| RF-016 | O sistema deve permitir concluir uma jornada ativa. | P0 |
+| RF-017 | O sistema deve permitir consultar a data de início e conclusão. | P1 |
+| RF-018 | O sistema deve permitir consultar o histórico de alterações relevantes da jornada. | P2 |
+| RF-019 | O sistema deve permitir arquivar uma jornada sem eliminar seus registros. | P1 |
+| RF-020 | O sistema deve permitir consultar jornadas arquivadas. | P1 |
+| RF-021 | O sistema deve preservar os registros associados a uma jornada concluída. | P0 |
+| RF-022 | O sistema deve permitir registrar observações gerais sobre a jornada. | P1 |
+
+## 6.3. MOD-03 — Virtudes
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-023 | O sistema deve apresentar um catálogo de virtudes. | P0 |
+| RF-024 | O catálogo deve organizar as virtudes por famílias. | P0 |
+| RF-025 | O sistema deve apresentar a descrição de cada virtude. | P0 |
+| RF-026 | O sistema deve apresentar características e conceitos associados à virtude. | P1 |
+| RF-027 | O sistema deve permitir pesquisar virtudes por nome. | P1 |
+| RF-028 | O sistema deve permitir filtrar virtudes por família. | P1 |
+| RF-029 | O sistema deve permitir consultar virtudes relacionadas. | P1 |
+| RF-030 | O sistema deve permitir selecionar uma virtude para iniciar uma jornada. | P0 |
+| RF-031 | O sistema deve apresentar conteúdos conceituais associados à virtude. | P1 |
+| RF-032 | O sistema deve distinguir conceitos próximos que não sejam necessariamente equivalentes. | P1 |
+
+## 6.4. MOD-04 — Investigação
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-033 | O sistema deve permitir iniciar uma investigação sobre a virtude principal. | P0 |
+| RF-034 | O sistema deve apresentar perguntas orientadoras para reflexão. | P0 |
+| RF-035 | O sistema deve permitir registrar o entendimento pessoal da virtude. | P0 |
+| RF-036 | O sistema deve permitir registrar características admiradas na virtude. | P0 |
+| RF-037 | O sistema deve permitir identificar situações em que a virtude foi praticada. | P0 |
+| RF-038 | O sistema deve permitir identificar situações em que houve dificuldade de praticá-la. | P0 |
+| RF-039 | O sistema deve permitir registrar percepções de pessoas próximas, quando desejado. | P2 |
+| RF-040 | O sistema deve permitir revisar e atualizar as respostas da investigação. | P1 |
+| RF-041 | O sistema deve preservar as respostas anteriores quando houver atualização relevante. | P2 |
+
+## 6.5. MOD-05 — Dimensões humanas
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-042 | O sistema deve apresentar as sete dimensões humanas definidas no Documento 02. | P0 |
+| RF-043 | O sistema deve apresentar a descrição de cada dimensão. | P0 |
+| RF-044 | O sistema deve relacionar virtudes às dimensões conforme o Documento 04. | P1 |
+| RF-045 | O sistema deve identificar a dimensão primária, secundária e contextual de uma relação, quando aplicável. | P1 |
+| RF-046 | O sistema deve permitir consultar as dimensões relacionadas à virtude selecionada. | P1 |
+| RF-047 | O sistema deve apresentar a relação entre dimensão e virtude como referência interpretativa, não como classificação definitiva da pessoa. | P0 |
+
+## 6.6. MOD-06 — Exercícios e práticas
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-048 | O sistema deve apresentar exercícios associados às virtudes. | P0 |
+| RF-049 | O sistema deve permitir consultar a descrição de um exercício. | P0 |
+| RF-050 | O sistema deve apresentar o objetivo de cada exercício. | P0 |
+| RF-051 | O sistema deve apresentar orientações para realização da prática. | P0 |
+| RF-052 | O sistema deve permitir associar exercícios à jornada. | P0 |
+| RF-053 | O sistema deve permitir registrar a realização de um exercício. | P0 |
+| RF-054 | O sistema deve permitir registrar a data da realização. | P0 |
+| RF-055 | O sistema deve permitir registrar observações sobre a experiência. | P1 |
+| RF-056 | O sistema deve permitir consultar exercícios realizados. | P1 |
+| RF-057 | O sistema deve permitir repetir um exercício. | P1 |
+| RF-058 | O sistema deve permitir recomendar exercícios relacionados à virtude e ao contexto informado. | P2 |
+
+## 6.7. MOD-07 — Diário
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-059 | O sistema deve permitir criar registros no diário. | P0 |
+| RF-060 | O sistema deve associar data e horário ao registro. | P0 |
+| RF-061 | O sistema deve permitir associar o registro a uma jornada. | P0 |
+| RF-062 | O sistema deve permitir classificar o registro como prática, dificuldade ou reflexão. | P0 |
+| RF-063 | O sistema deve permitir descrever a situação vivenciada. | P0 |
+| RF-064 | O sistema deve permitir registrar sentimentos e percepções. | P1 |
+| RF-065 | O sistema deve permitir registrar ações realizadas. | P0 |
+| RF-066 | O sistema deve permitir registrar aprendizados e observações. | P1 |
+| RF-067 | O sistema deve permitir editar registros. | P0 |
+| RF-068 | O sistema deve permitir excluir registros mediante confirmação. | P1 |
+| RF-069 | O sistema deve apresentar o histórico de registros. | P0 |
+| RF-070 | O sistema deve permitir filtrar registros por período. | P1 |
+| RF-071 | O sistema deve permitir filtrar registros por tipo. | P1 |
+| RF-072 | O sistema deve permitir consultar os registros associados a uma virtude. | P1 |
+| RF-073 | O sistema deve permitir consultar registros de jornadas anteriores. | P1 |
+| RF-074 | O sistema não deve exigir uma quantidade mínima de registros para manter uma jornada ativa. | P0 |
+
+## 6.8. MOD-08 — Revisões
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-075 | O sistema deve permitir realizar revisões periódicas da jornada. | P0 |
+| RF-076 | O sistema deve apresentar perguntas orientadoras para a revisão. | P0 |
+| RF-077 | O sistema deve permitir registrar situações de prática da virtude. | P0 |
+| RF-078 | O sistema deve permitir registrar situações de dificuldade. | P0 |
+| RF-079 | O sistema deve permitir identificar padrões percebidos pelo próprio usuário. | P1 |
+| RF-080 | O sistema deve permitir registrar aprendizados do período. | P0 |
+| RF-081 | O sistema deve permitir registrar situações que merecem atenção futura. | P1 |
+| RF-082 | O sistema deve permitir consultar revisões anteriores. | P1 |
+| RF-083 | O sistema deve permitir realizar uma revisão final da jornada. | P0 |
+| RF-084 | O sistema deve apresentar uma síntese dos registros e revisões disponíveis. | P1 |
+| RF-085 | O sistema não deve interpretar ausência de registros como ausência de prática. | P0 |
+| RF-086 | O sistema não deve atribuir notas morais com base nas revisões. | P0 |
+
+## 6.9. MOD-09 — Conselho de Sabedoria
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-087 | O sistema deve disponibilizar acesso ao Conselho de Sabedoria. | P2 |
+| RF-088 | O sistema deve permitir apresentar uma situação para reflexão. | P2 |
+| RF-089 | O sistema deve permitir contextualizar a situação com informações fornecidas pelo usuário. | P2 |
+| RF-090 | O sistema deve identificar virtudes potencialmente relacionadas à situação. | P2 |
+| RF-091 | O sistema deve identificar dimensões humanas potencialmente relacionadas. | P2 |
+| RF-092 | O sistema deve selecionar perspectivas de pensadores pertinentes ao contexto. | P2 |
+| RF-093 | O sistema deve apresentar contribuições fundamentadas em obras ou fontes identificáveis. | P2 |
+| RF-094 | O sistema deve permitir apresentar perspectivas complementares ou divergentes. | P2 |
+| RF-095 | O sistema deve apresentar perguntas que estimulem a reflexão do usuário. | P2 |
+| RF-096 | O sistema deve apresentar uma síntese das perspectivas consultadas. | P2 |
+| RF-097 | O sistema deve permitir registrar uma reflexão pessoal após a consulta. | P2 |
+| RF-098 | O sistema deve identificar claramente interpretações contemporâneas e conteúdo fundamentado em fontes históricas. | P2 |
+| RF-099 | O sistema não deve atribuir falas fictícias a pensadores reais. | P0 |
+| RF-100 | O sistema deve apresentar referências das fontes utilizadas pelo Conselho. | P2 |
+| RF-101 | O sistema deve informar quando não houver fundamentação suficiente para determinada interpretação. | P2 |
+| RF-102 | O Conselho não deve tomar decisões pelo usuário. | P0 |
+
+## 6.10. MOD-10 — Histórico
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-103 | O sistema deve apresentar as jornadas anteriores. | P1 |
+| RF-104 | O sistema deve permitir consultar jornadas concluídas. | P1 |
+| RF-105 | O sistema deve permitir consultar jornadas pausadas. | P1 |
+| RF-106 | O sistema deve permitir consultar jornadas arquivadas. | P1 |
+| RF-107 | O sistema deve permitir consultar os registros associados a cada jornada. | P1 |
+| RF-108 | O sistema deve permitir consultar as virtudes trabalhadas anteriormente. | P1 |
+| RF-109 | O sistema deve preservar o histórico de jornadas sem misturar registros de jornadas diferentes. | P0 |
+
+## 6.11. MOD-11 — Relatórios e sínteses
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-110 | O sistema deve apresentar uma síntese da jornada. | P1 |
+| RF-111 | O sistema deve apresentar os exercícios realizados. | P1 |
+| RF-112 | O sistema deve apresentar as revisões registradas. | P1 |
+| RF-113 | O sistema deve apresentar os aprendizados registrados pelo usuário. | P1 |
+| RF-114 | O sistema deve apresentar a evolução cronológica dos registros. | P1 |
+| RF-115 | O sistema deve permitir exportar os dados da jornada. | P1 |
+| RF-116 | O sistema deve permitir exportar os registros do diário. | P1 |
+| RF-117 | O sistema deve permitir exportar uma síntese da jornada em formato legível. | P2 |
+| RF-118 | O sistema não deve apresentar indicadores como medida objetiva do valor moral do usuário. | P0 |
+
+## 6.12. MOD-12 — Configurações e dados pessoais
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-119 | O sistema deve disponibilizar configurações de preferências. | P1 |
+| RF-120 | O sistema deve permitir configurar preferências visuais. | P1 |
+| RF-121 | O sistema deve permitir configurar tema claro ou escuro. | P1 |
+| RF-122 | O sistema deve permitir exportar os dados pessoais armazenados. | P1 |
+| RF-123 | O sistema deve permitir importar dados previamente exportados, quando o formato for compatível. | P2 |
+| RF-124 | O sistema deve permitir solicitar a exclusão de dados pessoais. | P1 |
+| RF-125 | O sistema deve informar ao usuário onde e como seus dados são armazenados. | P0 |
+| RF-126 | O sistema deve preservar a integridade dos registros durante operações de importação e exportação. | P1 |
+
+## 6.13. Requisitos transversais
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RF-127 | O sistema deve permitir navegar entre módulos sem perder alterações já salvas. | P0 |
+| RF-128 | O sistema deve informar quando uma operação de gravação falhar. | P0 |
+| RF-129 | O sistema deve informar quando uma operação for concluída com sucesso. | P0 |
+| RF-130 | O sistema deve validar campos obrigatórios antes de salvar registros. | P0 |
+| RF-131 | O sistema deve apresentar mensagens compreensíveis para erros de validação. | P0 |
+| RF-132 | O sistema deve preservar a consistência dos relacionamentos entre jornadas e registros. | P0 |
+| RF-133 | O sistema deve permitir utilizar a aplicação em dispositivos móveis e computadores. | P0 |
+| RF-134 | O sistema deve oferecer navegação acessível por teclado. | P1 |
+| RF-135 | O sistema deve permitir evolução modular sem exigir reconstrução integral da aplicação. | P1 |
+
+---
+
+# 7. REQUISITOS NÃO FUNCIONAIS
+
+Os requisitos não funcionais definem atributos de qualidade e restrições de operação.
+
+## 7.1. Usabilidade
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-001 | A interface deve apresentar organização visual consistente. | P0 |
+| RNF-002 | A navegação deve ser compreensível e previsível. | P0 |
+| RNF-003 | As funcionalidades principais devem ser acessíveis sem percursos excessivamente complexos. | P0 |
+| RNF-004 | O sistema deve apresentar feedback após operações relevantes. | P0 |
+| RNF-005 | Os formulários devem apresentar rótulos e orientações claras. | P0 |
+| RNF-006 | O sistema deve evitar sobrecarga de informações nas telas. | P1 |
+| RNF-007 | A interface deve manter consistência entre os módulos. | P0 |
+| RNF-008 | O usuário deve conseguir compreender o estado de sua jornada. | P0 |
+
+## 7.2. Responsividade e acessibilidade
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-009 | A aplicação deve funcionar em dispositivos móveis, tablets e computadores. | P0 |
+| RNF-010 | Os componentes devem adaptar-se a diferentes resoluções. | P0 |
+| RNF-011 | Os elementos interativos devem possuir identificação visual adequada. | P0 |
+| RNF-012 | Os formulários devem possuir rótulos acessíveis. | P0 |
+| RNF-013 | A navegação deve ser possível por teclado. | P1 |
+| RNF-014 | O contraste visual deve permitir leitura adequada. | P0 |
+| RNF-015 | O sistema deve utilizar estrutura semântica apropriada. | P1 |
+| RNF-016 | As mensagens de erro devem ser compreensíveis e perceptíveis. | P0 |
+
+## 7.3. Desempenho
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-017 | As telas principais devem carregar sem atrasos perceptíveis em condições normais de uso. | P0 |
+| RNF-018 | O sistema deve evitar operações desnecessárias de leitura e gravação. | P1 |
+| RNF-019 | O carregamento de conteúdos extensos deve ser otimizado. | P1 |
+| RNF-020 | A interface deve permanecer responsiva durante operações de persistência. | P0 |
+| RNF-021 | O sistema deve tratar falhas de operações assíncronas sem bloquear a aplicação. | P0 |
+
+## 7.4. Segurança e privacidade
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-022 | Os registros pessoais devem ser tratados como dados privados. | P0 |
+| RNF-023 | O sistema deve evitar exposição indevida de informações pessoais. | P0 |
+| RNF-024 | Credenciais e segredos de serviços externos não devem ser armazenados no código público do frontend. | P0 |
+| RNF-025 | Integrações externas devem utilizar mecanismos apropriados de autenticação e autorização. | P0 |
+| RNF-026 | O sistema deve validar dados recebidos de fontes externas. | P0 |
+| RNF-027 | Operações destrutivas devem exigir confirmação quando houver risco de perda de dados. | P0 |
+| RNF-028 | A aplicação deve permitir exportação dos dados pessoais. | P1 |
+| RNF-029 | A aplicação deve permitir exclusão de dados pessoais conforme a política de retenção definida. | P1 |
+| RNF-030 | O tratamento de dados deve observar a legislação aplicável de proteção de dados. | P0 |
+
+## 7.5. Confiabilidade e integridade
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-031 | O sistema deve preservar os dados durante operações normais de utilização. | P0 |
+| RNF-032 | Operações de gravação devem possuir tratamento de erro. | P0 |
+| RNF-033 | O sistema deve evitar registros duplicados por falhas de operação. | P1 |
+| RNF-034 | O sistema deve preservar relacionamentos entre jornadas, exercícios, revisões e diário. | P0 |
+| RNF-035 | O sistema deve informar quando uma operação não puder ser concluída. | P0 |
+| RNF-036 | O sistema deve permitir recuperação de dados por meio de exportação e importação compatíveis. | P1 |
+
+## 7.6. Manutenibilidade e evolução
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-037 | O código deve ser organizado por funcionalidades e responsabilidades. | P0 |
+| RNF-038 | A aplicação deve utilizar tipagem explícita com TypeScript. | P0 |
+| RNF-039 | Componentes devem possuir responsabilidades bem definidas. | P0 |
+| RNF-040 | Regras de negócio não devem depender diretamente da interface. | P0 |
+| RNF-041 | A persistência deve ser isolada por contratos e implementações. | P0 |
+| RNF-042 | O sistema deve permitir substituição ou ampliação da camada de persistência. | P1 |
+| RNF-043 | A aplicação deve possuir testes automatizados para regras críticas. | P0 |
+| RNF-044 | O projeto deve manter documentação técnica atualizada. | P1 |
+
+## 7.7. Portabilidade e compatibilidade
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-045 | A aplicação deve funcionar nos navegadores modernos definidos como alvo do projeto. | P0 |
+| RNF-046 | O sistema deve permitir evolução para uma arquitetura com backend. | P1 |
+| RNF-047 | Os dados devem possuir estrutura independente da tecnologia de interface. | P0 |
+| RNF-048 | A aplicação deve permitir adaptação para instalação como PWA, caso essa capacidade seja adotada. | P2 |
+
+## 7.8. Qualidade e testes
+
+| ID | Requisito | Prioridade |
+|---|---|---|
+| RNF-049 | Regras de negócio críticas devem possuir testes unitários. | P0 |
+| RNF-050 | Os fluxos principais devem possuir testes de integração. | P0 |
+| RNF-051 | Os fluxos críticos de utilização devem possuir testes de ponta a ponta. | P1 |
+| RNF-052 | Alterações relevantes não devem introduzir regressões nas funcionalidades existentes. | P0 |
+| RNF-053 | A aplicação deve possuir verificações automatizadas de qualidade antes de publicação. | P1 |
+
+---
+
+# 8. REGRAS DE NEGÓCIO
+
+As regras de negócio definem condições que devem ser respeitadas independentemente da tecnologia utilizada.
+
+## 8.1. Regras de jornada
+
+| ID | Regra |
+|---|---|
+| RN-001 | Toda jornada deve possuir um identificador único. |
+| RN-002 | Toda jornada deve possuir uma intenção ou propósito registrado. |
+| RN-003 | Toda jornada deve possuir uma virtude principal. |
+| RN-004 | Uma jornada poderá possuir virtudes relacionadas, sem substituir a virtude principal. |
+| RN-005 | Uma jornada deve iniciar em estado de rascunho. |
+| RN-006 | Uma jornada em rascunho poderá ser iniciada, editada ou descartada. |
+| RN-007 | Uma jornada ativa poderá ser pausada ou concluída. |
+| RN-008 | Uma jornada pausada poderá ser retomada ou concluída. |
+| RN-009 | Uma jornada concluída não poderá retornar automaticamente ao estado ativo. |
+| RN-010 | Uma jornada concluída deverá preservar seus registros históricos. |
+| RN-011 | O arquivamento será representado por um atributo próprio, como `archived_at`, e não por um estado concorrente com o ciclo de vida da jornada. |
+| RN-012 | O arquivamento não deverá excluir registros associados à jornada. |
+
+## 8.2. Regras de investigação e prática
+
+| ID | Regra |
+|---|---|
+| RN-013 | A investigação deverá estar relacionada à virtude principal da jornada. |
+| RN-014 | O usuário poderá registrar situações positivas e dificuldades. |
+| RN-015 | O sistema não poderá presumir que uma pessoa não pratica determinada virtude apenas porque não registrou uma experiência. |
+| RN-016 | Exercícios poderão ser repetidos durante uma jornada. |
+| RN-017 | A realização de um exercício deverá ser registrada como experiência, não como prova de domínio da virtude. |
+| RN-018 | O usuário poderá registrar experiências sem realizar um exercício previamente recomendado. |
+
+## 8.3. Regras de diário e revisão
+
+| ID | Regra |
+|---|---|
+| RN-019 | O diário será de preenchimento voluntário. |
+| RN-020 | A ausência de registros não poderá impedir a continuidade de uma jornada. |
+| RN-021 | Revisões deverão considerar os registros disponíveis e as percepções declaradas pelo usuário. |
+| RN-022 | Revisões não deverão produzir notas morais ou classificações de caráter. |
+
+## 8.4. Regras do Conselho
+
+| ID | Regra |
+|---|---|
+| RN-023 | O Conselho deverá apresentar perspectivas fundamentadas, identificando fontes e distinguindo interpretações de citações ou conteúdos históricos. |
+| RN-024 | O Conselho deverá apoiar a reflexão sem substituir a autonomia e a decisão do usuário. |
+
+---
+
+# 9. CICLO DE VIDA DA JORNADA
+
+A jornada possui quatro estados operacionais principais.
+
+| Estado | Código | Descrição |
+|---|---|---|
+| Rascunho | DRAFT | Jornada criada, mas ainda não iniciada. |
+| Ativa | ACTIVE | Jornada em andamento. |
+| Pausada | PAUSED | Jornada temporariamente interrompida. |
+| Concluída | COMPLETED | Jornada encerrada pelo usuário. |
+
+O arquivamento é uma condição adicional, representada por atributo próprio.
+
+## 9.1. Transições permitidas
+
+| Estado atual | Ação | Estado resultante |
+|---|---|---|
+| DRAFT | Iniciar | ACTIVE |
+| DRAFT | Descartar | Registro removido conforme regra de exclusão |
+| ACTIVE | Pausar | PAUSED |
+| ACTIVE | Concluir | COMPLETED |
+| PAUSED | Retomar | ACTIVE |
+| PAUSED | Concluir | COMPLETED |
+| COMPLETED | Arquivar | COMPLETED + archived_at |
+| ACTIVE | Arquivar | ACTIVE + archived_at, caso essa operação seja autorizada pela experiência do produto |
+
+A última transição exige atenção: arquivar não deve alterar o estado operacional da jornada. A interface deverá deixar claro que a jornada continua ativa, embora esteja arquivada ou oculta das visualizações principais.
+
+## 9.2. Representação lógica
+
+A entidade Jornada deverá possuir, no mínimo, os seguintes atributos relacionados ao ciclo de vida:
+
+- `id`
+- `status`
+- `started_at`
+- `paused_at`
+- `completed_at`
+- `archived_at`
+- `created_at`
+- `updated_at`
+
+A implementação deverá observar o Documento 08 e suas definições de modelo de dados.
+
+---
+
+# 10. HISTÓRIAS DE USUÁRIO
+
+As histórias representam objetivos do usuário e deverão orientar a construção dos fluxos funcionais.
+
+## US-001 — Criar uma jornada
+
+**Como** usuário,
+**quero** criar uma jornada de desenvolvimento de virtude,
+**para** organizar meu processo de autoconhecimento e prática.
+
+Critérios de aceitação:
+
+- Deve ser possível informar o propósito da jornada.
+- Deve ser possível selecionar uma virtude principal.
+- A jornada deve ser criada em estado DRAFT.
+- A jornada deve possuir identificador único.
+- A jornada deve estar disponível para edição.
+
+## US-002 — Investigar uma virtude
+
+**Como** usuário,
+**quero** responder perguntas sobre a virtude escolhida,
+**para** compreender sua importância e sua relação com minha vida.
+
+Critérios de aceitação:
+
+- O sistema deve apresentar perguntas orientadoras.
+- O usuário deve poder registrar respostas.
+- As respostas devem estar associadas à jornada.
+- O usuário deve poder revisar suas respostas.
+
+## US-003 — Praticar uma virtude
+
+**Como** usuário,
+**quero** acessar exercícios relacionados à virtude,
+**para** transformar reflexão em ações concretas.
+
+Critérios de aceitação:
+
+- Os exercícios devem possuir descrição e objetivo.
+- O usuário deve poder associar um exercício à jornada.
+- O usuário deve poder registrar sua realização.
+- O registro deve permanecer disponível no histórico.
+
+## US-004 — Registrar experiências
+
+**Como** usuário,
+**quero** registrar situações relacionadas à virtude,
+**para** observar minhas experiências e aprendizados.
+
+Critérios de aceitação:
+
+- O usuário deve poder registrar práticas e dificuldades.
+- O registro deve possuir data.
+- O registro deve permitir descrição da situação.
+- O usuário deve poder editar e consultar registros anteriores.
+
+## US-005 — Realizar uma revisão periódica
+
+**Como** usuário,
+**quero** revisar minhas experiências,
+**para** identificar aprendizados e aspectos que merecem atenção.
+
+Critérios de aceitação:
+
+- O sistema deve apresentar perguntas orientadoras.
+- O usuário deve poder registrar suas percepções.
+- A revisão deve permanecer associada à jornada.
+- O sistema não deve atribuir notas morais.
+
+## US-006 — Consultar o Conselho de Sabedoria
+
+**Como** usuário,
+**quero** consultar diferentes perspectivas filosóficas,
+**para** ampliar minha compreensão de uma situação.
+
+Critérios de aceitação:
+
+- O usuário deve poder apresentar uma situação.
+- O sistema deve selecionar perspectivas pertinentes.
+- As contribuições devem possuir fundamentação identificável.
+- O sistema deve permitir registrar uma reflexão pessoal.
+- A decisão final deve permanecer com o usuário.
+
+## US-007 — Acompanhar uma jornada
+
+**Como** usuário,
+**quero** visualizar a situação da minha jornada,
+**para** compreender em que etapa me encontro.
+
+Critérios de aceitação:
+
+- O sistema deve apresentar o estado da jornada.
+- O sistema deve apresentar os registros disponíveis.
+- O sistema deve apresentar atividades e revisões.
+- A apresentação não deve sugerir uma classificação moral.
+
+## US-008 — Concluir uma jornada
+
+**Como** usuário,
+**quero** concluir uma jornada,
+**para** consolidar minhas experiências e aprendizados.
+
+Critérios de aceitação:
+
+- O sistema deve permitir realizar uma revisão final.
+- O usuário deve poder registrar uma síntese pessoal.
+- A jornada deve mudar para COMPLETED.
+- Os registros devem permanecer preservados.
+
+## US-009 — Consultar jornadas anteriores
+
+**Como** usuário,
+**quero** consultar minhas jornadas anteriores,
+**para** recuperar experiências e aprendizados.
+
+Critérios de aceitação:
+
+- O sistema deve apresentar jornadas anteriores.
+- O usuário deve poder consultar seus detalhes.
+- Os registros associados devem permanecer disponíveis.
+- Jornadas arquivadas devem continuar acessíveis.
+
+## US-010 — Exportar meus dados
+
+**Como** usuário,
+**quero** exportar meus registros,
+**para** preservar e utilizar minhas informações fora da plataforma.
+
+Critérios de aceitação:
+
+- O sistema deve permitir exportar dados da jornada.
+- O sistema deve incluir os registros associados.
+- O arquivo deve possuir formato legível.
+- A operação deve informar sucesso ou falha.
+
+---
+
+# 11. MODELO FUNCIONAL DE DADOS
+
+O modelo funcional define as principais entidades do sistema e suas responsabilidades.
+
+O modelo lógico definitivo e os tipos de dados estão especificados no Documento 08.
+
+| Entidade | Responsabilidade |
+|---|---|
+| User | Representa o usuário da plataforma. |
+| Journey | Representa uma jornada de desenvolvimento. |
+| JourneyIntention | Registra o propósito da jornada. |
+| VirtueFamily | Organiza famílias de virtudes. |
+| Virtue | Representa uma virtude do catálogo. |
+| JourneyVirtue | Relaciona virtudes à jornada. |
+| Dimension | Representa uma dimensão humana. |
+| VirtueDimension | Relaciona virtudes e dimensões. |
+| Investigation | Armazena a investigação realizada. |
+| Exercise | Representa um exercício disponível. |
+| ExerciseVirtue | Relaciona exercícios e virtudes. |
+| JourneyExercise | Relaciona exercícios à jornada. |
+| ExerciseRecord | Registra a realização de um exercício. |
+| DiaryEntry | Armazena experiências e reflexões. |
+| Review | Armazena revisões periódicas e finais. |
+| Thinker | Representa um pensador. |
+| Work | Representa uma obra ou fonte documental. |
+| CouncilSession | Representa uma consulta ao Conselho. |
+| CouncilContribution | Armazena uma contribuição apresentada. |
+| ContributionSource | Identifica as fontes utilizadas. |
+| LearningInsight | Registra aprendizados e sínteses identificados. |
+
+## 11.1. Relacionamentos principais
+
+- Um usuário poderá possuir várias jornadas.
+- Uma jornada poderá possuir uma intenção principal.
+- Uma jornada deverá possuir uma virtude principal.
+- Uma jornada poderá possuir várias virtudes relacionadas.
+- Uma virtude poderá estar associada a uma ou mais dimensões.
+- Uma jornada poderá possuir investigações.
+- Uma jornada poderá possuir exercícios associados.
+- Um exercício poderá possuir vários registros de realização.
+- Uma jornada poderá possuir vários registros de diário.
+- Uma jornada poderá possuir várias revisões.
+- Uma jornada poderá possuir várias sessões do Conselho.
+- Uma sessão do Conselho poderá possuir várias contribuições.
+- Uma contribuição poderá possuir uma ou mais fontes.
+- Uma jornada poderá possuir vários aprendizados registrados.
+
+## 11.2. Integridade dos dados
+
+As relações deverão respeitar as seguintes condições:
+
+1. Registros de diário devem pertencer a um usuário e, quando relacionados a uma jornada, devem apontar para uma jornada válida.
+2. Exercícios realizados devem referenciar exercícios existentes.
+3. Revisões devem estar associadas à jornada correspondente.
+4. Contribuições do Conselho devem possuir referências às fontes utilizadas, quando houver fundamentação externa.
+5. A exclusão de uma jornada não deverá ocorrer como consequência de seu arquivamento.
+6. O histórico deverá preservar a associação entre registros e suas respectivas jornadas.
+
+---
+
+# 12. PRIORIDADES DE IMPLEMENTAÇÃO
+
+As prioridades são classificadas em quatro níveis.
+
+| Prioridade | Significado |
+|---|---|
+| P0 | Essencial para funcionamento do MVP. |
+| P1 | Importante para uma experiência funcional completa. |
+| P2 | Evolução relevante, mas não bloqueia o MVP. |
+| P3 | Evolução futura ou recurso avançado. |
+
+## 12.1. Escopo P0 — MVP funcional
+
+O MVP deverá permitir:
+
+- Criar uma jornada.
+- Registrar uma intenção.
+- Selecionar uma virtude principal.
+- Consultar o catálogo de virtudes.
+- Investigar a virtude.
+- Consultar as sete dimensões.
+- Acessar exercícios.
+- Registrar experiências no diário.
+- Realizar revisões.
+- Pausar, retomar e concluir jornadas.
+- Preservar registros.
+- Apresentar feedback de operações.
+- Garantir consistência dos dados.
+- Exportar dados em uma estratégia básica de preservação.
+
+O Conselho de Sabedoria não é condição para validar o núcleo funcional do MVP.
+
+## 12.2. Escopo P1 — Consolidação da experiência
+
+- Histórico de jornadas.
+- Relatórios e sínteses.
+- Filtros no diário.
+- Revisões anteriores.
+- Exercícios repetíveis.
+- Exportação aprimorada.
+- Configurações visuais.
+- Arquivamento de jornadas.
+- Melhorias de acessibilidade.
+
+## 12.3. Escopo P2 — Inteligência e aprofundamento
+
+- Conselho de Sabedoria.
+- Recomendações contextuais.
+- Sínteses assistidas.
+- Relações mais avançadas entre dimensões e virtudes.
+- Importação de dados.
+- Relatórios mais elaborados.
+
+## 12.4. Escopo P3 — Evolução futura
+
+- Sincronização entre dispositivos.
+- Autenticação e gestão de contas.
+- Backend compartilhado.
+- Experiência multiusuário, se fizer sentido para o produto.
+- Personalização avançada de jornadas.
+- Recursos analíticos adicionais.
+- Integrações externas.
+
+---
+
+# 13. FASES DE EVOLUÇÃO DO PRODUTO
+
+## Fase 1 — Estrutura e núcleo da jornada
+
+Objetivo: disponibilizar uma aplicação funcional com a experiência central.
+
+Entregas:
+
+- Estrutura principal da aplicação.
+- Navegação.
+- Catálogo de virtudes.
+- Catálogo de dimensões.
+- Criação e configuração de jornada.
+- Estados da jornada.
+- Persistência inicial.
+- Testes das regras centrais.
+
+## Fase 2 — Experiência de desenvolvimento
+
+Objetivo: permitir que o usuário realize o ciclo de investigação, prática e reflexão.
+
+Entregas:
+
+- Investigação da virtude.
+- Exercícios.
+- Diário.
+- Revisões.
+- Histórico.
+- Sínteses da jornada.
+- Exportação dos dados.
+
+## Fase 3 — Conselho de Sabedoria
+
+Objetivo: ampliar a experiência reflexiva por meio de perspectivas documentadas.
+
+Entregas:
+
+- Catálogo de pensadores e obras.
+- Recuperação de fontes.
+- Orquestração das contribuições.
+- Apresentação de perspectivas complementares.
+- Registro das sessões.
+- Referências e rastreabilidade.
+- Proteção das credenciais de serviços externos.
+
+## Fase 4 — Expansão e integração
+
+Objetivo: preparar a plataforma para uso contínuo e em diferentes dispositivos.
+
+Entregas possíveis:
+
+- Autenticação.
+- Backend.
+- Sincronização.
+- Persistência remota.
+- PWA, se adotada.
+- Melhorias de personalização.
+- Relatórios avançados.
+
+---
+
+# 14. CRITÉRIOS GERAIS DE ACEITAÇÃO
+
+Uma funcionalidade será considerada concluída quando:
+
+1. Atender ao requisito funcional correspondente.
+2. Respeitar as regras de negócio aplicáveis.
+3. Possuir validações adequadas.
+4. Apresentar feedback de sucesso ou erro.
+5. Preservar a integridade dos dados.
+6. Funcionar nos formatos de tela previstos.
+7. Possuir testes proporcionais à sua criticidade.
+8. Não introduzir regressões em funcionalidades existentes.
+9. Estar documentada quando houver impacto arquitetural ou funcional.
+10. Ser validada em condições normais e em cenários de erro.
+
+## 14.1. Critérios de conclusão do MVP
+
+O MVP será considerado funcionalmente validado quando for possível executar o seguinte fluxo completo:
+
+1. Criar uma jornada.
+2. Registrar a intenção.
+3. Selecionar uma virtude.
+4. Investigar a virtude.
+5. Consultar as dimensões relacionadas.
+6. Consultar exercícios.
+7. Registrar experiências.
+8. Realizar uma revisão.
+9. Pausar e retomar a jornada.
+10. Concluir a jornada.
+11. Consultar o histórico.
+12. Preservar ou exportar os dados.
+
+O fluxo deverá ser executado sem perda de informações e sem atribuição de notas morais ao usuário.
+
+---
+
+# 15. ESTRATÉGIA DE TESTES FUNCIONAIS
+
+A estratégia detalhada de testes será consolidada no Documento 09.
+
+Este documento estabelece os cenários mínimos que deverão ser cobertos.
+
+| ID | Cenário | Resultado esperado |
+|---|---|---|
+| CT-001 | Criar jornada válida | Jornada criada em DRAFT. |
+| CT-002 | Criar jornada sem virtude principal | Operação impedida com mensagem clara. |
+| CT-003 | Iniciar jornada | Estado alterado para ACTIVE. |
+| CT-004 | Pausar jornada ativa | Estado alterado para PAUSED. |
+| CT-005 | Retomar jornada pausada | Estado alterado para ACTIVE. |
+| CT-006 | Concluir jornada | Estado alterado para COMPLETED. |
+| CT-007 | Arquivar jornada concluída | `archived_at` preenchido sem alterar COMPLETED. |
+| CT-008 | Registrar experiência | Registro salvo e associado à jornada. |
+| CT-009 | Registrar experiência sem exercício | Operação permitida. |
+| CT-010 | Criar revisão sem registros no diário | Operação permitida. |
+| CT-011 | Consultar jornada anterior | Registros históricos preservados. |
+| CT-012 | Exportar dados | Arquivo gerado com os dados previstos. |
+| CT-013 | Falha de persistência | Mensagem de erro apresentada e dados não tratados como salvos. |
+| CT-014 | Consultar Conselho sem fonte suficiente | Sistema informa limitação de fundamentação. |
+| CT-015 | Consultar histórico após conclusão | Registros permanecem disponíveis. |
+
+---
+
+# 16. DECISÕES E LIMITES FUNCIONAIS
+
+As seguintes decisões são obrigatórias para a evolução coerente do produto:
+
+### 16.1. Não haverá pontuação moral
+
+A plataforma não deverá calcular ou apresentar uma nota de virtude, caráter ou valor humano.
+
+Indicadores poderão representar:
+
+- Quantidade de experiências registradas.
+- Exercícios realizados.
+- Revisões concluídas.
+- Frequência de registros.
+- Aprendizados documentados.
+
+Esses indicadores representam atividades registradas, não a qualidade moral da pessoa.
+
+### 16.2. O usuário controla sua jornada
+
+O sistema não deverá obrigar o usuário a cumprir uma sequência rígida para continuar utilizando a plataforma.
+
+A metodologia oferece orientação, não imposição.
+
+### 16.3. O Conselho é complementar
+
+O Conselho de Sabedoria será um recurso de apoio à reflexão.
+
+Não deverá:
+
+- Diagnosticar o usuário.
+- Tomar decisões em seu lugar.
+- Apresentar opiniões artificiais como falas históricas.
+- Inventar citações.
+- Omitir divergências relevantes entre pensadores.
+- Apresentar uma única tradição como verdade universal.
+
+### 16.4. A conclusão não representa domínio
+
+A conclusão de uma jornada significa que o usuário encerrou um ciclo de investigação e prática.
+
+Não significa que tenha adquirido domínio definitivo da virtude.
+
+### 16.5. A ausência de registros não representa ausência de evolução
+
+O sistema não poderá inferir que o usuário deixou de praticar uma virtude porque não registrou determinada experiência.
+
+---
+
+# 17. RASTREABILIDADE ENTRE DOCUMENTOS
+
+| Requisito ou funcionalidade | Documento de referência |
+|---|---|
+| Propósito da plataforma | Documento 01 |
+| Sete dimensões humanas | Documento 02 |
+| Catálogo e famílias de virtudes | Documento 03 |
+| Relação entre virtudes, dimensões e pensadores | Documento 04 |
+| Etapas da jornada e metodologia | Documento 05 |
+| Organização das telas e navegação | Documento 06 |
+| Requisitos e regras funcionais | Documento 07 |
+| Arquitetura, entidades e persistência | Documento 08 |
+| Implementação e testes | Documento 09 |
+
+---
+
+# 18. CONTROLE DE ALTERAÇÕES
+
+| Versão | Descrição |
+|---|---|
+| V1.0 | Primeira especificação funcional do sistema, com 135 requisitos funcionais, 73 requisitos não funcionais, 24 regras de negócio e 10 histórias de usuário. |
+| V2.0 | Reorganização funcional, harmonização com a arquitetura técnica V2.0, revisão do ciclo de vida da jornada, separação entre estado e arquivamento, consolidação dos critérios de aceitação e preparação para implementação. |
+
+## 18.1. Relação com a versão anterior
+
+A V2.0 substitui a V1.0 como referência de especificação funcional.
+
+A revisão reorganiza os requisitos por módulos e prioridades. A correspondência individual entre os requisitos antigos e os novos deverá ser validada por uma matriz de rastreabilidade quando o texto integral da V1.0 estiver disponível para confronto.
+
+---
+
+# 19. REFERÊNCIAS DOCUMENTAIS
+
+- Documento 01 — Fundamentos e Propósito da Jornada da Virtude.
+- Documento 02 — Mapa das Sete Dimensões do Ser Humano.
+- Documento 03 — Taxonomia das Virtudes V1.0.
+- Documento 04 — Matriz de Integração: Sete Dimensões × Virtudes × Pensadores.
+- Documento 05 — Metodologia da Jornada e Desenvolvimento das Virtudes.
+- Documento 06 — Arquitetura Funcional e Experiência do Usuário.
+- Documento 08 — Arquitetura Técnica e Modelo de Dados V2.0.
+
+---
+
+# 20. DECLARAÇÃO DE VALIDADE
+
+O Documento 07 V2.0 estabelece a especificação funcional de referência para o desenvolvimento da Jornada da Virtude.
+
+Ele deverá ser utilizado em conjunto com os fundamentos conceituais, metodológicos, funcionais e técnicos definidos nos documentos anteriores.
+
+Nenhuma implementação deverá alterar silenciosamente os princípios de autonomia, privacidade, pluralidade e ausência de julgamento moral que fundamentam o produto.
+
+Alterações relevantes nos requisitos deverão ser documentadas, justificadas e avaliadas quanto aos seus impactos sobre a metodologia, a experiência do usuário, a arquitetura técnica e os testes.
+
+**Documento 07 — Especificação Funcional e Requisitos do Sistema**
+**Jornada da Virtude — V2.0**

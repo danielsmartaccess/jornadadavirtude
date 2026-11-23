@@ -1,0 +1,1041 @@
+# DOCUMENTO OFICIAL 08
+# ARQUITETURA TÉCNICA E MODELO DE DADOS
+
+**Projeto:** Jornada da Virtude
+**Documento:** 08
+**Versão:** 2.0
+**Status:** Proposta técnica revisada
+**Natureza:** Arquitetura de software, modelagem de dados e diretrizes de implementação
+**Referências:** Documentos Oficiais 01 a 07
+**Stack tecnológica aprovada:** React + Vite + TypeScript + Tailwind CSS
+
+---
+
+# 1. APRESENTAÇÃO
+
+Este documento estabelece a arquitetura técnica e o modelo de dados da plataforma Jornada da Virtude, considerando a decisão tecnológica de desenvolver a aplicação com React, Vite, TypeScript e Tailwind CSS.
+
+A arquitetura deverá proporcionar uma base modular, tipada, testável e evolutiva, permitindo ampliar as funcionalidades sem comprometer a integridade do sistema.
+
+A proposta preserva os princípios conceituais e funcionais definidos nos Documentos Oficiais anteriores, atualizando sua tradução técnica.
+
+## 1.1. Objetivo técnico
+
+Construir uma aplicação web moderna, modular e sustentável, capaz de suportar:
+
+- Gerenciamento de jornadas.
+- Catálogo de virtudes.
+- Relação com as sete dimensões humanas.
+- Investigação e autoconhecimento.
+- Catálogo e acompanhamento de exercícios.
+- Diário pessoal.
+- Revisões periódicas e finais.
+- Conselho de Sabedoria.
+- Histórico de jornadas.
+- Relatórios e exportações.
+- Integrações futuras com backend e inteligência artificial.
+
+## 1.2. Princípio arquitetural
+
+**A interface deverá apresentar a experiência; o domínio deverá preservar as regras; a infraestrutura deverá resolver os detalhes técnicos.**
+
+A utilização de React não deverá concentrar todas as responsabilidades dentro dos componentes.
+
+## 1.3. Decisão tecnológica registrada
+
+| Tecnologia | Responsabilidade | Situação |
+|---|---|---|
+| React | Construção da interface e componentes | Aprovada |
+| Vite | Ambiente de desenvolvimento e build | Aprovada |
+| TypeScript | Tipagem estática e segurança estrutural | Aprovada |
+| Tailwind CSS | Estilização e sistema visual | Aprovada |
+| IndexedDB | Persistência local estruturada | A avaliar |
+| Supabase | Backend, PostgreSQL e autenticação | Futuro |
+| Vitest | Testes unitários e de componentes | Recomendado |
+| React Testing Library | Testes de interação da interface | Recomendado |
+| Playwright | Testes ponta a ponta | Recomendado |
+
+A stack principal está definida. As tecnologias complementares serão adotadas conforme a necessidade funcional e técnica.
+
+---
+
+# 2. DECISÕES ARQUITETURAIS FUNDAMENTAIS
+
+| ID | Decisão | Diretriz |
+|---|---|---|
+| ADR-001 | Unidade central | A Jornada será a principal entidade do domínio. |
+| ADR-002 | Virtude principal | Cada jornada poderá possuir uma virtude principal. |
+| ADR-003 | Virtudes relacionadas | Uma jornada poderá possuir outras virtudes associadas. |
+| ADR-004 | Interface | Utilizar React. |
+| ADR-005 | Build e desenvolvimento | Utilizar Vite. |
+| ADR-006 | Linguagem | Utilizar TypeScript. |
+| ADR-007 | Estilização | Utilizar Tailwind CSS. |
+| ADR-008 | Arquitetura | Separar interface, aplicação, domínio e infraestrutura. |
+| ADR-009 | Persistência inicial | Avaliar IndexedDB ou persistência local conforme os requisitos do MVP. |
+| ADR-010 | Backend | Avaliar Supabase quando houver necessidade concreta. |
+| ADR-011 | Identificação | Utilizar identificadores únicos. |
+| ADR-012 | Histórico | Preservar jornadas encerradas. |
+| ADR-013 | Inteligência artificial | Integrar por serviços isolados. |
+| ADR-014 | Testes | Adotar testes unitários, integração e ponta a ponta. |
+| ADR-015 | Conteúdo | Separar conteúdos filosóficos de registros pessoais. |
+
+## 2.1. O que não será feito inicialmente
+
+Não se recomenda:
+
+- Criar microsserviços.
+- Adotar Redux sem necessidade demonstrada.
+- Introduzir múltiplos frameworks de interface.
+- Criar um backend antes de validar os fluxos essenciais.
+- Implementar agentes independentes para cada pensador.
+- Misturar regras de domínio com componentes React.
+- Criar abstrações genéricas sem necessidade real.
+- Introduzir bibliotecas apenas por popularidade.
+
+A arquitetura deverá ser proporcional à complexidade efetiva do produto.
+
+---
+
+# 3. ARQUITETURA GERAL DO SISTEMA
+
+## 3.1. Visão arquitetural
+
+A aplicação deverá adotar uma arquitetura em camadas, organizada por responsabilidades.
+
+```text
+┌─────────────────────────────────────────────┐
+│             CAMADA DE APRESENTAÇÃO           │
+│                                             │
+│ React | Components | Pages | Layouts       │
+│ Tailwind CSS | Hooks de interface           │
+└──────────────────────┬──────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────┐
+│              CAMADA DE APLICAÇÃO             │
+│                                             │
+│ Use Cases | Application Services            │
+│ Coordenação dos fluxos                      │
+└──────────────────────┬──────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────┐
+│                CAMADA DE DOMÍNIO             │
+│                                             │
+│ Entities | Value Objects | Domain Services  │
+│ Regras | Estados | Validações               │
+└──────────────────────┬──────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────┐
+│             CAMADA DE INFRAESTRUTURA        │
+│                                             │
+│ Repositories | Adapters | Storage           │
+│ APIs | Integrações externas                 │
+└──────────────────────┬──────────────────────┘
+                       │
+┌──────────────────────▼──────────────────────┐
+│                 PERSISTÊNCIA                │
+│                                             │
+│ IndexedDB | Supabase futuro                 │
+└─────────────────────────────────────────────┘
+```
+
+## 3.2. Camada de apresentação
+
+Tecnologias:
+- React.
+- TypeScript.
+- Tailwind CSS.
+
+Responsabilidades:
+- Renderizar páginas.
+- Organizar componentes.
+- Controlar interações.
+- Apresentar formulários.
+- Gerenciar estados visuais.
+- Executar navegação.
+- Exibir mensagens de feedback.
+
+Os componentes deverão ser preferencialmente pequenos, reutilizáveis e focados em uma responsabilidade.
+
+## 3.3. Camada de aplicação
+
+Responsável por executar os casos de uso.
+
+Exemplos:
+- CreateJourney.
+- StartJourney.
+- SelectPrimaryVirtue.
+- CreateInvestigation.
+- CreateDiaryEntry.
+- RecommendExercise.
+- CreateReview.
+- CompleteJourney.
+
+Essa camada coordena as operações e chama os serviços de domínio e os repositórios.
+
+Não deverá depender de componentes React.
+
+## 3.4. Camada de domínio
+
+Representa o núcleo do produto.
+
+Deverá conter:
+- Entidades.
+- Tipos.
+- Estados.
+- Regras de negócio.
+- Validações.
+- Serviços de domínio.
+
+Exemplo:
+
+Uma jornada concluída não poderá ser retomada automaticamente.
+
+Essa regra deverá funcionar independentemente de a aplicação utilizar React, IndexedDB ou Supabase.
+
+## 3.5. Camada de infraestrutura
+
+Responsável pelos detalhes tecnológicos.
+
+Exemplos:
+- Persistência local.
+- Comunicação com APIs.
+- Integração com Supabase.
+- Exportação JSON.
+- Importação de dados.
+- Integração com serviços de IA.
+
+Os detalhes de infraestrutura deverão permanecer isolados das regras de negócio.
+
+---
+
+# 4. ORGANIZAÇÃO DOS MÓDULOS
+
+A arquitetura deverá utilizar organização por funcionalidades, com separação interna de responsabilidades.
+
+Módulos:
+
+| Módulo | Responsabilidade |
+|---|---|
+| Journey | Gerenciamento das jornadas. |
+| Virtue | Catálogo de virtudes. |
+| Dimension | Sete dimensões. |
+| Investigation | Autoconhecimento. |
+| Exercise | Exercícios. |
+| Diary | Registros pessoais. |
+| Review | Revisões. |
+| Council | Conselho de Sabedoria. |
+| Thinker | Pensadores. |
+| Source | Referências. |
+| History | Histórico. |
+| Report | Relatórios. |
+| Settings | Configurações. |
+
+Cada módulo deverá possuir fronteiras claras e contratos definidos.
+
+---
+
+# 5. ESTRUTURA DE DIRETÓRIOS
+
+## 5.1. Estrutura recomendada
+
+```text
+jornada-da-virtude/
+│
+├── public/
+│   ├── favicon.svg
+│   └── images/
+│
+├── src/
+│   │
+│   ├── app/
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   ├── router/
+│   │   ├── providers/
+│   │   └── layouts/
+│   │
+│   ├── components/
+│   │   ├── ui/
+│   │   ├── forms/
+│   │   ├── navigation/
+│   │   └── feedback/
+│   │
+│   ├── features/
+│   │   │
+│   │   ├── journey/
+│   │   │   ├── components/
+│   │   │   ├── pages/
+│   │   │   ├── hooks/
+│   │   │   ├── services/
+│   │   │   ├── types/
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── virtue/
+│   │   │   ├── components/
+│   │   │   ├── pages/
+│   │   │   ├── services/
+│   │   │   ├── types/
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── investigation/
+│   │   ├── dimension/
+│   │   ├── exercise/
+│   │   ├── diary/
+│   │   ├── review/
+│   │   ├── council/
+│   │   ├── history/
+│   │   ├── report/
+│   │   └── settings/
+│   │
+│   ├── domain/
+│   │   ├── entities/
+│   │   ├── value-objects/
+│   │   ├── enums/
+│   │   ├── rules/
+│   │   └── services/
+│   │
+│   ├── application/
+│   │   ├── use-cases/
+│   │   ├── services/
+│   │   └── ports/
+│   │
+│   ├── infrastructure/
+│   │   ├── persistence/
+│   │   │   ├── indexeddb/
+│   │   │   └── local-storage/
+│   │   │
+│   │   ├── repositories/
+│   │   ├── api/
+│   │   ├── export/
+│   │   └── integrations/
+│   │
+│   ├── data/
+│   │   ├── virtues/
+│   │   ├── dimensions/
+│   │   ├── thinkers/
+│   │   └── exercises/
+│   │
+│   ├── styles/
+│   │   └── globals.css
+│   │
+│   └── shared/
+│       ├── types/
+│       ├── utils/
+│       ├── constants/
+│       └── errors/
+│
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── e2e/
+│
+├── docs/
+│   ├── DOCUMENTO-01.md
+│   ├── DOCUMENTO-02.md
+│   ├── DOCUMENTO-03.md
+│   ├── DOCUMENTO-04.md
+│   ├── DOCUMENTO-05.md
+│   ├── DOCUMENTO-06.md
+│   ├── DOCUMENTO-07.md
+│   └── DOCUMENTO-08.md
+│
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── README.md
+└── .gitignore
+```
+
+## 5.2. Regras de organização
+
+1. Cada feature deverá concentrar os elementos relacionados à sua funcionalidade.
+2. Componentes compartilhados deverão permanecer em `components`.
+3. Regras centrais deverão permanecer em `domain`.
+4. Casos de uso deverão permanecer em `application`.
+5. Implementações de persistência deverão permanecer em `infrastructure`.
+6. Tipos compartilhados deverão possuir localização explícita.
+7. Módulos não deverão acessar diretamente os arquivos internos de outros módulos.
+8. As dependências deverão ser direcionadas para abstrações.
+
+A estrutura é uma referência inicial. Não se recomenda criar diretórios vazios ou camadas sem necessidade funcional.
+
+---
+
+# 6. PADRÃO DE COMPONENTES REACT
+
+## 6.1. Componentes de interface
+
+Deverão ser utilizados para representar elementos visuais.
+
+Exemplos:
+- VirtueCard.
+- JourneyProgress.
+- DiaryEntryCard.
+- ExerciseCard.
+- ReviewPanel.
+- CouncilContributionCard.
+
+Responsabilidades:
+- Receber propriedades.
+- Apresentar dados.
+- Emitir eventos.
+- Manter estado visual local quando necessário.
+
+Não deverão implementar regras complexas de domínio.
+
+## 6.2. Hooks
+
+Hooks personalizados poderão encapsular lógica reutilizável de interface e integração com casos de uso.
+
+Exemplos:
+- `useJourney`.
+- `useVirtues`.
+- `useDiary`.
+- `useReviews`.
+
+Não deverão ser utilizados para esconder regras de negócio complexas.
+
+## 6.3. Estado global
+
+O estado deverá ser dividido conforme sua finalidade.
+
+| Tipo de estado | Estratégia inicial |
+|---|---|
+| Estado local de componente | useState |
+| Estado compartilhado simples | Context API |
+| Dados persistidos | Repositórios e serviços |
+| Dados remotos futuros | TanStack Query, se necessário |
+| Formulários | React Hook Form, se a complexidade justificar |
+| Validação de dados | Zod, recomendado para contratos e entradas |
+
+Não se recomenda instalar Redux antes de demonstrar necessidade concreta.
+
+## 6.4. Navegação
+
+Recomenda-se React Router para:
+- Rotas.
+- Navegação.
+- Parâmetros.
+- Rotas protegidas futuras.
+- Layouts compartilhados.
+
+A adoção deverá ser compatível com a estrutura do projeto.
+
+---
+
+# 7. TYPESCRIPT E PADRONIZAÇÃO DE TIPOS
+
+TypeScript será utilizado para reduzir erros estruturais e tornar explícitos os contratos entre módulos.
+
+## 7.1. Regras
+
+- Evitar `any`.
+- Preferir tipos explícitos nas fronteiras entre módulos.
+- Utilizar interfaces para contratos.
+- Utilizar unions discriminadas para estados.
+- Utilizar tipos compartilhados para entidades.
+- Validar dados externos em tempo de execução.
+- Evitar duplicação de tipos.
+- Não confundir tipagem estática com validação de dados recebidos.
+
+## 7.2. Exemplo de entidade Journey
+
+```typescript
+export type JourneyStatus =
+  | "DRAFT"
+  | "ACTIVE"
+  | "PAUSED"
+  | "COMPLETED";
+
+export interface Journey {
+  id: string;
+  userId: string;
+  title: string;
+  status: JourneyStatus;
+  intention?: string;
+  primaryVirtueId?: string;
+  startedAt?: string;
+  pausedAt?: string;
+  completedAt?: string;
+  createdAt: string;
+  updatedAt: string;
+  schemaVersion: number;
+}
+```
+
+## 7.3. Exemplo de entrada do diário
+
+```typescript
+export type DiaryEntryType =
+  | "PRACTICE"
+  | "DIFFICULTY"
+  | "REFLECTION"
+  | "DISCOVERY";
+
+export interface DiaryEntry {
+  id: string;
+  journeyId?: string;
+  virtueId?: string;
+  entryType: DiaryEntryType;
+  experiencedAt: string;
+  situation: string;
+  context?: string;
+  thoughts?: string;
+  feelings?: string;
+  actions?: string;
+  consequences?: string;
+  learning?: string;
+  notes?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+```
+
+Esses exemplos representam contratos iniciais, sujeitos à validação na implementação.
+
+---
+
+# 8. MODELO DE DOMÍNIO
+
+O modelo de domínio permanecerá independente do React.
+
+Entidades centrais:
+
+- User.
+- Journey.
+- Virtue.
+- VirtueFamily.
+- Dimension.
+- Investigation.
+- Exercise.
+- DiaryEntry.
+- ExerciseRecord.
+- Review.
+- Thinker.
+- Work.
+- CouncilSession.
+- CouncilContribution.
+- LearningInsight.
+
+As regras de negócio deverão ser implementadas em funções ou serviços de domínio testáveis.
+
+## 8.1. Exemplo de regra de domínio
+
+```typescript
+import type { Journey } from "../entities/journey";
+
+export function canResumeJourney(journey: Journey): boolean {
+  return journey.status === "PAUSED";
+}
+```
+
+A regra não depende de React, navegador ou banco de dados.
+
+## 8.2. Estados da jornada
+
+```typescript
+export type JourneyStatus =
+  | "DRAFT"
+  | "ACTIVE"
+  | "PAUSED"
+  | "COMPLETED";
+```
+
+O arquivamento deverá ser tratado como atributo ou condição de organização do histórico, e não como estado concorrente com a conclusão.
+
+---
+
+# 9. MODELO LÓGICO DE DADOS
+
+O modelo de dados conceitual permanece fundamentado no Documento Oficial 05.
+
+A implementação deverá contemplar as seguintes entidades.
+
+| Entidade | Finalidade |
+|---|---|
+| users | Identificação dos usuários. |
+| journeys | Jornadas de desenvolvimento. |
+| journey_intentions | Intenções iniciais. |
+| virtue_families | Famílias da taxonomia. |
+| virtues | Cadastro de virtudes. |
+| journey_virtues | Relação entre jornadas e virtudes. |
+| dimensions | Sete dimensões. |
+| virtue_dimensions | Relação entre virtudes e dimensões. |
+| investigations | Investigações pessoais. |
+| exercises | Catálogo de exercícios. |
+| exercise_virtues | Relação entre exercícios e virtudes. |
+| journey_exercises | Exercícios associados às jornadas. |
+| exercise_records | Experiências de prática. |
+| diary_entries | Registros pessoais. |
+| reviews | Revisões periódicas e finais. |
+| thinkers | Pensadores. |
+| works | Obras e fontes. |
+| council_sessions | Sessões do Conselho. |
+| council_contributions | Contribuições das perspectivas. |
+| contribution_sources | Fontes das contribuições. |
+| learning_insights | Aprendizados identificados. |
+
+## 9.1. Identificadores
+
+Todas as entidades principais deverão possuir identificadores únicos.
+
+Recomendação:
+- UUID.
+- Datas ISO 8601.
+- Campos em camelCase no TypeScript.
+- Campos em snake_case no banco relacional.
+
+A conversão entre formatos deverá ser responsabilidade da camada de persistência.
+
+## 9.2. Jornada e virtudes
+
+Uma jornada poderá possuir:
+
+- Uma virtude principal.
+- Nenhuma ou várias virtudes relacionadas.
+
+A relação deverá ser implementada por `journey_virtues`.
+
+A regra de unicidade da virtude principal deverá ser validada pelo domínio e reforçada pelo banco de dados na versão remota.
+
+## 9.3. Histórico
+
+Registros históricos deverão manter a referência à jornada original.
+
+Alterações de conteúdo conceitual não deverão modificar silenciosamente a memória histórica do usuário.
+
+---
+
+# 10. ESTRATÉGIA DE PERSISTÊNCIA
+
+## 10.1. Primeira versão
+
+A persistência deverá ser definida conforme a estrutura e a complexidade do MVP.
+
+Recomendação:
+
+- IndexedDB para dados estruturados e operações assíncronas.
+- localStorage apenas para preferências simples, como tema e configurações leves.
+
+Essa separação reduz a dependência de armazenamento síncrono para dados mais complexos.
+
+## 10.2. IndexedDB
+
+Poderá armazenar:
+- Jornadas.
+- Investigações.
+- Registros.
+- Exercícios.
+- Revisões.
+- Sessões do Conselho.
+- Histórico.
+
+A camada de repositórios deverá abstrair as operações.
+
+Uma biblioteca como Dexie poderá ser avaliada para simplificar o acesso ao IndexedDB, desde que agregue valor suficiente.
+
+## 10.3. Supabase futuro
+
+O Supabase poderá ser adotado para:
+
+- PostgreSQL.
+- Autenticação.
+- API.
+- Sincronização.
+- Armazenamento.
+- Funções de backend.
+
+A migração deverá ocorrer após estabilização do modelo e dos requisitos de acesso.
+
+---
+
+# 11. CAMADA DE REPOSITÓRIOS
+
+Os repositórios deverão encapsular a persistência.
+
+Exemplo de contrato:
+
+```typescript
+import type { Journey } from "@/domain/entities/journey";
+
+export interface JourneyRepository {
+  create(journey: Journey): Promise<void>;
+  findById(id: string): Promise<Journey | null>;
+  findAll(): Promise<Journey[]>;
+  update(journey: Journey): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+```
+
+Implementações possíveis:
+
+- IndexedDBJourneyRepository.
+- LocalStorageJourneyRepository.
+- SupabaseJourneyRepository.
+
+A aplicação deverá depender do contrato, não da implementação concreta.
+
+## 11.1. Responsabilidades
+
+O repositório deverá:
+- Persistir entidades.
+- Recuperar registros.
+- Atualizar informações.
+- Excluir quando permitido.
+- Tratar falhas técnicas.
+- Preservar integridade.
+
+As regras sobre encerramento e transições de jornada não pertencem ao repositório.
+
+---
+
+# 12. CASOS DE USO
+
+Os casos de uso representarão as operações da aplicação.
+
+Exemplos:
+
+| Caso de uso | Responsabilidade |
+|---|---|
+| CreateJourney | Criar jornada. |
+| StartJourney | Iniciar jornada. |
+| PauseJourney | Pausar jornada. |
+| ResumeJourney | Retomar jornada. |
+| SelectPrimaryVirtue | Definir virtude principal. |
+| AddRelatedVirtue | Relacionar outra virtude. |
+| CreateInvestigation | Criar investigação. |
+| CreateDiaryEntry | Registrar experiência. |
+| CreateExerciseRecord | Registrar prática. |
+| CreateReview | Realizar revisão. |
+| CompleteJourney | Encerrar jornada. |
+| ExportUserData | Exportar informações. |
+| ImportUserData | Recuperar informações. |
+
+Cada caso de uso deverá possuir:
+- Entrada tipada.
+- Validações.
+- Regras aplicadas.
+- Dependências explícitas.
+- Resultado definido.
+- Tratamento de erros.
+
+---
+
+# 13. ESTRATÉGIA DE TESTES
+
+## 13.1. Vitest
+
+Recomendado para:
+- Testes unitários.
+- Regras de domínio.
+- Serviços.
+- Casos de uso.
+- Repositórios.
+- Validações.
+
+## 13.2. React Testing Library
+
+Recomendado para:
+- Testar componentes.
+- Testar interações.
+- Validar acessibilidade básica.
+- Verificar comportamentos da interface.
+
+Os testes deverão privilegiar o comportamento percebido pelo usuário, não detalhes internos de implementação.
+
+## 13.3. Playwright
+
+Recomendado para testes ponta a ponta.
+
+Cenários:
+- Iniciar jornada.
+- Selecionar virtude.
+- Registrar investigação.
+- Criar registro no diário.
+- Realizar revisão.
+- Encerrar jornada.
+- Consultar histórico.
+
+## 13.4. Critérios mínimos
+
+- Regras críticas com testes unitários.
+- Fluxos principais com testes de integração.
+- Jornadas completas com testes ponta a ponta.
+- Regressão após alterações estruturais.
+
+---
+
+# 14. TAILWIND CSS E SISTEMA VISUAL
+
+Tailwind CSS será utilizado para implementar a identidade visual definida no Documento 06.
+
+## 14.1. Diretrizes
+
+- Utilizar tokens visuais consistentes.
+- Centralizar cores e tipografia.
+- Evitar repetição excessiva de classes.
+- Criar componentes reutilizáveis.
+- Preservar responsividade.
+- Garantir contraste.
+- Implementar tema claro e escuro.
+
+## 14.2. Organização
+
+A identidade visual deverá ser estruturada por variáveis e configurações coerentes com a versão do Tailwind adotada.
+
+A implementação deverá registrar a versão instalada e utilizar sua configuração correspondente.
+
+Não misturar sintaxes de versões diferentes.
+
+---
+
+# 15. SEGURANÇA E PRIVACIDADE
+
+## 15.1. Aplicação local
+
+- Não armazenar segredos no frontend.
+- Validar entradas.
+- Evitar injeção de HTML.
+- Preservar dados durante falhas.
+- Permitir exportação.
+- Informar limitações do armazenamento local.
+
+## 15.2. Backend futuro
+
+- Implementar autenticação.
+- Implementar autorização.
+- Aplicar políticas de acesso.
+- Restringir registros por proprietário.
+- Proteger dados em trânsito.
+- Validar permissões no servidor.
+- Implementar backup e recuperação.
+
+## 15.3. Inteligência artificial
+
+- Não enviar o diário automaticamente.
+- Solicitar autorização quando necessário.
+- Limitar os dados compartilhados.
+- Identificar respostas automatizadas.
+- Preservar referências.
+- Distinguir interpretação de fato documentado.
+
+---
+
+# 16. VERSIONAMENTO E MIGRAÇÃO
+
+O sistema deverá versionar o modelo de dados.
+
+Exemplo:
+
+```typescript
+export interface DataExport {
+  application: "Jornada da Virtude";
+  schemaVersion: number;
+  exportedAt: string;
+  data: {
+    journeys: Journey[];
+    diaryEntries: DiaryEntry[];
+    reviews: Review[];
+  };
+}
+```
+
+A estrutura definitiva deverá incluir todas as entidades exportáveis.
+
+Migrações deverão:
+- Preservar dados.
+- Validar compatibilidade.
+- Registrar versão.
+- Tratar campos ausentes.
+- Evitar sobrescritas silenciosas.
+
+---
+
+# 17. ESTRATÉGIA DE INTEGRAÇÃO COM INTELIGÊNCIA ARTIFICIAL
+
+O Conselho deverá ser um subsistema independente.
+
+Arquitetura proposta:
+
+```text
+React Interface
+      │
+      ▼
+Council Use Case
+      │
+      ▼
+Council Orchestrator
+      │
+      ├── Seleção de perspectivas
+      │
+      ├── Recuperação de fontes
+      │
+      ├── Organização das contribuições
+      │
+      └── Síntese
+              │
+              ▼
+       AI Provider Adapter
+              │
+              ▼
+       Serviço externo de IA
+```
+
+A aplicação não deverá chamar diretamente o provedor de IA a partir de componentes React.
+
+Credenciais privadas deverão permanecer no backend.
+
+A recuperação de conhecimento deverá utilizar fontes documentadas e critérios de seleção definidos no Documento Oficial 04.
+
+---
+
+# 18. ROADMAP TÉCNICO
+
+## ETAPA 1 — ESTRUTURAÇÃO DA APLICAÇÃO
+
+- Configurar React, Vite e TypeScript.
+- Configurar Tailwind.
+- Organizar diretórios.
+- Configurar rotas.
+- Definir componentes compartilhados.
+- Definir contratos de domínio.
+- Configurar testes.
+
+Resultado: estrutura técnica funcional.
+
+## ETAPA 2 — DOMÍNIO E PERSISTÊNCIA
+
+- Criar entidades.
+- Criar repositórios.
+- Implementar persistência local.
+- Criar serviços.
+- Implementar jornadas.
+- Implementar virtudes.
+- Implementar diário.
+- Testar integridade.
+
+Resultado: núcleo funcional do sistema.
+
+## ETAPA 3 — FUNCIONALIDADES DA JORNADA
+
+- Investigação.
+- Exercícios.
+- Revisões.
+- Histórico.
+- Sínteses.
+- Exportação.
+
+Resultado: jornada completa sem dependência de IA.
+
+## ETAPA 4 — CONSELHO DE SABEDORIA
+
+- Base de pensadores.
+- Obras e referências.
+- Seleção de perspectivas.
+- Orquestração.
+- Síntese.
+- Histórico de sessões.
+
+Resultado: Conselho integrado ao produto.
+
+## ETAPA 5 — BACKEND E INTELIGÊNCIA ADAPTATIVA
+
+- Avaliar Supabase.
+- Implementar autenticação, se necessária.
+- Sincronização.
+- Políticas de acesso.
+- Integração com IA.
+- Recomendações adaptativas.
+
+Resultado: plataforma preparada para expansão.
+
+---
+
+# 19. CRITÉRIOS DE ACEITAÇÃO DA ARQUITETURA
+
+A arquitetura será considerada validada quando:
+
+1. React estiver responsável pela apresentação.
+2. TypeScript estiver definindo os contratos principais.
+3. Vite estiver configurado como ferramenta de desenvolvimento e build.
+4. Tailwind CSS estiver organizado por padrões visuais.
+5. As regras de domínio estiverem independentes da interface.
+6. Os casos de uso estiverem separados dos componentes.
+7. A persistência estiver encapsulada em repositórios.
+8. As entidades possuírem identificadores únicos.
+9. O modelo suportar virtudes principais e relacionadas.
+10. Os dados possuírem versionamento.
+11. Os fluxos principais possuírem testes.
+12. A arquitetura permitir substituir a persistência.
+13. O Conselho estiver isolado das regras centrais da jornada.
+14. A aplicação preservar a privacidade dos registros.
+
+---
+
+# 20. DECISÕES TÉCNICAS COMPLEMENTARES
+
+| Tema | Recomendação |
+|---|---|
+| Rotas | React Router |
+| Formulários | React Hook Form, se necessário |
+| Validação | Zod |
+| Testes unitários | Vitest |
+| Testes de componentes | React Testing Library |
+| Testes E2E | Playwright |
+| Persistência local | IndexedDB |
+| Abstração IndexedDB | Avaliar Dexie |
+| Estado global | Context API inicialmente |
+| Dados remotos | TanStack Query quando houver backend |
+| Backend futuro | Supabase, mediante validação |
+| Padronização | ESLint e Prettier |
+| Controle de versão | Git |
+
+As recomendações complementares não representam dependências obrigatórias. Cada adoção deverá ser justificada por necessidade técnica.
+
+---
+
+# 21. CONSIDERAÇÕES FINAIS
+
+A adoção de React, Vite, TypeScript e Tailwind CSS representa a definição da base tecnológica da Jornada da Virtude.
+
+Essa decisão permite desenvolver uma interface modular, manter contratos tipados e preparar a aplicação para evoluir de maneira organizada.
+
+Entretanto, o valor da arquitetura não está na quantidade de bibliotecas utilizadas.
+
+Está na clareza das responsabilidades, na consistência do modelo de dados e na capacidade de preservar a experiência do usuário durante a evolução.
+
+O sistema deverá crescer sem perder sua identidade.
+
+A interface organiza a experiência.
+O domínio preserva os princípios.
+Os dados preservam a memória.
+Os serviços conectam as funcionalidades.
+A tecnologia sustenta o desenvolvimento.
+
+**A arquitetura deverá ser suficientemente sólida para crescer e suficientemente simples para continuar compreensível.**
+
+---
+
+# 22. RELAÇÃO COM OS DOCUMENTOS OFICIAIS
+
+| Documento | Conteúdo | Função |
+|---|---|---|
+| 01 | Fundamentos e propósito | Identidade do projeto. |
+| 02 | Sete Dimensões do Ser Humano | Estrutura dimensional. |
+| 03 | Taxonomia das Virtudes | Conhecimento das virtudes. |
+| 04 | Matriz de Integração | Dimensões, virtudes e pensadores. |
+| 05 | Metodologia da Jornada | Processo de desenvolvimento. |
+| 06 | Arquitetura Funcional e UX | Experiência digital. |
+| 07 | Especificação Funcional | Requisitos e regras. |
+| 08 | Arquitetura Técnica e Modelo de Dados | Estrutura tecnológica e informacional. |
+
+**Próxima etapa recomendada:**
+
+DOCUMENTO OFICIAL 09 — Plano de Implementação, Estratégia de Testes e Gestão da Evolução.
+
+Esse documento deverá organizar a execução técnica em entregas incrementais, com dependências, critérios de conclusão e validações.
+
+---
+
+**FIM DO DOCUMENTO OFICIAL 08 — VERSÃO 2.0**

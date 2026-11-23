@@ -1,0 +1,267 @@
+# JORNADA DA VIRTUDE
+## Documento Conceitual do Produto — Versão 1.0
+
+**Natureza:** Plataforma digital de desenvolvimento humano e formação filosófica  
+**Fundamento:** Filosofia prática, conhecimento das virtudes e desenvolvimento integral do ser humano  
+**Referência filosófica inicial:** Concepção das Sete Dimensões do Ser Humano, apresentada pela Nova Acrópole.
+
+---
+
+## 1. Visão do produto
+
+A Jornada da Virtude é uma plataforma de desenvolvimento humano que busca transformar conhecimento filosófico em consciência, escolhas e práticas cotidianas.
+
+Seu propósito é ajudar cada pessoa a conhecer melhor a si mesma, compreender as virtudes humanas, reconhecer seus desafios e desenvolver hábitos coerentes com seus valores.
+
+A plataforma não pretende oferecer fórmulas de felicidade, classificar pessoas ou medir sua superioridade moral. Pretende proporcionar um caminho contínuo de aprendizado e aperfeiçoamento humano.
+
+**Princípio orientador:**
+
+Conhecer a virtude é o começo. Compreendê-la é aprofundar o caminho. Praticá-la é incorporá-la à vida.
+
+## 2. Fundamento filosófico: as Sete Dimensões do Ser Humano
+
+A Jornada adotará como referência a concepção das sete dimensões do ser humano apresentada na tradição filosófica difundida pela Nova Acrópole.
+
+A classificação encontrada na publicação *Qual é a Verdadeira Natureza do Homem*, da Nova Acrópole Portugal, apresenta:
+
+1. Corpo físico.
+2. Corpo vital ou energético.
+3. Corpo emocional.
+4. Corpo mental concreto.
+5. Mente pura.
+6. Intuição.
+7. Vontade.
+
+Os quatro primeiros constituem a personalidade, enquanto os três seguintes são apresentados como dimensões superiores do indivíduo. Essa é uma concepção filosófica e espiritual, não uma classificação científica consensual.
+
+**Implicação para o produto:** as dimensões serão utilizadas como estrutura de reflexão e organização do desenvolvimento humano, sem serem tratadas como compartimentos isolados.
+
+## 3. Arquitetura conceitual
+
+A plataforma será organizada em cinco grandes componentes.
+
+### 3.1. Dimensões do Ser
+
+Apresentar as sete dimensões, seus conceitos, características, relações e possibilidades de desenvolvimento.
+
+Cada dimensão deverá conter:
+- Definição filosófica.
+- Características fundamentais.
+- Potencialidades e desafios.
+- Relação com as demais dimensões.
+- Virtudes relacionadas.
+- Perguntas de autoconhecimento.
+- Exercícios de desenvolvimento.
+
+### 3.2. Universo das Virtudes
+
+Construir um catálogo abrangente e organizado de virtudes.
+
+Cada virtude deverá possuir:
+- Nome e definição.
+- Fundamentação filosófica.
+- Diferenças em relação a conceitos semelhantes.
+- Comportamentos observáveis.
+- Exemplos cotidianos.
+- Vícios, excessos ou deficiências relacionados.
+- Dimensões nas quais pode se manifestar.
+- Pensadores que contribuíram para sua compreensão.
+- Exercícios para sua prática.
+
+Uma virtude poderá relacionar-se a várias dimensões. Não será estabelecida uma correspondência exclusiva entre virtude e dimensão.
+
+### 3.3. Conselho de Sabedoria
+
+O Conselho será um sistema de perspectivas filosóficas e intelectuais destinado a apoiar a reflexão individual.
+
+Sua composição poderá incluir filósofos, pensadores, cientistas e autores de diferentes tradições.
+
+Cada integrante deverá possuir:
+- Identificação e contexto histórico.
+- Obras e ideias de referência.
+- Contribuições para o desenvolvimento humano.
+- Virtudes com as quais apresenta maior afinidade.
+- Perguntas características de sua abordagem.
+- Limites e possíveis divergências de sua perspectiva.
+
+O Conselho não será apresentado como uma simulação literal das personalidades históricas. Será uma ferramenta interpretativa baseada em ideias documentadas.
+
+Sua finalidade é ampliar a reflexão, apresentar contrapontos e ajudar o usuário a construir seu próprio discernimento.
+
+### 3.4. Jornada Individual
+
+A jornada deverá permitir que cada pessoa escolha seu ponto de partida.
+
+Três possibilidades iniciais:
+
+**A. Quero me conhecer**
+- Explorar as dimensões.
+- Reconhecer potencialidades.
+- Identificar dificuldades.
+- Refletir sobre comportamentos e hábitos.
+
+**B. Quero desenvolver uma virtude**
+- Escolher uma virtude.
+- Compreender seus fundamentos.
+- Identificar situações que exigem sua prática.
+- Elaborar um plano de desenvolvimento.
+- Registrar experiências.
+- Revisar resultados.
+
+**C. Estou enfrentando uma situação**
+- Descrever um acontecimento ou dilema.
+- Identificar emoções, pensamentos e reações.
+- Consultar perspectivas do Conselho.
+- Reconhecer alternativas de ação.
+- Definir uma atitude consciente.
+
+### 3.5. Acompanhamento e evolução
+
+A plataforma deverá acompanhar o processo de desenvolvimento sem transformar a pessoa em uma nota.
+
+Recursos previstos:
+- Diário de experiências.
+- Registro de práticas e dificuldades.
+- Exercícios individuais.
+- Desafios cotidianos.
+- Revisões periódicas.
+- Histórico de jornadas.
+- Reflexões sobre mudanças percebidas.
+- Relatórios individuais de evolução.
+
+A evolução será compreendida pela capacidade crescente de reconhecer situações, refletir, escolher e agir conscientemente.
+
+---
+
+## 4. Modelo metodológico da Jornada
+
+O MVP já apresenta quatro etapas que devem ser preservadas como ponto de partida.
+
+| Etapa | Objetivo | Duração inicial |
+|---|---|---|
+| Reconhecer | Observar comportamentos sem julgamento | 1 semana |
+| Investigar | Compreender a virtude e suas dificuldades | 2 semanas |
+| Praticar | Exercitar comportamentos intencionais | 4 semanas |
+| Revisar | Refletir sobre experiências e mudanças | 1 semana |
+
+Essas durações são parâmetros iniciais do MVP, não prazos universais para desenvolver uma virtude.
+
+A metodologia poderá evoluir para ciclos repetidos de aprendizagem e prática.
+
+## 5. Princípios de funcionamento do Conselho
+
+O Conselho deverá ser contextual.
+
+Não é necessário convocar todos os pensadores para todas as situações.
+
+Exemplo: uma pessoa relata dificuldade em controlar a raiva.
+
+O Conselho poderá apresentar:
+
+- Aristóteles: equilíbrio, hábito e medida adequada.
+- Marco Aurélio: distinção entre acontecimentos e respostas pessoais.
+- Sócrates: investigação das crenças e pressupostos.
+- Daniel Kahneman: mecanismos de julgamento e vieses cognitivos.
+- Lao-Tsé: simplicidade, equilíbrio e não reatividade.
+
+A plataforma deverá apresentar as contribuições, estimular perguntas e permitir que o usuário formule sua própria conclusão.
+
+## 6. Princípios orientadores do produto
+
+1. **Desenvolvimento integral:** considerar o ser humano em suas diferentes dimensões.
+2. **Liberdade individual:** cada pessoa conduz sua própria jornada.
+3. **Autoconhecimento:** reconhecer antes de tentar transformar.
+4. **Conhecimento fundamentado:** apresentar referências e distinguir interpretação de fato histórico.
+5. **Prática cotidiana:** transformar reflexão em ação.
+6. **Não julgamento:** falhas são oportunidades de aprendizado.
+7. **Pluralidade filosófica:** diferentes perspectivas podem contribuir para uma reflexão mais rica.
+8. **Evolução contínua:** o desenvolvimento humano não é uma competição nem uma linha de chegada.
+
+## 7. Diretrizes para inteligência artificial
+
+A inteligência artificial poderá atuar como facilitadora da jornada.
+
+Funções previstas:
+- Apoiar o autoconhecimento por meio de perguntas.
+- Explicar conceitos filosóficos.
+- Recomendar virtudes relacionadas a situações relatadas.
+- Convocar perspectivas do Conselho.
+- Sugerir exercícios e práticas.
+- Identificar padrões nos registros do próprio usuário.
+- Elaborar sínteses periódicas da jornada.
+
+Restrições:
+- Não emitir julgamentos sobre o caráter do usuário.
+- Não apresentar diagnósticos psicológicos ou clínicos.
+- Não inventar citações ou atribuir ideias indevidamente.
+- Não substituir a autonomia e o discernimento individuais.
+- Não tratar pontuações como medidas objetivas de valor moral.
+
+## 8. Evolução tecnológica
+
+A evolução deverá acontecer por etapas.
+
+**Etapa 1 — Consolidação do método**
+- Organizar as sete dimensões.
+- Construir o catálogo de virtudes.
+- Definir o Conselho.
+- Validar a metodologia da jornada.
+
+**Etapa 2 — Evolução do MVP**
+- Melhorar navegação e experiência.
+- Organizar jornadas por virtude e dimensão.
+- Criar catálogo estruturado.
+- Aprimorar registros e revisões.
+- Preservar os dados já existentes.
+
+**Etapa 3 — Plataforma**
+- Implementar autenticação e persistência em banco de dados.
+- Criar histórico individual.
+- Desenvolver mecanismos de recomendação.
+- Integrar o Conselho com inteligência artificial.
+
+**Etapa 4 — Desenvolvimento contínuo**
+- Relatórios individuais.
+- Novas jornadas e exercícios.
+- Conteúdos filosóficos.
+- Experiências personalizadas.
+- Avaliação da eficácia pedagógica do método.
+
+A tecnologia deverá servir ao método, e não determinar seu conteúdo.
+
+## 9. Critérios de sucesso
+
+A Jornada será bem-sucedida quando ajudar o usuário a:
+
+- Compreender melhor suas próprias características.
+- Reconhecer virtudes e dificuldades.
+- Identificar situações que exigem escolhas conscientes.
+- Conhecer diferentes perspectivas filosóficas.
+- Transformar conhecimento em prática.
+- Reconhecer mudanças em seus comportamentos.
+- Desenvolver autonomia para continuar aprendendo.
+
+## 10. Próximos documentos do projeto
+
+Este documento estabelece a visão conceitual inicial. Os próximos artefatos deverão aprofundar:
+
+1. **Mapa das Sete Dimensões:** conceitos, relações, características e possibilidades de desenvolvimento.
+2. **Taxonomia das Virtudes:** catálogo ampliado, definições, classificações e relações.
+3. **Matriz Dimensões × Virtudes:** relações e manifestações possíveis.
+4. **Catálogo do Conselho:** pensadores, obras, contribuições e limites.
+5. **Metodologia da Jornada:** etapas, exercícios, registros e revisões.
+6. **Especificação Funcional:** módulos, fluxos, requisitos e regras de negócio.
+7. **Arquitetura Técnica:** dados, serviços, inteligência artificial e segurança.
+
+---
+
+## 11. Direção estratégica
+
+A Jornada da Virtude deverá ser concebida como uma plataforma de formação humana orientada pela filosofia prática.
+
+Seu diferencial não será a quantidade de virtudes cadastradas nem o número de pensadores disponíveis.
+
+Será a integração entre conhecimento, autoconhecimento, reflexão e prática.
+
+**Conhecer o ser humano. Compreender as virtudes. Aprender com a sabedoria. Transformar a vida pela prática.**

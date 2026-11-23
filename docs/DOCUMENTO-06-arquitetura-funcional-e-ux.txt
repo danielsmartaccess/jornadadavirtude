@@ -1,0 +1,1361 @@
+# DOCUMENTO OFICIAL 06
+# ARQUITETURA FUNCIONAL E EXPERIÊNCIA DO USUÁRIO (UX)
+
+**Projeto:** Jornada da Virtude
+**Documento:** 06
+**Versão:** 1.0
+**Status:** Proposta para validação
+**Natureza:** Arquitetura funcional, experiência do usuário e especificação de interface
+**Referências:** Documentos Oficiais 01, 02, 03, 04 e 05
+**Aplicação:** MVP HTML e futuras versões da plataforma
+
+---
+
+# 1. APRESENTAÇÃO
+
+Este documento estabelece a arquitetura funcional e a experiência de uso da plataforma Jornada da Virtude.
+
+Sua finalidade é traduzir os fundamentos filosóficos, a taxonomia das virtudes, as sete dimensões do ser humano, o Conselho de Sabedoria e a metodologia de desenvolvimento das virtudes em uma experiência digital coerente.
+
+O documento define:
+
+- Como a plataforma será organizada.
+- Como o usuário navegará pelo sistema.
+- Quais serão as áreas funcionais.
+- Quais telas e componentes serão necessários.
+- Como as funcionalidades se relacionarão.
+- Como a interface acompanhará uma jornada.
+- Como serão apresentados registros, exercícios e revisões.
+- Como o Conselho de Sabedoria será integrado.
+- Como a experiência evoluirá a partir do MVP atual.
+
+A arquitetura deverá permitir que o usuário tenha uma experiência simples, intuitiva e progressiva, mesmo quando estiver trabalhando com conceitos filosóficos complexos.
+
+## 1.1. Princípio central de UX
+
+**A interface deve simplificar a experiência sem simplificar excessivamente o conhecimento.**
+
+O usuário não deve precisar compreender toda a arquitetura conceitual da plataforma para começar sua jornada.
+
+A experiência deverá revelar funcionalidades e informações conforme a necessidade de cada etapa.
+
+## 1.2. Objetivo da arquitetura funcional
+
+Construir uma plataforma que permita ao indivíduo:
+
+1. Conhecer as virtudes.
+2. Escolher uma virtude para desenvolver.
+3. Investigar sua relação pessoal com ela.
+4. Consultar diferentes perspectivas filosóficas.
+5. Experimentar exercícios.
+6. Registrar experiências.
+7. Revisar seu desenvolvimento.
+8. Reconhecer aprendizados.
+9. Encerrar um ciclo e iniciar outro.
+
+---
+
+# 2. PRINCÍPIOS DE EXPERIÊNCIA DO USUÁRIO
+
+A experiência será orientada por oito princípios.
+
+## 2.1. Simplicidade
+
+A interface deverá apresentar apenas as informações necessárias para cada momento.
+
+Evitar:
+- Excesso de menus.
+- Muitas opções simultâneas.
+- Formulários extensos.
+- Textos excessivamente longos na tela inicial.
+- Funcionalidades que não tenham utilidade clara.
+
+A profundidade deverá estar disponível por meio de camadas de informação.
+
+## 2.2. Progressividade
+
+O usuário deverá encontrar orientação sobre o próximo passo sem ser obrigado a seguir um roteiro rígido.
+
+A interface poderá apresentar:
+- Etapa atual.
+- Etapas anteriores.
+- Próxima ação sugerida.
+- Atividades realizadas.
+- Possibilidade de retomar uma atividade.
+
+## 2.3. Autonomia
+
+O usuário deverá controlar:
+- A virtude escolhida.
+- O ritmo da jornada.
+- Os exercícios realizados.
+- Os registros pessoais.
+- A convocação do Conselho.
+- A continuidade ou encerramento da jornada.
+
+O sistema orienta, mas não determina.
+
+## 2.4. Reflexão antes da ação
+
+A interface deverá estimular a compreensão da situação antes de recomendar atividades.
+
+O usuário não deve ser conduzido diretamente a uma lista de tarefas sem compreender o significado da virtude e sua relação com a própria vida.
+
+## 2.5. Continuidade
+
+A plataforma deverá preservar o histórico de jornadas e permitir que o usuário retome seu percurso.
+
+Uma nova jornada não poderá apagar a anterior.
+
+## 2.6. Privacidade
+
+Os registros pessoais deverão ser tratados como informações privadas.
+
+A interface deverá deixar claro:
+- Onde os registros são armazenados.
+- Quem pode acessá-los.
+- Como podem ser exportados.
+- Como podem ser excluídos.
+
+Essas informações deverão refletir a arquitetura técnica efetivamente implementada.
+
+## 2.7. Acessibilidade
+
+A plataforma deverá observar boas práticas de acessibilidade:
+
+- Contraste adequado.
+- Navegação por teclado.
+- Elementos semânticos.
+- Identificação clara dos campos.
+- Mensagens de erro compreensíveis.
+- Áreas de interação adequadas.
+- Compatibilidade com leitores de tela.
+- Não depender exclusivamente de cores para comunicar estados.
+
+## 2.8. Consistência
+
+Os mesmos padrões visuais e comportamentais deverão ser utilizados em toda a plataforma.
+
+Botões, formulários, cartões, mensagens, menus e indicadores deverão possuir comportamentos previsíveis.
+
+---
+
+# 3. ARQUITETURA DA INFORMAÇÃO
+
+A arquitetura da informação organiza os conteúdos e funcionalidades da plataforma.
+
+A proposta é separar a experiência em seis áreas principais.
+
+| Área | Finalidade |
+|---|---|
+| 01. Início | Apresentar a plataforma e o estado atual do usuário. |
+| 02. Minha Jornada | Organizar o ciclo de desenvolvimento em andamento. |
+| 03. Virtudes | Explorar conhecimentos e conceitos filosóficos. |
+| 04. Conselho de Sabedoria | Consultar diferentes perspectivas sobre questões relevantes. |
+| 05. Meu Diário | Consultar experiências e reflexões registradas. |
+| 06. Histórico | Consultar jornadas anteriores e aprendizados acumulados. |
+
+## 3.1. Mapa de navegação
+
+```text
+INÍCIO
+│
+├── MINHA JORNADA
+│   ├── Visão geral
+│   ├── Virtude escolhida
+│   ├── Investigação
+│   ├── Exercícios
+│   ├── Registros
+│   ├── Revisões
+│   └── Encerramento
+│
+├── VIRTUDES
+│   ├── Famílias
+│   ├── Catálogo
+│   ├── Detalhes da virtude
+│   ├── Dimensões relacionadas
+│   └── Referências filosóficas
+│
+├── CONSELHO DE SABEDORIA
+│   ├── Nova reflexão
+│   ├── Questão apresentada
+│   ├── Perspectivas selecionadas
+│   ├── Convergências e divergências
+│   └── Síntese
+│
+├── MEU DIÁRIO
+│   ├── Novo registro
+│   ├── Histórico cronológico
+│   ├── Filtros
+│   └── Detalhes do registro
+│
+└── HISTÓRICO
+    ├── Jornadas anteriores
+    ├── Sínteses
+    ├── Virtudes investigadas
+    └── Aprendizados
+```
+
+A estrutura deverá ser implementada de forma responsiva.
+
+Em dispositivos móveis, a navegação poderá utilizar menu compacto ou barra inferior, desde que preserve a clareza e a facilidade de acesso.
+
+---
+
+# 4. MODELO DE NAVEGAÇÃO
+
+## 4.1. Navegação principal
+
+A navegação principal deverá permitir acesso rápido às seis áreas.
+
+Recomendação:
+
+**Início | Minha Jornada | Virtudes | Conselho | Diário | Histórico**
+
+No MVP, não é necessário implementar todas as áreas como páginas independentes.
+
+Elas poderão ser organizadas em seções ou telas internas de uma aplicação HTML única.
+
+## 4.2. Navegação contextual
+
+Além do menu principal, a plataforma deverá oferecer navegação relacionada à atividade atual.
+
+Exemplo:
+
+Durante a investigação da paciência, o usuário poderá acessar:
+- Definição da paciência.
+- Virtudes relacionadas.
+- Dimensões associadas.
+- Exercícios disponíveis.
+- Conselho de Sabedoria.
+- Diário da jornada.
+
+Essa navegação contextual reduz a necessidade de retornar ao menu principal.
+
+## 4.3. Indicador de localização
+
+Toda tela deverá deixar claro onde o usuário está.
+
+Exemplos:
+
+Minha Jornada / Investigação
+
+Virtudes / Autodomínio e equilíbrio / Paciência
+
+Conselho de Sabedoria / Nova reflexão
+
+O usuário não deverá depender exclusivamente do botão de voltar do navegador.
+
+---
+
+# 5. TELA 01 — INÍCIO
+
+## 5.1. Objetivo
+
+Apresentar a proposta da Jornada da Virtude e orientar o usuário sobre como começar ou continuar.
+
+A tela inicial deverá funcionar como ponto de entrada e painel de acompanhamento.
+
+## 5.2. Estrutura visual
+
+### Cabeçalho
+
+- Identidade visual da Jornada da Virtude.
+- Nome da plataforma.
+- Menu de navegação.
+- Alternância de tema claro/escuro.
+- Acesso às configurações, quando implementadas.
+
+### Área principal
+
+Mensagem institucional:
+
+"Uma jornada de conhecimento, consciência e prática."
+
+Texto complementar:
+
+"Conheça as virtudes, observe suas escolhas e desenvolva novas maneiras de agir."
+
+### Área de ação
+
+Quando não houver jornada ativa:
+
+**Iniciar minha jornada**
+
+Ação secundária:
+
+**Explorar as virtudes**
+
+Quando houver jornada ativa:
+
+**Continuar minha jornada**
+
+Ação secundária:
+
+**Consultar meu diário**
+
+### Área de acompanhamento
+
+Poderá apresentar:
+- Jornada atual.
+- Virtude trabalhada.
+- Último registro.
+- Próxima atividade sugerida.
+- Data da última revisão.
+
+## 5.3. Estados da tela inicial
+
+| Estado | Comportamento |
+|---|---|
+| Primeiro acesso | Apresenta boas-vindas e início da jornada. |
+| Sem jornada ativa | Oferece iniciar nova jornada ou explorar virtudes. |
+| Jornada em andamento | Apresenta resumo e opção de continuar. |
+| Jornada pausada | Permite retomar ou consultar histórico. |
+| Jornada concluída | Apresenta síntese e possibilidade de iniciar outra. |
+
+---
+
+# 6. TELA 02 — INÍCIO DE UMA JORNADA
+
+## 6.1. Objetivo
+
+Permitir que o usuário inicie um novo ciclo de desenvolvimento.
+
+## 6.2. Fluxo de entrada
+
+O usuário deverá escolher entre três caminhos:
+
+**A. Já sei qual virtude quero desenvolver.**
+
+Direciona para o catálogo de virtudes.
+
+**B. Quero compreender uma situação que estou vivendo.**
+
+Direciona para perguntas orientadoras e identificação de virtudes relacionadas.
+
+**C. Quero conhecer melhor as virtudes.**
+
+Direciona para a exploração do catálogo.
+
+## 6.3. Formulário inicial
+
+Campos:
+
+- Motivação para iniciar a jornada.
+- Situação que deseja compreender.
+- Virtude de interesse, quando conhecida.
+- Expectativa de aprendizagem.
+
+O formulário deverá permitir início com preenchimento parcial.
+
+## 6.4. Resultado
+
+Após a confirmação, o sistema deverá:
+
+1. Criar a jornada.
+2. Registrar a data de início.
+3. Salvar a intenção inicial.
+4. Registrar a virtude selecionada, se houver.
+5. Direcionar para a próxima etapa.
+
+---
+
+# 7. TELA 03 — CATÁLOGO DE VIRTUDES
+
+## 7.1. Objetivo
+
+Permitir que o usuário conheça, explore e selecione virtudes.
+
+O catálogo deverá utilizar a Taxonomia do Documento Oficial 03.
+
+## 7.2. Organização
+
+As virtudes serão organizadas em oito famílias:
+
+1. Sabedoria e discernimento.
+2. Autodomínio e equilíbrio.
+3. Coragem e fortaleza.
+4. Justiça e integridade.
+5. Relações humanas e fraternidade.
+6. Conhecimento e verdade.
+7. Propósito e realização.
+8. Consciência superior e sentido.
+
+## 7.3. Visualização
+
+Cada virtude deverá ser apresentada em um cartão contendo:
+
+- Nome.
+- Definição resumida.
+- Família.
+- Uma frase explicativa.
+- Ação para conhecer detalhes.
+
+Exemplo:
+
+**PACIÊNCIA**
+
+Capacidade de lidar com dificuldades, esperas e contrariedades sem reagir de maneira precipitada.
+
+Família: Autodomínio e equilíbrio.
+
+Ação: Conhecer esta virtude.
+
+## 7.4. Filtros
+
+O catálogo poderá oferecer filtros por:
+
+- Família.
+- Dimensão.
+- Palavra-chave.
+- Virtudes relacionadas.
+
+## 7.5. Detalhamento da virtude
+
+Ao selecionar uma virtude, o usuário deverá acessar uma página ou painel com:
+
+1. Definição.
+2. Fundamentação filosófica.
+3. Características.
+4. Comportamentos observáveis.
+5. Excessos e deficiências.
+6. Virtudes relacionadas.
+7. Dimensões associadas.
+8. Pensadores e referências.
+9. Exercícios disponíveis.
+10. Ação para iniciar uma jornada.
+
+A profundidade deverá ser apresentada em blocos organizados, evitando uma tela excessivamente carregada.
+
+---
+
+# 8. TELA 04 — MINHA JORNADA
+
+## 8.1. Objetivo
+
+Ser o principal espaço de acompanhamento do desenvolvimento da virtude.
+
+A jornada será a unidade central da experiência.
+
+A virtude é o objeto de desenvolvimento. A jornada organiza o processo.
+
+## 8.2. Estrutura visual
+
+A tela deverá apresentar:
+
+### Identificação
+
+- Nome da jornada.
+- Virtude principal.
+- Data de início.
+- Situação atual.
+- Intenção inicial.
+
+### Navegação das etapas
+
+1. Despertar.
+2. Identificar.
+3. Investigar.
+4. Refletir.
+5. Praticar.
+6. Registrar.
+7. Revisar.
+
+### Área de conteúdo
+
+Exibe a etapa atual e as ações disponíveis.
+
+### Área de continuidade
+
+Apresenta:
+- Última atividade realizada.
+- Próxima ação sugerida.
+- Última revisão.
+- Atalho para o diário.
+
+## 8.3. Estados das etapas
+
+Cada etapa poderá assumir os seguintes estados:
+
+| Estado | Significado |
+|---|---|
+| Não iniciada | Ainda não foi trabalhada. |
+| Em andamento | Possui atividade iniciada ou pendente. |
+| Concluída | O usuário declarou ou confirmou sua conclusão. |
+| Retomada | O usuário voltou a uma etapa anteriormente concluída. |
+| Não aplicável | A etapa não é necessária naquele contexto. |
+
+A interface deverá distinguir progresso de qualidade moral.
+
+A conclusão de uma etapa significa que uma atividade foi realizada, não que a pessoa adquiriu determinada virtude.
+
+## 8.4. Progresso visual
+
+A plataforma poderá apresentar uma linha do tempo ou trilha de etapas.
+
+O indicador deverá mostrar a localização do usuário na jornada.
+
+Não deverá ser interpretado como percentual de desenvolvimento moral.
+
+Exemplo:
+
+Etapas trabalhadas: 4 de 7.
+
+Esse número indica apenas a participação no percurso.
+
+---
+
+# 9. TELA 05 — INVESTIGAÇÃO E AUTOCONHECIMENTO
+
+## 9.1. Objetivo
+
+Conduzir o usuário por perguntas que ajudem a compreender sua relação com a virtude.
+
+## 9.2. Organização
+
+A tela deverá ser dividida em quatro blocos:
+
+**Bloco 1 — Compreender**
+
+Apresentação do conceito e das referências.
+
+**Bloco 2 — Reconhecer**
+
+Perguntas sobre situações vivenciadas.
+
+**Bloco 3 — Investigar**
+
+Identificação de comportamentos e padrões.
+
+**Bloco 4 — Motivações**
+
+Reflexão sobre pensamentos, sentimentos e decisões.
+
+## 9.3. Componentes
+
+- Texto explicativo.
+- Perguntas orientadoras.
+- Campos de resposta.
+- Exemplos opcionais.
+- Botão salvar.
+- Botão continuar.
+- Acesso ao Conselho de Sabedoria.
+
+## 9.4. Comportamento
+
+As respostas deverão ser preservadas automaticamente quando possível.
+
+O usuário poderá:
+- Salvar parcialmente.
+- Retomar posteriormente.
+- Editar respostas.
+- Consultar respostas anteriores.
+
+O sistema deverá evitar perguntas repetitivas sem finalidade.
+
+---
+
+# 10. TELA 06 — CONSELHO DE SABEDORIA
+
+## 10.1. Objetivo
+
+Disponibilizar um ambiente de reflexão aprofundada.
+
+O Conselho deverá ser acessado a partir de uma situação, dúvida ou questão relevante.
+
+## 10.2. Entrada
+
+O usuário poderá iniciar uma reflexão:
+
+- A partir da jornada atual.
+- A partir de uma situação registrada no diário.
+- A partir de uma questão independente.
+
+## 10.3. Formulário de convocação
+
+Campos:
+
+- Qual situação deseja analisar?
+- Qual é sua principal dúvida?
+- Qual virtude está relacionada?
+- Existe alguma dimensão da vida especialmente envolvida?
+
+A virtude e a dimensão poderão ser preenchidas automaticamente quando o Conselho for convocado a partir de uma jornada.
+
+## 10.4. Resultado da reflexão
+
+A tela deverá organizar a resposta em cinco áreas:
+
+**1. Compreensão da situação**
+
+Síntese do contexto apresentado.
+
+**2. Perspectivas selecionadas**
+
+Apresentação dos pensadores e dos fundamentos utilizados.
+
+**3. Convergências e divergências**
+
+Pontos de concordância e diferenças entre as perspectivas.
+
+**4. Síntese do Conselho**
+
+Organização dos principais aprendizados e possibilidades.
+
+**5. Minha reflexão**
+
+Espaço para o usuário registrar o que pensa após consultar o Conselho.
+
+## 10.5. Ações disponíveis
+
+- Salvar reflexão.
+- Relacionar à jornada.
+- Registrar no diário.
+- Consultar referências.
+- Retornar à jornada.
+
+## 10.6. Transparência
+
+A interface deverá identificar claramente que as contribuições são interpretações geradas a partir de fontes e ideias documentadas.
+
+Não deverá apresentar o conteúdo como fala literal de pessoas históricas.
+
+---
+
+# 11. TELA 07 — EXERCÍCIOS E PRÁTICAS
+
+## 11.1. Objetivo
+
+Apresentar exercícios relacionados à virtude e à situação investigada.
+
+## 11.2. Organização
+
+Os exercícios deverão ser agrupados em cinco categorias:
+
+- Consciência.
+- Reflexão.
+- Ação.
+- Relação.
+- Contemplação.
+
+## 11.3. Cartão de exercício
+
+Cada cartão deverá apresentar:
+
+- Nome.
+- Virtude.
+- Objetivo.
+- Categoria.
+- Duração sugerida.
+- Orientação resumida.
+
+Ação principal:
+
+**Iniciar exercício**
+
+## 11.4. Detalhamento
+
+Ao iniciar, o usuário deverá visualizar:
+
+1. O que pretende desenvolver.
+2. Por que o exercício foi recomendado.
+3. Como realizá-lo.
+4. O que observar.
+5. Como registrar a experiência.
+
+## 11.5. Estados do exercício
+
+- Disponível.
+- Recomendado.
+- Em andamento.
+- Experimentado.
+- Repetido.
+- Arquivado.
+
+O sistema deverá permitir repetir exercícios sem criar a impressão de que a pessoa falhou por precisar praticá-los novamente.
+
+---
+
+# 12. TELA 08 — MEU DIÁRIO
+
+## 12.1. Objetivo
+
+Organizar as experiências e reflexões do usuário ao longo do tempo.
+
+## 12.2. Estrutura
+
+A tela deverá apresentar:
+
+- Botão de novo registro.
+- Linha do tempo.
+- Filtro por virtude.
+- Filtro por tipo de registro.
+- Filtro por período.
+- Pesquisa textual.
+
+## 12.3. Novo registro
+
+Campos:
+
+- Data.
+- Virtude.
+- Tipo de registro.
+- Situação.
+- Contexto.
+- Pensamentos.
+- Sentimentos.
+- Ação.
+- Consequências.
+- Aprendizado.
+- Observação complementar.
+
+O preenchimento deverá ser flexível.
+
+## 12.4. Detalhamento do registro
+
+Ao abrir uma entrada, o usuário poderá:
+
+- Consultar o conteúdo.
+- Editar.
+- Excluir.
+- Relacionar a um exercício.
+- Relacionar a uma sessão do Conselho.
+- Consultar a jornada correspondente.
+
+## 12.5. Apresentação cronológica
+
+O diário deverá permitir visualizar a evolução das experiências no tempo.
+
+A interface não deverá destacar apenas experiências positivas.
+
+Dificuldades, dúvidas e situações não resolvidas também fazem parte do processo.
+
+---
+
+# 13. TELA 09 — REVISÃO
+
+## 13.1. Objetivo
+
+Ajudar o usuário a refletir sobre suas experiências em determinado período.
+
+## 13.2. Revisão periódica
+
+A revisão poderá ser realizada semanalmente ou em outro intervalo definido pelo usuário.
+
+A tela deverá apresentar:
+
+- Período analisado.
+- Registros do período.
+- Exercícios experimentados.
+- Perguntas de reflexão.
+- Campo para síntese pessoal.
+
+## 13.3. Revisão final
+
+Ao encerrar o ciclo, o sistema deverá apresentar:
+
+**Parte 1 — Minha intenção inicial**
+
+Resgate da motivação e do objetivo inicial.
+
+**Parte 2 — Minhas experiências**
+
+Resumo dos registros e exercícios.
+
+**Parte 3 — Meus aprendizados**
+
+Reflexões sobre mudanças e dificuldades.
+
+**Parte 4 — Minha percepção atual**
+
+Como o usuário compreende a virtude agora.
+
+**Parte 5 — Minha decisão**
+
+Continuar, escolher outra virtude ou fazer uma pausa.
+
+## 13.4. Relatório de jornada
+
+O sistema poderá gerar uma síntese para consulta ou exportação.
+
+O relatório deverá separar:
+- Informações registradas.
+- Percepções declaradas.
+- Sínteses produzidas pelo sistema.
+
+---
+
+# 14. TELA 10 — HISTÓRICO DE JORNADAS
+
+## 14.1. Objetivo
+
+Preservar a memória do desenvolvimento ao longo do tempo.
+
+## 14.2. Estrutura
+
+Cada jornada será apresentada em um cartão contendo:
+
+- Virtude principal.
+- Data de início.
+- Data de encerramento, quando houver.
+- Situação.
+- Intenção inicial.
+- Link para síntese.
+
+## 14.3. Detalhamento
+
+O usuário poderá consultar:
+- Investigação inicial.
+- Exercícios.
+- Diário.
+- Sessões do Conselho.
+- Revisões.
+- Síntese final.
+
+## 14.4. Relações entre jornadas
+
+O sistema poderá identificar virtudes relacionadas entre diferentes ciclos.
+
+Exemplo:
+
+Paciência → Temperança → Prudência.
+
+Essa conexão poderá ser apresentada como uma relação conceitual entre virtudes investigadas.
+
+Não deverá ser apresentada como uma sequência obrigatória de desenvolvimento.
+
+---
+
+# 15. COMPONENTES REUTILIZÁVEIS DA INTERFACE
+
+A plataforma deverá utilizar componentes visuais padronizados.
+
+| Componente | Função |
+|---|---|
+| Header | Identidade e navegação principal. |
+| Menu | Acesso às áreas funcionais. |
+| Card | Apresentação de virtudes, exercícios e jornadas. |
+| Progress Tracker | Localização nas etapas da jornada. |
+| Modal | Exibição de conteúdos complementares. |
+| Form Field | Entrada de informações. |
+| Text Area | Registro de reflexões. |
+| Tag | Identificação de virtudes, dimensões e categorias. |
+| Timeline | Apresentação cronológica. |
+| Accordion | Organização de conteúdos extensos. |
+| Empty State | Orientação quando não existem dados. |
+| Toast | Confirmação de ações. |
+| Confirmation Dialog | Confirmação de operações importantes. |
+| Reflection Panel | Exibição de perguntas e sínteses. |
+
+## 15.1. Estados visuais
+
+Todos os componentes interativos deverão prever:
+
+- Estado normal.
+- Estado de foco.
+- Estado de seleção.
+- Estado desabilitado.
+- Estado de carregamento.
+- Estado de erro.
+- Estado de sucesso.
+
+A consistência desses estados será importante para a acessibilidade e a previsibilidade da interface.
+
+---
+
+# 16. IDENTIDADE VISUAL E DIRETRIZES DE DESIGN
+
+## 16.1. Direção visual
+
+A identidade visual deverá transmitir:
+
+- Contemplação.
+- Clareza.
+- Equilíbrio.
+- Profundidade.
+- Humanidade.
+- Sobriedade.
+
+A interface deverá evitar uma estética excessivamente corporativa ou de aplicativo de produtividade.
+
+Também deverá evitar o aspecto de jogo infantil.
+
+## 16.2. Tipografia
+
+A tipografia deverá diferenciar:
+
+- Títulos e conceitos filosóficos.
+- Textos de leitura.
+- Informações funcionais.
+- Metadados e indicadores.
+
+O MVP atual utiliza Gloock, Crimson Pro e Geist Mono.
+
+Essa combinação poderá ser preservada durante a primeira evolução, desde que a legibilidade seja adequada.
+
+## 16.3. Cores
+
+A paleta deverá manter uma identidade coerente nos temas claro e escuro.
+
+As cores deverão ser utilizadas para:
+- Hierarquia visual.
+- Identificação de categorias.
+- Estados funcionais.
+- Destaques de navegação.
+
+Não deverão ser utilizadas para atribuir valor moral às experiências.
+
+## 16.4. Iconografia
+
+Os ícones deverão ser simples e reconhecíveis.
+
+Evitar utilizar símbolos religiosos ou filosóficos como decoração indiscriminada.
+
+A representação visual deverá respeitar a diversidade de tradições contempladas pelo projeto.
+
+---
+
+# 17. DESIGN RESPONSIVO
+
+A plataforma deverá funcionar em:
+
+- Smartphones.
+- Tablets.
+- Notebooks.
+- Desktops.
+
+## 17.1. Mobile first
+
+A experiência deverá priorizar a utilização em smartphones, especialmente para:
+- Registros no diário.
+- Exercícios cotidianos.
+- Consultas rápidas.
+- Revisões periódicas.
+
+## 17.2. Desktop
+
+Em telas maiores, será possível utilizar:
+- Navegação lateral.
+- Área principal de conteúdo.
+- Painéis contextuais.
+- Visualização ampliada do histórico.
+
+## 17.3. Regras gerais
+
+- Não exigir rolagem horizontal.
+- Preservar hierarquia de leitura.
+- Adaptar formulários.
+- Utilizar áreas de toque adequadas.
+- Manter botões principais visíveis.
+- Evitar excesso de informações simultâneas.
+
+---
+
+# 18. ESTADOS FUNCIONAIS DA APLICAÇÃO
+
+A aplicação deverá possuir estados claros para representar a situação dos dados e das operações.
+
+| Estado | Comportamento esperado |
+|---|---|
+| Inicializando | Apresentar carregamento quando necessário. |
+| Sem dados | Orientar o usuário sobre como começar. |
+| Carregando | Informar que uma operação está em andamento. |
+| Sucesso | Confirmar que a ação foi realizada. |
+| Erro | Explicar o problema e oferecer recuperação. |
+| Salvando | Informar que os dados estão sendo persistidos. |
+| Sem conexão | Informar limitações de conectividade, quando aplicável. |
+| Recuperação | Permitir retomar dados ou operações interrompidas. |
+
+O sistema deverá evitar perda silenciosa de informações.
+
+A confirmação de salvamento deverá refletir a persistência efetivamente realizada.
+
+---
+
+# 19. ARQUITETURA FUNCIONAL DO MVP
+
+A arquitetura proposta deverá ser implementada progressivamente.
+
+## 19.1. Módulos funcionais
+
+| Módulo | Responsabilidade | Prioridade |
+|---|---|---|
+| Jornada | Criar e acompanhar ciclos | P0 |
+| Virtudes | Consultar e selecionar virtudes | P0 |
+| Investigação | Registrar autoconhecimento | P0 |
+| Diário | Registrar experiências | P0 |
+| Revisão | Organizar aprendizados | P0 |
+| Exercícios | Recomendar e acompanhar práticas | P1 |
+| Histórico | Consultar jornadas anteriores | P1 |
+| Conselho | Organizar reflexões filosóficas | P2 |
+| Relatórios | Exportar sínteses | P2 |
+| Inteligência adaptativa | Recomendar e interpretar contextos | P3 |
+
+Prioridades:
+
+- P0: necessário para consolidar a experiência básica.
+- P1: evolução funcional importante.
+- P2: expansão de capacidade.
+- P3: recursos avançados.
+
+## 19.2. Limites do MVP
+
+O MVP inicial não precisa implementar:
+- Autenticação multiusuário.
+- Banco de dados remoto.
+- Inteligência artificial.
+- Conselho automatizado.
+- Sincronização entre dispositivos.
+- Relatórios analíticos avançados.
+
+A prioridade é validar a experiência de uso e a estrutura da jornada.
+
+## 19.3. Persistência
+
+Na primeira fase, poderá ser mantido o armazenamento local existente.
+
+Entretanto, o modelo de dados deverá ser organizado para permitir futura migração.
+
+Recomendações:
+- Separar dados de jornadas e registros.
+- Utilizar identificadores únicos.
+- Registrar datas de criação e atualização.
+- Preservar histórico.
+- Versionar o formato dos dados.
+- Prever exportação e recuperação.
+
+---
+
+# 20. MODELO DE DADOS E RELACIONAMENTO COM A UX
+
+A arquitetura de interface deverá utilizar as entidades conceituais do Documento 05.
+
+Relação funcional principal:
+
+```text
+USER
+│
+└── JOURNEYS
+    │
+    ├── JOURNEY_INTENTIONS
+    │
+    ├── JOURNEY_VIRTUES
+    │
+    ├── INVESTIGATIONS
+    │
+    ├── JOURNEY_EXERCISES
+    │   └── EXERCISE_RECORDS
+    │
+    ├── DIARY_ENTRIES
+    │
+    ├── COUNCIL_SESSIONS
+    │   └── COUNCIL_CONTRIBUTIONS
+    │
+    ├── WEEKLY_REVIEWS
+    │
+    └── JOURNEY_REVIEWS
+```
+
+O modelo definitivo deverá ser elaborado em documento técnico próprio, com cardinalidades, atributos, regras de integridade e estratégias de persistência.
+
+A estrutura acima é uma representação funcional, não um diagrama físico de banco de dados.
+
+---
+
+# 21. REGRAS DE NEGÓCIO DA EXPERIÊNCIA
+
+**RN01 — Jornada ativa:** o usuário poderá possuir uma jornada ativa e manter outras jornadas no histórico.
+
+**RN02 — Virtude principal:** cada jornada deverá possuir uma virtude principal para manter foco e clareza.
+
+**RN03 — Flexibilidade:** o usuário poderá alterar a virtude principal, preservando o histórico da decisão anterior.
+
+**RN04 — Etapas:** as etapas poderão ser revisitadas.
+
+**RN05 — Registro:** o diário poderá receber registros independentemente da etapa atual.
+
+**RN06 — Conselho:** uma sessão do Conselho poderá estar vinculada a uma jornada ou ser independente.
+
+**RN07 — Exercícios:** o usuário poderá selecionar exercícios diferentes dos inicialmente recomendados.
+
+**RN08 — Revisões:** revisões anteriores não poderão ser sobrescritas silenciosamente.
+
+**RN09 — Encerramento:** o encerramento de uma jornada deverá exigir uma confirmação e uma síntese final.
+
+**RN10 — Histórico:** uma jornada encerrada continuará disponível para consulta.
+
+**RN11 — Privacidade:** o usuário deverá ter controle sobre seus dados.
+
+**RN12 — Evolução:** nenhum indicador de interface poderá ser interpretado como nota moral.
+
+**RN13 — Salvamento:** ações de gravação deverão apresentar confirmação compatível com o resultado da persistência.
+
+**RN14 — Recuperação:** o sistema deverá preservar dados em caso de interrupção sempre que tecnicamente possível.
+
+---
+
+# 22. FLUXOS PRINCIPAIS DE NAVEGAÇÃO
+
+## Fluxo A — Primeiro acesso
+
+Início
+↓
+Apresentação da proposta
+↓
+Iniciar jornada
+↓
+Registrar intenção
+↓
+Escolher virtude ou situação
+↓
+Investigar
+↓
+Minha Jornada
+
+## Fluxo B — Escolha de uma virtude
+
+Virtudes
+↓
+Família
+↓
+Virtude
+↓
+Detalhamento
+↓
+Dimensões relacionadas
+↓
+Exercícios e referências
+↓
+Iniciar jornada
+
+## Fluxo C — Investigar uma dificuldade
+
+Minha Jornada
+↓
+Investigação
+↓
+Registrar situação
+↓
+Identificar possíveis virtudes
+↓
+Refletir
+↓
+Definir intenção
+
+## Fluxo D — Convocar o Conselho
+
+Minha Jornada ou Diário
+↓
+Selecionar questão
+↓
+Convocar Conselho
+↓
+Selecionar perspectivas
+↓
+Analisar contribuições
+↓
+Consultar síntese
+↓
+Registrar reflexão
+
+## Fluxo E — Realizar um exercício
+
+Minha Jornada
+↓
+Exercícios
+↓
+Selecionar exercício
+↓
+Consultar orientação
+↓
+Experimentar
+↓
+Registrar experiência
+↓
+Revisar
+
+## Fluxo F — Revisar uma jornada
+
+Minha Jornada
+↓
+Revisão
+↓
+Consultar registros
+↓
+Responder perguntas
+↓
+Gerar síntese
+↓
+Continuar, mudar de virtude ou pausar
+
+---
+
+# 23. CRITÉRIOS DE ACEITAÇÃO DA ARQUITETURA UX
+
+A arquitetura será considerada validada quando um usuário conseguir:
+
+1. Compreender a proposta da plataforma sem precisar de explicação externa.
+2. Iniciar uma jornada de maneira intuitiva.
+3. Encontrar e selecionar uma virtude.
+4. Compreender a relação entre virtude e dimensões.
+5. Registrar sua intenção inicial.
+6. Navegar pelas etapas sem perder a localização.
+7. Realizar uma investigação.
+8. Consultar exercícios relacionados.
+9. Registrar experiências no diário.
+10. Convocar o Conselho quando necessário.
+11. Consultar revisões anteriores.
+12. Encerrar uma jornada.
+13. Iniciar outra sem perder o histórico.
+14. Utilizar a plataforma em dispositivos móveis e desktop.
+15. Compreender o significado dos indicadores apresentados.
+16. Ter clareza sobre o armazenamento e a privacidade de seus dados.
+
+---
+
+# 24. PLANO DE EVOLUÇÃO DO MVP
+
+A evolução deverá acontecer em quatro incrementos.
+
+## Incremento 1 — Consolidar a jornada
+
+Prioridade: P0.
+
+- Organizar navegação.
+- Criar tela inicial.
+- Consolidar início da jornada.
+- Melhorar seleção de virtudes.
+- Organizar investigação.
+- Preservar diário e revisão.
+- Organizar histórico básico.
+
+Resultado esperado: uma experiência completa de jornada sem inteligência artificial.
+
+## Incremento 2 — Exercícios e memória
+
+Prioridade: P1.
+
+- Criar catálogo de exercícios.
+- Relacionar exercícios às virtudes.
+- Vincular exercícios aos registros.
+- Melhorar revisões.
+- Criar sínteses.
+- Melhorar exportação e recuperação de dados.
+
+Resultado esperado: acompanhamento estruturado das práticas.
+
+## Incremento 3 — Conselho de Sabedoria
+
+Prioridade: P2.
+
+- Criar interface de convocação.
+- Implementar seleção de perspectivas.
+- Organizar fontes e referências.
+- Apresentar convergências e divergências.
+- Registrar sessões.
+- Relacionar reflexões às jornadas.
+
+Resultado esperado: integração do Conselho ao processo de desenvolvimento.
+
+## Incremento 4 — Inteligência adaptativa
+
+Prioridade: P3.
+
+- Analisar registros com autorização.
+- Identificar temas recorrentes.
+- Recomendar exercícios.
+- Preparar sínteses.
+- Sugerir novas virtudes relacionadas.
+- Apoiar a revisão longitudinal.
+
+Resultado esperado: uma experiência adaptativa baseada no histórico e nas escolhas do indivíduo.
+
+---
+
+# 25. INDICADORES DE QUALIDADE DA EXPERIÊNCIA
+
+A qualidade da plataforma deverá ser avaliada por indicadores de usabilidade e utilidade, não por supostos indicadores de virtude.
+
+Indicadores recomendados:
+
+| Indicador | O que avalia |
+|---|---|
+| Conclusão do início | Se o usuário consegue começar uma jornada. |
+| Clareza de navegação | Se encontra as funcionalidades. |
+| Compreensão conceitual | Se entende a virtude apresentada. |
+| Facilidade de registro | Se consegue registrar uma experiência. |
+| Continuidade | Se consegue retomar uma jornada. |
+| Utilidade dos exercícios | Se considera as práticas relevantes. |
+| Utilidade das revisões | Se a revisão ajuda a reconhecer aprendizados. |
+| Utilidade do Conselho | Se as perspectivas ampliam sua reflexão. |
+| Confiança | Se compreende como seus dados são utilizados. |
+
+A avaliação deverá combinar observação de uso, entrevistas e análise de dificuldades.
+
+A quantidade de cliques ou registros, isoladamente, não será considerada prova de desenvolvimento humano.
+
+---
+
+# 26. DECISÕES DE ARQUITETURA E EXPERIÊNCIA
+
+As seguintes decisões ficam estabelecidas como diretrizes da versão 1.0:
+
+1. A Jornada será a unidade central da experiência.
+2. A virtude será o objeto principal de desenvolvimento de cada ciclo.
+3. A interface será organizada em seis áreas funcionais.
+4. O MVP deverá preservar sua identidade visual e evoluir incrementalmente.
+5. O catálogo utilizará as oito famílias do Documento Oficial 03.
+6. As relações com as dimensões seguirão a matriz do Documento Oficial 04.
+7. O fluxo de experiência seguirá a metodologia do Documento Oficial 05.
+8. O Conselho será uma funcionalidade contextual e não obrigatória.
+9. O diário será uma funcionalidade central.
+10. A revisão será responsável por organizar a aprendizagem.
+11. O histórico deverá preservar jornadas anteriores.
+12. A plataforma não atribuirá notas morais.
+13. A implementação inicial não exigirá backend ou IA.
+14. A arquitetura deverá permitir evolução técnica sem reconstrução integral.
+
+---
+
+# 27. CONSIDERAÇÕES FINAIS
+
+A arquitetura funcional da Jornada da Virtude deverá fazer algo aparentemente simples, mas conceitualmente importante: transformar uma proposta filosófica em uma experiência que faça sentido na vida cotidiana.
+
+O usuário não deve encontrar apenas um catálogo de virtudes, um diário ou uma sequência de exercícios.
+
+Deve encontrar um percurso.
+
+Um espaço para compreender.
+Um espaço para questionar.
+Um espaço para experimentar.
+Um espaço para registrar.
+Um espaço para aprender.
+
+A interface deverá orientar sem controlar, sugerir sem impor e reconhecer sem julgar.
+
+A tecnologia deve organizar a experiência e ampliar as possibilidades de reflexão.
+
+O desenvolvimento humano, entretanto, permanece uma experiência pessoal, livre e intransferível.
+
+**A plataforma não existe para dizer ao indivíduo quem ele é. Existe para ajudá-lo a investigar quem pode se tornar por meio de suas escolhas.**
+
+---
+
+# 28. RELAÇÃO COM OS DOCUMENTOS OFICIAIS
+
+| Documento | Conteúdo | Função |
+|---|---|---|
+| 01 | Fundamentos e propósito | Define a identidade do projeto. |
+| 02 | Sete Dimensões do Ser Humano | Organiza a estrutura dimensional. |
+| 03 | Taxonomia das Virtudes | Organiza o conhecimento das virtudes. |
+| 04 | Matriz de Integração | Relaciona dimensões, virtudes e pensadores. |
+| 05 | Metodologia da Jornada | Define o processo de desenvolvimento. |
+| 06 | Arquitetura Funcional e UX | Traduz a metodologia em experiência digital. |
+
+**Próximo documento:** DOCUMENTO OFICIAL 07 — Especificação Funcional e Requisitos do Sistema.
+
+Esse documento deverá transformar a arquitetura UX em requisitos funcionais, requisitos não funcionais, histórias de usuário, critérios de aceitação e regras de negócio, preparando o projeto para a implementação técnica.
+
+---
+
+**FIM DO DOCUMENTO OFICIAL 06 — VERSÃO 1.0**
