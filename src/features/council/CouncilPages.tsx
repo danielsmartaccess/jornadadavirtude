@@ -916,10 +916,15 @@ export function ThinkerPage() {
                   <p className="meta mt-1">{[v.natureza, v.localizacao, v.dataFonte ? `data: ${v.dataFonte}` : ''].filter(Boolean).join(' · ')}</p>
                 )}
                 <p className="hint mt-1">{v.nota}</p>
+                {v.fonte && v.situacao === 'a_confirmar' && (
+                  <p className="meta mt-1" data-fonte-em-revisao>
+                    Fonte registrada em revisão: não conta como confirmação deste vínculo.
+                  </p>
+                )}
                 {v.fonte && (
                   <p className="meta mt-1">
                     <a href={v.fonte} target="_blank" rel="noopener noreferrer">
-                      Fonte consultada
+                      {v.situacao === 'a_confirmar' ? 'Fonte em revisão' : 'Fonte consultada'}
                     </a>
                   </p>
                 )}

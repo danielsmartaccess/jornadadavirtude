@@ -146,7 +146,13 @@ test('Fase 2: corpus de apoio, recorte do Dalai Lama e testemunhos de Sócrates'
   const recorte = page.getByRole('region', { name: 'Recorte desta perspectiva' });
   await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').first()).toContainText('Budismo tibetano');
   // Revisão DEC-CUR-10: prática Gelug no início da vida sustentada pela declaração oficial; chefia formal (Ganden Tripa) não afirmada.
-  await expect(recorte.locator('[data-vinculo="a_confirmar"]')).toHaveCount(0);
+  // Revisão final: filiação à ordem monástica (VIN-DAL-03) a confirmar, com a fonte marcada como em revisão.
+  const filiacao = recorte.locator('[data-vinculo="a_confirmar"]');
+  await expect(filiacao).toHaveCount(1);
+  await expect(filiacao).toContainText('Escola Gelug');
+  await expect(filiacao).toContainText('A confirmar');
+  await expect(filiacao.locator('[data-fonte-em-revisao]')).toHaveCount(1);
+  await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: /ordem monástica/i })).toHaveCount(0);
   const inicial = recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: 'Tradição Gelug — prática no início da vida' });
   await expect(inicial).toContainText('In the early part of my life, I followed only the Gelug tradition.');
   await expect(inicial).toContainText('2017-09-25');

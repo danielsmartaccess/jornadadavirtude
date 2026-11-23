@@ -220,6 +220,8 @@ export interface Vinculo {
   fontesComplementares?: { referencia: string; url: string; natureza: string; localizacao: string; trecho: string }[];
   /** Versão anterior do vínculo, literal, quando a situação mudou após revisão (trilha de auditoria). */
   versaoAnterior?: { registradaEm: string; situacao: SituacaoVinculo; fonte: string | null; trecho: string | null; nota: string };
+  /** Sequência de situações do vínculo ao longo das revisões (trilha de auditoria; não afeta a seleção). */
+  historicoDeSituacao?: { registro: string; situacao: SituacaoVinculo; motivo: string }[];
 }
 
 /** Corpus que contextualiza uma perspectiva individual, sem virar segunda voz. */

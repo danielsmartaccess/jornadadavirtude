@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Versão | 0.6 |
+| Versão | 0.7 |
 | Status | ÍNDICE DE GOVERNANÇA (nenhum documento desta pasta está aprovado) |
 | Data de atualização | 2026-11-23 |
 | Base do repositório | `main` em `b23ddac` |
@@ -18,6 +18,7 @@
 | 0.4 | 2026-11-23 | Inclusão do Documento 14 (curadoria ampliada) e do ADR-CUR-01 no índice. Nenhum status alterado. |
 | 0.5 | 2026-11-23 | Fase 2 de curadoria: ADR-CUR-02 a ADR-CUR-05 e relatórios gerados (comparação das políticas de seleção e inventário das 189 relações). Totais do histórico atualizados. Nenhum documento oficial original foi alterado. |
 | 0.6 | 2026-11-23 | Revisão humana da Fase 2 (DEC-CUR-10): comparação v1 × v2 × v2.1 incluída; ADR-CUR-02 a 04 com seções de revisão. Nenhum documento oficial original foi alterado. |
+| 0.7 | 2026-11-23 | Revisão final: VIN-DAL-03 volta a "a confirmar" (ADR-CUR-02, histórico v0.7). Nenhum documento oficial original foi alterado. |
 
 ## Classificação documental
 

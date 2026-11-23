@@ -101,7 +101,7 @@ A revisão pediu fontes primárias e acadêmicas para o vínculo com a escola Ge
 |---|---|---|---|
 | VIN-DAL-01 | Formado no budismo tibetano | Sustentado por fonte | Biografia oficial |
 | VIN-DAL-02 | Pertence ao budismo tibetano | Sustentado por fonte | Site oficial |
-| VIN-DAL-03 | Pertence à escola Gelug (ordem monástica) | **Sustentado por fonte** (antes: a confirmar) | Hogendoorn 2014, p. 526 e 542. Escopo: filiação monástica e formação; não exclusividade, não representação exclusiva, não chefia |
+| VIN-DAL-03 | Pertence à escola Gelug (ordem monástica) | ~~Sustentado por fonte~~ → **a confirmar** pela decisão humana da revisão final (ver seção seguinte) | Hogendoorn 2014, p. 526 e 542. Escopo: filiação monástica e formação; não exclusividade, não representação exclusiva, não chefia |
 | VIN-DAL-04 | Representa institucionalmente o Tibete | Sustentado por fonte | Biografia oficial ("spiritual leader of Tibet") |
 | VIN-DAL-05 | Líder de todos os budismos | Não afirmar | Nenhuma fonte |
 | VIN-DAL-06 | Formado na tradição Gelug, prática no início da vida | Sustentado por fonte (novo) | Declaração em primeira pessoa, 2017 |
@@ -122,3 +122,23 @@ O pedido de revisão listava como defensáveis a formação e a prática inicial
 ### Interface
 
 A seção "Recorte desta perspectiva" mostra, para cada vínculo: tipo, situação, escopo, trecho, natureza e localização da fonte, data e fontes complementares. Nenhum vínculo sustentado usa o tipo "líder de toda a tradição" (teste).
+
+## Revisão final (2026-11-23) — decisão humana sobre o VIN-DAL-03
+
+**Decisão.** O VIN-DAL-03 (filiação à ordem monástica Gelug) volta a **a confirmar**. O registro, o identificador, a fonte (Hogendoorn 2014, p. 526 e 542) e a localização continuam no cadastro, agora como referência em revisão e não como confirmação. A versão de 63da8ba está, literal, em `versaoAnterior`, e a sequência de situações em `historicoDeSituacao` (a confirmar → sustentado por fonte em 9a5582e → a confirmar).
+
+**Motivo.** A passagem acadêmica é incidental ("his own Gelug monastic order", num parágrafo sobre dissidência). Confirmar a filiação à ordem monástica excede o escopo documental adotado para esta versão da curadoria.
+
+**O que continua igual:**
+
+- VIN-DAL-06 permanece **sustentado por fonte**: prática da tradição Gelug no início da vida, pela declaração do próprio 14º Dalai Lama publicada pelo seu escritório em 2017 ("In the early part of my life, I followed only the Gelug tradition."). O escopo é só a fase inicial da vida.
+- VIN-DAL-07 permanece sustentado (ensinamentos de outras tradições tibetanas depois).
+- VIN-DAL-08 permanece "não afirmar": a chefia formal da escola é do cargo de Ganden Tripa, não do Dalai Lama.
+- VIN-DAL-05 permanece "não afirmar": nenhuma representação de todos os budismos.
+
+**O que a decisão não diz.** Ela não nega a trajetória Gelug do Dalai Lama; apenas delimita o que o cadastro afirma como confirmado.
+
+**Efeito no app.**
+
+- Seleção: nenhum. O motor de seleção não lê vínculos; os snapshots v1, v2 e v2.1 e as comparações não mudaram.
+- Página do Dalai Lama: o vínculo aparece com a etiqueta "A confirmar" e o aviso "Fonte registrada em revisão: não conta como confirmação deste vínculo"; o link passa a se chamar "Fonte em revisão".

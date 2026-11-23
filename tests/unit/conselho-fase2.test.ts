@@ -133,7 +133,19 @@ describe('DEC-CUR-03: recorte do Dalai Lama', () => {
     expect(v.find((x) => x.tipo === 'formado_em' && x.alvo === 'Budismo tibetano')?.situacao).toBe('sustentado_por_fonte');
   });
 
-  it('Gelug (revisão DEC-CUR-10): prática inicial pela declaração oficial; filiação monástica por fonte acadêmica; chefia formal não', () => {
+  it('Gelug (revisão final): VIN-DAL-03 (filiação à ordem monástica) a confirmar, com fonte em revisão e histórico preservado', () => {
+    const v = vinculosDe('dalai-lama');
+    const filiacao = v.find((x) => x.id === 'VIN-DAL-03')!;
+    expect(filiacao.situacao).toBe('a_confirmar');
+    expect(filiacao.fonte).toBe('https://doi.org/10.3390/rel5030522'); // fonte mantida como referência em revisão
+    expect(filiacao.nota).toMatch(/excede o escopo documental adotado/);
+    expect(filiacao.versaoAnterior?.situacao).toBe('a_confirmar'); // versão de 63da8ba, literal
+    expect(filiacao.historicoDeSituacao?.map((h) => h.situacao)).toEqual(['a_confirmar', 'sustentado_por_fonte', 'a_confirmar']);
+    /* Nenhum vínculo sustentado fala em filiação à ordem monástica Gelug. */
+    expect(v.filter((x) => x.situacao === 'sustentado_por_fonte').some((x) => /ordem monástica/i.test(`${x.alvo} ${x.escopo ?? ''}`))).toBe(false);
+  });
+
+  it('Gelug (revisão DEC-CUR-10): prática inicial pela declaração oficial sustentada; chefia formal não', () => {
     const v = vinculosDe('dalai-lama');
     const inicial = v.find((x) => x.id === 'VIN-DAL-06')!;
     expect(inicial.situacao).toBe('sustentado_por_fonte');
@@ -141,6 +153,7 @@ describe('DEC-CUR-03: recorte do Dalai Lama', () => {
     expect(inicial.trecho).toBe('In the early part of my life, I followed only the Gelug tradition.');
     expect(inicial.fonte).toBe('https://www.dalailama.com/news/2017/dzogchen-teaching-and-public-dialogue');
     expect(inicial.dataFonte).toBe('2017-09-25');
+    expect(inicial.escopo).toMatch(/^Início da vida/);
     /* Formação posterior em outras tradições: o vínculo Gelug não é apresentado como exclusivo. */
     expect(v.find((x) => x.id === 'VIN-DAL-07')?.situacao).toBe('sustentado_por_fonte');
     expect(v.find((x) => x.id === 'VIN-DAL-03')?.escopo).toMatch(/NÃO implica prática exclusiva/);
