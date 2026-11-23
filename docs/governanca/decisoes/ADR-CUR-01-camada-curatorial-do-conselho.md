@@ -68,3 +68,15 @@ No código, o catálogo é JSON somente leitura em `src/data/`, embutido no buil
 ## Pendências (Documento 14 §16)
 
 Composição final do catálogo habilitado; validação individual dos 15 candidatos e pesquisa dos 3 adicionais; modelo definitivo das vozes literárias; recorte de cada tradição; revisão especializada; revisão individual das 189 relações; limites quantitativos de concentração; eventual suspensão de relações.
+
+## Atualização da Fase 2 (2026-11-23)
+
+Os conflitos deste ADR receberam decisão de produto na Fase 2. O texto acima foi preservado como registro do estado anterior.
+
+| Conflito | Decisão | Onde |
+|---|---|---|
+| C-CUR-1 | Tradições budistas vira corpus de apoio: mantém `council: true`, mas não ocupa vaga como voz | DEC-CUR-02, ADR-CUR-02 |
+| C-CUR-2 | Referências-base cadastradas para os nove, sem excluir ninguém e sem validar relações | DEC-CUR-04, ADR-CUR-04 |
+| C-CUR-3 | Pesos do Documento 13 v2 operacionais; Documento 04 como política v1 histórica | DEC-CUR-05, ADR-CUR-03 |
+| C-CUR-4 | Classificação adotada como taxonomia de navegação v1; itens continuam "proposta" | DEC-CUR-06, ADR-CUR-03 |
+| C-CUR-5 | Dalai Lama recortado no budismo tibetano; corpus budista só como apoio; Gelug a confirmar | DEC-CUR-03, ADR-CUR-02 |
