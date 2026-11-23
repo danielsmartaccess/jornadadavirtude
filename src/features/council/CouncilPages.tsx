@@ -31,11 +31,23 @@ import {
   getClassificacao,
   getTradicao,
   getUniverso,
+  apoiadosPor,
+  apoiosDe,
   NIVEL_FUNDAMENTACAO,
   ORIGEM_CANDIDATO,
+  PAPEL_SELECAO,
+  papelDoRegistro,
+  referenciasDe,
+  SITUACAO_CONFERENCIA,
+  SITUACAO_VINCULO,
+  taxonomia,
+  TIPO_FONTE,
   TIPO_PARTICIPACAO,
+  TIPO_VINCULO,
   tradicoes,
   universos,
+  vinculosDe,
+  type ReferenciaBase,
   type CategoriaAcervo,
   type Candidato,
   type EntradaAcervo,
@@ -393,7 +405,7 @@ export function SessionPage() {
 const ACERVO = entradasDoAcervo();
 
 const CATEGORIAS: { id: CategoriaAcervo; titulo: string; filtro: string; nota: string }[] = [
-  { id: 'integrante', titulo: 'Integrantes do Conselho', filtro: 'Integrantes', nota: 'Participam da seleção de perspectivas do Conselho.' },
+  { id: 'integrante', titulo: 'Integrantes do Conselho', filtro: 'Integrantes', nota: 'Habilitados no Conselho. As vozes individuais participam da seleção; o corpus de apoio dá contexto, sem ocupar vaga.' },
   { id: 'tradicao', titulo: 'Tradições, corpora e escolas', filtro: 'Tradições', nota: 'Conjuntos de textos, práticas e interpretações. Não são pessoas. Não participam do Conselho por este registro.' },
   { id: 'candidato', titulo: 'Candidatos em estudo', filtro: 'Candidatos', nota: 'Propostos para validação curatorial. Não habilitados: não participam do Conselho.' },
   { id: 'referencia', titulo: 'Outras referências do catálogo', filtro: 'Referências', nota: 'Citadas como referência de virtudes, sem perfil no Conselho.' },
@@ -457,7 +469,7 @@ function CartaoAcervo({ e, i }: { e: EntradaAcervo; i: number }) {
       </div>
       <p className="mt-1">{e.categoria === 'tradicao' ? `Cuidado de leitura: ${e.resumo}` : e.resumo}</p>
       <TagsDaEntrada tipo={e.tipo} lista={e.universos} />
-      <p className="meta mt-2">{e.habilitado ? 'Participa do Conselho' : 'Não habilitado · não participa do Conselho'}</p>
+      <p className="meta mt-2">{e.convocavel ? 'Participa do Conselho' : e.habilitado ? PAPEL_SELECAO.contextual_corpus : NAO_HABILITADO}</p>
     </Link>
   );
 }
@@ -501,7 +513,10 @@ export function ThinkersPage() {
         lede="Uma biblioteca de perspectivas: pensadores, tradições e vozes de vários universos do conhecimento. Cada entrada mostra o tipo de participação, o campo de contribuição e o estado da curadoria."
       >
         <p className="hint mt-2 max-w-leitura">
-          Só os {ACERVO.filter((e) => e.habilitado).length} integrantes participam do Conselho. Tradições e candidatos estão aqui para consulta e aguardam validação curatorial. Pessoas e tradições não se confundem: uma tradição é um conjunto histórico de textos e práticas, não um autor.
+          Dos {ACERVO.filter((e) => e.habilitado).length} integrantes habilitados, {ACERVO.filter((e) => e.convocavel).length} são vozes individuais convocáveis; Tradições budistas permanece como corpus de apoio, não convocado como pessoa. Tradições e candidatos estão aqui para consulta e aguardam validação curatorial. Pessoas e tradições não se confundem: uma tradição é um conjunto histórico de textos e práticas, não um autor.
+        </p>
+        <p className="meta mt-2" data-taxonomia={taxonomia.versao}>
+          {taxonomia.aviso}. Universos e tipos servem à navegação: não são hierarquia de valor e não convocam ninguém sozinhos.
         </p>
       </PageHeader>
 
@@ -716,6 +731,40 @@ function TradicaoView({ t }: { t: TradicaoCorpus }) {
   );
 }
 
+/** Uma referência-base (DEC-CUR-04): só mostra o que foi conferido; o resto aparece como lacuna. */
+function ReferenciaItem({ r }: { r: ReferenciaBase }) {
+  const dados = [
+    r.autores.length ? `${r.relacao === 'source_witness_for' ? 'Autor do testemunho' : 'Autoria'}: ${r.autores.join(', ')}` : '',
+    r.organizador ? `Organização ou edição: ${r.organizador}` : '',
+    r.tradutor ? `Tradução: ${r.tradutor}` : '',
+    r.editora ? `Editora: ${r.editora}` : '',
+    r.ano ? `Ano: ${r.ano}` : '',
+    r.edicao ? `Edição: ${r.edicao}` : '',
+    r.isbn ? `ISBN ${r.isbn}` : '',
+    r.doi ? `DOI ${r.doi}` : '',
+  ].filter(Boolean);
+  return (
+    <li className="entry" data-referencia={r.workId}>
+      <p>
+        <strong>{r.titulo}</strong>
+        {r.tituloOriginal && <span className="meta"> · {r.tituloOriginal}</span>}
+      </p>
+      <div className="mt-1 flex flex-wrap gap-1.5">
+        <Tag>{TIPO_FONTE[r.tipoFonte]}</Tag>
+        <Tag accent={r.conferencia.situacao !== 'metadados_confirmados'}>{SITUACAO_CONFERENCIA[r.conferencia.situacao]}</Tag>
+      </div>
+      {dados.length > 0 && <p className="meta mt-2">{dados.join(' · ')}</p>}
+      <p className="hint mt-1">{r.notaAtribuicao}</p>
+      {r.conferencia.lacunas.length > 0 && <p className="meta mt-1">A confirmar: {r.conferencia.lacunas.join('; ')}.</p>}
+      <p className="meta mt-1">
+        <a href={r.conferencia.fonte} target="_blank" rel="noopener noreferrer">
+          Página consultada na conferência
+        </a>
+      </p>
+    </li>
+  );
+}
+
 export function ThinkerPage() {
   const { id = '' } = useParams();
   const thinker = getThinker(id);
@@ -732,6 +781,12 @@ export function ThinkerPage() {
   const classificacao = getClassificacao(thinker.id);
   const recortes = tradicoes.filter((t) => t.registrosNoCatalogo.includes(thinker.id));
   const avaliadas = related.filter(({ relation }) => evidenciasDaRelacao(relation.id).length > 0).length;
+  const corpusDeApoio = thinker.council && papelDoRegistro(thinker) === 'contextual_corpus';
+  const contextualiza = apoiadosPor(thinker.id);
+  const apoiosDaPessoa = apoiosDe(thinker.id);
+  const vinculosDaPessoa = vinculosDe(thinker.id);
+  const referencias = referenciasDe(thinker.id);
+  const testemunhos = referencias.length > 0 && referencias.every((r) => r.relacao === 'source_witness_for');
   return (
     <>
       <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: thinker.name }]} title={thinker.name} lede={thinker.field}>
@@ -742,10 +797,34 @@ export function ThinkerPage() {
           <p className="meta max-w-legenda text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
         </div>
         {classificacao && <TagsDaEntrada tipo={classificacao.tipo} lista={classificacao.universos} />}
+        {classificacao && (
+          <p className="meta mt-2">
+            {classificacao.nota ? `${classificacao.nota} ` : ''}
+            {taxonomia.aviso}.
+          </p>
+        )}
         <div className="mt-2 flex flex-wrap gap-1.5">
           <StatusTag status={thinker.status} />
           {!thinker.council && <Tag accent>{NAO_HABILITADO}</Tag>}
+          {corpusDeApoio && <Tag accent>{PAPEL_SELECAO.contextual_corpus}</Tag>}
         </div>
+        {corpusDeApoio && (
+          <Notice title="Corpus de apoio, não pessoa">
+            Este registro continua habilitado no catálogo, mas não ocupa vaga entre as vozes do Conselho e não fala em primeira pessoa. Ele pode dar contexto, conceitos e fontes a uma perspectiva individual
+            {contextualiza.length > 0 && (
+              <>
+                {': '}
+                {contextualiza.map((a, i) => (
+                  <span key={a.pessoa}>
+                    {i > 0 && '; '}
+                    <Link to={`/conselho/pensadores/${a.pessoa}`}>{getThinker(a.pessoa)?.name ?? a.pessoa}</Link> (recorte {a.recorte})
+                  </span>
+                ))}
+              </>
+            )}
+            .
+          </Notice>
+        )}
         {recortes.length > 0 && (
           <p className="meta mt-2">
             Recorte curatorial:{' '}
@@ -784,9 +863,60 @@ export function ThinkerPage() {
             ))}
           </ul>
         ) : (
-          <p className="hint">Nenhuma obra registrada na base para este integrante. Fundamentação a completar pela curadoria.</p>
+          <p className="hint">
+            {referencias.length
+              ? `Nenhuma obra no catálogo para este integrante. ${testemunhos ? 'Veja os testemunhos abaixo.' : 'Veja as referências-base abaixo.'}`
+              : 'Nenhuma obra registrada na base para este integrante. Fundamentação a completar pela curadoria.'}
+          </p>
         )}
       </Section>
+
+      {referencias.length > 0 && (
+        <Section title={testemunhos ? `Testemunhos sobre ${thinker.name}` : 'Referências-base'}>
+          <p className="hint mb-3">
+            {testemunhos
+              ? `${thinker.name} não deixou obra escrita preservada. O que se sabe vem de testemunhos de terceiros, com vieses e divergências entre si. Nenhum destes textos é de autoria de ${thinker.name}.`
+              : 'Referência bibliográfica cadastrada pela curadoria. Cadastrar uma referência não valida nenhuma relação com virtude.'}
+          </p>
+          <ul className="grid gap-3">
+            {referencias.map((r) => (
+              <ReferenciaItem key={r.workId} r={r} />
+            ))}
+          </ul>
+        </Section>
+      )}
+
+      {(vinculosDaPessoa.length > 0 || apoiosDaPessoa.length > 0) && (
+        <Section title="Recorte desta perspectiva">
+          <p className="hint mb-3">O vínculo com uma tradição é registrado com o tipo de relação e a fonte. O que não tem fonte específica fica a confirmar; o que não deve ser afirmado fica marcado.</p>
+          <ul className="grid gap-3">
+            {vinculosDaPessoa.map((v) => (
+              <li key={v.id} className="entry" data-vinculo={v.situacao}>
+                <p>
+                  <strong>{v.alvo}</strong> <span className="meta">· {TIPO_VINCULO[v.tipo]}</span>
+                </p>
+                <div className="mt-1 flex flex-wrap gap-1.5">
+                  <Tag accent={v.situacao !== 'sustentado_por_fonte'}>{SITUACAO_VINCULO[v.situacao]}</Tag>
+                </div>
+                {v.trecho && <p className="meta mt-2">“{v.trecho}”</p>}
+                <p className="hint mt-1">{v.nota}</p>
+                {v.fonte && (
+                  <p className="meta mt-1">
+                    <a href={v.fonte} target="_blank" rel="noopener noreferrer">
+                      Fonte consultada
+                    </a>
+                  </p>
+                )}
+              </li>
+            ))}
+          </ul>
+          {apoiosDaPessoa.map((a) => (
+            <p key={a.corpus} className="mt-3">
+              Contexto de apoio: <Link to={`/conselho/pensadores/${a.corpus}`}>{getThinker(a.corpus)?.name ?? a.corpus}</Link>, recorte {a.recorte}. {a.papel}
+            </p>
+          ))}
+        </Section>
+      )}
 
       <Section title="Virtudes relacionadas">
         <div className="flex flex-wrap gap-2">
@@ -800,7 +930,7 @@ export function ThinkerPage() {
         </div>
         <p className="hint mt-3">
           {avaliadas === 0
-            ? 'A fundamentação de cada relação (níveis F1 a F4 do Documento 14) ainda não foi avaliada pela curadoria. As obras acima valem para o integrante como um todo, não para cada virtude.'
+            ? 'A fundamentação de cada relação (níveis F1 a F4 do Documento 14) ainda não foi avaliada pela curadoria. As obras e referências acima valem para o integrante como um todo, não para cada virtude: referência cadastrada não é relação validada.'
             : `${avaliadas} de ${related.length} relações têm evidência registrada pela curadoria.`}
         </p>
       </Section>

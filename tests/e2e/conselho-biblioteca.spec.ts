@@ -25,7 +25,10 @@ test('acervo completo: integrantes, tradições, candidatos e referências disti
   await expect(cartoes(page, 'candidato')).toHaveCount(28);
   await expect(cartoes(page, 'referencia')).toHaveCount(15);
   // Só os integrantes dizem que participam; todos os outros dizem que não.
-  await expect(cartoes(page).filter({ hasText: /Participa do Conselho/ })).toHaveCount(27); // regex diferencia maiúscula: não casa com “não participa”
+  await expect(cartoes(page).filter({ hasText: /Participa do Conselho/ })).toHaveCount(26); // regex diferencia maiúscula: não casa com “não participa”
+  // DEC-CUR-02: dos 27 habilitados, Tradições budistas é corpus de apoio, não voz.
+  await expect(cartoes(page, 'integrante').filter({ hasText: 'Corpus de apoio — não convocado como pessoa' })).toHaveCount(1);
+  await expect(page.getByText('Classificação curatorial v1 — sujeita a revisão especializada')).toBeVisible();
   for (const c of ['tradicao', 'candidato', 'referencia']) {
     const n = await cartoes(page, c).count();
     await expect(cartoes(page, c).filter({ hasText: 'Não habilitado · não participa do Conselho' })).toHaveCount(n);
@@ -131,4 +134,37 @@ test('celular: biblioteca e páginas de detalhe sem rolagem horizontal', async (
     const sobra = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(sobra, rota).toBeLessThanOrEqual(0);
   }
+});
+
+test('Fase 2: corpus de apoio, recorte do Dalai Lama e testemunhos de Sócrates', async ({ page }) => {
+  const erros = errors(page);
+  await page.goto('/conselho/pensadores/tradicoes-budistas');
+  await expect(page.getByText('Corpus de apoio, não pessoa')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Dalai Lama (Tenzin Gyatso)' })).toBeVisible();
+
+  await page.goto('/conselho/pensadores/dalai-lama');
+  const recorte = page.getByRole('region', { name: 'Recorte desta perspectiva' });
+  await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').first()).toContainText('Budismo tibetano');
+  await expect(recorte.locator('[data-vinculo="a_confirmar"]')).toContainText('Gelug');
+  await expect(recorte.locator('[data-vinculo="nao_afirmar"]')).toContainText('Todos os budismos');
+  await expect(page.getByRole('region', { name: 'Referências-base' })).toContainText('Ethics for the New Millennium');
+  await expect(page.getByText('referência cadastrada não é relação validada')).toBeVisible();
+
+  await page.goto('/conselho/pensadores/socrates');
+  const testemunhos = page.getByRole('region', { name: 'Testemunhos sobre Sócrates' });
+  await expect(testemunhos.locator('[data-referencia]')).toHaveCount(3);
+  await expect(testemunhos).toContainText('Nenhum destes textos é de autoria de Sócrates');
+  expect(erros).toEqual([]);
+});
+
+test('Fase 2: no caso do perdão, Dalai Lama é voz e Tradições budistas só dá contexto', async ({ page }) => {
+  await page.goto('/conselho');
+  await page.getByLabel('Qual situação você deseja analisar?').fill('A pessoa guarda ressentimento por uma ofensa ou injustiça sofrida.');
+  await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
+  await expect(page).toHaveURL(/conselho\/sessoes\//);
+  const vozes = await page.locator('main a[href^="/conselho/pensadores/"]').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
+  expect(vozes).toContain('/conselho/pensadores/dalai-lama');
+  expect(vozes).not.toContain('/conselho/pensadores/tradicoes-budistas');
+  await expect(page.getByText('Contexto de apoio: Tradições budistas, recorte budismo tibetano').first()).toBeVisible();
+  await expect(page.getByText('Critérios de seleção: versão 2 (Documento 13).').first()).toBeVisible();
 });
