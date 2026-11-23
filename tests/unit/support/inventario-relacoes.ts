@@ -72,7 +72,8 @@ export function linhasDoInventario(): LinhaInventario[] {
       prioridadeDoc04: r.priority === null ? 'referência' : `${r.priority}º`,
       fontes: r.sources.join(', '),
       obrasNaRelacao: r.workIds.join(', ') || '—',
-      fonteDoAutor: fonteAutor === 1 ? 'disponível' : fonteAutor === 0.5 ? 'a conferir' : 'nenhuma',
+      /* DEC-CUR-10: disponibilidade de fonte separada da completude dos metadados editoriais. */
+      fonteDoAutor: fonteAutor === 1 ? 'disponível' : fonteAutor === 0.5 ? 'identificada; metadados a conferir' : 'nenhuma',
       justificativa,
       nivelF: niveis.length ? niveis.join(', ') : '—',
       status: r.status,
@@ -126,7 +127,7 @@ export function relatorioInventario(): string {
   for (const [j, n] of conta((l) => l.justificativa)) L.push(`| Justificativa: ${JUSTIFICATIVA[j]} | ${n} |`);
   L.push(`| Nenhuma obra ligada à relação | ${linhas.filter((l) => l.obrasNaRelacao === '—').length} |`);
   L.push(`| Autor sem nenhuma fonte recuperável | ${linhas.filter((l) => l.fonteDoAutor === 'nenhuma').length} |`);
-  L.push(`| Autor com fonte ainda a conferir | ${linhas.filter((l) => l.fonteDoAutor === 'a conferir').length} |`);
+  L.push(`| Autor com fonte identificada, mas metadados editoriais a conferir (não é falta de fonte nem baixa confiabilidade) | ${linhas.filter((l) => l.fonteDoAutor === 'identificada; metadados a conferir').length} |`);
   L.push(`| De registros não habilitados (não fundamentam perspectiva hoje) | ${linhas.filter((l) => l.papel === 'nao-habilitado').length} |`);
   L.push(`| De corpus de apoio (Tradições budistas) | ${linhas.filter((l) => l.papel === 'corpus').length} |`);
   L.push('');

@@ -11,6 +11,7 @@ import {
   POLITICA_ATUAL,
   POLITICA_V1,
   POLITICA_V2,
+  POLITICA_V2_1,
   selectThinkers,
   type ContextoSelecao,
   type SelectionInput,
@@ -64,9 +65,11 @@ describe('invariantes da Fase 2', () => {
     expect(thinkerVirtues.every((r) => r.status === 'proposta')).toBe(true);
   });
 
-  it('a política operacional é a v2 do Documento 13 e os pesos de cada política somam 100%', () => {
-    expect(POLITICA_ATUAL.id).toBe('council-selection-v2-doc13');
-    for (const p of [POLITICA_V1, POLITICA_V2]) {
+  it('a política operacional é a v2.1 do Documento 13 (revisão DEC-CUR-10), com os mesmos pesos da v2; todas somam 100%', () => {
+    expect(POLITICA_ATUAL.id).toBe('council-selection-v2.1-doc13-relevance-source');
+    expect(POLITICA_V2_1.pesos).toEqual(POLITICA_V2.pesos);
+    expect(POLITICA_V2.id).toBe('council-selection-v2-doc13'); // a v2 original continua disponível, sem renomear
+    for (const p of [POLITICA_V1, POLITICA_V2, POLITICA_V2_1]) {
       expect(Object.values(p.pesos).reduce((a, b) => a + b, 0)).toBeCloseTo(1, 10);
     }
     expect(POLITICA_V2.pesos).toEqual({ pertinencia: 0.3, relacaoVirtudes: 0.25, fontes: 0.15, complementaridade: 0.15, diversidade: 0.1, contexto: 0.05 });
@@ -125,12 +128,33 @@ describe('DEC-CUR-02: tradição é corpus de apoio, não pessoa convocável', (
 });
 
 describe('DEC-CUR-03: recorte do Dalai Lama', () => {
-  it('vínculo com o budismo tibetano sustentado por fonte oficial; Gelug continua a confirmar', () => {
+  it('vínculo com o budismo tibetano sustentado por fonte oficial', () => {
     const v = vinculosDe('dalai-lama');
     expect(v.find((x) => x.tipo === 'formado_em' && x.alvo === 'Budismo tibetano')?.situacao).toBe('sustentado_por_fonte');
-    const gelug = v.filter((x) => /gelug/i.test(x.alvo));
-    expect(gelug.length).toBeGreaterThan(0);
-    expect(gelug.every((x) => x.situacao === 'a_confirmar')).toBe(true);
+  });
+
+  it('Gelug (revisão DEC-CUR-10): prática inicial pela declaração oficial; filiação monástica por fonte acadêmica; chefia formal não', () => {
+    const v = vinculosDe('dalai-lama');
+    const inicial = v.find((x) => x.id === 'VIN-DAL-06')!;
+    expect(inicial.situacao).toBe('sustentado_por_fonte');
+    expect(inicial.tipo).toBe('formado_em');
+    expect(inicial.trecho).toBe('In the early part of my life, I followed only the Gelug tradition.');
+    expect(inicial.fonte).toBe('https://www.dalailama.com/news/2017/dzogchen-teaching-and-public-dialogue');
+    expect(inicial.dataFonte).toBe('2017-09-25');
+    /* Formação posterior em outras tradições: o vínculo Gelug não é apresentado como exclusivo. */
+    expect(v.find((x) => x.id === 'VIN-DAL-07')?.situacao).toBe('sustentado_por_fonte');
+    expect(v.find((x) => x.id === 'VIN-DAL-03')?.escopo).toMatch(/NÃO implica prática exclusiva/);
+    /* Chefia formal Gelug = Ganden Tripa: nunca afirmada para o Dalai Lama. */
+    const chefia = v.find((x) => x.id === 'VIN-DAL-08')!;
+    expect(chefia.situacao).toBe('nao_afirmar');
+    expect(chefia.alvo).toMatch(/Ganden Tripa/);
+    expect(chefia.localizacao).toMatch(/p\. 527/);
+    /* Nenhum vínculo sustentado afirma liderança, chefia ou representação de uma escola ou de todo o budismo. */
+    for (const x of v.filter((y) => y.situacao === 'sustentado_por_fonte')) {
+      expect(x.tipo === 'lider_de_toda_tradicao').toBe(false);
+      if (x.tipo === 'representa_institucionalmente') expect(x.alvo).toBe('Tibete');
+      expect(x.fonte && x.trecho && x.escopo && x.dataFonte && x.natureza && x.localizacao, x.id).toBeTruthy();
+    }
   });
 
   it('não generaliza para todos os budismos: liderança de toda a tradição só como "não afirmar"', () => {
@@ -158,7 +182,7 @@ describe('DEC-CUR-05 e DEC-CUR-07: seleção v2', () => {
 
   it('cada perspectiva registra a versão dos critérios na justificativa (Documento 13, seção 20)', () => {
     const s = selectThinkers({ caseIds: ['CASE01'], virtueIds: ['V07'], dimensionIds: [] });
-    expect(s.every((x) => x.contribution.reason.endsWith('Critérios de seleção: versão 2 (Documento 13).'))).toBe(true);
+    expect(s.every((x) => x.contribution.reason.endsWith('Critérios de seleção: versão 2.1 (Documento 13).'))).toBe(true);
   });
 
   it('o número de relações cadastradas não aumenta a pontuação', () => {

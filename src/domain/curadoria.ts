@@ -160,7 +160,25 @@ export interface ReferenciaBase {
   tipoFonte: TipoFonte;
   conferencia: { situacao: SituacaoConferencia; fonte: string; registro: string; confirmado: string; lacunas: string[] };
   notaAtribuicao: string;
+  /** Confiabilidade epistemológica (DEC-CUR-10): natureza, gênero, proximidade, viés. É uma dimensão diferente da
+   *  completude bibliográfica. Sem rubrica aprovada, fica `nao_avaliada` e não pontua para ninguém. */
+  confiabilidade?: { situacao: 'nao_avaliada'; natureza?: string; localizacao?: string };
 }
+
+/** Completude dos metadados editoriais (editora, ano e identificador ISBN/DOI). Não mede confiabilidade. */
+export type CompletudeBibliografica = 'completa' | 'parcial' | 'pendente';
+
+export function completudeBibliografica(r: ReferenciaBase): CompletudeBibliografica {
+  const campos = [r.editora, r.ano, r.isbn ?? r.doi];
+  const presentes = campos.filter(Boolean).length;
+  return presentes === campos.length ? 'completa' : presentes ? 'parcial' : 'pendente';
+}
+
+export const COMPLETUDE_BIBLIOGRAFICA: Record<CompletudeBibliografica, string> = {
+  completa: 'Metadados editoriais completos (editora, ano e ISBN ou DOI)',
+  parcial: 'Metadados editoriais parciais',
+  pendente: 'Metadados editoriais pendentes (edição ainda não identificada)',
+};
 
 export const SITUACAO_CONFERENCIA: Record<SituacaoConferencia, string> = {
   metadados_confirmados: 'Metadados conferidos na página do editor ou em registro institucional',
@@ -191,6 +209,17 @@ export interface Vinculo {
   fonte: string | null;
   trecho: string | null;
   nota: string;
+  /** Recorte exato do vínculo (período, alcance). */
+  escopo?: string;
+  /** Data da fonte principal (AAAA-MM-DD ou AAAA). */
+  dataFonte?: string;
+  /** Natureza da fonte principal e localização do trecho. */
+  natureza?: string;
+  localizacao?: string;
+  /** Fontes que corroboram ou delimitam o vínculo. */
+  fontesComplementares?: { referencia: string; url: string; natureza: string; localizacao: string; trecho: string }[];
+  /** Versão anterior do vínculo, literal, quando a situação mudou após revisão (trilha de auditoria). */
+  versaoAnterior?: { registradaEm: string; situacao: SituacaoVinculo; fonte: string | null; trecho: string | null; nota: string };
 }
 
 /** Corpus que contextualiza uma perspectiva individual, sem virar segunda voz. */
@@ -251,6 +280,15 @@ export const universoPrincipal = (id: string): Universo | undefined => classific
 /** Disponibilidade de fonte de um registro, de 0 a 1 (critério "fontes" da política v2):
  *  obra no catálogo ou referência-base com metadados conferidos = 1; referência-base ainda a conferir = 0,5; nada = 0.
  *  É disponibilidade de fonte do autor, não validação de nenhuma relação com virtude. */
+/** Política v2.1: há fonte identificada para o autor? Obra no catálogo ou referência-base que identifica a obra
+ *  ou o testemunho. A completude dos metadados editoriais e a confiabilidade são registradas à parte e não entram
+ *  aqui (DEC-CUR-10). */
+export function temFonteIdentificada(t: Pick<Thinker, 'id' | 'workIds'>, lista: ReferenciaBase[] = referenciasBase): boolean {
+  return t.workIds.length > 0 || lista.some((r) => r.pessoa === t.id && r.titulo.trim() && r.autores.length > 0);
+}
+
+/** Política v2 (histórica, mantida para auditoria): mistura disponibilidade com completude bibliográfica — 0,5 quando
+ *  as referências-base ainda não têm metadados conferidos. A v2.1 substitui este critério por `temFonteIdentificada`. */
 export function qualidadeDaFonte(t: Pick<Thinker, 'id' | 'workIds'>, lista: ReferenciaBase[] = referenciasBase): number {
   if (t.workIds.length) return 1;
   const refs = lista.filter((r) => r.pessoa === t.id);

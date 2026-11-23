@@ -32,6 +32,8 @@ import {
   getTradicao,
   getUniverso,
   apoiadosPor,
+  COMPLETUDE_BIBLIOGRAFICA,
+  completudeBibliografica,
   apoiosDe,
   NIVEL_FUNDAMENTACAO,
   ORIGEM_CANDIDATO,
@@ -755,6 +757,16 @@ function ReferenciaItem({ r }: { r: ReferenciaBase }) {
       </div>
       {dados.length > 0 && <p className="meta mt-2">{dados.join(' · ')}</p>}
       <p className="hint mt-1">{r.notaAtribuicao}</p>
+      {/* DEC-CUR-10: completude bibliográfica e confiabilidade são dimensões diferentes. */}
+      <p className="meta mt-1" data-completude={completudeBibliografica(r)}>
+        {COMPLETUDE_BIBLIOGRAFICA[completudeBibliografica(r)]}. Confiabilidade da fonte: não avaliada (sem rubrica aprovada; não é inferida da falta de metadados).
+      </p>
+      {r.confiabilidade?.natureza && (
+        <p className="hint mt-1" data-natureza-testemunho>
+          {r.confiabilidade.natureza}
+          {r.confiabilidade.localizacao && <span className="meta"> ({r.confiabilidade.localizacao})</span>}
+        </p>
+      )}
       {r.conferencia.lacunas.length > 0 && <p className="meta mt-1">A confirmar: {r.conferencia.lacunas.join('; ')}.</p>}
       <p className="meta mt-1">
         <a href={r.conferencia.fonte} target="_blank" rel="noopener noreferrer">
@@ -898,7 +910,11 @@ export function ThinkerPage() {
                 <div className="mt-1 flex flex-wrap gap-1.5">
                   <Tag accent={v.situacao !== 'sustentado_por_fonte'}>{SITUACAO_VINCULO[v.situacao]}</Tag>
                 </div>
+                {v.escopo && <p className="mt-2">Escopo: {v.escopo}</p>}
                 {v.trecho && <p className="meta mt-2">“{v.trecho}”</p>}
+                {(v.natureza || v.localizacao || v.dataFonte) && (
+                  <p className="meta mt-1">{[v.natureza, v.localizacao, v.dataFonte ? `data: ${v.dataFonte}` : ''].filter(Boolean).join(' · ')}</p>
+                )}
                 <p className="hint mt-1">{v.nota}</p>
                 {v.fonte && (
                   <p className="meta mt-1">
@@ -907,6 +923,14 @@ export function ThinkerPage() {
                     </a>
                   </p>
                 )}
+                {(v.fontesComplementares ?? []).map((fc) => (
+                  <p key={fc.url + fc.localizacao} className="meta mt-1">
+                    Também: {fc.referencia}, {fc.localizacao} — “{fc.trecho}” ({fc.natureza}).{' '}
+                    <a href={fc.url} target="_blank" rel="noopener noreferrer">
+                      Abrir fonte
+                    </a>
+                  </p>
+                ))}
               </li>
             ))}
           </ul>

@@ -97,3 +97,69 @@
 - Revisar a operacionalização dos critérios (revisor técnico).
 - Campo próprio de versão na sessão (D-08-03, D-08-05).
 - Rever o limite por universo quando houver novas vozes habilitadas fora de "Filosofia e ética".
+
+## Revisão humana (2026-11-23) — DEC-CUR-10: pertinência antes da diversidade (política v2.1)
+
+O texto acima descreve a política v2 como foi implementada e continua válido como registro. A revisão humana apontou que o piso de pertinência da v2 era insuficiente.
+
+### Problema encontrado
+
+- **A regra da v2.** "Alternativa pertinente" era quem integrava o caso ou tinha relação prioritária no Documento 04.
+- **Por que falha.** Integrar o caso não prova relação com a virtude pedida, e uma relação prioritária não prova contribuição para a situação concreta.
+- **Medição nas 79 entradas.** Das **11** substituições por diversidade da v2, só **2** trouxeram uma alternativa com as duas pertinências; as outras 9 eram falsos positivos.
+  - **Exemplo:** no CASE01, Daniel Kahneman substituía uma voz de filosofia por integrar o caso, sem nenhuma relação com as virtudes do caso.
+
+### Definições (v2.1)
+
+| Conceito | Definição | Origem dos dados |
+|---|---|---|
+| Elegibilidade | Integrante habilitado; não é corpus de apoio; relação utilizável (não suspensa, rejeitada nem F4) ou integra caso; tem fonte identificada | Catálogo, camada curatorial, evidências |
+| `case_member` | Integra um caso de referência reconhecido para a entrada. **Indício** contextual, nunca aprovação | `council-cases.json` |
+| `thematic_relevance` | `demonstrada`: prioritário no Documento 04 (1º a 3º) ou com `relationType` P1–P4 numa virtude pedida; `fraca`: só relação de "referência"; `ausente`: nenhuma relação utilizável com as virtudes pedidas | `thinker-virtues.json` (P1–P4 é evidência, não F1–F4) |
+| `contextual_relevance` | `documentada`: integra o caso **e** o caso registra para a pessoa uma perspectiva própria, distinta do campo geral dela (o aspecto da situação que ela ilumina); `insufficient_data`: não há caso reconhecido, a pessoa não integra o caso ou a perspectiva é só o campo geral | Perspectivas registradas em `council-cases.json` |
+| `diversity_eligible` | Elegível + temática `demonstrada` + contextual `documentada`. Não é sinônimo de "traz diversidade" | Resultado das duas avaliações |
+
+### Regra de substituição
+
+Uma voz só é trocada por razão de diversidade quando a voz mais pontuada excede o limite do universo **e** existe alternativa de outro universo com `diversity_eligible`. O critério de diversidade (10%) também só vale para alternativas qualificadas: não é peso oculto nem atalho que contorne fonte ou pertinência. Sem alternativa qualificada, a composição pela pontuação é mantida e a exceção é registrada com motivo específico:
+
+- `sem-alternativa-qualificada`: há caso, mas nenhuma alternativa de outro universo tem as duas pertinências;
+- `contexto-nao-avaliavel`: não há caso de referência; a pertinência contextual de qualquer alternativa é falta de dado, não aprovação.
+
+Cada substituição grava, em `ResultadoSelecao.substituicoes`: vaga, voz preterida e incluída, elegibilidade de ambas, avaliação temática e contextual de ambas com as relações e o caso que as sustentam, universos antes da vaga, limite aplicado e versão da política.
+
+### Exemplos
+
+- **Bloqueado:** Kahneman no CASE01 (integra o caso, temática ausente). Ele continua no Conselho pela pontuação, na 5ª vaga, mas não por substituição.
+- **Bloqueado:** voz só com relação prioritária e sem caso (entrada por virtude): `contexto-nao-avaliavel`.
+- **Permitido:** Viktor Frankl no CASE03 (relação prioritária com a virtude do caso; perspectiva do caso "Responsabilidade e sentido") substitui Confúcio na 3ª vaga.
+- **Bloqueado:** caso em que a perspectiva registrada é igual ao campo geral do autor: `insufficient_data` (teste com dados de teste).
+
+### Resultado comparativo (79 entradas)
+
+Os números estão em `docs/governanca/curadoria/comparacao-politicas-selecao-v2.1.md`. Em síntese, de v2 para v2.1:
+- substituições de 11 para 2, todas qualificadas;
+- média de "integra o caso" de 0,2481 para 0,2557 (+3,08%);
+- relação com as virtudes pedidas de 0,4943 para 0,4970 (+0,56%);
+- média de universos de 1,634 para 1,549;
+- conselhos com exceção de 47 para 48 de 71;
+- seleção diferente em 29 de 79 entradas (conjunto diferente em 6).
+
+Sem teste estatístico; são as mesmas 79 entradas.
+
+**Leitura.** A v2.1 reduz a diversidade média porque deixa de aceitar alternativas sem pertinência. Com o catálogo atual, isso é o esperado:
+- 18 das 26 vozes têm "Filosofia e ética" como universo principal;
+- só 6 casos registram perspectivas contextuais;
+- entradas sem caso não têm como documentar pertinência contextual.
+
+É lacuna de curadoria, não falha a esconder no algoritmo.
+
+### Versões
+
+- `council-selection-v1-doc04` e `council-selection-v2-doc13` permanecem como estavam, com snapshots inalterados.
+- A operacional passa a ser `council-selection-v2.1-doc13-relevance-source` (rótulo gravado nas sessões: "versão 2.1 (Documento 13)").
+
+### Limitações
+
+- **Dados de pertinência contextual.** Os únicos com recorte contextual são as perspectivas dos 6 casos de referência; entradas por virtude ou dimensão nunca têm pertinência contextual documentada.
+- **Pertinência temática.** Usa a prioridade e o P1–P4 do Documento 04 como evidência; não substitui revisão individual das relações (DEC-CUR-08).

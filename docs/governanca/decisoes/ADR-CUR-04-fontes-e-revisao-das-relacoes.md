@@ -99,3 +99,42 @@
 - Registrar tradutores e edições consultadas.
 - Avaliar *Attente de Dieu* (Weil) e *Conjectures and Refutations* (Popper), indicados como "considerar".
 - Revisar individualmente as 189 relações.
+
+## Revisão humana (2026-11-23) — DEC-CUR-10: Sócrates e o fator 0,5
+
+### Origem do 0,5
+
+- **Onde nasce.** `qualidadeDaFonte` (`src/domain/curadoria.ts`), usada só pela política v2: vale 1 com obra no catálogo ou referência-base com metadados conferidos; **0,5** quando as referências-base existem mas nenhuma tem metadados conferidos; 0 sem nada.
+- **Quem recebia 0,5:** Sócrates (três testemunhos com edição a confirmar) e Benjamin Franklin (edição crítica não escolhida).
+- **O que afetava:** só o critério "fontes" (15%) e o 2º desempate do Documento 13 §7.3; não exclui ninguém.
+- **O problema.** Ele misturava duas coisas diferentes: a ausência de metadados editoriais (completude bibliográfica) virava meia nota de qualidade de fonte, sem nenhuma avaliação epistemológica.
+
+### Dimensões separadas
+
+| Dimensão | Onde fica | Valores | Entra na pontuação? |
+|---|---|---|---|
+| Fonte identificada (disponibilidade) | `temFonteIdentificada` | sim / não | Sim, na v2.1 (1/0): obra do catálogo ou referência-base que identifica obra ou testemunho |
+| Completude bibliográfica | `completudeBibliografica` | completa / parcial / pendente (editora, ano, ISBN ou DOI) | Não |
+| Situação da conferência | `conferencia.situacao` | metadados conferidos / edição a confirmar / a confirmar | Não |
+| Confiabilidade epistemológica | `confiabilidade` | `nao_avaliada` para todas as referências; para Sócrates, natureza de cada testemunho com localização | Não: sem rubrica aprovada, não é inferida e não pontua para ninguém |
+
+### Testemunhos de Sócrates (SEP, Nails e Monoson, rev. 2022-05-26)
+
+- **Sem obra escrita:** introdução, "despite having written nothing"; §2.1, Plato, "a dead philosopher who never wrote anything himself".
+- **Platão (§2.1, Plato):** relato privilegiado pelos filósofos; Platão pode ter moldado o personagem.
+- **Xenofonte (§2.1, Xenophon):** memórias descritas como "pastiches", algumas impossíveis como apresentadas.
+- **Aristófanes (§2.1, Aristophanes):** comédia, fonte mais antiga preservada (c. 423 a.C.), gênero "tricky"; o texto preservado é uma revisão da peça.
+- **Independência entre os testemunhos:** a SEP não a declara (há divergência, corroboração parcial entre Platão e Xenofonte, e alusão de Platão à comédia). O cadastro mantém os três separados, como `source_witness_for`, nunca como obras de Sócrates, e não os associa às 189 relações.
+
+### Efeito no CASE05 (pelos identificadores)
+
+- **Na v2:** Sócrates (0,5313) perdia a 5ª vaga para Musashi (0,5438) por 0,0125. A diferença vinha inteira do 0,5 de fonte: as demais pontuações de Sócrates não mudaram.
+- **Na v2.1:** com fonte identificada = 1, Sócrates soma 0,6062 e volta.
+- **Pertinência:** pelas definições da DEC-CUR-10, Sócrates é a voz com pertinência contextual documentada (integra o caso: "Investigação dos pressupostos"; temática demonstrada em TV-V03-socrates). Musashi não integra o caso (contextual `insufficient_data`), embora tenha relação mais forte com as virtudes pedidas (0,775 contra 0,425).
+- **Vaga acima do limite:** a vaga 5 continua acima do limite de "Filosofia e ética", com exceção registrada (`sem-alternativa-qualificada`).
+
+Detalhe reproduzível em `comparacao-politicas-selecao-v2.1.md`, seção "CASE05".
+
+### Pendências editoriais que continuam
+
+Edição e tradução dos três testemunhos; edição crítica da autobiografia de Franklin; *The Character of Physical Law*; tradutores de Weil e Stein. Uma rubrica de confiabilidade, se adotada, exige decisão própria.

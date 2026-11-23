@@ -22,6 +22,7 @@ import {
   paresNaoIndependentes,
   qualidadeDaFonte,
   relacaoUtilizavel,
+  temFonteIdentificada,
   universoPrincipal,
   type ApoioContextual,
   type EvidenciaRelacao,
@@ -38,7 +39,7 @@ import { normalize, unique, words } from '../shared/util';
 export type CriterioSelecao = 'pertinencia' | 'relacaoVirtudes' | 'fontes' | 'complementaridade' | 'diversidade' | 'contexto';
 
 export interface PoliticaSelecao {
-  id: 'council-selection-v1-doc04' | 'council-selection-v2-doc13';
+  id: 'council-selection-v1-doc04' | 'council-selection-v2-doc13' | 'council-selection-v2.1-doc13-relevance-source';
   /** Rótulo legível, gravado na justificativa de cada perspectiva (Documento 13, seção 20). */
   rotulo: string;
   pesos: Record<CriterioSelecao, number>;
@@ -46,10 +47,14 @@ export interface PoliticaSelecao {
   corpusOcupaVaga: boolean;
   /** v2: exige fonte recuperável (Documento 13, seção 7.2). */
   exigeFonte: boolean;
-  /** v1: só obras do catálogo. v2: obras do catálogo ou referências-base (DEC-CUR-04). */
-  fonte: 'catalogo' | 'catalogo-e-referencias-base';
+  /** v1: só obras do catálogo. v2: obras do catálogo ou referências-base, com 0,5 para metadados a conferir
+   *  (DEC-CUR-04). v2.1: fonte identificada (1/0), sem misturar completude bibliográfica nem confiabilidade. */
+  fonte: 'catalogo' | 'catalogo-e-referencias-base' | 'fonte-identificada';
   /** v2: limites de concentração por universo (DEC-CUR-07). */
   limiteDeUniverso: boolean;
+  /** Quem pode substituir uma voz ou receber o critério de diversidade. v2: integra o caso ou tem relação
+   *  prioritária. v2.1: pertinência temática demonstrada E pertinência contextual documentada. */
+  alternativaDiversidade: 'caso-ou-prioritaria' | 'tematica-e-contextual';
   /** v1: desempate pelo nome. v2: ordem do Documento 13, seção 7.3. */
   desempate: 'nome' | 'doc13';
 }
@@ -63,6 +68,7 @@ export const POLITICA_V1: PoliticaSelecao = {
   exigeFonte: false,
   fonte: 'catalogo',
   limiteDeUniverso: false,
+  alternativaDiversidade: 'caso-ou-prioritaria',
   desempate: 'nome',
 };
 
@@ -75,11 +81,26 @@ export const POLITICA_V2: PoliticaSelecao = {
   exigeFonte: true,
   fonte: 'catalogo-e-referencias-base',
   limiteDeUniverso: true,
+  alternativaDiversidade: 'caso-ou-prioritaria',
+  desempate: 'doc13',
+};
+
+/** Revisão da v2 (DEC-CUR-10): mesmos pesos do Documento 13; muda quem é alternativa qualificada para a
+ *  diversidade (pertinência temática e contextual) e separa disponibilidade de fonte de completude bibliográfica. */
+export const POLITICA_V2_1: PoliticaSelecao = {
+  id: 'council-selection-v2.1-doc13-relevance-source',
+  rotulo: 'versão 2.1 (Documento 13)',
+  pesos: { pertinencia: 0.3, relacaoVirtudes: 0.25, fontes: 0.15, complementaridade: 0.15, diversidade: 0.1, contexto: 0.05 },
+  corpusOcupaVaga: false,
+  exigeFonte: true,
+  fonte: 'fonte-identificada',
+  limiteDeUniverso: true,
+  alternativaDiversidade: 'tematica-e-contextual',
   desempate: 'doc13',
 };
 
 /** Política usada pelo app. */
-export const POLITICA_ATUAL: PoliticaSelecao = POLITICA_V2;
+export const POLITICA_ATUAL: PoliticaSelecao = POLITICA_V2_1;
 
 export const MIN_THINKERS = 2;
 export const MAX_THINKERS = 5;
@@ -236,9 +257,61 @@ interface Candidate {
   /** Pertinência mínima para que a diversidade conte (DEC-CUR-07): integra caso reconhecido ou tem relação
    *  prioritária (Documento 04) com virtude pedida. Uma relação só de "referência do catálogo" não basta. */
   pertinente: boolean;
+  /** Avaliação de pertinência da v2.1, registrada para todas as políticas (auditoria). */
+  avaliacao: AvaliacaoPertinencia;
   universo?: string;
   reasons: string[];
   perspective: string;
+}
+
+/** Pertinência temática (DEC-CUR-10): relação com uma virtude pedida.
+ *  - `demonstrada`: o autor é prioritário no Documento 04 (1º a 3º) ou tem `relationType` P1–P4 nessa virtude;
+ *  - `fraca`: só relação de "referência do catálogo", sem prioridade;
+ *  - `ausente`: nenhuma relação utilizável com as virtudes pedidas. */
+export type NivelTematico = 'demonstrada' | 'fraca' | 'ausente';
+/** Pertinência contextual (DEC-CUR-10): contribuição para a situação concreta.
+ *  - `documentada`: integra um caso de referência reconhecido e o caso registra uma perspectiva própria para ele,
+ *    distinta do campo geral do autor (o "aspecto da situação" que ela ilumina);
+ *  - `insufficient_data`: não há caso reconhecido, ou o autor não integra o caso, ou a perspectiva do caso é só o
+ *    campo geral do autor. Não é aprovação nem reprovação: é falta de dado. */
+export type NivelContextual = 'documentada' | 'insufficient_data';
+
+export interface AvaliacaoPertinencia {
+  /** Integra um caso de referência reconhecido. Indício contextual, não aprovação. */
+  caseMember: boolean;
+  thematicRelevance: NivelTematico;
+  contextualRelevance: NivelContextual;
+  /** Elegível + temática demonstrada + contextual documentada. Não é sinônimo de "traz diversidade". */
+  diversityEligible: boolean;
+  evidencia: { relacoes: string[]; caso?: string; perspectiva?: string };
+}
+
+/** Uma troca de voz feita pela regra de diversidade, com o que a sustenta. */
+export interface SubstituicaoDiversidade {
+  vaga: number;
+  politica: PoliticaSelecao['id'];
+  /** Quem venceria a vaga pela pontuação e foi preterido por exceder o limite do universo. */
+  preterida: string;
+  incluida: string;
+  universoPreterida?: string;
+  universoIncluida?: string;
+  universosAntes: string[];
+  limite: number;
+  /** As duas passaram pelos filtros de elegibilidade (estão no conjunto de candidatas). */
+  ambasElegiveis: true;
+  avaliacaoIncluida: AvaliacaoPertinencia;
+  avaliacaoPreterida: AvaliacaoPertinencia;
+}
+
+/** O limite por universo não pôde ser cumprido nesta vaga. */
+export interface ExcecaoDiversidade {
+  vaga: number;
+  candidato: string;
+  universo?: string;
+  limite: number;
+  /** v2: sem alternativa pela regra antiga. v2.1: sem alternativa qualificada, ou sem caso de referência que
+   *  permita avaliar a pertinência contextual de qualquer alternativa. */
+  motivo: 'sem-alternativa-pertinente' | 'sem-alternativa-qualificada' | 'contexto-nao-avaliavel';
 }
 
 /** Dados usados pela seleção. O padrão é o catálogo do app; testes podem injetar outro. */
@@ -256,6 +329,8 @@ export interface ContextoSelecao {
   universo?: (thinkerId: string) => string | undefined;
   /** Disponibilidade de fonte de 0 a 1 na política v2. Padrão: catálogo + referências-base. */
   qualidadeFonte?: (t: Thinker) => number;
+  /** v2.1: há fonte identificada (obra do catálogo ou referência-base)? 1/0. Padrão: idem, sem notas parciais. */
+  fonteIdentificada?: (t: Thinker) => number;
   /** Corpora que contextualizam uma pessoa (DEC-CUR-02/03). */
   apoios?: (thinkerId: string) => ApoioContextual[];
 }
@@ -269,6 +344,7 @@ export const CONTEXTO_PADRAO: ContextoSelecao = {
   papel: papelDoRegistro,
   universo: universoPrincipal,
   qualidadeFonte: (t) => qualidadeDaFonte(t),
+  fonteIdentificada: (t) => (temFonteIdentificada(t) ? 1 : 0),
   apoios: apoiosDe,
 };
 
@@ -290,6 +366,12 @@ export interface ResultadoSelecao {
   relaxamentos: string[];
   /** Integrantes habilitados que ficaram fora por regra, com o motivo. */
   excluidos: { thinkerId: string; motivo: 'corpus-de-apoio' | 'sem-fonte' }[];
+  /** Trocas feitas pela regra de diversidade, com a justificativa estruturada. */
+  substituicoes: SubstituicaoDiversidade[];
+  /** Exceções ao limite por universo, com motivo específico (mesmos casos de `relaxamentos`). */
+  excecoes: ExcecaoDiversidade[];
+  /** Avaliação de pertinência de cada perspectiva escolhida. */
+  avaliacoes: Record<string, AvaliacaoPertinencia>;
 }
 
 /** Limite por universo principal (DEC-CUR-07): com 5 vozes, no máximo 2; com 2 a 4, ao menos 2 universos. */
@@ -330,12 +412,16 @@ export function deliberarSelecao(
 
     let situation = 0;
     let perspective = '';
+    let casoDaPerspectiva: string | undefined;
     const reasons: string[] = [];
     cases.forEach((council, position) => {
       const found = council.contributions.find((c) => c.thinkerId === thinker.id);
       if (!found) return;
       situation = Math.max(situation, position === 0 ? 1 : 0.6);
-      if (!perspective) perspective = found.perspective;
+      if (!perspective) {
+        perspective = found.perspective;
+        casoDaPerspectiva = council.id;
+      }
       reasons.push(`Integra o caso de referência “${council.title}”.`);
     });
 
@@ -348,8 +434,13 @@ export function deliberarSelecao(
       continue;
     }
 
+    const soCatalogo = (t: Thinker) => (t.workIds.length ? 1 : 0);
     const fontes =
-      politica.fonte === 'catalogo' ? (thinker.workIds.length ? 1 : 0) : (ctx.qualidadeFonte ?? ((t: Thinker) => (t.workIds.length ? 1 : 0)))(thinker);
+      politica.fonte === 'catalogo'
+        ? soCatalogo(thinker)
+        : politica.fonte === 'catalogo-e-referencias-base'
+          ? (ctx.qualidadeFonte ?? soCatalogo)(thinker)
+          : (ctx.fonteIdentificada ?? soCatalogo)(thinker);
     /* Documento 13, seção 7.2: exigir fonte recuperável. */
     if (politica.exigeFonte && fontes === 0) {
       excluidos.push({ thinkerId: thinker.id, motivo: 'sem-fonte' });
@@ -375,6 +466,7 @@ export function deliberarSelecao(
       /* Mesma ordem de soma do algoritmo original, para reproduzir a v1 sem diferença de arredondamento. */
       base: P.relacaoVirtudes * documented + P.pertinencia * situation + P.contexto * dimensionScore + P.fontes * fontes,
       pertinente: situation > 0 || related.some((r) => r.priority !== null),
+      avaliacao: avaliarPertinencia(thinker, related, casoDaPerspectiva, perspective),
       universo: ctx.universo?.(thinker.id),
       reasons,
       perspective: perspective || thinker.field,
@@ -386,14 +478,19 @@ export function deliberarSelecao(
   const pool = [...candidates];
   const limite = limitePorUniverso(max);
   const relaxamentos: string[] = [];
+  const substituicoes: SubstituicaoDiversidade[] = [];
+  const excecoes: ExcecaoDiversidade[] = [];
+  /* Quem é alternativa qualificada para a diversidade, segundo a política. */
+  const qualificada = (c: Candidate) =>
+    politica.alternativaDiversidade === 'tematica-e-contextual' ? c.avaliacao.diversityEligible : c.pertinente;
   while (chosen.length < max && pool.length) {
     const traditions = new Set(chosen.map((x) => x.c.thinker.tradition));
     const universosUsados = new Map<string, number>();
     chosen.forEach((x) => x.c.universo && universosUsados.set(x.c.universo, (universosUsados.get(x.c.universo) ?? 0) + 1));
     const dinamicos = (c: Candidate) => ({
       complementaridade: traditions.has(c.thinker.tradition) ? 0 : 1,
-      /* Diversidade não compensa baixa pertinência: só conta para quem já é pertinente. */
-      diversidade: c.pertinente && c.universo && !universosUsados.has(c.universo) ? 1 : 0,
+      /* Diversidade não compensa baixa pertinência: só conta para alternativa qualificada. */
+      diversidade: qualificada(c) && c.universo && !universosUsados.has(c.universo) ? 1 : 0,
     });
     const total = (c: Candidate) => {
       const d = dinamicos(c);
@@ -416,13 +513,36 @@ export function deliberarSelecao(
     if (politica.limiteDeUniverso) {
       const viola = (c: Candidate) => Boolean(c.universo && (universosUsados.get(c.universo) ?? 0) >= limite);
       if (viola(pool[0])) {
-        /* A alternativa de outro universo precisa ser pertinente; senão, a exceção é registrada. */
-        const permitido = pool.findIndex((c) => !viola(c) && c.pertinente);
+        /* A alternativa de outro universo precisa ser qualificada; senão, a exceção é registrada. */
+        const permitido = pool.findIndex((c) => !viola(c) && qualificada(c));
+        const vaga = chosen.length + 1;
         if (permitido === -1) {
+          const v21 = politica.alternativaDiversidade === 'tematica-e-contextual';
+          const motivo: ExcecaoDiversidade['motivo'] = !v21 ? 'sem-alternativa-pertinente' : cases.length ? 'sem-alternativa-qualificada' : 'contexto-nao-avaliavel';
+          excecoes.push({ vaga, candidato: pool[0].thinker.id, universo: pool[0].universo, limite, motivo });
           relaxamentos.push(
-            `Vaga ${chosen.length + 1}: sem alternativa pertinente de outro universo; ${pool[0].thinker.name} entra acima do limite de ${limite} por universo (${pool[0].universo}).`,
+            !v21
+              ? `Vaga ${vaga}: sem alternativa pertinente de outro universo; ${pool[0].thinker.name} entra acima do limite de ${limite} por universo (${pool[0].universo}).`
+              : motivo === 'contexto-nao-avaliavel'
+                ? `Vaga ${vaga}: sem caso de referência, a pertinência contextual de nenhuma alternativa pode ser avaliada; ${pool[0].thinker.name} entra acima do limite de ${limite} por universo (${pool[0].universo}).`
+                : `Vaga ${vaga}: nenhuma alternativa de outro universo tem pertinência temática e contextual; ${pool[0].thinker.name} entra acima do limite de ${limite} por universo (${pool[0].universo}).`,
           );
-        } else indice = permitido;
+        } else {
+          indice = permitido;
+          substituicoes.push({
+            vaga,
+            politica: politica.id,
+            preterida: pool[0].thinker.id,
+            incluida: pool[permitido].thinker.id,
+            universoPreterida: pool[0].universo,
+            universoIncluida: pool[permitido].universo,
+            universosAntes: [...universosUsados.keys()].sort(),
+            limite,
+            ambasElegiveis: true,
+            avaliacaoIncluida: pool[permitido].avaliacao,
+            avaliacaoPreterida: pool[0].avaliacao,
+          });
+        }
       }
     }
     const [escolhido] = pool.splice(indice, 1);
@@ -454,6 +574,28 @@ export function deliberarSelecao(
     diversityConstraintRelaxed: relaxamentos.length > 0,
     relaxamentos,
     excluidos,
+    substituicoes,
+    excecoes,
+    avaliacoes: Object.fromEntries(chosen.map((x) => [x.c.thinker.id, x.c.avaliacao])),
+  };
+}
+
+/** Avalia separadamente pertinência temática e contextual (DEC-CUR-10). Não usa número de relações. */
+function avaliarPertinencia(thinker: Thinker, relacionadas: ThinkerVirtue[], caso: string | undefined, perspectiva: string): AvaliacaoPertinencia {
+  const fortes = relacionadas.filter((r) => r.priority !== null || r.relationType !== null);
+  const thematicRelevance: NivelTematico = fortes.length ? 'demonstrada' : relacionadas.length ? 'fraca' : 'ausente';
+  const especifica = Boolean(caso && perspectiva.trim() && perspectiva.trim() !== thinker.field.trim());
+  const contextualRelevance: NivelContextual = especifica ? 'documentada' : 'insufficient_data';
+  return {
+    caseMember: Boolean(caso),
+    thematicRelevance,
+    contextualRelevance,
+    diversityEligible: thematicRelevance === 'demonstrada' && contextualRelevance === 'documentada',
+    evidencia: {
+      relacoes: (fortes.length ? fortes : relacionadas).map((r) => r.id).sort(),
+      ...(caso ? { caso } : {}),
+      ...(especifica ? { perspectiva } : {}),
+    },
   };
 }
 

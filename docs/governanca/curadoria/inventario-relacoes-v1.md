@@ -35,7 +35,7 @@
 | Justificativa: Pendente ("justificativa detalhada pendente de curadoria") | 23 |
 | Nenhuma obra ligada à relação | 57 |
 | Autor sem nenhuma fonte recuperável | 22 |
-| Autor com fonte ainda a conferir | 12 |
+| Autor com fonte identificada, mas metadados editoriais a conferir (não é falta de fonte nem baixa confiabilidade) | 12 |
 | De registros não habilitados (não fundamentam perspectiva hoje) | 23 |
 | De corpus de apoio (Tradições budistas) | 11 |
 
@@ -162,12 +162,12 @@ Colunas: P1–P4 = `relationType` do Documento 04; Doc. 04 = posição do autor 
 | TV-V01-platao | Platão | V01 Prudência | — | 3º | DOC03-4, DOC04-5 | W02, W03 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V01-daniel-kahneman | Daniel Kahneman | V01 Prudência | P3 | referência | DOC04-6 | W19 | disponível | específica | — | proposta | Baixa | não | — | — | — |
 | TV-V01-nassim-taleb | Nassim Taleb | V01 Prudência | — | referência | DOC04-6 | W21 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
-| TV-V02-socrates | Sócrates | V02 Sabedoria | — | 1º | DOC03-4, DOC04-5, DOC04-6 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V02-socrates | Sócrates | V02 Sabedoria | — | 1º | DOC03-4, DOC04-5, DOC04-6 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V02-platao | Platão | V02 Sabedoria | — | 2º | DOC03-4, DOC04-5, DOC04-6 | W02, W03 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V02-aristoteles | Aristóteles | V02 Sabedoria | — | 3º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V02-marco-aurelio | Marco Aurélio | V02 Sabedoria | — | referência | DOC03-4 | W06 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V03-aristoteles | Aristóteles | V03 Discernimento | — | 1º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
-| TV-V03-socrates | Sócrates | V03 Discernimento | — | 2º | DOC03-4, DOC04-5 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V03-socrates | Sócrates | V03 Discernimento | — | 2º | DOC03-4, DOC04-5 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V03-epicteto | Epicteto | V03 Discernimento | — | 3º | DOC04-5 | W04 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V03-daniel-kahneman | Daniel Kahneman | V03 Discernimento | P3 | referência | DOC04-6 | W19 | disponível | específica | — | proposta | Baixa | não | — | — | — |
 | TV-V03-donella-meadows | Donella Meadows | V03 Discernimento | — | referência | DOC04-6 | W20 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
@@ -176,7 +176,7 @@ Colunas: P1–P4 = `relationType` do Documento 04; Doc. 04 = posição do autor 
 | TV-V04-tradicoes-budistas | Tradições budistas | V04 Atenção | — | 2º | DOC03-4, DOC04-5 | W12 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V04-william-james | William James | V04 Atenção | — | 3º | DOC03-4, DOC04-5 | — | nenhuma | pendente | — | proposta | Alta | não | — | — | — |
 | TV-V04-musashi | Miyamoto Musashi | V04 Atenção | — | referência | DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
-| TV-V05-socrates | Sócrates | V05 Abertura intelectual | — | 1º | DOC03-4, DOC04-5 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V05-socrates | Sócrates | V05 Abertura intelectual | — | 1º | DOC03-4, DOC04-5 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V05-john-stuart-mill | John Stuart Mill | V05 Abertura intelectual | — | 2º | DOC03-4, DOC04-5, DOC04-6 | W15 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V05-karl-popper | Karl Popper | V05 Abertura intelectual | — | 3º | DOC03-4, DOC04-5, DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V06-platao | Platão | V06 Temperança | — | 1º | DOC03-4, DOC04-5, DOC04-6 | W02, W03 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
@@ -235,14 +235,14 @@ Colunas: P1–P4 = `relationType` do Documento 04; Doc. 04 = posição do autor 
 | TV-V18-confucio | Confúcio | V18 Justiça | — | referência | DOC03-4 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V18-marco-aurelio | Marco Aurélio | V18 Justiça | — | referência | DOC04-6 | W06 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V18-john-rawls | John Rawls | V18 Justiça | — | referência | DOC04-6 | W16 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
-| TV-V19-socrates | Sócrates | V19 Honestidade | — | 1º | DOC03-4, DOC04-5 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V19-socrates | Sócrates | V19 Honestidade | — | 1º | DOC03-4, DOC04-5 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V19-aristoteles | Aristóteles | V19 Honestidade | — | 2º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V19-kant | Immanuel Kant | V19 Honestidade | — | 3º | DOC03-4, DOC04-5, DOC04-6 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V19-confucio | Confúcio | V19 Honestidade | — | referência | DOC03-4 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V20-aristoteles | Aristóteles | V20 Integridade | — | 1º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V20-kant | Immanuel Kant | V20 Integridade | — | 2º | DOC03-4, DOC04-5, DOC04-6 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V20-confucio | Confúcio | V20 Integridade | — | 3º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
-| TV-V20-socrates | Sócrates | V20 Integridade | — | referência | DOC03-4 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V20-socrates | Sócrates | V20 Integridade | — | referência | DOC03-4 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V21-kant | Immanuel Kant | V21 Responsabilidade | — | 1º | DOC03-4, DOC04-5, DOC04-6 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V21-aristoteles | Aristóteles | V21 Responsabilidade | — | 2º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V21-viktor-frankl | Viktor Frankl | V21 Responsabilidade | — | 3º | DOC03-4, DOC04-5, DOC04-6 | W18 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
@@ -285,18 +285,18 @@ Colunas: P1–P4 = `relationType` do Documento 04; Doc. 04 = posição do autor 
 | TV-V32-kant | Immanuel Kant | V32 Respeito | — | 2º | DOC03-4, DOC04-5, DOC04-6 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V32-cicero | Cícero | V32 Respeito | — | 3º | DOC03-4, DOC04-5 | — | nenhuma | pendente | — | proposta | Alta | não | — | — | — |
 | TV-V32-john-locke | John Locke | V32 Respeito | — | referência | DOC04-6 | W14 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
-| TV-V33-socrates | Sócrates | V33 Humildade intelectual | — | 1º | DOC03-4, DOC04-5, DOC04-6 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V33-socrates | Sócrates | V33 Humildade intelectual | — | 1º | DOC03-4, DOC04-5, DOC04-6 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V33-confucio | Confúcio | V33 Humildade intelectual | — | 2º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V33-bertrand-russell | Bertrand Russell | V33 Humildade intelectual | — | 3º | DOC03-4, DOC04-5 | — | nenhuma | pendente | — | proposta | Alta | não | — | — | — |
 | TV-V33-richard-feynman | Richard Feynman | V33 Humildade intelectual | — | referência | DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
-| TV-V34-socrates | Sócrates | V34 Curiosidade | — | 1º | DOC03-4, DOC04-5 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V34-socrates | Sócrates | V34 Curiosidade | — | 1º | DOC03-4, DOC04-5 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V34-aristoteles | Aristóteles | V34 Curiosidade | — | 2º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V34-leonardo-da-vinci | Leonardo da Vinci | V34 Curiosidade | — | 3º | DOC03-4, DOC04-5 | — | nenhuma | pendente | — | proposta | Alta | não | — | — | — |
 | TV-V34-richard-feynman | Richard Feynman | V34 Curiosidade | — | referência | DOC03-4, DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V35-confucio | Confúcio | V35 Sinceridade | — | 1º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V35-aristoteles | Aristóteles | V35 Sinceridade | — | 2º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V35-kant | Immanuel Kant | V35 Sinceridade | — | 3º | DOC03-4, DOC04-5 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
-| TV-V36-socrates | Sócrates | V36 Amor à verdade | — | 1º | DOC03-4, DOC04-5 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V36-socrates | Sócrates | V36 Amor à verdade | — | 1º | DOC03-4, DOC04-5 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V36-platao | Platão | V36 Amor à verdade | — | 2º | DOC03-4, DOC04-5 | W02, W03 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V36-karl-popper | Karl Popper | V36 Amor à verdade | — | 3º | DOC03-4, DOC04-5 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V36-aristoteles | Aristóteles | V36 Amor à verdade | — | referência | DOC03-4 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
@@ -307,17 +307,17 @@ Colunas: P1–P4 = `relationType` do Documento 04; Doc. 04 = posição do autor 
 | TV-V38-aristoteles | Aristóteles | V38 Disciplina | — | 1º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V38-musashi | Miyamoto Musashi | V38 Disciplina | — | 2º | DOC03-4, DOC04-5, DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V38-confucio | Confúcio | V38 Disciplina | — | 3º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
-| TV-V38-benjamin-franklin | Benjamin Franklin | V38 Disciplina | — | referência | DOC04-6 | — | a conferir | genérica | — | proposta | Média | não | — | — | — |
+| TV-V38-benjamin-franklin | Benjamin Franklin | V38 Disciplina | — | referência | DOC04-6 | — | identificada; metadados a conferir | genérica | — | proposta | Média | não | — | — | — |
 | TV-V39-aristoteles | Aristóteles | V39 Diligência | — | 1º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V39-tomas-de-aquino | Tomás de Aquino | V39 Diligência | — | 2º | DOC03-4, DOC04-5 | W07, W08 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
-| TV-V39-benjamin-franklin | Benjamin Franklin | V39 Diligência | — | 3º | DOC03-4, DOC04-5, DOC04-6 | — | a conferir | genérica | — | proposta | Média | não | — | — | — |
+| TV-V39-benjamin-franklin | Benjamin Franklin | V39 Diligência | — | 3º | DOC03-4, DOC04-5, DOC04-6 | — | identificada; metadados a conferir | genérica | — | proposta | Média | não | — | — | — |
 | TV-V39-peter-drucker | Peter Drucker | V39 Diligência | — | referência | DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V40-confucio | Confúcio | V40 Compromisso | — | 1º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V40-kant | Immanuel Kant | V40 Compromisso | — | 2º | DOC03-4, DOC04-5 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V40-aristoteles | Aristóteles | V40 Compromisso | — | 3º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V40-peter-drucker | Peter Drucker | V40 Compromisso | — | referência | DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V41-aristoteles | Aristóteles | V41 Iniciativa | — | 1º | DOC03-4, DOC04-5 | W01 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
-| TV-V41-benjamin-franklin | Benjamin Franklin | V41 Iniciativa | — | 2º | DOC03-4, DOC04-5, DOC04-6 | — | a conferir | genérica | — | proposta | Média | não | — | — | — |
+| TV-V41-benjamin-franklin | Benjamin Franklin | V41 Iniciativa | — | 2º | DOC03-4, DOC04-5, DOC04-6 | — | identificada; metadados a conferir | genérica | — | proposta | Média | não | — | — | — |
 | TV-V41-peter-drucker | Peter Drucker | V41 Iniciativa | — | 3º | DOC03-4, DOC04-5, DOC04-6 | — | disponível | genérica | — | proposta | Média | não | — | — | — |
 | TV-V42-kant | Immanuel Kant | V42 Autonomia | — | 1º | DOC03-4, DOC04-5 | W13 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V42-epicteto | Epicteto | V42 Autonomia | — | 2º | DOC03-4, DOC04-5, DOC04-6 | W04 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
@@ -326,7 +326,7 @@ Colunas: P1–P4 = `relationType` do Documento 04; Doc. 04 = posição do autor 
 | TV-V43-confucio | Confúcio | V43 Serviço | — | 1º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V43-simone-weil | Simone Weil | V43 Serviço | — | 2º | DOC03-4, DOC04-5, DOC04-6 | — | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V43-tradicoes-humanistas | Tradições humanistas | V43 Serviço | — | 3º | DOC03-4, DOC04-5 | — | nenhuma | pendente | — | proposta | Alta | sim | — | — | — |
-| TV-V44-socrates | Sócrates | V44 Humildade | — | 1º | DOC03-4, DOC04-5 | — | a conferir | genérica | — | proposta | Alta | sim | — | — | — |
+| TV-V44-socrates | Sócrates | V44 Humildade | — | 1º | DOC03-4, DOC04-5 | — | identificada; metadados a conferir | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V44-confucio | Confúcio | V44 Humildade | — | 2º | DOC03-4, DOC04-5 | W09 | disponível | genérica | — | proposta | Alta | sim | — | — | — |
 | TV-V44-marco-aurelio | Marco Aurélio | V44 Humildade | — | 3º | DOC03-4, DOC04-5, DOC04-6 | W06 | disponível | genérica | — | proposta | Baixa | não | — | — | — |
 | TV-V44-lao-tse | Lao-Tsé | V44 Humildade | — | referência | DOC04-6 | W10 | disponível | genérica | — | proposta | Alta | sim | — | — | — |

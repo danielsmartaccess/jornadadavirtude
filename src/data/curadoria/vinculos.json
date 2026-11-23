@@ -1,5 +1,5 @@
 {
-  "_nota": "Vínculos entre pessoa, tradição, escola e corpus (DEC-CUR-02 e DEC-CUR-03). Cada vínculo distingue o tipo de relação: 'pertence_a', 'formado_em', 'representa_institucionalmente' e 'lider_de_toda_tradicao'. 'situacao' diz se há fonte específica ('sustentado_por_fonte'), se falta fonte ('a_confirmar') ou se a afirmação não deve ser feita ('nao_afirmar'). Nenhum vínculo é inferido de fonte genérica sobre budismo.",
+  "_nota": "Vínculos entre pessoa, tradição, escola e corpus (DEC-CUR-02 e DEC-CUR-03). Cada vínculo distingue o tipo de relação: 'pertence_a', 'formado_em', 'representa_institucionalmente' e 'lider_de_toda_tradicao'. 'situacao' diz se há fonte específica ('sustentado_por_fonte'), se falta fonte ('a_confirmar') ou se a afirmação não deve ser feita ('nao_afirmar'). Nenhum vínculo é inferido de fonte genérica sobre budismo. Revisão de 2026-11-23 (DEC-CUR-10): vínculos ganham escopo, data e natureza da fonte, localização do trecho e fontes complementares; VIN-DAL-03 deixou de estar \"a confirmar\" com fonte acadêmica revisada por pares; acrescentados VIN-DAL-06 a VIN-DAL-08.",
   "dataConferencia": "2026-11-23",
   "vinculos": [
     {
@@ -10,7 +10,11 @@
       "situacao": "sustentado_por_fonte",
       "fonte": "https://www.dalailama.com/the-dalai-lama/biography-and-daily-life/brief-biography",
       "trecho": "His Holiness began his monastic education at the age of six. … awarded the Geshe Lharampa degree, equivalent to the highest doctorate in Buddhist philosophy.",
-      "nota": "Biografia oficial (Office of His Holiness the Dalai Lama). O currículo é descrito como \"derived from the Nalanda tradition\"; a página não nomeia uma escola."
+      "nota": "Biografia oficial (Office of His Holiness the Dalai Lama). O currículo é descrito como \"derived from the Nalanda tradition\"; a página não nomeia uma escola.",
+      "escopo": "Formação monástica desde a infância, com currículo de filosofia budista no Tibete",
+      "dataFonte": "2026-11-23 (consulta; página sem data)",
+      "natureza": "Fonte primária oficial (Office of His Holiness the Dalai Lama)",
+      "localizacao": "Brief Biography, seção sobre educação"
     },
     {
       "id": "VIN-DAL-02",
@@ -20,17 +24,48 @@
       "situacao": "sustentado_por_fonte",
       "fonte": "https://www.dalailama.com/the-dalai-lama/biography-and-daily-life/questions-answers",
       "trecho": "I always consider myself as a simple Buddhist monk.",
-      "nota": "Monge budista com formação monástica no Tibete (VIN-DAL-01). O recorte é o budismo tibetano, não o budismo em geral."
+      "nota": "Monge budista com formação monástica no Tibete (VIN-DAL-01). O recorte é o budismo tibetano, não o budismo em geral.",
+      "escopo": "Budismo tibetano, sem generalização para outras tradições budistas",
+      "dataFonte": "2026-11-23 (consulta; página sem data)",
+      "natureza": "Fonte primária oficial (Office of His Holiness the Dalai Lama)",
+      "localizacao": "Questions & Answers"
     },
     {
       "id": "VIN-DAL-03",
       "pessoa": "dalai-lama",
       "alvo": "Escola Gelug (Gelugpa / Ganden)",
       "tipo": "pertence_a",
-      "situacao": "a_confirmar",
-      "fonte": "https://tibet.net/about-tibet/his-holiness/",
-      "trecho": "The young Gedun Drupa was aware of the fame of the Great Tsongkhapa, the founder of the Gelugpa School",
-      "nota": "Nenhuma fonte lida afirma a filiação do 14º Dalai Lama à escola Gelug. A página da Administração Central Tibetana (que reproduz texto do Escritório do Dalai Lama) liga o PRIMEIRO Dalai Lama a Tsongkhapa, fundador da escola Gelugpa: é contexto histórico da linhagem, não prova de filiação do 14º. \"Ganden Phodrang\" é, na biografia oficial, o escritório e a casa dos Dalai Lamas, não o nome de uma escola. Exige fonte institucional ou acadêmica específica."
+      "situacao": "sustentado_por_fonte",
+      "fonte": "https://doi.org/10.3390/rel5030522",
+      "trecho": "his own Gelug monastic order",
+      "nota": "Revisão de 2026-11-23: deixou de estar \"a confirmar\". O artigo refere-se à \"his own Gelug monastic order\" (p. 526) e diz que ele passou a juventude e os anos formativos \"steeped in a highly demanding curriculum derived from that of the Gelug order\" (p. 542). A afirmação é acadêmica e incidental; continua sujeita a revisão especializada. A versão anterior está, literal, em \"versaoAnterior\".",
+      "escopo": "Filiação à ordem monástica Gelug e formação no currículo Gelug. NÃO implica prática exclusiva (ver VIN-DAL-07), representação exclusiva da escola nem chefia formal (ver VIN-DAL-08).",
+      "dataFonte": "2014-06-30",
+      "natureza": "Artigo acadêmico em periódico revisado por pares",
+      "localizacao": "Hogendoorn 2014, seção 4, p. 526; ver também p. 542",
+      "fontesComplementares": [
+        {
+          "referencia": "Rob Hogendoorn, \"Caveat Emptor: The Dalai Lama's Proviso and the Burden of (Scientific) Proof\", Religions 5(3): 522–559, 2014, DOI 10.3390/rel5030522 (CC BY 3.0)",
+          "url": "https://doi.org/10.3390/rel5030522",
+          "natureza": "Artigo acadêmico em periódico revisado por pares",
+          "localizacao": "p. 542",
+          "trecho": "the Dalai Lama spent his entire youth and formative years steeped in a highly demanding curriculum derived from that of the Gelug order"
+        },
+        {
+          "referencia": "Administração Central Tibetana, \"His Holiness the Dalai Lama\" (texto do Escritório do Dalai Lama)",
+          "url": "https://tibet.net/about-tibet/his-holiness/",
+          "natureza": "Institucional; contexto histórico da linhagem, não prova sobre o 14º",
+          "localizacao": "trecho sobre o primeiro Dalai Lama, Gedun Drupa",
+          "trecho": "the Great Tsongkhapa, the founder of the Gelugpa School"
+        }
+      ],
+      "versaoAnterior": {
+        "registradaEm": "63da8ba (2026-11-23)",
+        "situacao": "a_confirmar",
+        "fonte": "https://tibet.net/about-tibet/his-holiness/",
+        "trecho": "The young Gedun Drupa was aware of the fame of the Great Tsongkhapa, the founder of the Gelugpa School",
+        "nota": "Nenhuma fonte lida afirma a filiação do 14º Dalai Lama à escola Gelug. A página da Administração Central Tibetana (que reproduz texto do Escritório do Dalai Lama) liga o PRIMEIRO Dalai Lama a Tsongkhapa, fundador da escola Gelugpa: é contexto histórico da linhagem, não prova de filiação do 14º. \"Ganden Phodrang\" é, na biografia oficial, o escritório e a casa dos Dalai Lamas, não o nome de uma escola. Exige fonte institucional ou acadêmica específica."
+      }
     },
     {
       "id": "VIN-DAL-04",
@@ -40,7 +75,11 @@
       "situacao": "sustentado_por_fonte",
       "fonte": "https://www.dalailama.com/the-dalai-lama/biography-and-daily-life/brief-biography",
       "trecho": "He is the spiritual leader of Tibet.",
-      "nota": "Liderança espiritual do Tibete, segundo a biografia oficial. Não é liderança de uma escola nem de todo o budismo."
+      "nota": "Liderança espiritual do Tibete, segundo a biografia oficial. Não é liderança de uma escola nem de todo o budismo.",
+      "escopo": "Liderança espiritual do Tibete, segundo a biografia oficial; não é liderança de uma escola nem de todo o budismo",
+      "dataFonte": "2026-11-23 (consulta; página sem data)",
+      "natureza": "Fonte primária oficial (Office of His Holiness the Dalai Lama)",
+      "localizacao": "Brief Biography"
     },
     {
       "id": "VIN-DAL-05",
@@ -50,7 +89,59 @@
       "situacao": "nao_afirmar",
       "fonte": null,
       "trecho": null,
-      "nota": "Não afirmar. Nenhuma fonte lida atribui ao Dalai Lama a liderança ou a representação de Theravāda, Zen, de todos os Mahāyāna ou de todos os budismos; o escopo declarado nas fontes oficiais é o Tibete."
+      "nota": "Não afirmar. Nenhuma fonte lida atribui ao Dalai Lama a liderança ou a representação de Theravāda, Zen, de todos os Mahāyāna ou de todos os budismos; o escopo declarado nas fontes oficiais é o Tibete.",
+      "escopo": "Theravāda, Zen, todos os Mahāyāna e todos os budismos"
+    },
+    {
+      "id": "VIN-DAL-06",
+      "pessoa": "dalai-lama",
+      "alvo": "Tradição Gelug — prática no início da vida",
+      "tipo": "formado_em",
+      "situacao": "sustentado_por_fonte",
+      "escopo": "Início da vida, segundo declaração dele próprio; não diz até quando nem descreve a prática posterior como exclusivamente Gelug",
+      "fonte": "https://www.dalailama.com/news/2017/dzogchen-teaching-and-public-dialogue",
+      "trecho": "In the early part of my life, I followed only the Gelug tradition.",
+      "dataFonte": "2017-09-25",
+      "natureza": "Fonte primária oficial: notícia do Office of His Holiness the Dalai Lama com fala em primeira pessoa (diálogo público em Riga, Letônia); não é transcrição integral",
+      "localizacao": "\"Dzogchen Teaching and Public Dialogue\", parágrafo após o que começa com \"His Holiness observed that Je Tsongkhapa had a special connection to the Nyingma tradition\"",
+      "nota": "Declaração atribuída a ele pelo próprio escritório. Sustenta formação e prática inicial na tradição Gelug, não chefia, representação exclusiva nem que toda a sua obra expresse só essa escola."
+    },
+    {
+      "id": "VIN-DAL-07",
+      "pessoa": "dalai-lama",
+      "alvo": "Ensinamentos de outras tradições tibetanas (inclusive Dzogchen) — fase posterior",
+      "tipo": "formado_em",
+      "situacao": "sustentado_por_fonte",
+      "escopo": "Depois do início da vida: recebeu ensinamentos de mestres de outras linhagens tibetanas",
+      "fonte": "https://www.dalailama.com/news/2017/dzogchen-teaching-and-public-dialogue",
+      "trecho": "Eventually I received Guhyagarbha and Rongzom’s commentary to it from Dilgo Khyentse Rinpoche, as well as teachings from Trulshik Rinpoche.",
+      "dataFonte": "2017-09-25",
+      "natureza": "Fonte primária oficial (mesma notícia)",
+      "localizacao": "Mesma notícia, parágrafos seguintes à declaração sobre a tradição Gelug; menciona também \"'Stages of Meditation' from Sakya Abbot Sangye Tenzin\"",
+      "nota": "Mostra que a formação não ficou restrita à escola Gelug. A notícia não afirma mudança de filiação."
+    },
+    {
+      "id": "VIN-DAL-08",
+      "pessoa": "dalai-lama",
+      "alvo": "Escola Gelug — chefia formal (cargo de Ganden Tripa)",
+      "tipo": "lider_de_toda_tradicao",
+      "situacao": "nao_afirmar",
+      "escopo": "Chefia formal/titular da escola Gelug",
+      "fonte": "https://doi.org/10.3390/rel5030522",
+      "trecho": "Contrary to what is often assumed, the Dalai Lama is not its formal head. That position is held by the Ganden Tripa",
+      "dataFonte": "2014-06-30",
+      "natureza": "Artigo acadêmico em periódico revisado por pares",
+      "localizacao": "Hogendoorn 2014, p. 527",
+      "nota": "Não chamar o Dalai Lama de chefe formal da escola Gelug: a chefia titular é o cargo de Ganden Tripa. Isso não diminui sua autoridade e influência religiosa, reconhecidas pelas mesmas fontes. Não se afirma aqui quem ocupa o cargo hoje. A página do Tibetan Buddhist Centre (Singapura), que diz o mesmo, é institucional e não acadêmica; não é usada como sustentação.",
+      "fontesComplementares": [
+        {
+          "referencia": "William Kent Dewey, \"A Union of Religion and Politics: Ngawang Tsültrim as Tibetan Regent and Imperial Preceptor\", tese de doutorado em Religious Studies, University of California, Santa Barbara, março de 2017",
+          "url": "https://escholarship.org/uc/item/2dj3k52s",
+          "natureza": "Tese de doutorado (eScholarship, University of California)",
+          "localizacao": "p. 104 (seção \"Ganden Tripa\"); ver também p. 105",
+          "trecho": "the Dalai Lama had “ecclesiastical offices as the preeminent hierarch of the Gelukpa order” … but the Ganden Tripa is actually “titular head of the order.”"
+        }
+      ]
     }
   ],
   "apoios": [

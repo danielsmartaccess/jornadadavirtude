@@ -145,8 +145,14 @@ test('Fase 2: corpus de apoio, recorte do Dalai Lama e testemunhos de Sócrates'
   await page.goto('/conselho/pensadores/dalai-lama');
   const recorte = page.getByRole('region', { name: 'Recorte desta perspectiva' });
   await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').first()).toContainText('Budismo tibetano');
-  await expect(recorte.locator('[data-vinculo="a_confirmar"]')).toContainText('Gelug');
-  await expect(recorte.locator('[data-vinculo="nao_afirmar"]')).toContainText('Todos os budismos');
+  // Revisão DEC-CUR-10: prática Gelug no início da vida sustentada pela declaração oficial; chefia formal (Ganden Tripa) não afirmada.
+  await expect(recorte.locator('[data-vinculo="a_confirmar"]')).toHaveCount(0);
+  const inicial = recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: 'Tradição Gelug — prática no início da vida' });
+  await expect(inicial).toContainText('In the early part of my life, I followed only the Gelug tradition.');
+  await expect(inicial).toContainText('2017-09-25');
+  await expect(recorte.locator('[data-vinculo="nao_afirmar"]').filter({ hasText: 'Ganden Tripa' })).toContainText('p. 527');
+  await expect(recorte.locator('[data-vinculo="nao_afirmar"]').filter({ hasText: 'Todos os budismos' })).toHaveCount(1);
+  await expect(recorte.locator('[data-vinculo="sustentado_por_fonte"]').filter({ hasText: /chefe formal|líder de toda/i })).toHaveCount(0);
   await expect(page.getByRole('region', { name: 'Referências-base' })).toContainText('Ethics for the New Millennium');
   await expect(page.getByText('referência cadastrada não é relação validada')).toBeVisible();
 
@@ -154,6 +160,10 @@ test('Fase 2: corpus de apoio, recorte do Dalai Lama e testemunhos de Sócrates'
   const testemunhos = page.getByRole('region', { name: 'Testemunhos sobre Sócrates' });
   await expect(testemunhos.locator('[data-referencia]')).toHaveCount(3);
   await expect(testemunhos).toContainText('Nenhum destes textos é de autoria de Sócrates');
+  // Revisão DEC-CUR-10: metadados pendentes não viram baixa confiabilidade; natureza de cada testemunho com localização.
+  await expect(testemunhos.locator('[data-completude="pendente"]')).toHaveCount(3);
+  await expect(testemunhos.locator('[data-natureza-testemunho]')).toHaveCount(3);
+  await expect(testemunhos.getByText('Confiabilidade da fonte: não avaliada', { exact: false })).toHaveCount(3);
   expect(erros).toEqual([]);
 });
 
@@ -166,5 +176,5 @@ test('Fase 2: no caso do perdão, Dalai Lama é voz e Tradições budistas só d
   expect(vozes).toContain('/conselho/pensadores/dalai-lama');
   expect(vozes).not.toContain('/conselho/pensadores/tradicoes-budistas');
   await expect(page.getByText('Contexto de apoio: Tradições budistas, recorte budismo tibetano').first()).toBeVisible();
-  await expect(page.getByText('Critérios de seleção: versão 2 (Documento 13).').first()).toBeVisible();
+  await expect(page.getByText('Critérios de seleção: versão 2.1 (Documento 13).').first()).toBeVisible();
 });

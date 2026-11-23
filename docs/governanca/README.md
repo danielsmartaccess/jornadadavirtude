@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Versão | 0.5 |
+| Versão | 0.6 |
 | Status | ÍNDICE DE GOVERNANÇA (nenhum documento desta pasta está aprovado) |
 | Data de atualização | 2026-11-23 |
 | Base do repositório | `main` em `b23ddac` |
@@ -17,6 +17,7 @@
 | 0.3 | 2026-11-23 | Totais do histórico de decisões corrigidos: 24 pendentes, 1 aprovada (D-GOV-01, formalizada em DEC-15), 11 conflitos preservados. |
 | 0.4 | 2026-11-23 | Inclusão do Documento 14 (curadoria ampliada) e do ADR-CUR-01 no índice. Nenhum status alterado. |
 | 0.5 | 2026-11-23 | Fase 2 de curadoria: ADR-CUR-02 a ADR-CUR-05 e relatórios gerados (comparação das políticas de seleção e inventário das 189 relações). Totais do histórico atualizados. Nenhum documento oficial original foi alterado. |
+| 0.6 | 2026-11-23 | Revisão humana da Fase 2 (DEC-CUR-10): comparação v1 × v2 × v2.1 incluída; ADR-CUR-02 a 04 com seções de revisão. Nenhum documento oficial original foi alterado. |
 
 ## Classificação documental
 
@@ -81,6 +82,7 @@ O objetivo é deixar a documentação pronta para validação. Nenhuma aprovaç�
 | ADR-CUR-03 — Pesos, taxonomia e diversidade da seleção | `decisoes/ADR-CUR-03-pesos-e-diversidade-da-selecao.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-05, 06, 07; Docs. 04, 13 v2, 14 | Revisor técnico (critérios, piso de pertinência); responsável pelo produto (efeito da diversidade) |
 | ADR-CUR-04 — Fontes-base e revisão das relações | `decisoes/ADR-CUR-04-fontes-e-revisao-das-relacoes.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-04, 08; páginas de editores e registros institucionais | Revisor filosófico/curatorial (edições, traduções, revisão das relações) |
 | ADR-CUR-05 — Medição do bundle | `decisoes/ADR-CUR-05-medicao-do-bundle.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | DEC-CUR-09; medição do build | Revisor técnico |
+| Comparação v1 × v2 × v2.1 (revisão DEC-CUR-10) | `curadoria/comparacao-politicas-selecao-v2.1.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO (gerado por teste) | Motor de seleção; 79 entradas de referência | Revisor técnico; responsável pelo produto |
 | Comparação das políticas de seleção (A/B) | `curadoria/comparacao-politicas-selecao.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO (gerado por teste) | Motor de seleção; 79 entradas de referência | Revisor técnico; responsável pelo produto |
 | Inventário das 189 relações (v1) | `curadoria/inventario-relacoes-v1.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO (gerado por teste) | `thinker-virtues.json`; camada curatorial | Revisor filosófico/curatorial |
 
