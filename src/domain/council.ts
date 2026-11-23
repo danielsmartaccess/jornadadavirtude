@@ -51,17 +51,10 @@ const virtueTerms = virtues.map((v) => ({
 
 const dimensionTerms = dimensions.map((d) => ({ id: d.id, terms: stems(d.challenges.join(' ')) }));
 
-/* Sinais de risco: o Conselho não substitui apoio profissional (Doc. 04, Regra 8). */
-const CRISIS_TERMS = [
-  'suicid', 'me matar', 'tirar minha vida', 'tirar a minha vida', 'acabar com minha vida', 'acabar com a minha vida',
-  'nao quero mais viver', 'nao aguento mais viver', 'quero morrer', 'automutil', 'me machucar', 'me cortar',
-  'abuso sexual', 'estupr', 'violencia domestica', 'me bate', 'me agride', 'ameaca de morte',
-];
-
-export function detectCrisis(text: string): boolean {
-  const normalized = normalize(text);
-  return CRISIS_TERMS.some((term) => normalized.includes(term));
-}
+/* Sinais de risco: o Conselho não substitui apoio profissional (Doc. 04, Regra 8).
+ * A lista e a regra ficam em crisis.ts; continuam exportadas daqui para os usos existentes. */
+import { detectCrisis } from './crisis';
+export { detectCrisis, isCrisisInput } from './crisis';
 
 function caseHits(council: CouncilCase, textWords: string[], normalized: string): number {
   return council.keywords.filter((keyword) =>

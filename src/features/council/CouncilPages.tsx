@@ -24,7 +24,7 @@ import {
   virtuesOfThinker,
   worksOfThinker,
 } from '../../domain/catalog';
-import { detectCrisis, selectThinkers, suggest, synthesize, type CouncilSelection } from '../../domain/council';
+import { detectCrisis, isCrisisInput, selectThinkers, suggest, synthesize, type CouncilSelection } from '../../domain/council';
 import { isOpenJourney, sortByDateDesc } from '../../domain/journey';
 import type { CouncilSession, DiaryEntry } from '../../domain/types';
 import { formatDate, newId, today, unique } from '../../shared/util';
@@ -73,10 +73,20 @@ export function CouncilPage() {
   const [dimensionId, setDimensionId] = useState('');
   const [link, setLink] = useState(!!fromJourney && isOpenJourney(fromJourney));
   const [attempted, setAttempted] = useState(false);
+  /** Tentativa de convocação recusada pelo gate de segurança. */
+  const [blocked, setBlocked] = useState(false);
   const sessions = sortByDateDesc(data.sessions);
+  const risk = isCrisisInput(situation, doubt);
 
   function convene() {
     setAttempted(true);
+    /* Gate de segurança: antes de compor perspectivas, gravar ou navegar. Com sinal de risco
+     * na situação ou na dúvida, o fluxo comum não roda e nada é registrado. */
+    if (isCrisisInput(situation, doubt)) {
+      setBlocked(true);
+      return;
+    }
+    setBlocked(false);
     const session: CouncilSession = {
       id: newId(), date: today(), situation: situation.trim(), doubt: doubt.trim(), reflection: '', action: '',
       journeyId: link && fromJourney ? fromJourney.id : null, createdAt: '', updatedAt: '',
@@ -105,8 +115,8 @@ export function CouncilPage() {
           error={attempted && !situation.trim() ? 'Descreva a situação para convocar o Conselho.' : undefined}
           hint="O acontecimento, o contexto, as pessoas envolvidas e a dificuldade percebida."
         />
-        {detectCrisis(situation) && <CrisisNotice />}
         <TextArea label="Qual é a sua principal dúvida? (opcional)" value={doubt} onChange={setDoubt} rows={2} />
+        {risk && !blocked && <CrisisNotice />}
         <div className="grid gap-x-3 sm:grid-cols-2">
           <div className="mb-4">
             <label className="label mb-1.5" htmlFor="c-virtude">Virtude relacionada (opcional)</label>
@@ -136,6 +146,14 @@ export function CouncilPage() {
         <button type="button" className="btn" onClick={convene}>
           Convocar o Conselho
         </button>
+        {blocked && risk && (
+          <div role="alert" className="mt-4">
+            <Notice title="O Conselho não foi convocado">
+              O texto menciona algo que pode envolver risco à sua integridade ou à de outra pessoa. Nesses casos, o Conselho não conduz uma reflexão filosófica: nenhuma sessão foi criada e nada foi registrado.
+            </Notice>
+            <CrisisNotice />
+          </div>
+        )}
         <p className="hint mt-2 text-nota">A situação fica guardada com seus dados, neste navegador. Nada é enviado a serviços de inteligência artificial.</p>
       </Section>
 

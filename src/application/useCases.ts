@@ -25,9 +25,14 @@ import type {
   StageState,
   UserData,
 } from '../domain/types';
+import { isCrisisInput } from '../domain/crisis';
 import { isDate, newId, stamp } from '../shared/util';
 
 export class DomainError extends Error {}
+
+/** Mensagem da recusa de criar sessão comum do Conselho quando o texto traz sinal de risco. */
+export const CRISIS_BLOCKED =
+  'O Conselho não foi convocado: o texto menciona algo que pede o apoio de pessoas e serviços preparados. Nenhuma sessão foi criada.';
 
 export const activeJourney = (data: UserData): Journey | undefined => data.journeys.find((j) => j.status === 'ACTIVE');
 export const journeyById = (data: UserData, id: string | null | undefined) => data.journeys.find((j) => j.id === id);
@@ -303,6 +308,10 @@ export const deleteReview = (data: UserData, id: string): UserData => ({ ...data
 /** Uma sessão do Conselho pode estar ligada a uma jornada ou ser independente. */
 export function saveSession(data: UserData, session: CouncilSession, today: string): UserData {
   if (!session.situation.trim()) throw new DomainError('Descreva a situação que deseja analisar.');
+  /* Gate de segurança (Doc. 13 v2, seção 13): uma situação com sinal de risco não vira sessão comum.
+   * Vale só para a criação; atualizar uma sessão já existente (reflexão, ação, hipóteses) segue igual. */
+  const isNew = !data.sessions.some((s) => s.id === session.id);
+  if (isNew && isCrisisInput(session.situation, session.doubt)) throw new DomainError(CRISIS_BLOCKED);
   const next: UserData = { ...data, sessions: upsert(data.sessions, session) };
   return session.journeyId ? touchStage(next, session.journeyId, 'refletir', today) : next;
 }
