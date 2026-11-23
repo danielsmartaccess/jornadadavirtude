@@ -77,6 +77,8 @@ export function CouncilPage() {
   const [blocked, setBlocked] = useState(false);
   const sessions = sortByDateDesc(data.sessions);
   const risk = isCrisisInput(situation, doubt);
+  /** Estado bloqueado visível: a tentativa foi recusada e o texto ainda traz o sinal de risco. */
+  const blockedShown = blocked && risk;
 
   function convene() {
     setAttempted(true);
@@ -146,7 +148,7 @@ export function CouncilPage() {
         <button type="button" className="btn" onClick={convene}>
           Convocar o Conselho
         </button>
-        {blocked && risk && (
+        {blockedShown && (
           <div role="alert" className="mt-4">
             <Notice title="O Conselho não foi convocado">
               O texto menciona algo que pode envolver risco à sua integridade ou à de outra pessoa. Nesses casos, o Conselho não conduz uma reflexão filosófica: nenhuma sessão foi criada e nada foi registrado.
@@ -154,7 +156,10 @@ export function CouncilPage() {
             <CrisisNotice />
           </div>
         )}
-        <p className="hint mt-2 text-nota">A situação fica guardada com seus dados, neste navegador. Nada é enviado a serviços de inteligência artificial.</p>
+        {/* Com sinal de risco a convocação será recusada e nada é guardado: a frase só vale sem ele. */}
+        {!risk && (
+          <p className="hint mt-2 text-nota">A situação fica guardada com seus dados, neste navegador. Nada é enviado a serviços de inteligência artificial.</p>
+        )}
       </Section>
 
       <Section title="Sessões anteriores">

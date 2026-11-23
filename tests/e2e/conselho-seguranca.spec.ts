@@ -6,6 +6,8 @@ import { expect, test, type Page } from '@playwright/test';
 const DATA_KEY = 'jornada-virtude-v4';
 const NEUTRA = 'Tenho dificuldade em admitir quando estou errado e sempre tento me justificar.';
 const RISCO = 'Às vezes penso em suicídio depois das discussões em casa.';
+/** Frase sobre armazenamento: vale no fluxo comum e contradiria o alerta no bloqueio. */
+const FRASE_ARMAZENAMENTO = 'A situação fica guardada com seus dados, neste navegador.';
 
 const errors = (page: Page) => {
   const list: string[] = [];
@@ -33,6 +35,8 @@ async function esperarBloqueio(page: Page, textoBloqueado: string) {
   await expect(alerta).toBeVisible();
   await expect(alerta).toContainText('CVV 188');
   await expect(alerta).toContainText('nenhuma sessão foi criada');
+  /* A frase de armazenamento sumiria em contradição com o alerta. */
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
   /* Nenhuma navegação para sessão, nenhuma sessão gravada e o texto não ficou no navegador. */
   await expect(page).toHaveURL(/\/conselho(\?.*)?$/);
   await expect(page).not.toHaveURL(/sessoes/);
@@ -47,6 +51,8 @@ test('TESTE 1 e 7: sem sinal de risco, a sessão é criada e gravada como sempre
   const problems = errors(page);
   await page.goto('/conselho');
   await preencher(page, NEUTRA, 'Como mudar isso?');
+  /* No fluxo comum a frase de armazenamento continua, porque a sessão será gravada. */
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toBeVisible();
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   await expect(page).toHaveURL(/conselho\/sessoes\//);
   await expect(page.getByRole('heading', { name: 'Sócrates' })).toBeVisible();
@@ -59,8 +65,9 @@ test('TESTE 2 e 5: sinal de risco na situação bloqueia a convocação sem grav
   const problems = errors(page);
   await page.goto('/conselho');
   await preencher(page, RISCO);
-  /* O aviso aparece antes do clique, como já acontecia. */
+  /* O aviso aparece antes do clique, como já acontecia, e a frase de armazenamento já sai. */
   await expect(page.getByText('CVV 188', { exact: false })).toBeVisible();
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   await esperarBloqueio(page, RISCO);
   expect(problems, problems.join('\n')).toEqual([]);
@@ -72,6 +79,7 @@ test('TESTE 3: situação neutra com sinal de risco na dúvida também bloqueia'
   await preencher(page, NEUTRA, duvida);
   /* A dúvida passa a contar para o aviso, que antes olhava só a situação. */
   await expect(page.getByText('CVV 188', { exact: false })).toBeVisible();
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   await esperarBloqueio(page, duvida);
 });
@@ -97,8 +105,11 @@ test('depois de um bloqueio, um novo texto sem sinal de risco convoca o Conselho
   await preencher(page, RISCO);
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   await expect(page.getByRole('alert').filter({ hasText: 'O Conselho não foi convocado' })).toBeVisible();
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
   await preencher(page, NEUTRA);
   await expect(page.getByRole('alert').filter({ hasText: 'O Conselho não foi convocado' })).toHaveCount(0);
+  /* Saindo do bloqueio, a frase volta, junto com o fluxo comum. */
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toBeVisible();
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   await expect(page).toHaveURL(/conselho\/sessoes\//);
   await expect.poll(() => sessoesGravadas(page)).toBe(1);
@@ -170,9 +181,11 @@ test('convocar a partir de um registro do diário com sinal de risco também é 
   );
   await page.goto('/conselho?registro=e-risco');
   await expect(page.getByLabel('Qual situação você deseja analisar?')).toHaveValue(new RegExp(situacao.slice(0, 20)));
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
   await page.getByRole('button', { name: 'Convocar o Conselho' }).click();
   const alerta = page.getByRole('alert').filter({ hasText: 'O Conselho não foi convocado' });
   await expect(alerta).toBeVisible();
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
   await expect(page).not.toHaveURL(/sessoes/);
   await expect.poll(() => sessoesGravadas(page)).toBe(0);
 });
@@ -196,8 +209,9 @@ test('registro do diário com situação neutra e sinal de risco só no contexto
   /* A tela junta situação e contexto do registro, nessa ordem, no campo da situação. */
   const campo = page.getByLabel('Qual situação você deseja analisar?');
   await expect(campo).toHaveValue(`${situacao}. ${contexto}`);
-  /* O sinal vem do contexto: o aviso aparece antes mesmo do clique. */
+  /* O sinal vem do contexto: o aviso aparece antes mesmo do clique, sem a frase de armazenamento. */
   await expect(page.getByText('CVV 188', { exact: false })).toBeVisible();
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
 
   /* Retrato do armazenamento antes da tentativa: nada pode mudar depois dela. */
   const antes = await tudoQueFoiGravado(page);
@@ -208,6 +222,7 @@ test('registro do diário com situação neutra e sinal de risco só no contexto
   await expect(alerta).toContainText('CVV 188');
   await expect(alerta).toContainText('SAMU 192');
   await expect(alerta).toContainText('nenhuma sessão foi criada');
+  await expect(page.getByText(FRASE_ARMAZENAMENTO)).toHaveCount(0);
 
   await expect(page).toHaveURL(/\/conselho\?registro=e-contexto$/);
   await expect(page).not.toHaveURL(/sessoes/);
