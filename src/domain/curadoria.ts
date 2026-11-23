@@ -13,8 +13,10 @@ import candidatosJson from '../data/curadoria/candidatos.json';
 import classificacaoJson from '../data/curadoria/classificacao.json';
 import doc12Json from '../data/curadoria/doc12.json';
 import evidenciasJson from '../data/curadoria/evidencias.json';
+import referenciasJson from '../data/curadoria/referencias-base.json';
 import tradicoesJson from '../data/curadoria/tradicoes.json';
 import universosJson from '../data/curadoria/universos.json';
+import vinculosJson from '../data/curadoria/vinculos.json';
 import { getThinker, getWork, thinkers, thinkerVirtues } from './catalog';
 import type { Thinker, ThinkerVirtue, ValidationStatus } from './types';
 
@@ -101,15 +103,160 @@ export interface EvidenciaRelacao {
 export interface Classificacao {
   id: string;
   tipo: TipoParticipacao;
+  /** O primeiro é o universo principal (DEC-CUR-06). */
   universos: Universo[];
+  /** Nota para casos híbridos (filósofo/escritor, cientista/divulgador, líder religioso/autor). */
+  nota?: string;
 }
+
+/** Taxonomia de navegação v1 (DEC-CUR-06): metadado editorial, não ontologia nem hierarquia de valor. */
+export interface TaxonomiaInfo {
+  versao: string;
+  decisao: string;
+  uso: string;
+  aviso: string;
+  regras: string;
+}
+
+/* ---- Papel na seleção (DEC-CUR-02) ---- */
+
+/** Como um registro pode entrar no Conselho. `contextual_corpus` nunca ocupa vaga de voz individual. */
+export type PapelSelecao = 'individual_voice' | 'literary_voice' | 'contextual_corpus';
+
+export const PAPEL_SELECAO: Record<PapelSelecao, string> = {
+  individual_voice: 'Voz individual',
+  literary_voice: 'Voz literária',
+  contextual_corpus: 'Corpus de apoio — não convocado como pessoa',
+};
+
+/* ---- Referências-base (DEC-CUR-04) ---- */
+
+export type SituacaoConferencia = 'metadados_confirmados' | 'edicao_a_confirmar' | 'a_confirmar';
+export type TipoFonte =
+  | 'obra_autoral'
+  | 'obra_autoral_traduzida'
+  | 'compilacao_postuma'
+  | 'memorias_editadas'
+  | 'divulgacao_cientifica'
+  | 'testemunho';
+
+/** Referência bibliográfica de uma pessoa. `source_witness_for` = testemunho de terceiro sobre a pessoa (caso de Sócrates). */
+export interface ReferenciaBase {
+  workId: string;
+  pessoa: string;
+  relacao: 'autor_de' | 'source_witness_for';
+  titulo: string;
+  tituloOriginal: string | null;
+  autores: string[];
+  organizador: string | null;
+  tradutor: string | null;
+  editora: string | null;
+  ano: string | null;
+  edicao: string | null;
+  isbn: string | null;
+  doi: string | null;
+  url: string | null;
+  idioma: string | null;
+  tipoFonte: TipoFonte;
+  conferencia: { situacao: SituacaoConferencia; fonte: string; registro: string; confirmado: string; lacunas: string[] };
+  notaAtribuicao: string;
+}
+
+export const SITUACAO_CONFERENCIA: Record<SituacaoConferencia, string> = {
+  metadados_confirmados: 'Metadados conferidos na página do editor ou em registro institucional',
+  edicao_a_confirmar: 'Obra identificada; edição e tradução a confirmar',
+  a_confirmar: 'Metadados a confirmar',
+};
+
+export const TIPO_FONTE: Record<TipoFonte, string> = {
+  obra_autoral: 'Obra autoral',
+  obra_autoral_traduzida: 'Obra autoral (tradução)',
+  compilacao_postuma: 'Compilação póstuma',
+  memorias_editadas: 'Memórias editadas por terceiro',
+  divulgacao_cientifica: 'Divulgação científica',
+  testemunho: 'Testemunho de terceiro',
+};
+
+/* ---- Vínculos pessoa–tradição–corpus (DEC-CUR-02 e DEC-CUR-03) ---- */
+
+export type TipoVinculo = 'pertence_a' | 'formado_em' | 'representa_institucionalmente' | 'lider_de_toda_tradicao';
+export type SituacaoVinculo = 'sustentado_por_fonte' | 'a_confirmar' | 'nao_afirmar';
+
+export interface Vinculo {
+  id: string;
+  pessoa: string;
+  alvo: string;
+  tipo: TipoVinculo;
+  situacao: SituacaoVinculo;
+  fonte: string | null;
+  trecho: string | null;
+  nota: string;
+}
+
+/** Corpus que contextualiza uma perspectiva individual, sem virar segunda voz. */
+export interface ApoioContextual {
+  corpus: string;
+  pessoa: string;
+  recorte: string;
+  papel: string;
+  status: ValidationStatus;
+}
+
+export const TIPO_VINCULO: Record<TipoVinculo, string> = {
+  pertence_a: 'Pertence à tradição',
+  formado_em: 'Formado na tradição',
+  representa_institucionalmente: 'Representa institucionalmente',
+  lider_de_toda_tradicao: 'Líder de toda a tradição',
+};
+
+export const SITUACAO_VINCULO: Record<SituacaoVinculo, string> = {
+  sustentado_por_fonte: 'Sustentado por fonte',
+  a_confirmar: 'A confirmar',
+  nao_afirmar: 'Não afirmar',
+};
 
 export const universos = universosJson as unknown as UniversoInfo[];
 export const candidatos = (candidatosJson as unknown as { candidatos: Candidato[] }).candidatos;
 export const tradicoes = (tradicoesJson as unknown as { tradicoes: TradicaoCorpus[] }).tradicoes;
 export const classificacoes = (classificacaoJson as unknown as { entradas: Classificacao[] }).entradas;
+export const taxonomia = (classificacaoJson as unknown as { taxonomia: TaxonomiaInfo }).taxonomia;
 export const mapaDoc12 = (doc12Json as unknown as { integrantes: { doc12Id: string; id: string }[] }).integrantes;
 export const evidencias = (evidenciasJson as unknown as { evidencias: EvidenciaRelacao[] }).evidencias;
+export const referenciasBase = (referenciasJson as unknown as { referencias: ReferenciaBase[] }).referencias;
+export const vinculos = (vinculosJson as unknown as { vinculos: Vinculo[] }).vinculos;
+export const apoios = (vinculosJson as unknown as { apoios: ApoioContextual[] }).apoios;
+
+export const referenciasDe = (pessoa: string) => referenciasBase.filter((r) => r.pessoa === pessoa);
+export const vinculosDe = (pessoa: string) => vinculos.filter((v) => v.pessoa === pessoa);
+export const apoiosDe = (pessoa: string) => apoios.filter((a) => a.pessoa === pessoa);
+export const apoiadosPor = (corpus: string) => apoios.filter((a) => a.corpus === corpus);
+
+/** Papel derivado do tipo de participação: tradição/corpus e escola/corrente são corpus de apoio. */
+export function papelDoTipo(tipo: TipoParticipacao): PapelSelecao {
+  if (tipo === 'tradicao-corpus' || tipo === 'escola-corrente') return 'contextual_corpus';
+  if (tipo === 'voz-literaria-artistica') return 'literary_voice';
+  return 'individual_voice';
+}
+
+/** Papel de um registro do catálogo. Sem classificação, um registro de `kind: tradicao` continua corpus. */
+export function papelDoRegistro(t: Pick<Thinker, 'id' | 'kind'>): PapelSelecao {
+  const c = classificacaoIndex.get(t.id);
+  if (c) return papelDoTipo(c.tipo);
+  return t.kind === 'tradicao' ? 'contextual_corpus' : 'individual_voice';
+}
+
+/** Universo principal (primeiro da lista), usado só na regra de diversidade da seleção. */
+export const universoPrincipal = (id: string): Universo | undefined => classificacaoIndex.get(id)?.universos[0];
+
+/** Disponibilidade de fonte de um registro, de 0 a 1 (critério "fontes" da política v2):
+ *  obra no catálogo ou referência-base com metadados conferidos = 1; referência-base ainda a conferir = 0,5; nada = 0.
+ *  É disponibilidade de fonte do autor, não validação de nenhuma relação com virtude. */
+export function qualidadeDaFonte(t: Pick<Thinker, 'id' | 'workIds'>, lista: ReferenciaBase[] = referenciasBase): number {
+  if (t.workIds.length) return 1;
+  const refs = lista.filter((r) => r.pessoa === t.id);
+  if (refs.some((r) => r.conferencia.situacao === 'metadados_confirmados')) return 1;
+  return refs.length ? 0.5 : 0;
+}
 
 const classificacaoIndex = new Map(classificacoes.map((c) => [c.id, c]));
 const candidatoIndex = new Map(candidatos.map((c) => [c.id, c]));
@@ -230,6 +377,9 @@ export interface EntradaAcervo {
   universos: Universo[];
   /** Participa da seleção do Conselho (campo `council` do catálogo original). */
   habilitado: boolean;
+  /** Convocável como voz pelo Conselho: habilitado e não é corpus de apoio (DEC-CUR-02). */
+  convocavel: boolean;
+  papel: PapelSelecao;
   status: ValidationStatus;
   /** Tradição/campo como texto (catálogo original, Doc. 12 ou Doc. 14). */
   campo: string;
@@ -252,6 +402,8 @@ export function entradasDoAcervo(): EntradaAcervo[] {
       tipo: c?.tipo ?? (t.kind === 'tradicao' ? 'tradicao-corpus' : 'pensador-individual'),
       universos: c?.universos ?? [],
       habilitado: t.council,
+      convocavel: t.council && papelDoRegistro(t) !== 'contextual_corpus',
+      papel: papelDoRegistro(t),
       status: t.status,
       campo: t.tradition,
       resumo: t.field,
@@ -260,11 +412,11 @@ export function entradasDoAcervo(): EntradaAcervo[] {
     };
   });
   const propostos: EntradaAcervo[] = candidatos.map((c) => ({
-    id: c.id, nome: c.nome, categoria: 'candidato', tipo: c.tipo, universos: c.universos, habilitado: false,
+    id: c.id, nome: c.nome, categoria: 'candidato', tipo: c.tipo, universos: c.universos, habilitado: false, convocavel: false, papel: papelDoTipo(c.tipo),
     status: c.status, campo: c.campo, resumo: c.contribuicao, doc12Id: c.doc12Id, candidato: c,
   }));
   const corpora: EntradaAcervo[] = tradicoes.map((t) => ({
-    id: t.id, nome: t.nome, categoria: 'tradicao', tipo: t.tipo, universos: t.universos, habilitado: false,
+    id: t.id, nome: t.nome, categoria: 'tradicao', tipo: t.tipo, universos: t.universos, habilitado: false, convocavel: false, papel: papelDoTipo(t.tipo),
     status: t.status, campo: t.escopo, resumo: t.cuidado, tradicao: t,
   }));
   return [...doCatalogo, ...propostos, ...corpora];

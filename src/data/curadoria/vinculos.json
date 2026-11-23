@@ -1,0 +1,65 @@
+{
+  "_nota": "Vínculos entre pessoa, tradição, escola e corpus (DEC-CUR-02 e DEC-CUR-03). Cada vínculo distingue o tipo de relação: 'pertence_a', 'formado_em', 'representa_institucionalmente' e 'lider_de_toda_tradicao'. 'situacao' diz se há fonte específica ('sustentado_por_fonte'), se falta fonte ('a_confirmar') ou se a afirmação não deve ser feita ('nao_afirmar'). Nenhum vínculo é inferido de fonte genérica sobre budismo.",
+  "dataConferencia": "2026-11-23",
+  "vinculos": [
+    {
+      "id": "VIN-DAL-01",
+      "pessoa": "dalai-lama",
+      "alvo": "Budismo tibetano",
+      "tipo": "formado_em",
+      "situacao": "sustentado_por_fonte",
+      "fonte": "https://www.dalailama.com/the-dalai-lama/biography-and-daily-life/brief-biography",
+      "trecho": "His Holiness began his monastic education at the age of six. … awarded the Geshe Lharampa degree, equivalent to the highest doctorate in Buddhist philosophy.",
+      "nota": "Biografia oficial (Office of His Holiness the Dalai Lama). O currículo é descrito como \"derived from the Nalanda tradition\"; a página não nomeia uma escola."
+    },
+    {
+      "id": "VIN-DAL-02",
+      "pessoa": "dalai-lama",
+      "alvo": "Budismo tibetano",
+      "tipo": "pertence_a",
+      "situacao": "sustentado_por_fonte",
+      "fonte": "https://www.dalailama.com/the-dalai-lama/biography-and-daily-life/questions-answers",
+      "trecho": "I always consider myself as a simple Buddhist monk.",
+      "nota": "Monge budista com formação monástica no Tibete (VIN-DAL-01). O recorte é o budismo tibetano, não o budismo em geral."
+    },
+    {
+      "id": "VIN-DAL-03",
+      "pessoa": "dalai-lama",
+      "alvo": "Escola Gelug (Gelugpa / Ganden)",
+      "tipo": "pertence_a",
+      "situacao": "a_confirmar",
+      "fonte": "https://tibet.net/about-tibet/his-holiness/",
+      "trecho": "The young Gedun Drupa was aware of the fame of the Great Tsongkhapa, the founder of the Gelugpa School",
+      "nota": "Nenhuma fonte lida afirma a filiação do 14º Dalai Lama à escola Gelug. A página da Administração Central Tibetana (que reproduz texto do Escritório do Dalai Lama) liga o PRIMEIRO Dalai Lama a Tsongkhapa, fundador da escola Gelugpa: é contexto histórico da linhagem, não prova de filiação do 14º. \"Ganden Phodrang\" é, na biografia oficial, o escritório e a casa dos Dalai Lamas, não o nome de uma escola. Exige fonte institucional ou acadêmica específica."
+    },
+    {
+      "id": "VIN-DAL-04",
+      "pessoa": "dalai-lama",
+      "alvo": "Tibete",
+      "tipo": "representa_institucionalmente",
+      "situacao": "sustentado_por_fonte",
+      "fonte": "https://www.dalailama.com/the-dalai-lama/biography-and-daily-life/brief-biography",
+      "trecho": "He is the spiritual leader of Tibet.",
+      "nota": "Liderança espiritual do Tibete, segundo a biografia oficial. Não é liderança de uma escola nem de todo o budismo."
+    },
+    {
+      "id": "VIN-DAL-05",
+      "pessoa": "dalai-lama",
+      "alvo": "Todos os budismos (Theravāda, Zen, todos os Mahāyāna)",
+      "tipo": "lider_de_toda_tradicao",
+      "situacao": "nao_afirmar",
+      "fonte": null,
+      "trecho": null,
+      "nota": "Não afirmar. Nenhuma fonte lida atribui ao Dalai Lama a liderança ou a representação de Theravāda, Zen, de todos os Mahāyāna ou de todos os budismos; o escopo declarado nas fontes oficiais é o Tibete."
+    }
+  ],
+  "apoios": [
+    {
+      "corpus": "tradicoes-budistas",
+      "pessoa": "dalai-lama",
+      "recorte": "budismo tibetano",
+      "papel": "Fornece contexto, conceitos e fontes à perspectiva individual. Não é convocado como pessoa nem conta como segunda voz.",
+      "status": "proposta"
+    }
+  ]
+}
