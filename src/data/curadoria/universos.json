@@ -1,0 +1,32 @@
+[
+  {
+    "id": "filosofia-etica",
+    "nome": "Filosofia e ética",
+    "conteudo": "Filósofos, escolas e teorias éticas",
+    "contribuicoes": "Virtude, justiça, dever, liberdade, responsabilidade, prudência"
+  },
+  {
+    "id": "tradicoes-espirituais",
+    "nome": "Tradições espirituais e contemplativas",
+    "conteudo": "Textos, escolas e tradições religiosas",
+    "contribuicoes": "Compaixão, atenção, disciplina, desapego, serviço, sentido"
+  },
+  {
+    "id": "psicologia-ciencias-humanas",
+    "nome": "Psicologia e ciências humanas",
+    "conteudo": "Psicologia, educação, sociologia e antropologia",
+    "contribuicoes": "Empatia, aprendizagem, motivação, cuidado, vieses"
+  },
+  {
+    "id": "literatura-artes",
+    "nome": "Literatura e artes",
+    "conteudo": "Escritores, poetas, dramaturgos, artistas e obras",
+    "contribuicoes": "Ambiguidade moral, imaginação, alteridade, sofrimento, memória"
+  },
+  {
+    "id": "ciencia-sistemas",
+    "nome": "Ciência e pensamento sistêmico",
+    "conteudo": "Ciência, epistemologia e sistemas",
+    "contribuicoes": "Curiosidade, honestidade intelectual, humildade epistêmica, interdependência"
+  }
+]

@@ -49,8 +49,10 @@ export function Tag({ children, accent }: { children: ReactNode; accent?: boolea
 
 const STATUS_TEXT: Record<ValidationStatus, string> = {
   proposta: 'Proposta · aguarda revisão',
+  em_revisao: 'Em revisão',
   validada: 'Validada',
   suspensa: 'Suspensa',
+  rejeitada: 'Rejeitada · histórico preservado',
 };
 
 /** Estado de validação do conteúdo (Doc. 04, seção 14). */

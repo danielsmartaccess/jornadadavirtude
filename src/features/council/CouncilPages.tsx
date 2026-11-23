@@ -10,7 +10,6 @@ import { estadosDosAneis, leituraDoConjunto, type TipoRelacaoDimensao } from '..
 import { Accordion, AutoSaveArea, ConfirmButton, EmptyState, Notice, PageHeader, Section, StatusTag, Tag, TextArea } from '../../components/ui';
 import {
   casesOfThinker,
-  councilMembers,
   dimensions,
   exercisesOfVirtue,
   getCase,
@@ -25,9 +24,28 @@ import {
   worksOfThinker,
 } from '../../domain/catalog';
 import { detectCrisis, isCrisisInput, selectThinkers, suggest, synthesize, type CouncilSelection } from '../../domain/council';
+import {
+  entradasDoAcervo,
+  evidenciasDaRelacao,
+  getCandidato,
+  getClassificacao,
+  getTradicao,
+  getUniverso,
+  NIVEL_FUNDAMENTACAO,
+  ORIGEM_CANDIDATO,
+  TIPO_PARTICIPACAO,
+  tradicoes,
+  universos,
+  type CategoriaAcervo,
+  type Candidato,
+  type EntradaAcervo,
+  type TipoParticipacao,
+  type TradicaoCorpus,
+  type Universo,
+} from '../../domain/curadoria';
 import { isOpenJourney, sortByDateDesc } from '../../domain/journey';
 import type { CouncilSession, DiaryEntry } from '../../domain/types';
-import { formatDate, newId, today, unique } from '../../shared/util';
+import { formatDate, newId, normalize, today, unique } from '../../shared/util';
 
 const TRANSPARENCY =
   'As contribuições são interpretações organizadas pela plataforma a partir de ideias e obras documentadas. Não são falas literais dos pensadores nem simulam sua personalidade. O Conselho amplia a reflexão; a conclusão e a decisão são suas.';
@@ -370,34 +388,330 @@ export function SessionPage() {
   );
 }
 
+/* Biblioteca de perspectivas (Documento 14, seções 4, 5, 8 e 10). Só os integrantes participam da seleção;
+ * candidatos e tradições aparecem para consulta, sempre marcados como não habilitados. */
+const ACERVO = entradasDoAcervo();
+
+const CATEGORIAS: { id: CategoriaAcervo; titulo: string; filtro: string; nota: string }[] = [
+  { id: 'integrante', titulo: 'Integrantes do Conselho', filtro: 'Integrantes', nota: 'Participam da seleção de perspectivas do Conselho.' },
+  { id: 'tradicao', titulo: 'Tradições, corpora e escolas', filtro: 'Tradições', nota: 'Conjuntos de textos, práticas e interpretações. Não são pessoas. Não participam do Conselho por este registro.' },
+  { id: 'candidato', titulo: 'Candidatos em estudo', filtro: 'Candidatos', nota: 'Propostos para validação curatorial. Não habilitados: não participam do Conselho.' },
+  { id: 'referencia', titulo: 'Outras referências do catálogo', filtro: 'Referências', nota: 'Citadas como referência de virtudes, sem perfil no Conselho.' },
+];
+
+const TIPOS = Object.keys(TIPO_PARTICIPACAO) as TipoParticipacao[];
+
+const virtudesDaEntrada = new Map(thinkers.map((t) => [t.id, new Set(virtuesOfThinker(t.id).map((r) => r.virtue.id))]));
+
+const naoEPessoa = (tipo: TipoParticipacao) => tipo === 'tradicao-corpus' || tipo === 'escola-corrente';
+
+function iniciais(nome: string): string {
+  const partes = nome.replace(/\(.*?\)/g, '').split(/\s+/).filter((p) => p.length > 2 || /^[A-Z]/.test(p));
+  return partes.slice(0, 2).map((p) => p[0]?.toUpperCase() ?? '').join('');
+}
+
+/** Composição tipográfica no lugar de retrato: não há imagem com origem e licença identificáveis para estas entradas. */
+function Monograma({ nome, tipo }: { nome: string; tipo: TipoParticipacao }) {
+  return (
+    <span aria-hidden="true" className={`flex h-9 w-9 shrink-0 items-center justify-center font-display text-nota text-muted ${naoEPessoa(tipo) ? 'rounded-full' : ''}`} style={{ border: `1px ${naoEPessoa(tipo) ? 'double' : 'solid'} var(--color-rule)`, borderWidth: naoEPessoa(tipo) ? 3 : 1 }}>
+      {iniciais(nome)}
+    </span>
+  );
+}
+
+function TagsDaEntrada({ tipo, lista }: { tipo: TipoParticipacao; lista: Universo[] }) {
+  return (
+    <div className="mt-2 flex flex-wrap gap-1.5">
+      <Tag accent={naoEPessoa(tipo)}>{TIPO_PARTICIPACAO[tipo].nome}{naoEPessoa(tipo) ? ' · não é uma pessoa' : ''}</Tag>
+      {lista.map((u) => (
+        <Tag key={u}>{getUniverso(u)?.nome ?? u}</Tag>
+      ))}
+    </div>
+  );
+}
+
+const BORDA: Record<CategoriaAcervo, string> = {
+  integrante: '4px solid var(--accent)',
+  tradicao: '4px double var(--fg)',
+  candidato: '4px dashed var(--muted)',
+  referencia: '1px solid var(--color-rule)',
+};
+
+function CartaoAcervo({ e, i }: { e: EntradaAcervo; i: number }) {
+  const t = e.thinker;
+  return (
+    <Link to={`/conselho/pensadores/${e.id}`} className="card revelar" data-categoria={e.categoria} style={{ borderTop: BORDA[e.categoria], ...atraso(i) }}>
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3>{e.nome}</h3>
+          <p className="meta">{t ? [t.tradition, t.period].filter(Boolean).join(' · ') : e.campo}</p>
+        </div>
+        {e.categoria === 'integrante' && t ? (
+          <div className="flex shrink-0 items-center gap-2">
+            <EmblemaTradicaoSimbolo tradicao={t.tradition} size={36} />
+            <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(t.id)} size={36} />
+          </div>
+        ) : (
+          <Monograma nome={e.nome} tipo={e.tipo} />
+        )}
+      </div>
+      <p className="mt-1">{e.categoria === 'tradicao' ? `Cuidado de leitura: ${e.resumo}` : e.resumo}</p>
+      <TagsDaEntrada tipo={e.tipo} lista={e.universos} />
+      <p className="meta mt-2">{e.habilitado ? 'Participa do Conselho' : 'Não habilitado · não participa do Conselho'}</p>
+    </Link>
+  );
+}
+
 export function ThinkersPage() {
-  const others = thinkers.filter((t) => !t.council);
+  const [categoria, setCategoria] = useState<CategoriaAcervo | ''>('');
+  const [universo, setUniverso] = useState('');
+  const [tipo, setTipo] = useState('');
+  const [virtude, setVirtude] = useState('');
+  const [dimensao, setDimensao] = useState('');
+  const [query, setQuery] = useState('');
+  const q = normalize(query.trim());
+  const daDimensao = new Set(virtueDimensions.filter((r) => r.dimensionId === dimensao).map((r) => r.virtueId));
+  const filtrarPorVirtude = Boolean(virtude || dimensao);
+  const filtradas = ACERVO.filter((e) => {
+    const vs = virtudesDaEntrada.get(e.id);
+    return (
+      (!categoria || e.categoria === categoria) &&
+      (!universo || e.universos.includes(universo as Universo)) &&
+      (!tipo || e.tipo === tipo) &&
+      (!virtude || Boolean(vs?.has(virtude))) &&
+      (!dimensao || [...(vs ?? [])].some((v) => daDimensao.has(v))) &&
+      (!q || normalize(`${e.nome} ${e.campo} ${e.resumo} ${TIPO_PARTICIPACAO[e.tipo].nome}`).includes(q))
+    );
+  });
+  const limpar = () => {
+    setCategoria('');
+    setUniverso('');
+    setTipo('');
+    setVirtude('');
+    setDimensao('');
+    setQuery('');
+  };
+  const algumFiltro = Boolean(categoria || universo || tipo || virtude || dimensao || q);
+
   return (
     <>
-      <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores' }]} title="Pensadores e referências" lede="Cada integrante do Conselho tem um campo de contribuição baseado em suas obras e ideias, com limites declarados." />
-      <Section title="Integrantes do Conselho">
-        <div className="grid gap-3 sm:grid-cols-2">
-          {councilMembers.map((t, i) => (
-            <Link key={t.id} to={`/conselho/pensadores/${t.id}`} className="card revelar" style={atraso(i)}>
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0">
-                  <h3>{t.name}</h3>
-                  <p className="meta">{[t.tradition, t.period].filter(Boolean).join(' · ')}</p>
-                </div>
-                <div className="flex shrink-0 items-center gap-2">
-                  <EmblemaTradicaoSimbolo tradicao={t.tradition} size={36} />
-                  <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(t.id)} size={36} />
-                </div>
-              </div>
-              <p className="mt-1">{t.field}</p>
-            </Link>
-          ))}
+      <PageHeader
+        crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores' }]}
+        title="Pensadores e referências"
+        lede="Uma biblioteca de perspectivas: pensadores, tradições e vozes de vários universos do conhecimento. Cada entrada mostra o tipo de participação, o campo de contribuição e o estado da curadoria."
+      >
+        <p className="hint mt-2 max-w-leitura">
+          Só os {ACERVO.filter((e) => e.habilitado).length} integrantes participam do Conselho. Tradições e candidatos estão aqui para consulta e aguardam validação curatorial. Pessoas e tradições não se confundem: uma tradição é um conjunto histórico de textos e práticas, não um autor.
+        </p>
+      </PageHeader>
+
+      <div role="group" aria-label="Categorias do acervo" className="mb-4 flex flex-wrap gap-2">
+        {CATEGORIAS.map((c) => (
+          <button key={c.id} type="button" className="chip !min-h-9 !text-nota" aria-pressed={categoria === c.id} onClick={() => setCategoria(categoria === c.id ? '' : c.id)}>
+            {c.filtro} <span className="meta ml-1.5">{ACERVO.filter((e) => e.categoria === c.id).length}</span>
+          </button>
+        ))}
+      </div>
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <label className="label mb-1.5" htmlFor="acervo-busca">
+            Palavra-chave
+          </label>
+          <input id="acervo-busca" type="search" className="field" value={query} onChange={(ev) => setQuery(ev.target.value)} placeholder="Ex.: estoicismo, cuidado, justiça" />
         </div>
+        <div>
+          <label className="label mb-1.5" htmlFor="acervo-universo">
+            Universo
+          </label>
+          <select id="acervo-universo" className="field" value={universo} onChange={(ev) => setUniverso(ev.target.value)}>
+            <option value="">Todos</option>
+            {universos.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="label mb-1.5" htmlFor="acervo-tipo">
+            Tipo de participação
+          </label>
+          <select id="acervo-tipo" className="field" value={tipo} onChange={(ev) => setTipo(ev.target.value)}>
+            <option value="">Todos</option>
+            {TIPOS.map((t) => (
+              <option key={t} value={t}>
+                {TIPO_PARTICIPACAO[t].nome}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="label mb-1.5" htmlFor="acervo-virtude">
+            Virtude relacionada
+          </label>
+          <select id="acervo-virtude" className="field" value={virtude} onChange={(ev) => setVirtude(ev.target.value)}>
+            <option value="">Todas</option>
+            {virtues.map((v) => (
+              <option key={v.id} value={v.id}>
+                {v.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="label mb-1.5" htmlFor="acervo-dimensao">
+            Dimensão
+          </label>
+          <select id="acervo-dimensao" className="field" value={dimensao} onChange={(ev) => setDimensao(ev.target.value)}>
+            <option value="">Todas</option>
+            {dimensions.map((d) => (
+              <option key={d.id} value={d.id}>
+                {d.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex items-end">
+          <button type="button" className="btn btn-ghost w-full" onClick={limpar} disabled={!algumFiltro}>
+            Limpar filtros
+          </button>
+        </div>
+      </div>
+      <p className="meta mt-3" role="status">
+        {filtradas.length} de {ACERVO.length} entradas
+      </p>
+      {filtrarPorVirtude && <p className="hint mt-1">Os filtros de virtude e dimensão usam as relações cadastradas no catálogo. Tradições e candidatos ainda não têm relações e não aparecem nesses filtros.</p>}
+
+      {filtradas.length === 0 && (
+        <div className="mt-4">
+          <EmptyState title="Nenhuma entrada encontrada">Tente outra palavra ou limpe os filtros.</EmptyState>
+        </div>
+      )}
+
+      {CATEGORIAS.filter((c) => filtradas.some((e) => e.categoria === c.id)).map((c) => (
+        <Section key={c.id} title={c.titulo} aside={<span className="meta">{c.nota}</span>}>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {filtradas
+              .filter((e) => e.categoria === c.id)
+              .map((e, i) => (
+                <CartaoAcervo key={e.id} e={e} i={i} />
+              ))}
+          </div>
+        </Section>
+      ))}
+    </>
+  );
+}
+
+const NAO_HABILITADO = 'Não habilitado · não participa do Conselho';
+
+function nomeDaEntrada(id: string): { nome: string; existe: boolean } {
+  const n = getThinker(id)?.name ?? getCandidato(id)?.nome ?? getTradicao(id)?.nome;
+  return { nome: n ?? id, existe: Boolean(n) };
+}
+
+function LinksDeEntradas({ ids }: { ids: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {ids.map((id) => {
+        const { nome, existe } = nomeDaEntrada(id);
+        return existe ? (
+          <Link key={id} to={`/conselho/pensadores/${id}`} className="chip">
+            {nome}
+          </Link>
+        ) : (
+          <span key={id} className="tag">
+            {nome}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function CandidatoView({ c }: { c: Candidato }) {
+  return (
+    <>
+      <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: c.nome }]} title={c.nome} lede={c.contribuicao}>
+        <p className="meta mt-2">{c.campo}</p>
+        <TagsDaEntrada tipo={c.tipo} lista={c.universos} />
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <StatusTag status={c.status} />
+          <Tag accent>{NAO_HABILITADO}</Tag>
+        </div>
+      </PageHeader>
+      <Section title="Por que está no acervo">
+        <p>{ORIGEM_CANDIDATO[c.origem]}.</p>
+        <p className="meta mt-2">Registro: {c.fonteDoRegistro}{c.doc12Id && !c.fonteDoRegistro.includes(c.doc12Id) ? ` · ${c.doc12Id}` : ''}</p>
       </Section>
-      <Section title="Outras referências citadas no catálogo">
-        <p className="hint mb-2">Autores e tradições indicados como referência de virtudes, ainda sem perfil no Conselho.</p>
-        <p>{others.map((t) => t.name).join(' · ')}</p>
+      {c.temasAInvestigar && (
+        <Section title="Temas a investigar">
+          <p>{c.temasAInvestigar}</p>
+        </Section>
+      )}
+      {c.cuidado && (
+        <Section title="Cuidados de interpretação">
+          <Notice title="Limites desta perspectiva">{c.cuidado}</Notice>
+        </Section>
+      )}
+      <Section title="O que falta para participar do Conselho">
+        <p>Decisão formal de curadoria, relações com virtudes registradas uma a uma e evidências com obra e localização revisadas. Enquanto isso não acontece, esta perspectiva não é convocada.</p>
       </Section>
+    </>
+  );
+}
+
+function TradicaoView({ t }: { t: TradicaoCorpus }) {
+  const obras = (t.obras ?? []).flatMap((id) => {
+    const w = getWork(id);
+    return w ? [w] : [];
+  });
+  return (
+    <>
+      <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: t.nome }]} title={t.nome} lede={t.escopo}>
+        <TagsDaEntrada tipo={t.tipo} lista={t.universos} />
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          <StatusTag status={t.status} />
+          <Tag>Recorte curatorial</Tag>
+        </div>
+      </PageHeader>
+      <Section title="Como ler esta entrada">
+        <p>{TIPO_PARTICIPACAO[t.tipo].descricao} Esta página descreve um recorte de estudo, não uma biografia, e não fala em nome da tradição.</p>
+        <Notice title="Cuidados de interpretação">{t.cuidado}</Notice>
+      </Section>
+      {t.conflito && (
+        <Section title="Ponto em aberto na curadoria">
+          <p>{t.conflito}</p>
+        </Section>
+      )}
+      {t.registrosNoCatalogo.length > 0 && (
+        <Section title="Registros correspondentes no catálogo">
+          <LinksDeEntradas ids={t.registrosNoCatalogo} />
+        </Section>
+      )}
+      {t.autoresRelacionados.length > 0 && (
+        <Section title="Autores relacionados">
+          <p className="hint mb-2">Autores e esta tradição não entram juntos no Conselho como vozes independentes.</p>
+          <LinksDeEntradas ids={t.autoresRelacionados} />
+        </Section>
+      )}
+      {(obras.length > 0 || t.edicaoTraducao) && (
+        <Section title="Obras e edição">
+          {obras.length > 0 && (
+            <ul className="prose-list">
+              {obras.map((w) => (
+                <li key={w.id}>{w.title}</li>
+              ))}
+            </ul>
+          )}
+          {t.edicaoTraducao && <p className="meta mt-2">Edição ou tradução de referência: {t.edicaoTraducao}</p>}
+        </Section>
+      )}
+      {(t.parteDe || (t.corpora ?? []).length > 0) && (
+        <Section title="Relações com outras entradas">
+          <LinksDeEntradas ids={[...(t.parteDe ? [t.parteDe] : []), ...(t.corpora ?? [])]} />
+        </Section>
+      )}
     </>
   );
 }
@@ -405,10 +719,19 @@ export function ThinkersPage() {
 export function ThinkerPage() {
   const { id = '' } = useParams();
   const thinker = getThinker(id);
-  if (!thinker) return <EmptyState title="Pensador não encontrado">Volte à <Link to="/conselho/pensadores">lista de pensadores</Link>.</EmptyState>;
+  if (!thinker) {
+    const candidato = getCandidato(id);
+    if (candidato) return <CandidatoView c={candidato} />;
+    const tradicao = getTradicao(id);
+    if (tradicao) return <TradicaoView t={tradicao} />;
+    return <EmptyState title="Pensador não encontrado">Volte à <Link to="/conselho/pensadores">lista de pensadores</Link>.</EmptyState>;
+  }
   const works = worksOfThinker(thinker);
   const related = virtuesOfThinker(thinker.id);
   const cases = casesOfThinker(thinker.id);
+  const classificacao = getClassificacao(thinker.id);
+  const recortes = tradicoes.filter((t) => t.registrosNoCatalogo.includes(thinker.id));
+  const avaliadas = related.filter(({ relation }) => evidenciasDaRelacao(relation.id).length > 0).length;
   return (
     <>
       <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: thinker.name }]} title={thinker.name} lede={thinker.field}>
@@ -418,9 +741,22 @@ export function ThinkerPage() {
           <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(thinker.id)} size={56} animado />
           <p className="meta max-w-legenda text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
         </div>
-        <div className="mt-2">
+        {classificacao && <TagsDaEntrada tipo={classificacao.tipo} lista={classificacao.universos} />}
+        <div className="mt-2 flex flex-wrap gap-1.5">
           <StatusTag status={thinker.status} />
+          {!thinker.council && <Tag accent>{NAO_HABILITADO}</Tag>}
         </div>
+        {recortes.length > 0 && (
+          <p className="meta mt-2">
+            Recorte curatorial:{' '}
+            {recortes.map((t, i) => (
+              <span key={t.id}>
+                {i > 0 && ' · '}
+                <Link to={`/conselho/pensadores/${t.id}`}>{t.nome}</Link>
+              </span>
+            ))}
+          </p>
+        )}
       </PageHeader>
 
       <Section title="Contribuição">
@@ -458,9 +794,15 @@ export function ThinkerPage() {
             <Link key={relation.id} to={`/virtudes/${virtue.id}`} className="chip">
               {virtue.name}
               {relation.relationType && <span className="meta ml-2">{relation.relationType}</span>}
+              {evidenciasDaRelacao(relation.id).map((ev, j) => ev.nivel && <span key={j} className="meta ml-2" title={NIVEL_FUNDAMENTACAO[ev.nivel].nome}>{ev.nivel}</span>)}
             </Link>
           ))}
         </div>
+        <p className="hint mt-3">
+          {avaliadas === 0
+            ? 'A fundamentação de cada relação (níveis F1 a F4 do Documento 14) ainda não foi avaliada pela curadoria. As obras acima valem para o integrante como um todo, não para cada virtude.'
+            : `${avaliadas} de ${related.length} relações têm evidência registrada pela curadoria.`}
+        </p>
       </Section>
 
       {cases.length > 0 && (

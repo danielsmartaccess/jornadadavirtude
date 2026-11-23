@@ -1,0 +1,4 @@
+{
+  "_nota": "Evidências por relação pensador–virtude (Documento 14, seção 9.3). Cada evidência aponta para UMA relação de thinker-virtues.json (campo 'relacaoId') e, quando houver, para UMA obra específica. Começa vazio de propósito: nenhuma fonte foi conferida nesta entrega, e a escala F1–F4 não é preenchida por inferência nem importada da auditoria. Os campos 'relationType' (P1–P4 do Documento 04) e 'status' das relações não são alterados por este arquivo.",
+  "evidencias": []
+}

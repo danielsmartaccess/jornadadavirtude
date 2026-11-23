@@ -7,8 +7,9 @@
  * sessões do Conselho. Vivem no navegador e, opcionalmente, no Supabase.
  * ------------------------------------------------------------------------- */
 
-/** Estado de validação de um conteúdo ou relação (Documento 04, seção 14). */
-export type ValidationStatus = 'proposta' | 'validada' | 'suspensa';
+/** Estado de validação de um conteúdo ou relação (Documento 04, seção 14).
+ *  `em_revisao` e `rejeitada` vêm do Documento 14, seção 9.2 (acréscimo: os valores antigos continuam válidos). */
+export type ValidationStatus = 'proposta' | 'em_revisao' | 'validada' | 'suspensa' | 'rejeitada';
 
 export interface Dimension {
   id: string;

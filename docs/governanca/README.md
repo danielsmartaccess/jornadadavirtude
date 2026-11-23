@@ -2,7 +2,7 @@
 
 | Campo | Valor |
 |---|---|
-| Versão | 0.3 |
+| Versão | 0.4 |
 | Status | ÍNDICE DE GOVERNANÇA (nenhum documento desta pasta está aprovado) |
 | Data de atualização | 2026-11-23 |
 | Base do repositório | `main` em `b23ddac` |
@@ -15,6 +15,7 @@
 | 0.1 | 2026-11-23 | Primeira versão do índice. |
 | 0.2 | 2026-11-23 | Classificação documental por tipo (complemento, reconstrução, artefato, registro, índice); papéis de validação; separação entre status de implementação e status de evidência nos requisitos. Conteúdo e proveniência preservados. |
 | 0.3 | 2026-11-23 | Totais do histórico de decisões corrigidos: 24 pendentes, 1 aprovada (D-GOV-01, formalizada em DEC-15), 11 conflitos preservados. |
+| 0.4 | 2026-11-23 | Inclusão do Documento 14 (curadoria ampliada) e do ADR-CUR-01 no índice. Nenhum status alterado. |
 
 ## Classificação documental
 
@@ -60,6 +61,7 @@ O objetivo é deixar a documentação pronta para validação. Nenhuma aprovaç�
 | 11 | Título desconhecido | **Não localizado nas fontes examinadas**; nenhuma referência encontrada | — | — |
 | 12 | Catálogo de Pensadores (34 integrantes) | `../DOCUMENTO-12-catalogo-de-pensadores.md` | 2.0 | Para validação editorial e filosófica |
 | 13 | Metodologia do Conselho de Sabedoria | `../DOCUMENTO-13-metodologia-do-conselho-v2.md` | 2.0 | Especificação metodológica consolidada (a v1.0 existe só localmente) |
+| 14 | Curadoria Ampliada do Conselho de Sabedoria | `../DOCUMENTO-14-curadoria-ampliada-do-conselho.md` | 1.0 | Proposta curatorial para validação |
 
 ### Documentos desta governança
 
@@ -73,6 +75,7 @@ O objetivo é deixar a documentação pronta para validação. Nenhuma aprovaç�
 | Matriz de rastreabilidade | `rastreabilidade/matriz-rastreabilidade.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO | Complemento do Doc. 07 | Revisor técnico |
 | Inventário de evidências | `rastreabilidade/inventario-evidencias.md` | ARTEFATO DE GOVERNANÇA PARA VALIDAÇÃO | Todas as fontes examinadas | Revisor técnico; revisor filosófico/curatorial (fontes documentais) |
 | Histórico de decisões | `decisoes/historico-decisoes.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | Documentos, commits, código | Responsável pelo produto (24 decisões pendentes; 1 aprovada, D-GOV-01, formalizada em DEC-15; 11 conflitos preservados) |
+| ADR-CUR-01 — Camada curatorial do Conselho | `decisoes/ADR-CUR-01-camada-curatorial-do-conselho.md` | REGISTRO DE DECISÕES PARA VALIDAÇÃO | Doc. 14; Docs. 04, 08, 12, 13; código | Responsável pelo produto (conflitos C-CUR-1 a C-CUR-5); revisor filosófico/curatorial (classificação, candidatos, tradições); revisor técnico (modelo de dados e seleção) |
 
 ## Fontes
 
