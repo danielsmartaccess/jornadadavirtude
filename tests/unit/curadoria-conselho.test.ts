@@ -4,8 +4,12 @@ import { describe, expect, it } from 'vitest';
 import { councilCases, councilMembers, getThinker, thinkers, thinkerVirtues, virtues, works } from '../../src/domain/catalog';
 import {
   CONTEXTO_PADRAO,
+  deliberarSelecao,
   MAX_THINKERS,
+  POLITICA_V1,
+  POLITICA_V2,
   selecionarPerspectivas,
+  type PoliticaSelecao,
   selectThinkers,
   synthesize,
   type ContextoSelecao,
@@ -214,8 +218,8 @@ function rel(thinkerId: string, virtueId: string, priority: number | null = 1, s
 function contexto(parcial: Partial<ContextoSelecao>): ContextoSelecao {
   return { membros: [], relacoes: [], casos: [], evidencias: [], pares: new Map(), ...parcial };
 }
-const ids = (ctx: ContextoSelecao, virtueIds: string[], max?: number) =>
-  selecionarPerspectivas(ctx, { caseIds: [], virtueIds, dimensionIds: [] }, max).map((s) => s.thinker.id);
+const ids = (ctx: ContextoSelecao, virtueIds: string[], max?: number, politica?: PoliticaSelecao) =>
+  selecionarPerspectivas(ctx, { caseIds: [], virtueIds, dimensionIds: [] }, max, politica).map((s) => s.thinker.id);
 
 describe('seleção: regras de elegibilidade e equilíbrio', () => {
   it('é determinística e fica entre 2 e 5 perspectivas quando há fundamentação', () => {
@@ -237,8 +241,16 @@ describe('seleção: regras de elegibilidade e equilíbrio', () => {
     const poucas = pensador('poucas', 'Alfa', 'Tradição B');
     const relacoes = [rel('poucas', 'V01'), rel('muitas', 'V01'), ...virtues.slice(1, 30).map((v) => rel('muitas', v.id))];
     const ctx = contexto({ membros: [muitas, poucas], relacoes });
-    /* Mesma força na virtude pedida: empate decidido pelo nome, não pelas 29 relações a mais. */
-    expect(ids(ctx, ['V01'])).toEqual(['poucas', 'muitas']);
+    /* Mesma força na virtude pedida nas duas políticas: as 29 relações a mais não pontuam. */
+    for (const politica of [POLITICA_V1, POLITICA_V2]) {
+      const r = deliberarSelecao(ctx, { caseIds: [], virtueIds: ['V01'], dimensionIds: [] }, undefined, politica);
+      const [m, p] = ['muitas', 'poucas'].map((id) => r.detalhes.find((d) => d.thinkerId === id)!);
+      expect(m.criterios.relacaoVirtudes).toBe(p.criterios.relacaoVirtudes);
+      expect(m.criterios.fontes).toBe(p.criterios.fontes);
+    }
+    /* O empate é decidido pelo nome na v1 e pelo thinker_id na v2 (Documento 13, seção 7.3). */
+    expect(ids(ctx, ['V01'], undefined, POLITICA_V1)).toEqual(['poucas', 'muitas']);
+    expect(ids(ctx, ['V01'], undefined, POLITICA_V2)).toEqual(['muitas', 'poucas']);
   });
 
   it('relações suspensas, rejeitadas ou F4 não convocam ninguém', () => {
@@ -265,12 +277,17 @@ describe('seleção: regras de elegibilidade e equilíbrio', () => {
     const outro = pensador('outro', 'Outro', 'Outra tradição');
     const relacoes = [rel('estoicismo-teste', 'V07'), rel('seneca-teste', 'V07'), rel('outro', 'V07', 2)];
     const pares = new Map([['estoicismo-teste', new Set(['seneca-teste'])], ['seneca-teste', new Set(['estoicismo-teste'])]]);
-    const sem = ids(contexto({ membros: [tradicao, autor, outro], relacoes }), ['V07']);
-    const com = ids(contexto({ membros: [tradicao, autor, outro], relacoes, pares }), ['V07']);
+    /* v1 (legado): a tradição disputa vaga; o par impede tradição e autor juntos. */
+    const sem = ids(contexto({ membros: [tradicao, autor, outro], relacoes }), ['V07'], undefined, POLITICA_V1);
+    const com = ids(contexto({ membros: [tradicao, autor, outro], relacoes, pares }), ['V07'], undefined, POLITICA_V1);
     expect(sem).toHaveLength(3);
     expect(com).toHaveLength(2);
     expect(com.filter((id) => id === 'estoicismo-teste' || id === 'seneca-teste')).toHaveLength(1);
     expect(com).toContain('outro');
+    /* v2 (DEC-CUR-02): a tradição nunca ocupa vaga, com ou sem par; o autor continua convocável. */
+    for (const ctx of [contexto({ membros: [tradicao, autor, outro], relacoes }), contexto({ membros: [tradicao, autor, outro], relacoes, pares })]) {
+      expect(ids(ctx, ['V07'], undefined, POLITICA_V2).sort()).toEqual(['outro', 'seneca-teste']);
+    }
   });
 
   it('a complementaridade favorece tradição ainda não representada, sem dispensar a pertinência', () => {

@@ -3,13 +3,17 @@
  * O snapshot foi gravado ANTES da curadoria ampliada (Documento 14), com o motor do commit 093ef96.
  * A ampliação acrescenta candidatos, tradições e evidências em camada separada e regras de
  * elegibilidade que não afetam os dados atuais: estas seleções precisam continuar idênticas.
- * Se uma decisão de produto mudar a seleção de propósito, o snapshot deve ser revisto junto com ela. */
+ * Se uma decisão de produto mudar a seleção de propósito, o snapshot deve ser revisto junto com ela.
+ *
+ * Fase 2 (DEC-CUR-05): a política operacional passou a ser a v2 (Documento 13). Este snapshot NÃO foi
+ * regravado: ele agora testa a política v1 (Documento 04), chamada explicitamente, e prova que o algoritmo
+ * legado foi reconstruído sem diferença. A política v2 tem snapshot próprio (conselho-selecao-v2.test.ts). */
 import { describe, expect, it } from 'vitest';
 import { councilCases, dimensions, families, virtues } from '../../src/domain/catalog';
-import { selectThinkers, suggest, synthesize, type SelectionInput } from '../../src/domain/council';
+import { CONTEXTO_PADRAO, deliberarSelecao, POLITICA_V1, suggest, synthesize, type SelectionInput } from '../../src/domain/council';
 
 function resumo(input: SelectionInput, max?: number) {
-  const selecao = selectThinkers(input, max);
+  const selecao = deliberarSelecao(CONTEXTO_PADRAO, input, max, POLITICA_V1).selecionados;
   return {
     entrada: input,
     selecionados: selecao.map((s) => ({ id: s.thinker.id, motivo: s.contribution.reason, perspectiva: s.contribution.perspective, obras: s.contribution.workIds })),
