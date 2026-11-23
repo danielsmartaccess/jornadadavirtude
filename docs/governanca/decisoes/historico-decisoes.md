@@ -1,0 +1,106 @@
+# Histórico de decisões
+
+| Campo | Valor |
+|---|---|
+| Versão | 0.4 |
+| Data | 2026-11-23 |
+| Status | REGISTRO DE DECISÕES PARA VALIDAÇÃO |
+| Finalidade | Registrar as decisões que têm evidência, os conflitos entre documentos e as decisões pendentes. Nenhuma decisão pendente foi resolvida aqui. |
+
+## Histórico de revisão
+
+| Versão | Data | Descrição |
+|---|---|---|
+| 0.1 | 2026-11-23 | Primeira versão: 14 decisões registradas, 11 conflitos, 25 decisões pendentes. |
+| 0.2 | 2026-11-23 | Reclassificação documental: REGISTRO DE DECISÕES PARA VALIDAÇÃO. Decisões, conflitos e pendências preservados sem alteração. |
+| 0.3 | 2026-11-23 | D-GOV-01 aprovada na revisão do produto. Totais: 24 decisões pendentes, 1 aprovada, 11 conflitos preservados. |
+| 0.4 | 2026-11-23 | DEC-15 criada na seção 1, conforme a regra da seção 4, formalizando a D-GOV-01 (referência cruzada nos dois registros). Totais sem dupla contagem: 25 registros D-xx, 24 pendentes, 1 aprovada, 11 conflitos. |
+
+## Regras deste registro
+
+- Só entra como **decisão registrada** o que tem evidência: documento, comentário de código, commit ou README.
+- Quando dois documentos divergem, **os dois são apresentados** e a questão fica pendente.
+- Decisões tomadas em conversas e não documentadas **não** são presumidas.
+- Identificadores: `DEC-xx` (registradas), `C-xx` (conflitos), `D-xx` (pendentes).
+
+## 1. Decisões registradas (com evidência)
+
+| Id | Decisão | Evidência | Observação |
+|---|---|---|---|
+| DEC-01 | Stack React, Vite, TypeScript e Tailwind CSS | Doc. 08 §1.3 ("Aprovada"); `package.json` | Implementada |
+| DEC-02 | Arquivamento é atributo (`archived_at`), não estado concorrente | Doc. 07 RN-011; Doc. 08 §8.2; `types.ts` | Implementada e testada |
+| DEC-03 | O MVP usa `localStorage`; IndexedDB fica para quando houver anexos, volume ou consultas | Comentário "Decisão registrada" em `src/infrastructure/localRepository.ts` | Diverge do Doc. 08 (ver C-04) |
+| DEC-04 | Conta opcional; o app é local-first | `README.md` (seção "Conta opcional e sincronização"); comentário em `src/infrastructure/sync.ts` | Implementada |
+| DEC-05 | O Conselho funciona sem IA | `README.md`; comentários em `council.ts` e `CouncilPages.tsx`; Doc. 13 v2 §17 (IA só na Fase 5) | Implementada |
+| DEC-06 | O motor do Conselho usa os pesos iniciais do Doc. 04 §11 | Comentário em `src/domain/council.ts` (`WEIGHTS`) | Diverge do Doc. 13 v2 (ver C-02) |
+| DEC-07 | Política de conteúdo (CSP) ativada em duas fases: primeiro em modo de relatório, depois ativa | Commits `774d48f` e `0c4ae82`; Relatório final de UX (EV-13) | Implementada |
+| DEC-08 | Patches de `@supabase/supabase-js`, `react-router-dom` e `vitest` não aplicados enquanto não houver ganho | Relatório final de UX, adendo 4 (EV-13) | Vigente |
+| DEC-09 | Documentos oficiais numerados passam a ficar no repositório público | Commit `d00d3f2` | Relatórios de UX, prompts, HTMLs da Gita e emblemas continuam fora |
+| DEC-10 | Gate de segurança: sinal de risco na situação ou na dúvida impede a sessão comum do Conselho | Commit `5368603` | Implementada; validada em produção (EV-43) |
+| DEC-11 | O aviso de armazenamento não aparece quando há sinal de risco | Commit `b23ddac` | Implementada |
+| DEC-12 | O conteúdo da Gita fica no Supabase (leitura pública), e não no build | Commits `7fbfdee` a `9bdaf35`, `ad34847`; `README.md` | Implementada (ver D-08-08) |
+| DEC-13 | O Documento 13 v2 substitui a v1 como referência do Conselho | Cabeçalho da v2 ("Compatibilizada com o Catálogo de 34 Pensadores"); só a v2 está no repositório (commit `d00d3f2`) | A v1 continua disponível localmente (EV-10) |
+| DEC-14 | O Documento 07 V2.0 substitui o V1.0 | Doc. 07 §18.1 | O V1.0 não foi localizado |
+| DEC-15 | Metodologia documental: preservar os Documentos 04, 07 e 08 existentes e utilizar complementos de conformidade; reconstruir os Documentos 05 e 09, não localizados | Aprovação na revisão do produto em 23/11/2026; resolve D-GOV-01 (seção 3) | Aplicada em `docs/governanca/documentos/` (complementos 04, 07 e 08; reconstruções 05 e 09) |
+
+## 2. Conflitos entre fontes (pendentes)
+
+| Id | Tema | Posição A | Posição B | Código atual | Pendência |
+|---|---|---|---|---|---|
+| C-01 | Quantos e quais integrantes no Conselho | Doc. 04 §6: 26 pensadores. Docs de UX e prompts (EV-13, EV-14): "27 integrantes" | Doc. 12 e Doc. 13 (v1 e v2): 34 integrantes, incluindo Hillel e mais 7 | 27 habilitados: os 26 mais "Tradições budistas" | D-04-02 |
+| C-02 | Pesos da seleção | Doc. 04 §11: 35/30/15/10/10 (5 critérios) | Doc. 13 v1 §8.5 e v2 §7.1: 30/25/15/15/10/5 (6 critérios) | Doc. 04 | D-08-04 |
+| C-03 | Quando entra a IA no Conselho | Doc. 13 v1 §17: Fase 1, com Edge Functions | Doc. 13 v2 §17: só na Fase 5, com ADR antes | Sem IA | Resolvido pela DEC-13, se confirmada |
+| C-04 | Persistência local | Doc. 08 ADR-009 e §20: IndexedDB; Doc. 13 v2 §16: "IndexedDB para dados estruturados" | Comentário no código (DEC-03): localStorage | localStorage | D-08-01 |
+| C-05 | Backend e conta | Doc. 07 §12.4: sincronização e autenticação em P3; Doc. 08: Supabase "Futuro"; Doc. 13 v2 §16: exige ADR | README e código: conta opcional, RLS e sync em produção | Implementado | D-08-02 |
+| C-06 | Dimensões de cada virtude | Doc. 03 (fonte declarada nos dados) | Doc. 04 §5: diverge em 22 virtudes | Segue o Doc. 03 | D-04-01 |
+| C-07 | Etapas da jornada | Doc. 01 §4: 4 etapas (Reconhecer, Investigar, Praticar, Revisar) | Doc. 06 §8.2: 7 etapas (Despertar … Revisar) | 7 etapas; "Reconhecer" virou "Identificar" | D-05-02 |
+| C-08 | Durações das etapas | Protótipo anterior (EV-11, RN-01): duração fixa de 8 semanas | Doc. 01 §4 e apresentação (EV-12): "parâmetros iniciais, não prazos universais" | Só referência exibida | D-05-01 |
+| C-09 | Quantidade de pensadores por sessão | Doc. 13 v1 §8.3: por complexidade (2, 3 ou 4–5) | Doc. 13 v2 §7.2 e Doc. 04 §8: 2 a 5 | 2 a 5 | Resolvido pela DEC-13, se confirmada |
+| C-10 | Versionamento de sessões | Doc. 13 v2 §20: cada sessão registra a versão do catálogo e do algoritmo, sem reescrita silenciosa | — | Síntese recalculada a cada abertura; sem versão | D-08-05 |
+| C-11 | Identificadores de pensadores | Doc. 12: `PENS-001`…`PENS-034` | Dados: slugs (`socrates`), usados nas sessões gravadas | Slugs | D-04-02 |
+
+## 3. Decisões pendentes (consolidadas)
+
+| Totais | Quantidade |
+|---|---:|
+| Registros de decisão D-xx (total, considerando o histórico) | 25 |
+| Decisões pendentes | 24 |
+| Decisões aprovadas | 1 (D-GOV-01, em 23/11/2026, formalizada em DEC-15) |
+| Conflitos preservados (seção 2) | 11 |
+
+DEC-15 é a formalização da D-GOV-01, e não uma segunda decisão: ela entra uma vez só nos totais acima, como "aprovada". As decisões registradas da seção 1 (DEC-01 a DEC-15) são um conjunto à parte, e só a DEC-15 corresponde a um registro D-xx.
+
+| Id | Pergunta | Documento de origem | Bloqueia |
+|---|---|---|---|
+| D-GOV-01 | **Status: APROVADA em 23/11/2026, na revisão do produto.** Decisão: preservar os Documentos 04, 07 e 08 existentes e utilizar complementos de conformidade. Os Documentos 05 e 09 foram reconstruídos por não terem sido localizados. Resolução formalizada em DEC-15 (seção 1). (Pergunta original: aceitar complementos de conformidade para os Docs. 04, 07 e 08, em vez de reconstruí-los, já que os originais existem e são recuperáveis?) | README de governança | — (não bloqueia mais) |
+| D-GOV-02 | Quem valida cada documento? | README de governança | Mudança de status de qualquer documento |
+| D-GOV-03 | Localizar a "Auditoria Consolidada — 23/11/2026", a "Revisão de Compatibilidade Documental" e as listas E01–E16, CS-00–CS-16 e ADR-CS-01–08, e reconciliar com o Doc. 09 reconstruído | Doc. 09 | Fidelidade do backlog |
+| D-GOV-04 | Os Documentos 10 e 11 existem? Quais são os títulos? | Inventário | Índice documental |
+| D-GOV-05 | Procurar os textos originais dos Docs. 05 e 09 e confrontá-los com as reconstruções | Docs. 05 e 09 | Aprovação dos Docs. 05 e 09 |
+| D-04-01 | Referência das dimensões por virtude: Doc. 03 ou Doc. 04 §5? "Principal" equivale a D1? | Complemento do Doc. 04 | Correção de dados |
+| D-04-02 | Composição do Conselho habilitado (27 ou 34), destino de "Tradições budistas" e identificadores | Complemento do Doc. 04 | Fase 1 do Conselho |
+| D-04-03 | Equivalência entre os termos de virtude do Doc. 12 e as 48 virtudes | Complemento do Doc. 04 | Fase 1 do Conselho |
+| D-05-01 | Durações: referência exibida, remover ou voltar a ser regra? | Doc. 05 | — |
+| D-05-02 | Nome da etapa: "Reconhecer" ou "Identificar"? | Doc. 05 | — |
+| D-05-03 | A Gita faz parte da metodologia ou é um recurso independente? | Doc. 05 | — |
+| D-05-04 | "Quero me conhecer" precisa de fluxo próprio? | Doc. 05 | — |
+| D-05-05 | Procurar e confrontar o Doc. 05 original | Doc. 05 | Aprovação do Doc. 05 |
+| D-07-01 | Incluir a Gita no Doc. 07 como módulo oficial? | Complemento do Doc. 07 | — |
+| D-07-02 | Aceitar os identificadores SEG-001 a SEG-013? Onde mantê-los? | Complemento do Doc. 07 | — |
+| D-07-03 | Navegadores-alvo | Complemento do Doc. 07 | TS-07 |
+| D-07-04 | Política de retenção e avaliação de LGPD | Complemento do Doc. 07 | — |
+| D-08-01 | Formalizar localStorage ou planejar IndexedDB | Complemento do Doc. 08 | — |
+| D-08-02 | ADR retroativo da adoção do Supabase | Complemento do Doc. 08 | — |
+| D-08-03 | Estratégia de evolução do schema (4 → 5) sem perda no saneamento | Complemento do Doc. 08 | Novos campos do Conselho |
+| D-08-04 | Pesos do motor (C-02) | Complemento do Doc. 08 | Fase 2 do Conselho |
+| D-08-05 | Gravar a síntese com versão ou continuar recalculando | Complemento do Doc. 08 | — |
+| D-08-06 | Publicação condicionada ao CI verde | Complemento do Doc. 08 | — |
+| D-08-07 | Dois projetos Vercel: intencional? Qual é o domínio oficial? | Complemento do Doc. 08 | — |
+| D-08-08 | Gita disponível sem rede? | Complemento do Doc. 08 | — |
+
+## 4. Como registrar uma nova decisão
+
+1. Acrescente uma linha na seção 1, com a evidência: documento, commit, comentário de código ou ata.
+2. Se a decisão resolve um conflito ou uma pendência, mova a linha de `C-xx` ou `D-xx` para a seção 1 e cite o id resolvido.
+3. Atualize o documento afetado e o seu histórico de revisão.
+4. Nunca apague uma linha; marque-a como "substituída por DEC-xx".
