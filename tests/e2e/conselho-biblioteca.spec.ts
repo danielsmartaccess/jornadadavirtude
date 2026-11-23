@@ -128,7 +128,20 @@ test('candidatos não são convocados numa sessão do Conselho', async ({ page }
 
 test('celular: biblioteca e páginas de detalhe sem rolagem horizontal', async ({ page }) => {
   await page.setViewportSize({ width: 360, height: 800 });
-  for (const rota of ['/conselho/pensadores', '/conselho/pensadores/hannah-arendt', '/conselho/pensadores/corpus-bhagavad-gita']) {
+  /* Todas as variantes de página de detalhe: integrante com referências-base ou testemunhos, corpus de apoio,
+   * candidato, tradição e referência do catálogo (a falta de Dalai Lama e Sócrates aqui deixou passar um estouro). */
+  for (const rota of [
+    '/conselho/pensadores',
+    '/conselho/pensadores/hannah-arendt',
+    '/conselho/pensadores/corpus-bhagavad-gita',
+    '/conselho/pensadores/tradicao-estoicismo',
+    '/conselho/pensadores/estoicismo',
+    '/conselho/pensadores/tradicoes-budistas',
+    '/conselho/pensadores/dalai-lama',
+    '/conselho/pensadores/socrates',
+    '/conselho/pensadores/benjamin-franklin',
+    '/conselho/pensadores/richard-feynman',
+  ]) {
     await page.goto(rota);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const sobra = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);

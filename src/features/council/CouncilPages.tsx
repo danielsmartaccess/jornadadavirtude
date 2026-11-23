@@ -733,6 +733,12 @@ function TradicaoView({ t }: { t: TradicaoCorpus }) {
   );
 }
 
+const CONFERENCIA_CURTA: Record<ReferenciaBase['conferencia']['situacao'], string> = {
+  metadados_confirmados: 'Metadados conferidos',
+  edicao_a_confirmar: 'Edição a confirmar',
+  a_confirmar: 'A confirmar',
+};
+
 /** Uma referência-base (DEC-CUR-04): só mostra o que foi conferido; o resto aparece como lacuna. */
 function ReferenciaItem({ r }: { r: ReferenciaBase }) {
   const dados = [
@@ -753,8 +759,10 @@ function ReferenciaItem({ r }: { r: ReferenciaBase }) {
       </p>
       <div className="mt-1 flex flex-wrap gap-1.5">
         <Tag>{TIPO_FONTE[r.tipoFonte]}</Tag>
-        <Tag accent={r.conferencia.situacao !== 'metadados_confirmados'}>{SITUACAO_CONFERENCIA[r.conferencia.situacao]}</Tag>
+        {/* Etiqueta curta (a .tag não quebra linha); a descrição completa vem no parágrafo abaixo, para caber em 360px. */}
+        <Tag accent={r.conferencia.situacao !== 'metadados_confirmados'}>{CONFERENCIA_CURTA[r.conferencia.situacao]}</Tag>
       </div>
+      <p className="meta mt-1">{SITUACAO_CONFERENCIA[r.conferencia.situacao]}.</p>
       {dados.length > 0 && <p className="meta mt-2">{dados.join(' · ')}</p>}
       <p className="hint mt-1">{r.notaAtribuicao}</p>
       {/* DEC-CUR-10: completude bibliográfica e confiabilidade são dimensões diferentes. */}
