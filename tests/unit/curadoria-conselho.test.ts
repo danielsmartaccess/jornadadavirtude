@@ -58,7 +58,7 @@ describe('preservação do catálogo original', () => {
   it('thinkers, relações, obras e casos têm exatamente o conteúdo de antes da curadoria ampliada', () => {
     expect(impressao(thinkers)).toBe('4e220f35');
     expect(impressao(thinkerVirtues)).toBe('83f09135'); // era 'aa9d6a08': DH-T-05 trocou só o texto de 11 justificativas (Documento 04 → Documento 03, §2.5)
-    expect(impressao(works)).toBe('659be0a8');
+    expect(impressao(works)).toBe('78192ed3'); // era '659be0a8': DH-T-04 trocou só o título de W08 (acrescentou "(Suma Teológica, I-II, qq. 49–67)")
     expect(impressao(councilCases)).toBe('284650c2');
   });
 
