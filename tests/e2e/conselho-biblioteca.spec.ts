@@ -296,3 +296,91 @@ test('DH-T-01: a nota de transmissão aparece na página dos quatro, em 360px, j
   }
   expect(erros).toEqual([]);
 });
+
+/* DH-T-02: pares de registros semelhantes (catálogo × recorte curatorial) com remissão e função explicadas; agregados legados
+ * com nota; agregados culturais amplos inalterados. Tudo a 360px, onde o texto novo mais pode estourar a largura. */
+const PARES_DHT02: [string, string, string][] = [
+  ['estoicismo', 'tradicao-estoicismo', 'Estoicismo'],
+  ['bhagavad-gita', 'corpus-bhagavad-gita', 'Bhagavad Gita'],
+  ['tradicoes-budistas', 'tradicao-budismos', 'Budismos'],
+  ['tradicoes-cristas', 'tradicao-cristianismos', 'Cristianismos'],
+];
+const semRolagem = (page: Page) => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+
+test('DH-T-02: nos quatro pares, cada página remete à outra e diz a função do seu registro', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+  for (const [catalogo, recorte, nomeDoRecorte] of PARES_DHT02) {
+    // Registro do catálogo (ThinkerPage): "Recorte curatorial" leva ao recorte, e diz onde ficam as relações com virtudes.
+    await page.goto(`/conselho/pensadores/${catalogo}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const remissao = page.locator('p').filter({ hasText: 'Recorte curatorial:' });
+    await expect(remissao, catalogo).toHaveCount(1);
+    await expect(remissao.getByRole('link', { name: nomeDoRecorte, exact: true }), catalogo).toHaveAttribute('href', `/conselho/pensadores/${recorte}`);
+    await expect(remissao, catalogo).toContainText('as relações com virtudes ficam neste registro do catálogo');
+    expect(await semRolagem(page), catalogo).toBeLessThanOrEqual(0);
+
+    // Recorte curatorial (TradicaoView): "Registros correspondentes" leva ao catálogo, e diz que a página não tem relações.
+    await page.goto(`/conselho/pensadores/${recorte}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const secao = page.getByRole('region', { name: 'Registros correspondentes no catálogo' });
+    await expect(secao, recorte).toHaveCount(1);
+    await expect(secao, recorte).toContainText('Esta página é o recorte curatorial');
+    await expect(secao, recorte).toContainText('não tem relações com virtudes');
+    await expect(secao.locator(`a[href="/conselho/pensadores/${catalogo}"]`), recorte).toHaveCount(1);
+    expect(await semRolagem(page), recorte).toBeLessThanOrEqual(0);
+  }
+  // Sem par, nada muda: um recorte sem registro no catálogo e uma pessoa não ganham o texto novo.
+  for (const id of ['tradicao-hinduismo', 'aristoteles']) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const texto = await page.locator('main').innerText();
+    expect(texto, id).not.toContain('Esta página é o recorte curatorial');
+    expect(texto, id).not.toContain('as relações com virtudes ficam neste registro do catálogo');
+  }
+  expect(erros).toEqual([]);
+});
+
+test('DH-T-02: Budismos corrige o ponto em aberto; os três agregados legados têm nota; os dois culturais seguem iguais', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+
+  // Budismos: o texto errado saiu, o conteúdo válido ficou, e o título da seção continua verdadeiro (ainda há ponto em aberto).
+  await page.goto('/conselho/pensadores/tradicao-budismos');
+  const ponto = page.getByRole('region', { name: 'Ponto em aberto na curadoria' });
+  await expect(ponto).toHaveCount(1);
+  await expect(ponto).toContainText('pela DEC-CUR-02, tradições e corpora são fontes de apoio e contextualização');
+  await expect(ponto).toContainText('não são pessoas convocáveis nem participantes individuais da seleção');
+  await expect(ponto).toContainText('Documento 14 (seção 8)');
+  await expect(ponto).toContainText('Segue em aberto a composição do Conselho habilitado');
+  expect(await page.locator('main').innerText()).not.toContain('participa da seleção como os indivíduos');
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Agregados temáticos legados: continuam existindo, com a nota, junto do aviso da taxonomia.
+  for (const id of ['tradicoes-humanistas', 'tradicoes-religiosas', 'tradicoes-contemplativas']) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const nota = page.locator('p').filter({ hasText: 'Agregado temático legado, sem escopo conceitual suficientemente delimitado' });
+    await expect(nota, id).toHaveCount(1);
+    await expect(nota, id).toContainText('tradição específica');
+    await expect(nota, id).toContainText('Classificação curatorial v1 — sujeita a revisão especializada');
+    expect(await semRolagem(page), id).toBeLessThanOrEqual(0);
+  }
+
+  // Agregados culturais amplos: nada mudou (só auditoria). Seguem separados, com escopo e cuidado originais e sem remissão nova.
+  for (const [id, escopo, cuidado] of [
+    ['tradicao-filosofias-africanas', 'Debates Akan, Ubuntu e outras tradições identificadas', 'Não transformar África em tradição única'],
+    ['tradicao-pensamentos-indigenas', 'Autores, povos e obras específicos', 'Não homogeneizar povos indígenas'],
+  ]) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const texto = await page.locator('main').innerText();
+    expect(texto, id).toContain(escopo);
+    expect(texto, id).toContain(cuidado);
+    expect(texto, id).not.toContain('Agregado temático legado');
+    await expect(page.getByRole('region', { name: 'Registros correspondentes no catálogo' }), id).toHaveCount(0);
+    await expect(page.getByRole('region', { name: 'Ponto em aberto na curadoria' }), id).toHaveCount(0);
+    expect(await semRolagem(page), id).toBeLessThanOrEqual(0);
+  }
+  expect(erros).toEqual([]);
+});
