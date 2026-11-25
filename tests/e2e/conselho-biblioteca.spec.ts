@@ -384,3 +384,46 @@ test('DH-T-02: Budismos corrige o ponto em aberto; os três agregados legados t�
   }
   expect(erros).toEqual([]);
 });
+
+/* DH-T-03: referências bibliográficas e classificação budista. Só texto informativo nas duas páginas. */
+test('DH-T-03: a Gita diz que integra o Mahābhārata; Tradições budistas explica a lista e a rubrica W12; nada mais muda', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+
+  // Corpus da Gita: ponto em aberto novo, escopo e cuidado transcritos do Documento 14 intactos.
+  await page.goto('/conselho/pensadores/corpus-bhagavad-gita');
+  const ponto = page.getByRole('region', { name: 'Ponto em aberto na curadoria' });
+  await expect(ponto).toHaveCount(1);
+  await expect(ponto).toContainText('sexto livro do Mahābhārata');
+  await expect(ponto).toContainText('não atribui a ele um autor individual');
+  await expect(ponto).toContainText("edição e tradução seguem 'a confirmar'");
+  const textoGita = await page.locator('main').innerText();
+  expect(textoGita).toContain('Obra/corpus independente, com edição e tradução próprias');
+  expect(textoGita).toContain('a confirmar antes de qualquer validação');
+  expect(textoGita).not.toMatch(/Vy[āa]sa/);
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Tradições budistas: a nota ampliada fica no parágrafo do aviso da taxonomia; o campo do catálogo segue o mesmo.
+  await page.goto('/conselho/pensadores/tradicoes-budistas');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const nota = page.locator('p').filter({ hasText: 'Corpus de apoio (DEC-CUR-02)' });
+  await expect(nota).toHaveCount(1);
+  await expect(nota).toContainText('seis perfeições (pāramitās) Mahāyāna');
+  await expect(nota).toContainText('dez perfeições (pāramī) da tradição Theravāda');
+  await expect(nota).toContainText('quatro brahmavihāras');
+  await expect(nota).toContainText('(W12) é uma rubrica bibliográfica dos Documentos 03 e 04, não uma obra identificada');
+  await expect(nota).toContainText('Classificação curatorial v1 — sujeita a revisão especializada');
+  const textoBudistas = await page.locator('main').innerText();
+  expect(textoBudistas).toContain('Aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade');
+  expect(textoBudistas).toContain('não formam uma doutrina única');
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Fora do escopo: a virtude continua mostrando a obra W12 com o mesmo título (nada foi substituído).
+  await page.goto('/virtudes/V04');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const bloco = page.locator('details').filter({ has: page.locator('summary', { hasText: 'Tradições budistas' }) });
+  await expect(bloco).toHaveCount(1);
+  await bloco.locator('summary').click(); // o título só é lido com o bloco aberto
+  await expect(bloco.getByText('Obras de referência: Textos budistas sobre as Paramitas')).toBeVisible();
+  expect(erros).toEqual([]);
+});
