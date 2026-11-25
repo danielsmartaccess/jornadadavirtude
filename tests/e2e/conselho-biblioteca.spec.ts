@@ -384,3 +384,82 @@ test('DH-T-02: Budismos corrige o ponto em aberto; os três agregados legados t�
   }
   expect(erros).toEqual([]);
 });
+
+/* DH-T-03: referências bibliográficas e classificação budista. Só texto informativo nas duas páginas. */
+test('DH-T-03: a Gita diz que integra o Mahābhārata; Tradições budistas explica a lista e a rubrica W12; nada mais muda', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+
+  // Corpus da Gita: ponto em aberto novo, escopo e cuidado transcritos do Documento 14 intactos.
+  await page.goto('/conselho/pensadores/corpus-bhagavad-gita');
+  const ponto = page.getByRole('region', { name: 'Ponto em aberto na curadoria' });
+  await expect(ponto).toHaveCount(1);
+  await expect(ponto).toContainText('sexto livro do Mahābhārata');
+  await expect(ponto).toContainText('não atribui a ele um autor individual');
+  await expect(ponto).toContainText("edição e tradução seguem 'a confirmar'");
+  const textoGita = await page.locator('main').innerText();
+  expect(textoGita).toContain('Obra/corpus independente, com edição e tradução próprias');
+  expect(textoGita).toContain('a confirmar antes de qualquer validação');
+  expect(textoGita).not.toMatch(/Vy[āa]sa/);
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Tradições budistas: a nota ampliada fica no parágrafo do aviso da taxonomia; o campo do catálogo segue o mesmo.
+  await page.goto('/conselho/pensadores/tradicoes-budistas');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const nota = page.locator('p').filter({ hasText: 'Corpus de apoio (DEC-CUR-02)' });
+  await expect(nota).toHaveCount(1);
+  await expect(nota).toContainText('seis perfeições (pāramitās) Mahāyāna');
+  await expect(nota).toContainText('dez perfeições (pāramī) da tradição Theravāda');
+  await expect(nota).toContainText('quatro brahmavihāras');
+  await expect(nota).toContainText('(W12) é uma rubrica bibliográfica dos Documentos 03 e 04, não uma obra identificada');
+  await expect(nota).toContainText('Classificação curatorial v1 — sujeita a revisão especializada');
+  const textoBudistas = await page.locator('main').innerText();
+  expect(textoBudistas).toContain('Aperfeiçoamento da conduta: generosidade, conduta ética, paciência, esforço diligente, concentração, sabedoria, benevolência e equanimidade');
+  expect(textoBudistas).toContain('não formam uma doutrina única');
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Fora do escopo: a virtude continua mostrando a obra W12 com o mesmo título (nada foi substituído).
+  await page.goto('/virtudes/V04');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const bloco = page.locator('details').filter({ has: page.locator('summary', { hasText: 'Tradições budistas' }) });
+  await expect(bloco).toHaveCount(1);
+  await bloco.locator('summary').click(); // o título só é lido com o bloco aberto
+  await expect(bloco.getByText('Obras de referência: Textos budistas sobre as Paramitas')).toBeVisible();
+  expect(erros).toEqual([]);
+});
+
+/* DH-T-04: identidade bibliográfica de W08 ("Tratado das Virtudes"). Só texto informativo; W08 não é removida. */
+test('DH-T-04: W08 mostra a localização na Suma; a nota de Tomás declara o limite da identificação; nada mais muda', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+  const TITULO_W08 = 'Tratado das Virtudes (Suma Teológica, I-II, qq. 49–67)';
+
+  // Página de Tomás de Aquino: nota no parágrafo do aviso da taxonomia; as duas obras seguem listadas.
+  await page.goto('/conselho/pensadores/tomas-de-aquino');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const nota = page.locator('p').filter({ hasText: 'W08 corresponde ao título editorial Treatise on the Virtues' });
+  await expect(nota).toHaveCount(1);
+  await expect(nota).toContainText('Suma Teológica, I-II, questões 49–67');
+  await expect(nota).toContainText('Não deve ser interpretado como obra autônoma distinta da Suma Teológica');
+  await expect(nota).toContainText('não de confirmação explícita da intenção do Documento 03');
+  await expect(nota).toContainText('Classificação curatorial v1 — sujeita a revisão especializada');
+  await expect(page.getByRole('region', { name: 'Obras de referência' }).getByRole('listitem')).toHaveText(['Suma Teológica', TITULO_W08]);
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Página da virtude: o bloco de Tomás mostra as duas obras, com o título novo de W08.
+  await page.goto('/virtudes/V01');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const blocoTomas = page.locator('details').filter({ has: page.locator('summary', { hasText: 'Tomás de Aquino' }) });
+  await expect(blocoTomas).toHaveCount(1);
+  await blocoTomas.locator('summary').click(); // o título só é lido com o bloco aberto
+  await expect(blocoTomas.getByText(`Obras de referência: Suma Teológica; ${TITULO_W08}`)).toBeVisible();
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Fora do escopo: outro pensador não ganha a nota, e a obra de Tomás não aparece como obra autônoma sem a localização.
+  await page.goto('/conselho/pensadores/aristoteles');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const textoAristoteles = await page.locator('main').innerText();
+  expect(textoAristoteles.length).toBeGreaterThan(300);
+  expect(textoAristoteles).not.toContain('W08 corresponde');
+  expect(erros).toEqual([]);
+});

@@ -214,3 +214,65 @@ A premissa do pedido de que os três agregados estariam em `tradicoes.json` não
 
 - Alterados: `classificacao.json`, `tradicoes.json`, `CouncilPages.tsx`, `tests/unit/conselho-tradicoes-dht02.test.ts` (novo, 17 testes), `tests/e2e/conselho-biblioteca.spec.ts` (dois testes novos), `historico-decisoes.md` e este ADR.
 - Testes, com a DH-T-01 já integrada: 345 unitários (24 arquivos), 95 E2E em três execuções completas (10, 10 e 3 workers), `tsc --noEmit`, build e `npm audit --omit=dev --audit-level=high` sem falhas. O teste da DH-T-01 que fixa o conjunto de registros com `nota` passou de 12 para 15 registros, com os três agregados desta decisão.
+
+## Revisão DH-T-03 (2026-11-25) — DEC-CUR-13: referências bibliográficas e classificação budista
+
+### Problema identificado
+
+A auditoria da Fase 3A apontou três fragilidades nas referências do catálogo:
+
+- **W11 (Bhagavad Gita).** A obra está ligada ao registro `bhagavad-gita` e ao recorte `corpus-bhagavad-gita`, mas nada no repositório diz que o texto integra o Mahābhārata. Já o `escopo` do recorte, transcrito do Documento 14, o chama de "obra/corpus independente".
+- **W12 ("Textos budistas sobre as Paramitas").** O título parece o de uma obra, mas é uma rubrica bibliográfica dos Documentos 03 e 04. Sustenta as 11 relações de `tradicoes-budistas`.
+- **`field` de `tradicoes-budistas`.** Junta, numa só lista, qualidades que pertencem a listas distintas. O `limits` já avisa que "não formam uma doutrina única", mas nada explica de onde vem a composição.
+
+### Decisão humana (aprovada em 25/11/2026)
+
+1. **W11.** Preservar a obra e o ID. Não inventar autor individual. Registrar que o texto integra o Mahābhārata (livro 6), mantendo edição e tradução "a confirmar". Campo escolhido: `conflito` do recorte (seção "Ponto em aberto na curadoria"), para não alterar `escopo` e `cuidado`, que são transcrições do Documento 14, nem pôr "independente" e "integra o Mahābhārata" lado a lado.
+2. **W12.** Identificar como rubrica bibliográfica dos Documentos 03 e 04, não como obra identificada. Não substituir por uma obra única e não desvincular das 11 relações automaticamente. Campo escolhido: `classificacao.nota` de `tradicoes-budistas`.
+3. **Revisão futura.** Revisar as referências das 11 relações. Isso afetará relações e snapshots e exige decisão própria.
+4. **`field`.** Preservar `field` e `limits`. Explicar a composição da lista na mesma `classificacao.nota`. Alterar o `field` exigiria regravar o snapshot de referência.
+
+### Fontes reabertas antes da redação (25/11/2026)
+
+| Fonte | O que confirma | O que não confirma |
+|---|---|---|
+| Internet Encyclopedia of Philosophy, "The Bhagavad Gita" (iep.utm.edu/bhagavad-gita) | O Gita "ocorre no início do sexto livro do Mahābhārata" | Nome do parva ("Bhīṣma Parva"), autoria (nem Vyāsa, nem coletiva) e datação do texto |
+| Stanford Encyclopedia of Philosophy, "Śāntideva" (plato.stanford.edu/entries/shantideva) | As seis perfeições Mahāyāna estruturam o Bodhicaryāvatāra: generosidade, disciplina moral, paciência, perseverança, estabilidade meditativa e sabedoria | Mapeamento capítulo a capítulo das seis; classificação de benevolência e equanimidade |
+| Bhikkhu Bodhi, "A Treatise on the Paramis" (Access to Insight, wheel409) | Dez pāramī, na seção (iii): doação, virtude, renúncia, sabedoria, energia, paciência, veracidade, determinação, benevolência e equanimidade. A lista de dez vem do Buddhavaṃsa; o tratado de Dhammapāla está no comentário ao Cariyāpiṭaka. A lista pāli "difere um pouco" da sânscrita, com um núcleo comum | Ordem e nomes em pāli de cada item (não lidos); seção (xii) sobre a síntese das listas (não lida) |
+| Nyanaponika, "The Four Sublime States" (Access to Insight, wheel006) | Os quatro brahmavihāras: mettā, karuṇā, muditā e upekkhā | Qualquer relação entre os brahmavihāras e as pāramī |
+
+Consequências para a redação:
+
+- **Autoria do Gita.** A decisão aprovada falava em autoria "tradicional/coletiva". A fonte consultada não estabelece isso. O texto implementado diz apenas que esta curadoria não atribui autor individual. Autoria tradicional ou coletiva só entra com fonte própria.
+- **Origem da lista Theravāda.** A proposta original citava o Cariyāpiṭaka como fonte da lista. A leitura de Bodhi mostra que a lista de dez vem do **Buddhavaṃsa**; o tratado de Dhammapāla está no **comentário ao Cariyāpiṭaka**. A correção vale para o plano da revisão futura, que não cita essas obras na nota.
+- **Benevolência e equanimidade.** A nota diz que constam entre as dez pāramī Theravāda (Bodhi) e entre os quatro brahmavihāras (Nyanaponika). Não afirma que o SEP as classifique, porque não classifica.
+
+### O que foi alterado
+
+| Onde | Mudança |
+|---|---|
+| `tradicoes.json` | `conflito` novo em `corpus-bhagavad-gita`: o texto ocorre no início do sexto livro do Mahābhārata (IEP); o recorte o descreve como obra/corpus independente (Documento 14), mas ele integra o épico, e esta curadoria não atribui a ele um autor individual; W11 e o registro `bhagavad-gita` ficam preservados; edição e tradução seguem "a confirmar" |
+| `classificacao.json` | `nota` de `tradicoes-budistas`: mantém a frase da DEC-CUR-02 e acrescenta que a lista do campo corresponde às seis perfeições (pāramitās) Mahāyāna, acrescidas de benevolência e equanimidade, que também constam entre as dez pāramī Theravāda e os quatro brahmavihāras, e que W12 é uma rubrica bibliográfica dos Documentos 03 e 04, não uma obra identificada, com as referências específicas para a revisão das relações |
+
+### O que foi preservado
+
+- `works.json` inteiro: W11 e W12 com ID, título e fonte iguais. Não há campo de nota em obra, e qualquer mudança alteraria a impressão digital do arquivo.
+- `thinkers.json`: o `field`, o `limits` e a pergunta de `tradicoes-budistas` (pinados pelo snapshot de referência).
+- As 189 relações (todas `proposta`), em especial as 11 de `tradicoes-budistas`, todas apontando para W12.
+- Flags `council` (27), pesos, política de diversidade, gate de crise, schema e os snapshots v1, v2 e v2.1.
+- `escopo`, `cuidado`, `edicaoTraducao`, `obras` e `parteDe` de `corpus-bhagavad-gita`, e as demais 13 tradições.
+
+### Fora do escopo e limitações
+
+- **Substituição de W12 e revisão das 11 relações.** Não feitas. O plano é citar referências explícitas por tradição: o Bodhicaryāvatāra, de Śāntideva, para as seis perfeições Mahāyāna; o Buddhavaṃsa e o tratado de Dhammapāla, traduzido por Bodhi, para as dez Theravāda. Cada relação precisa de revisão individual, porque cada uma pode apoiar-se em uma lista diferente.
+- **Autoria e edição da Gita.** Autoria tradicional ou coletiva, parva e edição/tradução do módulo de leitura seguem sem fonte no repositório.
+- **Alcance da leitura das fontes.** Das páginas de Bodhi (cerca de 166 mil caracteres) e do SEP (cerca de 75 mil), a leitura literal alcançou a parte inicial (por volta de 40 mil caracteres de cada); o restante veio resumido por modelo e não foi usado como base. O IEP teve o mesmo limite. As afirmações da nota e do `conflito` usam só o que apareceu no texto literal.
+- **Novo tipo de registro bibliográfico, mudança de IDs, pesos, critérios ou política.** Fora desta etapa.
+- **Efeito.** Nenhum na seleção. O chunk do Conselho vai de 65,49 para 66,44 kB (+0,95 kB, o texto novo dos dados); o `CouncilPages` (34,46 kB) e o arquivo principal não mudam.
+
+### Arquivos e testes
+
+- Alterados: `classificacao.json`, `tradicoes.json`, `tests/unit/conselho-referencias-dht03.test.ts` (novo, 14 testes), `tests/unit/conselho-tradicoes-dht02.test.ts` (a asserção "só Budismos tem conflito" passa a incluir o corpus da Gita), `tests/e2e/conselho-biblioteca.spec.ts` (um teste novo), `historico-decisoes.md` (v0.10) e este ADR.
+- Estabilidade: impressões digitais medidas na `main` antes da alteração provam que os outros 13 recortes, os outros campos do corpus da Gita, as outras 41 classificações e os outros campos de `tradicoes-budistas` são idênticos; as impressões de `thinkers`, `thinkerVirtues`, `works` e `councilCases` e os três snapshots seguem inalterados.
+- Prova de que os testes pegam mudanças: 9 mutações aplicadas (autor inventado, "sexto livro" removido, `escopo` do corpus alterado, outro recorte alterado, W12 removida da nota, frase da DEC-CUR-02 removida, obra substituta citada, `field` alterado, título de W12 alterado), todas reprovadas; mais uma mutação da nota reprovada pelo E2E. Uma décima mutação planejada (nota de outra entrada) não se aplicou e não foi contada.
+- Resultados: 359 testes unitários (25 arquivos), `tsc --noEmit` e build sem falhas.

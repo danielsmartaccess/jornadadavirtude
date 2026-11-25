@@ -167,8 +167,8 @@ describe('DH-T-02: campo conflito de Budismos reflete a DEC-CUR-02', () => {
     expect(registro('tradicoes-budistas').council).toBe(true);
   });
 
-  it('é o único registro da curadoria com conflito, e o campo não é lido pelo motor de seleção', async () => {
-    expect(tradicoes.filter((t) => 'conflito' in t).map((t) => t.id)).toEqual(['tradicao-budismos']);
+  it('só Budismos e, desde a DH-T-03, o corpus da Gita têm conflito; o campo não é lido pelo motor de seleção', async () => {
+    expect(tradicoes.filter((t) => 'conflito' in t).map((t) => t.id)).toEqual(['corpus-bhagavad-gita', 'tradicao-budismos']);
     const { readFileSync } = (await import(/* @vite-ignore */ 'node:' + 'fs')) as { readFileSync: (p: URL, e: string) => string };
     const motor = readFileSync(new URL('../../src/domain/council.ts', import.meta.url), 'utf8');
     expect(motor).not.toMatch(/conflito/);
