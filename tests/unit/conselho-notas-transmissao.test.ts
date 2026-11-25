@@ -70,13 +70,15 @@ describe('DH-T-01: o que não mudou', () => {
     }
   });
 
-  it('as notas existem em 15 registros: os 8 casos híbridos, os 4 desta decisão e os 3 agregados temáticos legados da DH-T-02, e em nenhum outro', () => {
+  it('as notas existem em 16 registros: os 8 casos híbridos, os 4 desta decisão, os 3 agregados temáticos legados da DH-T-02 e Tomás de Aquino (DH-T-04), e em nenhum outro', () => {
     const comNota = classificacoes.filter((c) => c.nota).map((c) => c.id).sort();
     expect(comNota).toEqual(
       [
         'benjamin-franklin', 'confucio', 'dalai-lama', 'epicteto', 'karl-popper', 'lao-tse', 'musashi', 'peter-drucker', 'richard-feynman', 'simone-weil', 'socrates', 'tradicoes-budistas',
         // DH-T-02: agregados temáticos legados (não são pessoas; a nota diz que não são tradições específicas).
         'tradicoes-contemplativas', 'tradicoes-humanistas', 'tradicoes-religiosas',
+        // DH-T-04: identidade bibliográfica de W08 (nota de Tomás de Aquino; o tipo e os universos não mudam).
+        'tomas-de-aquino',
       ].sort(),
     );
     expect(classificacoes).toHaveLength(42);

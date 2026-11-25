@@ -39,9 +39,10 @@ describe('DH-T-03: só dois campos de texto mudaram (impressões digitais de tud
     expect(impressao(semConflito)).toBe('617a7cb9');
   });
 
-  it('curadoria/classificacao.json: as outras 41 entradas e todos os campos de tradicoes-budistas, menos a nota, são idênticos ao que eram', () => {
+  it('curadoria/classificacao.json: as outras 40 entradas (fora budistas e Tomás) e todos os campos de tradicoes-budistas, menos a nota, são idênticos ao que eram', () => {
     expect(classificacaoJson).toHaveLength(42);
-    expect(impressao(classificacaoJson.filter((c) => c.id !== 'tradicoes-budistas'))).toBe('c2b460cd');
+    // Exclui também tomas-de-aquino, cuja nota é da DH-T-04 (conferida no teste dela). Medido na main: 8998830e (era 'c2b460cd' só sem budistas, antes da integração).
+    expect(impressao(classificacaoJson.filter((c) => c.id !== 'tradicoes-budistas' && c.id !== 'tomas-de-aquino'))).toBe('8998830e');
     const { nota: _nota, ...semNota } = classificacaoJson.find((c) => c.id === 'tradicoes-budistas')!;
     expect(impressao(semNota)).toBe('a7f16487');
   });

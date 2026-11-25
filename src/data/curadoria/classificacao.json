@@ -11,7 +11,7 @@
     { "id": "epicteto", "tipo": "pensador-individual", "universos": ["filosofia-etica"], "nota": "Pensador individual cujos ensinamentos foram registrados por seu discípulo Arriano, nos Discursos e no Encheirídion (Manual). A transmissão textual deve ser distinguida de autoria direta; há divergência acadêmica sobre a extensão da mediação." },
     { "id": "seneca", "tipo": "pensador-individual", "universos": ["filosofia-etica"] },
     { "id": "marco-aurelio", "tipo": "pensador-individual", "universos": ["filosofia-etica"] },
-    { "id": "tomas-de-aquino", "tipo": "pensador-individual", "universos": ["filosofia-etica", "tradicoes-espirituais"] },
+    { "id": "tomas-de-aquino", "tipo": "pensador-individual", "universos": ["filosofia-etica", "tradicoes-espirituais"], "nota": "W08 corresponde ao título editorial Treatise on the Virtues, associado à Suma Teológica, I-II, questões 49–67. Não deve ser interpretado como obra autônoma distinta da Suma Teológica. A identificação decorre da correspondência bibliográfica entre o título e o conteúdo do volume, não de confirmação explícita da intenção do Documento 03." },
     { "id": "kant", "tipo": "pensador-individual", "universos": ["filosofia-etica"] },
     { "id": "musashi", "tipo": "pensador-individual", "universos": ["filosofia-etica"], "nota": "Caso híbrido: estrategista e autor de tratado sobre a via da espada. Tipo principal: pensador individual." },
     { "id": "simone-weil", "tipo": "pensador-individual", "universos": ["filosofia-etica", "tradicoes-espirituais"], "nota": "Caso híbrido: filósofa com escrita mística e religiosa. Universo principal: filosofia e ética; tradições espirituais como qualificador." },

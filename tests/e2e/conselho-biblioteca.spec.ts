@@ -427,3 +427,39 @@ test('DH-T-03: a Gita diz que integra o Mahābhārata; Tradições budistas expl
   await expect(bloco.getByText('Obras de referência: Textos budistas sobre as Paramitas')).toBeVisible();
   expect(erros).toEqual([]);
 });
+
+/* DH-T-04: identidade bibliográfica de W08 ("Tratado das Virtudes"). Só texto informativo; W08 não é removida. */
+test('DH-T-04: W08 mostra a localização na Suma; a nota de Tomás declara o limite da identificação; nada mais muda', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+  const TITULO_W08 = 'Tratado das Virtudes (Suma Teológica, I-II, qq. 49–67)';
+
+  // Página de Tomás de Aquino: nota no parágrafo do aviso da taxonomia; as duas obras seguem listadas.
+  await page.goto('/conselho/pensadores/tomas-de-aquino');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const nota = page.locator('p').filter({ hasText: 'W08 corresponde ao título editorial Treatise on the Virtues' });
+  await expect(nota).toHaveCount(1);
+  await expect(nota).toContainText('Suma Teológica, I-II, questões 49–67');
+  await expect(nota).toContainText('Não deve ser interpretado como obra autônoma distinta da Suma Teológica');
+  await expect(nota).toContainText('não de confirmação explícita da intenção do Documento 03');
+  await expect(nota).toContainText('Classificação curatorial v1 — sujeita a revisão especializada');
+  await expect(page.getByRole('region', { name: 'Obras de referência' }).getByRole('listitem')).toHaveText(['Suma Teológica', TITULO_W08]);
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Página da virtude: o bloco de Tomás mostra as duas obras, com o título novo de W08.
+  await page.goto('/virtudes/V01');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const blocoTomas = page.locator('details').filter({ has: page.locator('summary', { hasText: 'Tomás de Aquino' }) });
+  await expect(blocoTomas).toHaveCount(1);
+  await blocoTomas.locator('summary').click(); // o título só é lido com o bloco aberto
+  await expect(blocoTomas.getByText(`Obras de referência: Suma Teológica; ${TITULO_W08}`)).toBeVisible();
+  expect(await semRolagem(page)).toBeLessThanOrEqual(0);
+
+  // Fora do escopo: outro pensador não ganha a nota, e a obra de Tomás não aparece como obra autônoma sem a localização.
+  await page.goto('/conselho/pensadores/aristoteles');
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  const textoAristoteles = await page.locator('main').innerText();
+  expect(textoAristoteles.length).toBeGreaterThan(300);
+  expect(textoAristoteles).not.toContain('W08 corresponde');
+  expect(erros).toEqual([]);
+});
