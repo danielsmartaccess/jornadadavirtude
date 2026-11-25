@@ -62,6 +62,7 @@
 - **Natureza.** Metadado editorial, não ontologia definitiva nem hierarquia de valor.
 - **Universo principal.** O primeiro universo da lista é o principal. Os demais são qualificadores.
 - **Casos híbridos.** Têm `nota` própria: Musashi, Simone Weil, Feynman, Popper, Franklin, Drucker, Dalai Lama e o corpus budista.
+- **Notas de transmissão (DEC-CUR-11).** Sócrates, Confúcio, Lao-Tsé e Epicteto também têm `nota`, sobre a forma de transmissão do pensamento e não sobre hibridismo. Ver a seção "Revisão DH-T-01".
 - **Limite de efeito.** A classificação não convoca ninguém sozinha. Sem relação com virtude pedida nem caso, ninguém entra (teste). O universo só atua na diversidade entre candidatos já pertinentes.
 - **Aviso visível.** A interface mostra "Classificação curatorial v1 — sujeita a revisão especializada". A classificação item a item continua com status `proposta`.
 
@@ -163,3 +164,44 @@ Sem teste estatístico; são as mesmas 79 entradas.
 
 - **Dados de pertinência contextual.** Os únicos com recorte contextual são as perspectivas dos 6 casos de referência; entradas por virtude ou dimensão nunca têm pertinência contextual documentada.
 - **Pertinência temática.** Usa a prioridade e o P1–P4 do Documento 04 como evidência; não substitui revisão individual das relações (DEC-CUR-08).
+
+## Revisão DH-T-01 (2026-11-25) — DEC-CUR-11: notas de transmissão para pensadores sem corpus autoral próprio
+
+### Decisão aprovada
+
+A auditoria da Fase 3A (DH-T-01) apontou que o Documento 14 §5 define "pensador individual" como "pessoa com corpus autoral identificável", e que quatro habilitados não cumprem essa definição ao pé da letra: o pensamento deles chegou por testemunhos, compilações de discípulos ou registro de terceiros.
+
+O responsável pelo produto aprovou a **alternativa A**: manter os tipos atuais e acrescentar `classificacao.nota` específica sobre a forma de transmissão. Não há subtipo, categoria nova nem mudança de schema, e o texto do Documento 14 §5 não foi alterado.
+
+### Pensadores abrangidos e redação final
+
+| Pensador | Situação documentada | Nota (`classificacao.nota`) |
+|---|---|---|
+| Sócrates | Não deixou escritos próprios conhecidos; conhecido por testemunhos de terceiros | Pensador individual sem corpus autoral próprio conhecido. Seu pensamento é reconstruído principalmente a partir de testemunhos e representações produzidos por terceiros, com propósitos e perspectivas distintos. |
+| Confúcio | Os Analectos (Lunyu) foram compilados por discípulos de primeira e segunda geração | Pensador individual cuja tradição textual foi transmitida por discípulos: os Analectos (Lunyu) resultam de compilação por discípulos de primeira e segunda geração e de transmissão posterior ao mestre. |
+| Lao-Tsé | Texto de natureza compósita; a historicidade da figura é objeto de controvérsia acadêmica | Figura tradicionalmente associada ao Tao Te Ching (Dao De Jing), texto de formação compósita. A historicidade de Lao-Tsé e a atribuição do corpus são objeto de debate acadêmico. |
+| Epicteto | Discursos e Encheirídion registrados por Arriano, seu discípulo; há divergência sobre a extensão da mediação | Pensador individual cujos ensinamentos foram registrados por seu discípulo Arriano, nos Discursos e no Encheirídion (Manual). A transmissão textual deve ser distinguida de autoria direta; há divergência acadêmica sobre a extensão da mediação. |
+
+### Justificativa da redação
+
+- Cada nota descreve a situação específica da pessoa. Nenhuma frase se repete entre elas, e as quatro situações (testemunhos de terceiros, compilação por discípulos, texto compósito com historicidade debatida, registro por discípulo) não são tratadas como uma categoria homogênea.
+- Usam só os fatos da tabela de referência da auditoria e as fontes já registradas no projeto: as referências-base de Sócrates (Platão, Xenofonte e Aristófanes) e as obras W04, W09 e W10.
+- Não afirmam inexistência, obra apócrifa nem consenso onde a auditoria registra controvérsia (historicidade e atribuição, no caso de Lao-Tsé; extensão da mediação, no de Epicteto).
+- A convenção anterior das notas ("Caso híbrido: …") continua só para os casos híbridos. As de transmissão não usam esse rótulo.
+
+### Efeito
+
+- A nota é informativa. Aparece na página do pensador, no parágrafo do cabeçalho, junto do aviso "Classificação curatorial v1 — sujeita a revisão especializada". O motor de seleção não a lê: só usa o primeiro universo da classificação.
+- Inalterados: tipos e universos dos quatro, elegibilidade, flags `council`, as 189 relações (todas `proposta`), pesos, diversidade e os snapshots v1, v2 e v2.1.
+- Custo medido: o chunk `council` passou de 63,45 para 64,34 kB (+0,89 kB, o texto das notas), carregado só nas rotas do Conselho. O arquivo principal (`index`) não mudou.
+
+### Fora do escopo (pendências)
+
+- **Mêncio e Hillel (candidatos).** Dependem da DH-L-11 (criação de um campo de nota em `candidatos.json`). Nenhum campo foi criado e nem o tipo nem a classificação mudaram. Os dois seguem pendentes.
+- **Tiruvalluvar.** Mantém o tipo `voz-literaria-artistica`. A definição de voz literária fica para a DH-T-20.
+- **Davi Kopenawa.** Classificação preservada. A coautoria com Bruce Albert fica para a DH-T-14.
+
+### Arquivos e testes
+
+- Alterados: `src/data/curadoria/classificacao.json` (quatro campos `nota`), `tests/unit/conselho-notas-transmissao.test.ts` (novo, 11 testes), `tests/e2e/conselho-biblioteca.spec.ts` (um teste novo), `historico-decisoes.md` e este ADR.
+- Testes: 328 unitários (23 arquivos), 93 E2E em três execuções completas (10, 10 e 3 workers), `tsc --noEmit`, build e `npm audit --omit=dev --audit-level=high` sem falhas.
