@@ -60,6 +60,7 @@ import {
 import { isOpenJourney, sortByDateDesc } from '../../domain/journey';
 import type { CouncilSession, DiaryEntry } from '../../domain/types';
 import { formatDate, newId, normalize, today, unique } from '../../shared/util';
+import { termosDoRegistro, textoConfiabilidade } from './rotulos';
 
 const TRANSPARENCY =
   'As contribuições são interpretações organizadas pela plataforma a partir de ideias e obras documentadas. Não são falas literais dos pensadores nem simulam sua personalidade. O Conselho amplia a reflexão; a conclusão e a decisão são suas.';
@@ -751,6 +752,7 @@ function ReferenciaItem({ r }: { r: ReferenciaBase }) {
     r.isbn ? `ISBN ${r.isbn}` : '',
     r.doi ? `DOI ${r.doi}` : '',
   ].filter(Boolean);
+  const confiabilidade = textoConfiabilidade(r);
   return (
     <li className="entry" data-referencia={r.workId}>
       <p>
@@ -767,7 +769,7 @@ function ReferenciaItem({ r }: { r: ReferenciaBase }) {
       <p className="hint mt-1">{r.notaAtribuicao}</p>
       {/* DEC-CUR-10: completude bibliográfica e confiabilidade são dimensões diferentes. */}
       <p className="meta mt-1" data-completude={completudeBibliografica(r)}>
-        {COMPLETUDE_BIBLIOGRAFICA[completudeBibliografica(r)]}. Confiabilidade da fonte: não avaliada (sem rubrica aprovada; não é inferida da falta de metadados).
+        {COMPLETUDE_BIBLIOGRAFICA[completudeBibliografica(r)]}.{confiabilidade && ` ${confiabilidade}.`}
       </p>
       {r.confiabilidade?.natureza && (
         <p className="hint mt-1" data-natureza-testemunho>
@@ -778,7 +780,7 @@ function ReferenciaItem({ r }: { r: ReferenciaBase }) {
       {r.conferencia.lacunas.length > 0 && <p className="meta mt-1">A confirmar: {r.conferencia.lacunas.join('; ')}.</p>}
       <p className="meta mt-1">
         <a href={r.conferencia.fonte} target="_blank" rel="noopener noreferrer">
-          Página consultada na conferência
+          Referência indicada na conferência
         </a>
       </p>
     </li>
@@ -807,6 +809,7 @@ export function ThinkerPage() {
   const vinculosDaPessoa = vinculosDe(thinker.id);
   const referencias = referenciasDe(thinker.id);
   const testemunhos = referencias.length > 0 && referencias.every((r) => r.relacao === 'source_witness_for');
+  const termos = termosDoRegistro(thinker);
   return (
     <>
       <PageHeader crumbs={[{ label: 'Conselho de Sabedoria', to: '/conselho' }, { label: 'Pensadores', to: '/conselho/pensadores' }, { label: thinker.name }]} title={thinker.name} lede={thinker.field}>
@@ -814,7 +817,7 @@ export function ThinkerPage() {
         <div className="mt-4 flex flex-wrap items-end gap-5 text-accent">
           <EmblemaTradicaoSimbolo tradicao={thinker.tradition} size={56} />
           <AssinaturaVirtude cor="var(--fg)" rotulo="assinatura-pensador" relacoes={relacoesDoPensador(thinker.id)} size={56} animado />
-          <p className="meta max-w-legenda text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a este pensador na base, não de uma classificação do seu pensamento.</p>
+          <p className="meta max-w-legenda text-muted">O emblema marca a tradição. Os anéis vêm das dimensões das virtudes relacionadas a {termos.relacionadoA} na base, não de uma classificação {termos.classificacaoDe}.</p>
         </div>
         {classificacao && <TagsDaEntrada tipo={classificacao.tipo} lista={classificacao.universos} />}
         {classificacao && (
@@ -885,8 +888,8 @@ export function ThinkerPage() {
         ) : (
           <p className="hint">
             {referencias.length
-              ? `Nenhuma obra no catálogo para este integrante. ${testemunhos ? 'Veja os testemunhos abaixo.' : 'Veja as referências-base abaixo.'}`
-              : 'Nenhuma obra registrada na base para este integrante. Fundamentação a completar pela curadoria.'}
+              ? `Nenhuma obra no catálogo para ${termos.paraEste}. ${testemunhos ? 'Veja os testemunhos abaixo.' : 'Veja as referências-base abaixo.'}`
+              : `Nenhuma obra registrada na base para ${termos.paraEste}. Fundamentação a completar pela curadoria.`}
           </p>
         )}
       </Section>
@@ -967,7 +970,7 @@ export function ThinkerPage() {
         </div>
         <p className="hint mt-3">
           {avaliadas === 0
-            ? 'A fundamentação de cada relação (níveis F1 a F4 do Documento 14) ainda não foi avaliada pela curadoria. As obras e referências acima valem para o integrante como um todo, não para cada virtude: referência cadastrada não é relação validada.'
+            ? `A fundamentação de cada relação (níveis F1 a F4 do Documento 14) ainda não foi avaliada pela curadoria. As obras e referências acima valem para ${termos.valemPara} como um todo, não para cada virtude: referência cadastrada não é relação validada.`
             : `${avaliadas} de ${related.length} relações têm evidência registrada pela curadoria.`}
         </p>
       </Section>

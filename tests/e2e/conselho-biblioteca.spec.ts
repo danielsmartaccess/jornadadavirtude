@@ -197,3 +197,73 @@ test('Fase 2: no caso do perdão, Dalai Lama é voz e Tradições budistas só d
   await expect(page.getByText('Contexto de apoio: Tradições budistas, recorte budismo tibetano').first()).toBeVisible();
   await expect(page.getByText('Critérios de seleção: versão 2.1 (Documento 13).').first()).toBeVisible();
 });
+
+/* DH-T-12: a interface diz só o que sabe. Nenhum dado muda; só rótulos e uma ação. Três testes curtos, um por assunto.
+ * No subitem A, o modelo não registra o resultado do acesso à página (ver rotulos.ts): a redação é uniforme. */
+const INDICADA = 'Referência indicada na conferência'; // redação aprovada, igual em todas as referências
+// Textos que NÃO podem aparecer em nenhuma página: a afirmação antiga de consulta e a de inacessibilidade.
+const CONSULTADA_ANTIGA = 'Página consultada na conferência';
+const NAO_ABERTA = 'Página indicada (não foi possível abrir na conferência)';
+const link = (escopo: ReturnType<Page['locator']>, nome: string) => escopo.getByRole('link', { name: nome, exact: true });
+
+test('DH-T-12-A e D: as 12 referências usam a mesma redação, sem afirmar consulta nem inacessibilidade; confiabilidade lida do dado', async ({ page }) => {
+  const erros = errors(page);
+
+  // A: sem campo estruturado com o resultado do acesso, todas as referências, inclusive as a_confirmar (REF-FEY-02 e REF-FRA-01),
+  // trazem a redação aprovada e nenhuma afirma que a página foi consultada ou que não abriu.
+  let total = 0;
+  for (const id of ['socrates', 'richard-feynman', 'benjamin-franklin', 'dalai-lama', 'simone-weil', 'musashi', 'edith-stein', 'karl-popper', 'peter-drucker']) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const n = await page.locator('[data-referencia]').count();
+    total += n;
+    await expect(link(page.locator('main'), INDICADA), id).toHaveCount(n);
+    await expect(link(page.locator('[data-referencia]'), INDICADA), id).toHaveCount(n); // um por referência, dentro do próprio item
+    await expect(link(page.locator('main'), CONSULTADA_ANTIGA), id).toHaveCount(0);
+    await expect(link(page.locator('main'), NAO_ABERTA), id).toHaveCount(0);
+    const texto = await page.locator('main').innerText();
+    expect(texto, id).not.toContain(CONSULTADA_ANTIGA);
+    expect(texto, id).not.toMatch(/não foi possível abrir/i);
+  }
+  expect(total).toBe(12);
+  // As duas referências a_confirmar (página do editor/guia que a conferência registrou como HTTP 403) não ganham texto próprio.
+  for (const [id, ref] of [['richard-feynman', 'REF-FEY-02'], ['benjamin-franklin', 'REF-FRA-01']]) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(link(page.locator(`[data-referencia="${ref}"]`), INDICADA), ref).toHaveCount(1);
+  }
+
+  // D: a frase de confiabilidade vem do dado (campo `confiabilidade`), também na referência a_confirmar.
+  await page.goto('/conselho/pensadores/richard-feynman');
+  await expect(page.locator('[data-referencia="REF-FEY-02"]').getByText('Confiabilidade da fonte: não avaliada', { exact: false })).toHaveCount(1);
+  expect(erros).toEqual([]);
+});
+
+test('DH-T-12-B: tradição, escola e corpus não são chamados de pensador nem de integrante; as pessoas mantêm o texto', async ({ page }) => {
+  const erros = errors(page);
+  for (const id of ['tradicoes-budistas', 'estoicismo', 'bhagavad-gita', 'tradicoes-cristas', 'tradicoes-humanistas', 'tradicoes-religiosas', 'tradicoes-contemplativas']) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const texto = await page.locator('main').innerText();
+    expect(texto, id).not.toMatch(/\b(pensador|integrante)\b/i);
+    expect(texto, id).toContain('relacionadas a este registro na base');
+    expect(texto, id).toContain('valem para este registro como um todo');
+  }
+  await page.goto('/conselho/pensadores/aristoteles');
+  await expect(page.getByText('relacionadas a este pensador na base, não de uma classificação do seu pensamento')).toBeVisible();
+  await expect(page.getByText('valem para o integrante como um todo')).toBeVisible();
+  await page.goto('/conselho/pensadores/william-james'); // legado não habilitado: fora desta decisão (DH-T-10), texto igual ao de antes
+  await expect(page.getByText('Nenhuma obra registrada na base para este integrante')).toBeVisible();
+  expect(erros).toEqual([]);
+});
+
+test('DH-T-12-C: na página da virtude, o corpus de apoio não oferece "Ver perfil no Conselho"; a pessoa continua oferecendo', async ({ page }) => {
+  const erros = errors(page);
+  await page.goto('/virtudes/V04');
+  const bloco = (nome: string) => page.locator('details').filter({ has: page.locator('summary', { hasText: nome }) });
+  for (const nome of ['Tradições budistas', 'Simone Weil']) await bloco(nome).locator('summary').click();
+  await expect(bloco('Tradições budistas').getByText('Fonte da associação')).toBeVisible(); // o bloco está aberto e legível
+  await expect(link(bloco('Tradições budistas'), 'Ver perfil no Conselho')).toHaveCount(0);
+  await expect(link(bloco('Simone Weil'), 'Ver perfil no Conselho')).toHaveCount(1);
+  await expect(link(bloco('Simone Weil'), 'Ver perfil no Conselho')).toHaveAttribute('href', '/conselho/pensadores/simone-weil');
+  expect(erros).toEqual([]);
+});

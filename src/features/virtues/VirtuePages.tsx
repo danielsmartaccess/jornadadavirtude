@@ -26,6 +26,7 @@ import {
 } from '../../domain/catalog';
 import type { Exercise } from '../../domain/types';
 import { normalize } from '../../shared/util';
+import { temAcaoVerPerfil } from '../council/acaoPerfil';
 
 const RELATION_LABEL = { D1: 'Relação primária', D2: 'Relação secundária', D3: 'Relação contextual' } as const;
 const P_LABEL = { P1: 'Fundamentação direta', P2: 'Contribuição relevante', P3: 'Perspectiva complementar', P4: 'Interpretação contemporânea' } as const;
@@ -268,7 +269,7 @@ export function VirtuePage() {
             </div>
             {worksOfThinker(thinker).length > 0 && <p className="meta mt-2">Obras de referência: {worksOfThinker(thinker).map((w) => w.title).join('; ')}</p>}
             <p className="meta mt-1">Fonte da associação: {relation.sources.map(sourceLabel).join(' · ')}</p>
-            {thinker.council && (
+            {temAcaoVerPerfil(thinker) && (
               <p className="mt-2">
                 <Link to={`/conselho/pensadores/${thinker.id}`}>Ver perfil no Conselho</Link>
               </p>
