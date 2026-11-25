@@ -33,6 +33,8 @@ export interface LinhaInventario {
 export function tipoDeJustificativa(r: ThinkerVirtue): TipoJustificativa {
   if (r.justification.startsWith('Referência indicada nos documentos do projeto')) return 'pendente';
   if (r.justification.startsWith('Campo de contribuição registrado no Documento 04')) return 'campo-do-autor';
+  /* DH-T-05: as 11 justificativas de tradicoes-budistas citam o Documento 03, §2.5 (origem real do texto); seguem sendo o campo geral do autor. */
+  if (r.justification.startsWith('Campo de contribuição registrado no Documento 03, §2.5')) return 'campo-do-autor';
   return 'especifica-doc04';
 }
 

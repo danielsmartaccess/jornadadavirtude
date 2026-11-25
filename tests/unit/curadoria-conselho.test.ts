@@ -57,7 +57,7 @@ const normalizar = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-
 describe('preservação do catálogo original', () => {
   it('thinkers, relações, obras e casos têm exatamente o conteúdo de antes da curadoria ampliada', () => {
     expect(impressao(thinkers)).toBe('4e220f35');
-    expect(impressao(thinkerVirtues)).toBe('aa9d6a08');
+    expect(impressao(thinkerVirtues)).toBe('83f09135'); // era 'aa9d6a08': DH-T-05 trocou só o texto de 11 justificativas (Documento 04 → Documento 03, §2.5)
     expect(impressao(works)).toBe('659be0a8');
     expect(impressao(councilCases)).toBe('284650c2');
   });
