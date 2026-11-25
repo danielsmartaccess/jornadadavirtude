@@ -704,6 +704,9 @@ function TradicaoView({ t }: { t: TradicaoCorpus }) {
       )}
       {t.registrosNoCatalogo.length > 0 && (
         <Section title="Registros correspondentes no catálogo">
+          <p className="hint mb-2">
+            Esta página é o recorte curatorial: descreve escopo e cuidados de leitura (Documento 14, seção 8) e não tem relações com virtudes. As relações e o papel no Conselho ficam no registro do catálogo.
+          </p>
           <LinksDeEntradas ids={t.registrosNoCatalogo} />
         </Section>
       )}
@@ -857,6 +860,7 @@ export function ThinkerPage() {
                 <Link to={`/conselho/pensadores/${t.id}`}>{t.nome}</Link>
               </span>
             ))}
+            {' '}— o recorte descreve escopo e cuidados de leitura; as relações com virtudes ficam neste registro do catálogo.
           </p>
         )}
       </PageHeader>

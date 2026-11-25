@@ -41,9 +41,9 @@
     { "id": "ernst-bloch", "tipo": "pensador-individual", "universos": ["filosofia-etica"] },
     { "id": "estoicismo", "tipo": "escola-corrente", "universos": ["filosofia-etica"] },
     { "id": "tradicoes-cristas", "tipo": "tradicao-corpus", "universos": ["tradicoes-espirituais"] },
-    { "id": "tradicoes-humanistas", "tipo": "escola-corrente", "universos": ["filosofia-etica"] },
-    { "id": "tradicoes-religiosas", "tipo": "tradicao-corpus", "universos": ["tradicoes-espirituais"] },
-    { "id": "tradicoes-contemplativas", "tipo": "tradicao-corpus", "universos": ["tradicoes-espirituais"] },
+    { "id": "tradicoes-humanistas", "tipo": "escola-corrente", "universos": ["filosofia-etica"], "nota": "Agregado temático legado, sem escopo conceitual suficientemente delimitado para ser tratado como uma tradição específica. Registro legado preservado nesta etapa, incluindo suas relações, sem que isso represente validação de seu escopo como tradição específica." },
+    { "id": "tradicoes-religiosas", "tipo": "tradicao-corpus", "universos": ["tradicoes-espirituais"], "nota": "Agregado temático legado, sem escopo conceitual suficientemente delimitado para ser tratado como uma tradição específica. Registro legado preservado nesta etapa, incluindo suas relações, sem que isso represente validação de seu escopo como tradição específica." },
+    { "id": "tradicoes-contemplativas", "tipo": "tradicao-corpus", "universos": ["tradicoes-espirituais"], "nota": "Agregado temático legado, sem escopo conceitual suficientemente delimitado para ser tratado como uma tradição específica. Registro legado preservado nesta etapa, incluindo suas relações, sem que isso represente validação de seu escopo como tradição específica." },
     { "id": "bhagavad-gita", "tipo": "tradicao-corpus", "universos": ["tradicoes-espirituais"] }
   ]
 }

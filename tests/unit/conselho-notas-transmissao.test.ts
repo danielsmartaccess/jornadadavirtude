@@ -70,10 +70,14 @@ describe('DH-T-01: o que não mudou', () => {
     }
   });
 
-  it('as notas existem em 12 registros: os 8 casos híbridos de antes mais os 4 desta decisão, e em nenhum outro', () => {
+  it('as notas existem em 15 registros: os 8 casos híbridos, os 4 desta decisão e os 3 agregados temáticos legados da DH-T-02, e em nenhum outro', () => {
     const comNota = classificacoes.filter((c) => c.nota).map((c) => c.id).sort();
     expect(comNota).toEqual(
-      ['benjamin-franklin', 'confucio', 'dalai-lama', 'epicteto', 'karl-popper', 'lao-tse', 'musashi', 'peter-drucker', 'richard-feynman', 'simone-weil', 'socrates', 'tradicoes-budistas'].sort(),
+      [
+        'benjamin-franklin', 'confucio', 'dalai-lama', 'epicteto', 'karl-popper', 'lao-tse', 'musashi', 'peter-drucker', 'richard-feynman', 'simone-weil', 'socrates', 'tradicoes-budistas',
+        // DH-T-02: agregados temáticos legados (não são pessoas; a nota diz que não são tradições específicas).
+        'tradicoes-contemplativas', 'tradicoes-humanistas', 'tradicoes-religiosas',
+      ].sort(),
     );
     expect(classificacoes).toHaveLength(42);
   });

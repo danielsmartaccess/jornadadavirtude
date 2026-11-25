@@ -142,3 +142,75 @@ A seção "Recorte desta perspectiva" mostra, para cada vínculo: tipo, situaç�
 
 - Seleção: nenhum. O motor de seleção não lê vínculos; os snapshots v1, v2 e v2.1 e as comparações não mudaram.
 - Página do Dalai Lama: o vínculo aparece com a etiqueta "A confirmar" e o aviso "Fonte registrada em revisão: não conta como confirmação deste vínculo"; o link passa a se chamar "Fonte em revisão".
+
+## Revisão DH-T-02 (2026-11-25) — DEC-CUR-12: clareza no catálogo de tradições
+
+### Problema identificado
+
+A auditoria da Fase 3A apontou ambiguidades no catálogo de tradições, que mistura tradição, corpus, recorte curatorial e agregado temático:
+
+- **Pares de registros semelhantes.** Quatro entidades existem em dois lugares: um registro do catálogo original (`thinkers.json`) e um recorte curatorial (`tradicoes.json`).
+- **Agregados temáticos genéricos.** "Humanismo" e "Diversas" não delimitam uma tradição.
+- **Agregados culturais amplos.** "Filosofias africanas" e "Pensamentos indígenas" reúnem tradições distintas.
+- **Texto desatualizado.** O campo `conflito` de `tradicao-budismos` ainda dizia que "tradicoes-budistas" "participa da seleção como os indivíduos", o que a DEC-CUR-02 já havia corrigido no comportamento, mas não no texto. Esse texto aparece na tela, na seção "Ponto em aberto na curadoria".
+
+### Decisão humana (aprovada em 25/11/2026)
+
+1. **Pares.** Manter os registros separados. Não excluir, fundir, renomear IDs nem transferir relações. Reforçar as remissões quando melhorar a compreensão.
+2. **Agregados temáticos.** Preservar `tradicoes-humanistas`, `tradicoes-religiosas` e `tradicoes-contemplativas` e acrescentar `classificacao.nota` dizendo que são agregados temáticos legados, não tradições específicas.
+3. **Agregados culturais.** Não fundir, excluir nem renomear. Só auditar e registrar problemas de escopo.
+4. **Registro budista.** Corrigir o `conflito` para refletir a DEC-CUR-02.
+5. **Estoicos.** Preservar `registrosNoCatalogo` e a dependência funcional dos três estoicos.
+
+### Diagnóstico dos quatro pares
+
+Em todos, o recorte curatorial tem **0 relações com virtudes**; as relações ficam no registro do catálogo. Os tipos coincidem nos dois lados, nenhum ID se repete entre os dois arquivos e `registrosNoCatalogo` aponta corretamente em cada par.
+
+| Registro do catálogo (`thinkers.json`) | Recorte curatorial (`tradicoes.json`) | Relações no catálogo | Referência compartilhada |
+|---|---|---:|---|
+| `estoicismo` | `tradicao-estoicismo` | 4 | nenhuma. Único par com autores relacionados (Epicteto, Sêneca, Marco Aurélio): é o que alimenta `paresNaoIndependentes` |
+| `bhagavad-gita` | `corpus-bhagavad-gita` | 1 | W11, ligada nos dois lados; o recorte é `parteDe` Hinduísmo |
+| `tradicoes-budistas` | `tradicao-budismos` | 11 | nenhuma. Registro do catálogo com `council: true` legado (DEC-CUR-02) |
+| `tradicoes-cristas` | `tradicao-cristianismos` | 3 | nenhuma |
+
+Dois pares têm o mesmo nome visível (Estoicismo; Bhagavad Gita) e dois têm nomes diferentes (Tradições budistas × Budismos; Tradições cristãs × Cristianismos).
+
+### Diagnóstico dos agregados
+
+- **Temáticos legados.** Existem em `thinkers.json` e `classificacao.json`, **não** em `tradicoes.json`. Não habilitados, sem campo, conceitos, pergunta nem limites, com 2, 1 e 1 relações. Os tipos eram `escola-corrente` (humanistas) e `tradicao-corpus` (religiosas e contemplativas).
+- **Culturais amplos** (só auditoria, sem alteração):
+  - Os dois têm tipo `tradicao-corpus` e universo só "Filosofia e ética", embora reúnam debates, autores e povos, e não um corpus.
+  - Nenhum tem autores relacionados nem registro no catálogo; os candidatos da área (por exemplo, Gyekye, Wiredu e Krenak) não estão ligados a eles.
+  - O campo `cuidado`, transcrito do Documento 14, já alerta contra a homogeneização. Qualquer reclassificação cultural exige decisão humana específica.
+  - `tradicao-filosofias-latino-americanas` é um caso parecido, mas não foi listado nesta decisão.
+
+### O que foi alterado
+
+| Onde | Mudança |
+|---|---|
+| `classificacao.json` | `nota` em `tradicoes-humanistas`, `tradicoes-religiosas` e `tradicoes-contemplativas`: "Agregado temático legado, sem escopo conceitual suficientemente delimitado para ser tratado como uma tradição específica. Registro legado preservado nesta etapa, incluindo suas relações, sem que isso represente validação de seu escopo como tradição específica." |
+| `tradicoes.json` | `conflito` de `tradicao-budismos`: o registro continua habilitado (`council: true`, contagem histórica dos 27), mas, pela DEC-CUR-02, tradições e corpora são fontes de apoio e contextualização, não pessoas convocáveis nem participantes individuais da seleção, e não ocupam vaga entre as vozes do Conselho. Preservados o Documento 14 (seção 8) e o que segue em aberto (composição 27/34 e identificadores, D-04-02) |
+| `CouncilPages.tsx` | Duas frases, só quando o par existe. Na página do catálogo, após "Recorte curatorial": o recorte descreve escopo e cuidados de leitura e as relações com virtudes ficam no registro do catálogo. Na página do recorte, em "Registros correspondentes no catálogo": esta página é o recorte curatorial, sem relações com virtudes, e as relações e o papel no Conselho ficam no registro do catálogo |
+
+A premissa do pedido de que os três agregados estariam em `tradicoes.json` não se confirmou; a nota foi aplicada onde eles existem.
+
+### O que foi preservado
+
+- Todos os IDs, os dois arquivos de tradições e o campo `registrosNoCatalogo` de cada recorte.
+- A dependência funcional dos estoicos: o mecanismo `paresNaoIndependentes` segue com Estoicismo × Epicteto, Sêneca e Marco Aurélio, nos dois sentidos, e mais nenhum par.
+- As 189 relações (todas `proposta`), os flags `council` (27), pesos, política de diversidade, o gate de crise, o schema e os snapshots v1, v2 e v2.1.
+- A distinção entre pessoas, tradições e corpora: nenhum registro mudou de tipo.
+
+### Fora do escopo e limitações
+
+- **Culturais amplos.** Sem fusão, exclusão, renomeação nem reclassificação, e sem novas classificações culturais. Ficam para decisão humana específica.
+- **Agregado "Humanismo".** Pode se sobrepor ao recorte `tradicao-psicologia-humanista`. A nota não decide isso.
+- **Cartões da biblioteca.** Os dois cartões de cada par se distinguem pelo conteúdo (o recorte mostra escopo e "Cuidado de leitura"; o registro do catálogo mostra o campo de tradição e "Não habilitado"), mas nenhum diz "recorte" ou "registro do catálogo". Isso só é dito nas páginas de detalhe.
+- **Unificação ou fusão de pares.** Segue pendente de decisão arquitetural.
+- **Campo `tradition`.** Continua texto livre ("Humanismo", "Diversas", "Tradição da Índia").
+- **Efeito.** Nenhum na seleção. Sobre a `main` com a DH-T-01 já publicada, o chunk do Conselho passa de 64,34 para 65,49 kB (+1,15 kB, o texto novo dos dados) e o `CouncilPages`, de 34,08 para 34,46 kB (+0,38 kB); o arquivo principal não muda.
+
+### Arquivos e testes
+
+- Alterados: `classificacao.json`, `tradicoes.json`, `CouncilPages.tsx`, `tests/unit/conselho-tradicoes-dht02.test.ts` (novo, 17 testes), `tests/e2e/conselho-biblioteca.spec.ts` (dois testes novos), `historico-decisoes.md` e este ADR.
+- Testes, com a DH-T-01 já integrada: 345 unitários (24 arquivos), 95 E2E em três execuções completas (10, 10 e 3 workers), `tsc --noEmit`, build e `npm audit --omit=dev --audit-level=high` sem falhas. O teste da DH-T-01 que fixa o conjunto de registros com `nota` passou de 12 para 15 registros, com os três agregados desta decisão.
