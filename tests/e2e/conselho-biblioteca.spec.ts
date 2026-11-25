@@ -267,3 +267,32 @@ test('DH-T-12-C: na página da virtude, o corpus de apoio não oferece "Ver perf
   await expect(link(bloco('Simone Weil'), 'Ver perfil no Conselho')).toHaveAttribute('href', '/conselho/pensadores/simone-weil');
   expect(erros).toEqual([]);
 });
+
+/* DH-T-01: notas curatoriais sobre a forma de transmissão (pensadores sem corpus autoral próprio). Só texto informativo. */
+test('DH-T-01: a nota de transmissão aparece na página dos quatro, em 360px, junto do aviso da taxonomia; candidatos seguem sem nota', async ({ page }) => {
+  const erros = errors(page);
+  await page.setViewportSize({ width: 360, height: 800 });
+  const AVISO = 'Classificação curatorial v1 — sujeita a revisão especializada';
+  const notas: [string, string][] = [
+    ['socrates', 'Pensador individual sem corpus autoral próprio conhecido. Seu pensamento é reconstruído principalmente a partir de testemunhos e representações produzidos por terceiros'],
+    ['confucio', 'os Analectos (Lunyu) resultam de compilação por discípulos de primeira e segunda geração e de transmissão posterior ao mestre'],
+    ['lao-tse', 'Figura tradicionalmente associada ao Tao Te Ching (Dao De Jing), texto de formação compósita. A historicidade de Lao-Tsé e a atribuição do corpus são objeto de debate acadêmico'],
+    ['epicteto', 'Pensador individual cujos ensinamentos foram registrados por seu discípulo Arriano, nos Discursos e no Encheirídion (Manual)'],
+  ];
+  for (const [id, trecho] of notas) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const paragrafo = page.locator('p').filter({ hasText: trecho });
+    await expect(paragrafo, id).toHaveCount(1);
+    await expect(paragrafo, id).toContainText(AVISO); // a nota e o aviso da taxonomia ficam no mesmo parágrafo do cabeçalho
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), id).toBeLessThanOrEqual(0);
+  }
+  // Fora do escopo: a página de Mêncio e a de Hillel (candidatos) não ganharam nota, e a de Aristóteles segue igual.
+  for (const id of ['mencio', 'hillel', 'aristoteles']) {
+    await page.goto(`/conselho/pensadores/${id}`);
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    const texto = await page.locator('main').innerText();
+    expect(texto, id).not.toMatch(/sem corpus autoral próprio|transmitida por discípulos|registrados por seu discípulo|formação compósita/);
+  }
+  expect(erros).toEqual([]);
+});

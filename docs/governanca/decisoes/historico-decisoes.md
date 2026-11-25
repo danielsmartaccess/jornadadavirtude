@@ -2,8 +2,8 @@
 
 | Campo | Valor |
 |---|---|
-| Versão | 0.7 |
-| Data | 2026-11-23 |
+| Versão | 0.8 |
+| Data | 2026-11-25 |
 | Status | REGISTRO DE DECISÕES PARA VALIDAÇÃO |
 | Finalidade | Registrar as decisões que têm evidência, os conflitos entre documentos e as decisões pendentes. Nenhuma decisão pendente foi resolvida aqui. |
 
@@ -18,6 +18,7 @@
 | 0.5 | 2026-11-23 | Fase 2 de curadoria: DEC-CUR-02 a DEC-CUR-09 registradas na seção 1 (aprovação do responsável pelo produto; ADR-CUR-02 a ADR-CUR-05). C-02 e D-08-04 resolvidos pela DEC-CUR-05. Notas em C-01, C-10 e D-04-02, que continuam pendentes. Totais: 25 registros D-xx, 23 pendentes, 2 aprovadas, 11 conflitos (1 resolvido). |
 | 0.6 | 2026-11-23 | Revisão humana da Fase 2: DEC-CUR-10 registrada (política v2.1; pertinência temática e contextual; fonte separada de completude bibliográfica; vínculos do Dalai Lama com fontes primária e acadêmica). Totais de D-xx inalterados. |
 | 0.7 | 2026-11-23 | Revisão final: por decisão humana, VIN-DAL-03 (filiação à ordem monástica Gelug) volta a "a confirmar"; VIN-DAL-06 permanece sustentado. Nota acrescentada à DEC-CUR-10. Totais inalterados. |
+| 0.8 | 2026-11-25 | Fase 3B: DEC-CUR-11 registrada (notas de transmissão para Sócrates, Confúcio, Lao-Tsé e Epicteto; DH-T-01 da auditoria da Fase 3A, alternativa A). Mêncio e Hillel seguem pendentes da DH-L-11. Totais de D-xx inalterados. |
 
 ## Regras deste registro
 
@@ -54,6 +55,7 @@
 | DEC-CUR-08 | Revisão das 189 relações sem validação em lote; inventário com prioridade de revisão (não é P1–P4 nem F1–F4) | Aprovação de 23/11/2026; ADR-CUR-04; `inventario-relacoes-v1.md` | Inventário criado; nenhuma relação revisada individualmente |
 | DEC-CUR-09 | Bundle acima de 500 kB: medir antes de otimizar; sem code splitting nesta fase | Aprovação de 23/11/2026; ADR-CUR-05 | Medido: o arquivo principal é o framework; sem ganho mensurável |
 | DEC-CUR-10 | Revisão da Fase 2: política `council-selection-v2.1-doc13-relevance-source` (diversidade só entre alternativas com pertinência temática e contextual; exceção registrada com motivo); fonte identificada separada de completude bibliográfica e de confiabilidade (fim do 0,5); Dalai Lama: prática Gelug inicial (declaração oficial de 2017), filiação monástica (Hogendoorn 2014; *revertida para "a confirmar" por decisão humana na revisão final, ver ADR-CUR-02*), chefia formal Gelug = Ganden Tripa, não afirmada | Revisão do responsável pelo produto em 23/11/2026; ADR-CUR-02, 03 e 04 (seções "Revisão humana"); `comparacao-politicas-selecao-v2.1.md` | Implementada e testada. Revisa DEC-CUR-03, 04, 05 e 07 sem apagá-las; v1 e v2 preservadas |
+| DEC-CUR-11 | Notas curatoriais de transmissão (DH-T-01 da auditoria da Fase 3A, alternativa A): Sócrates, Confúcio, Lao-Tsé e Epicteto, que não têm corpus autoral próprio identificável (definição de `pensador-individual` no Doc. 14 §5), mantêm o tipo e ganham `classificacao.nota` específica sobre a forma de transmissão do pensamento. Mêncio e Hillel (candidatos) ficam pendentes da DH-L-11; Tiruvalluvar (DH-T-20) e Davi Kopenawa (DH-T-14) ficam fora | Aprovação do responsável pelo produto em 25/11/2026; auditoria da Fase 3A (relatórios fora do repositório); ADR-CUR-03 (seção "Revisão DH-T-01") | Implementada e testada. Nenhum tipo, universo, relação, regra de seleção ou schema muda; a nota é informativa |
 
 ## 2. Conflitos entre fontes (pendentes)
 
